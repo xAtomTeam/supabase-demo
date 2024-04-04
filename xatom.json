@@ -1,0 +1,8 @@
+{
+  "webflowSubdomain": "supabase-demo",
+  "port": 3000,
+  "source": "./src/app.ts",
+  "dist": "./dist",
+  "scriptList": ["app.js"],
+  "scriptAttribute": "xa-script"
+}

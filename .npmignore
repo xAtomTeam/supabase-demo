@@ -1,0 +1,14 @@
+src
+node_modules
+.history
+.parcel-cache
+.gitignore
+yarn.lock
+example
+*.map
+.vscode
+.git
+.terserrc
+*.tgz
+.env
+.env.example
