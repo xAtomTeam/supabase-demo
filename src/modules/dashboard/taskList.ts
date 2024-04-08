@@ -7,12 +7,15 @@ import { logout, userAuth } from "../auth";
 import supabase from "../supbase";
 
 const renderLogoutBtn = () => {
+  //logout button
   const btn = new WFComponent(`[xa-type=cta-btn]`);
+  //on click setting up button text and calling logout function
   btn.on("click", (e) => {
-    btn.setTextContent("Please wait...");
     e.preventDefault();
+    btn.setTextContent("Please wait...");
     logout();
   });
+  //changing create account text to logout text
   btn.setTextContent("Logout");
 };
 export const taskList = () => {
@@ -37,7 +40,7 @@ export const taskList = () => {
     }
   );
   let isLoading = true;
-
+  //fetching all items
   const fetch = () => {
     isLoading = true;
     form.disableForm();
@@ -48,13 +51,14 @@ export const taskList = () => {
       .then((data) => {
         console.log(data);
         form.enableForm();
+        //sorting items based on id.
         taskList = data.data.sort((a, b) => a.id - b.id);
         list.changeLoadingStatus(false);
         list.setData(taskList);
         isLoading = false;
       });
   };
-
+  //adding new task
   const addTask = (task: string) => {
     isLoading = true;
     form.disableForm();
@@ -80,6 +84,7 @@ export const taskList = () => {
         fetch();
       });
   };
+  //update task status
   const changeTaskStatus = (
     taskId: number,
     status: boolean
@@ -107,6 +112,7 @@ export const taskList = () => {
         fetch();
       });
   };
+  //delete task
   const deleteTask = (taskId: number) => {
     isLoading = true;
     form.disableForm();
@@ -174,12 +180,5 @@ export const taskList = () => {
     addTask(data.task);
   });
 
-  list.emptyRenderer((el) => {
-    if (isLoading) {
-      return null;
-    }
-
-    return el;
-  });
   fetch();
 };

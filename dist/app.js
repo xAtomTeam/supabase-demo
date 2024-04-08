@@ -1,2 +1,9079 @@
-!function(e,t,r,s,i){var n="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:"undefined"!=typeof window?window:"undefined"!=typeof global?global:{},o="function"==typeof n[s]&&n[s],a=o.cache||{},l="undefined"!=typeof module&&"function"==typeof module.require&&module.require.bind(module);function c(t,r){if(!a[t]){if(!e[t]){var i="function"==typeof n[s]&&n[s];if(!r&&i)return i(t,!0);if(o)return o(t,!0);if(l&&"string"==typeof t)return l(t);var u=Error("Cannot find module '"+t+"'");throw u.code="MODULE_NOT_FOUND",u}d.resolve=function(r){var s=e[t][1][r];return null!=s?s:r},d.cache={};var h=a[t]=new c.Module(t);e[t][0].call(h.exports,d,h,h.exports,this)}return a[t].exports;function d(e){var t=d.resolve(e);return!1===t?{}:c(t)}}c.isParcelRequire=!0,c.Module=function(e){this.id=e,this.bundle=c,this.exports={}},c.modules=e,c.cache=a,c.parent=o,c.register=function(t,r){e[t]=[function(e,t){t.exports=r},{}]},Object.defineProperty(c,"root",{get:function(){return n[s]}}),n[s]=c;for(var u=0;u<t.length;u++)c(t[u]);if(r){var h=c(r);"object"==typeof exports&&"undefined"!=typeof module?module.exports=h:"function"==typeof define&&define.amd&&define(function(){return h})}}({"1RM2K":[function(e,t,r){e("bd7b97a5d3943277").register(e("a4aabaabbbb53c7b").getBundleURL("5pDNv"),JSON.parse('["5pDNv","app.js","bDAMX","browser.5a19c101.js","8JkDf","signUp.7835b975.js","hNOg1","signIn.0e98f390.js","4o371","verify.d8c6abf5.js","2gAwy","taskList.77c4fca0.js"]'))},{bd7b97a5d3943277:"gSiLw",a4aabaabbbb53c7b:"a2ypy"}],gSiLw:[function(e,t,r){var s=new Map;t.exports.register=function(e,t){for(var r=0;r<t.length-1;r+=2)s.set(t[r],{baseUrl:e,path:t[r+1]})},t.exports.resolve=function(e){var t=s.get(e);if(null==t)throw Error("Could not resolve bundle with id "+e);return new URL(t.path,t.baseUrl).toString()}},{}],a2ypy:[function(e,t,r){var s={};function i(e){return(""+e).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/,"$1")+"/"}r.getBundleURL=function(e){var t=s[e];return t||(t=function(){try{throw Error()}catch(t){var e=(""+t.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);if(e)return i(e[2])}return"/"}(),s[e]=t),t},r.getBaseURL=i,r.getOrigin=function(e){var t=(""+e).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);if(!t)throw Error("Origin not found");return t[0]}},{}],"83hJF":[function(e,t,r){var s=e("@xatom/core"),i=e("./routes"),n=e("./modules/supbase");window.WFDebug=!0,(0,s.onReady)(()=>{(0,n.initSupabase)(()=>{(0,i.app)()})})},{"@xatom/core":"5eqAK","./routes":"2uPfR","./modules/supbase":"54PYi"}],"5eqAK":[function(e,t,r){var s=e("116fc168c31b637d");function i(e,t){return Object.keys(t).forEach(function(r){"default"===r||"__esModule"===r||e.hasOwnProperty(r)||Object.defineProperty(e,r,{enumerable:!0,get:function(){return t[r]}})}),e}function n(e,t,r,s){Object.defineProperty(e,t,{get:r,set:s,enumerable:!0,configurable:!0})}var o={};n(o,"WFAuth",()=>a);class a{constructor(e={}){this.config=e}isLoggedIn(){return!!this.user}getRole(){return this.role}getUser(){return this.user}getConfig(){return this.config}logout(){this.user=null,this.role=null,this.config=null}setUser(e){this.user=e}setRole(e){this.role=e}setConfig(e){this.config=e}}var l={};n(l,"WFAuthMiddleware",()=>c);class c{constructor(e){this.auth=e}allowTo(e){return this.auth.getRole()===e}disallowedTo(e){return this.auth.getRole()!==e}getAuth(){return this.auth}}var u={};n(u,"WFComponent",()=>F);var h={},d={};n(d,"debug",()=>p);let p=(...e)=>{window.WFDebug&&console.log(...e)};var f={};function m(e,t){return document.evaluate(e,t,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue}n(f,"getElementByXPath",()=>m);var g={};n(g,"getRouteQueryParams",()=>y);let y=()=>{let e={};return new URLSearchParams(location.search).forEach((t,r)=>{e[r]=t}),e};var v={};function b(e,t){let r=[];for(;e&&e!==t&&e.nodeType===Node.ELEMENT_NODE;){let t=e.nodeName.toLowerCase();e.hasAttribute("id")?t+='[@id="'+e.getAttribute("id")+'"]':e.hasAttribute("class")&&(t+='[@class="'+e.getAttribute("class")+'"]'),r.unshift(t),e=e.parentNode}return r.join("/")}n(v,"getXPathForChangedChild",()=>b);var w={};n(w,"navigate",()=>_);let _=e=>{"string"==typeof e?window.location.assign(e):"object"==typeof e&&"replace"===e.type?window.location.replace(e.to):"object"==typeof e&&"reload"===e.type&&window.location.reload()};var E={};function j(e,t={}){let r=function(e){let t=[],r=0;for(;r<e.length;){let s=e[r];if("*"===s||"+"===s||"?"===s){t.push({type:"MODIFIER",index:r,value:e[r++]});continue}if("\\"===s){t.push({type:"ESCAPED_CHAR",index:r++,value:e[r++]});continue}if("{"===s){t.push({type:"OPEN",index:r,value:e[r++]});continue}if("}"===s){t.push({type:"CLOSE",index:r,value:e[r++]});continue}if(":"===s){let s="",i=r+1;for(;i<e.length;){let t=e.charCodeAt(i);if(t>=48&&t<=57||t>=65&&t<=90||t>=97&&t<=122||95===t){s+=e[i++];continue}break}if(!s)throw TypeError(`Missing parameter name at ${r}`);t.push({type:"NAME",index:r,value:s}),r=i;continue}if("("===s){let s=1,i="",n=r+1;if("?"===e[n])throw TypeError(`Pattern cannot start with "?" at ${n}`);for(;n<e.length;){if("\\"===e[n]){i+=e[n++]+e[n++];continue}if(")"===e[n]){if(0==--s){n++;break}}else if("("===e[n]&&(s++,"?"!==e[n+1]))throw TypeError(`Capturing groups are not allowed at ${n}`);i+=e[n++]}if(s)throw TypeError(`Unbalanced pattern at ${r}`);if(!i)throw TypeError(`Missing pattern at ${r}`);t.push({type:"PATTERN",index:r,value:i}),r=n;continue}t.push({type:"CHAR",index:r,value:e[r++]})}return t.push({type:"END",index:r,value:""}),t}(e),{prefixes:s="./"}=t,i=`[^${C(t.delimiter||"/#?")}]+?`,n=[],o=0,a=0,l="",c=e=>{if(a<r.length&&r[a].type===e)return r[a++].value},u=e=>{let t=c(e);if(void 0!==t)return t;let{type:s,index:i}=r[a];throw TypeError(`Unexpected ${s} at ${i}, expected ${e}`)},h=()=>{let e,t="";for(;e=c("CHAR")||c("ESCAPED_CHAR");)t+=e;return t};for(;a<r.length;){let e=c("CHAR"),t=c("NAME"),r=c("PATTERN");if(t||r){let a=e||"";-1===s.indexOf(a)&&(l+=a,a=""),l&&(n.push(l),l=""),n.push({name:t||o++,prefix:a,suffix:"",pattern:r||i,modifier:c("MODIFIER")||""});continue}let a=e||c("ESCAPED_CHAR");if(a){l+=a;continue}if(l&&(n.push(l),l=""),c("OPEN")){let e=h(),t=c("NAME")||"",r=c("PATTERN")||"",s=h();u("CLOSE"),n.push({name:t||(r?o++:""),pattern:t&&!r?i:r,prefix:e,suffix:s,modifier:c("MODIFIER")||""});continue}u("END")}return n}function S(e,t){return A(j(e,t),t)}function A(e,t={}){let r=k(t),{encode:s=e=>e,validate:i=!0}=t,n=e.map(e=>{if("object"==typeof e)return RegExp(`^(?:${e.pattern})$`,r)});return t=>{let r="";for(let o=0;o<e.length;o++){let a=e[o];if("string"==typeof a){r+=a;continue}let l=t?t[a.name]:void 0,c="?"===a.modifier||"*"===a.modifier,u="*"===a.modifier||"+"===a.modifier;if(Array.isArray(l)){if(!u)throw TypeError(`Expected "${a.name}" to not repeat, but got an array`);if(0===l.length){if(c)continue;throw TypeError(`Expected "${a.name}" to not be empty`)}for(let e=0;e<l.length;e++){let t=s(l[e],a);if(i&&!n[o].test(t))throw TypeError(`Expected all "${a.name}" to match "${a.pattern}", but got "${t}"`);r+=a.prefix+t+a.suffix}continue}if("string"==typeof l||"number"==typeof l){let e=s(String(l),a);if(i&&!n[o].test(e))throw TypeError(`Expected "${a.name}" to match "${a.pattern}", but got "${e}"`);r+=a.prefix+e+a.suffix;continue}if(c)continue;let h=u?"an array":"a string";throw TypeError(`Expected "${a.name}" to be ${h}`)}return r}}function T(e,t){let r=[];return x(I(e,r,t),r,t)}function x(e,t,r={}){let{decode:s=e=>e}=r;return function(r){let i=e.exec(r);if(!i)return!1;let{0:n,index:o}=i,a=Object.create(null);for(let e=1;e<i.length;e++){if(void 0===i[e])continue;let r=t[e-1];"*"===r.modifier||"+"===r.modifier?a[r.name]=i[e].split(r.prefix+r.suffix).map(e=>s(e,r)):a[r.name]=s(i[e],r)}return{path:n,index:o,params:a}}}function C(e){return e.replace(/([.+*?=^!:${}()[\]|/\\])/g,"\\$1")}function k(e){return e&&e.sensitive?"":"i"}function R(e,t,r={}){let{strict:s=!1,start:i=!0,end:n=!0,encode:o=e=>e,delimiter:a="/#?",endsWith:l=""}=r,c=`[${C(l)}]|$`,u=`[${C(a)}]`,h=i?"^":"";for(let r of e)if("string"==typeof r)h+=C(o(r));else{let e=C(o(r.prefix)),s=C(o(r.suffix));if(r.pattern){if(t&&t.push(r),e||s){if("+"===r.modifier||"*"===r.modifier){let t="*"===r.modifier?"?":"";h+=`(?:${e}((?:${r.pattern})(?:${s}${e}(?:${r.pattern}))*)${s})${t}`}else h+=`(?:${e}(${r.pattern})${s})${r.modifier}`}else"+"===r.modifier||"*"===r.modifier?h+=`((?:${r.pattern})${r.modifier})`:h+=`(${r.pattern})${r.modifier}`}else h+=`(?:${e}${s})${r.modifier}`}if(n)s||(h+=`${u}?`),h+=r.endsWith?`(?=${c})`:"$";else{let t=e[e.length-1],r="string"==typeof t?u.indexOf(t[t.length-1])>-1:void 0===t;s||(h+=`(?:${u}(?=${c}))?`),r||(h+=`(?=${u}|${c})`)}return new RegExp(h,k(r))}function I(e,t,r){return e instanceof RegExp?function(e,t){if(!t)return e;let r=/\((?:\?<(.*?)>)?(?!\?)/g,s=0,i=r.exec(e.source);for(;i;)t.push({name:i[1]||s++,prefix:"",suffix:"",modifier:"",pattern:""}),i=r.exec(e.source);return e}(e,t):Array.isArray(e)?function(e,t,r){let s=e.map(e=>I(e,t,r).source);return RegExp(`(?:${s.join("|")})`,k(r))}(e,t,r):R(j(e,r),t,r)}n(E,"parse",()=>j),n(E,"compile",()=>S),n(E,"tokensToFunction",()=>A),n(E,"match",()=>T),n(E,"pathToRegexp",()=>I),n(E,"regexpToFunction",()=>x),n(E,"tokensToRegexp",()=>R),n(E,"routeMatch",()=>O);let O=(e,t,r={},s={})=>(function(e={}){return function(t){var r=[],s=I(t,r,e);return function(e,t){var i,n,o=s.exec(e);if(!o)return!1;t=t||{};for(var a=0;a<r.length;a++)i=r[a],(n=o[a+1])&&(t[i.name]=function(e){try{return decodeURIComponent(e)}catch(t){throw Error('failed to decode param "'+e+'"')}}(n),i.repeat&&(t[i.name]=t[i.name].split(i.delimiter)));return t}}})(s)(e)(t,r);var P={};n(P,"createComponent",()=>L);let L=e=>new F(document.createElement(e));i(h,d),i(h,f),i(h,g),i(h,v),i(h,w),i(h,E),i(h,P);class F{constructor(e){if("string"==typeof e){let t=document.querySelector(e);if(t)this.element=t,this.updateClone();else throw Error(`Could not find ${e}`)}else if("object"==typeof e&&e instanceof HTMLElement)this.element=e,this.updateClone();else if("object"==typeof e&&e instanceof SVGSVGElement)this.element=e,this.updateClone();else if(e instanceof F)this.element=e.getElement(),this.updateClone();else throw Error(`Could not find ${e}`)}updateClone(){this.cloneEl=this.element.cloneNode(!0)}getElement(){return this.element}updateTextViaAttrVar(e){let t={},r=(e,r)=>{e in t||(t[e]=[]),t[e].push(r)};this.hasAttribute("xa-var")&&r(this.getAttribute("xa-var"),this.getElement()),this.getChildAsComponents("[xa-var]").forEach(e=>{r(e.getAttribute("xa-var"),e.getElement())}),Object.keys(e).forEach(r=>{r in t&&t[r].forEach(t=>{t.textContent=e[r].toString()})})}updateTextVariable(e){if(1===this.cloneEl.childNodes.length&&this.cloneEl.firstChild instanceof Text)Object.keys(e).forEach(t=>{this.cloneEl.textContent.includes(`{{${t}}}`)&&(this.element.textContent=this.cloneEl.textContent.replace(`{{${t}}}`,e[t].toString()))});else{let t=Array.from(this.cloneEl.querySelectorAll("*")).map(e=>Array.from(e.childNodes).filter(e=>e instanceof Text&&e.textContent.trim().length>0)).flat();Object.keys(e).forEach(r=>{t.filter(e=>e.textContent.includes(`{{${r}}}`)).forEach(t=>{let s=b(t.parentElement,this.cloneEl),i=m(s,this.element);i?i.textContent=t.textContent.replace(`{{${r}}}`,e[r].toString()):console.log(t,i,"not found",s,t.parentElement,this)})})}}setAttribute(e,t){this.element.setAttribute(e,t)}removeAttribute(e){this.element.removeAttribute(e)}getAttribute(e){return this.element.getAttribute(e)}hasAttribute(e){return this.element.hasAttribute(e)}getChildAsComponents(e){return Array.from(this.element.querySelectorAll(e)).map(e=>new F(e))}getChildAsComponent(e){return new F(this.element.querySelector(e))}getManyChildAsComponents(e){let t={};return Object.keys(e).forEach(r=>{t[r]=new F(this.element.querySelector(e[r]))}),t}getCssClass(){return Array.from(this.element.classList)}addCssClass(e){this.element.classList.add(e),this.cloneEl.classList.add(e)}removeCssClass(e){this.element.classList.remove(e),this.cloneEl.classList.remove(e)}replaceCssClass(e,t){this.element.classList.replace(e,t),this.cloneEl.classList.replace(e,t)}toggleCssClass(e){this.element.classList.toggle(e),this.cloneEl.classList.toggle(e)}on(e,t,r){this.element.addEventListener(e,t,r)}off(e,t,r){this.element.removeEventListener(e,t,r)}setText(e){this.getElement().innerText=e.toString()}getText(){return this.getElement().innerText}setTextContent(e){this.getElement().textContent=e}getTextContent(){return this.getElement().textContent}setHTML(e){this.getElement().innerHTML=e}getHTML(){return this.getElement().innerHTML}getCloneAsComponent(){return new F(this.cloneEl.cloneNode(!0))}setStyle(e={}){Object.keys(e).forEach(t=>{this.element.style[t]=e[t]})}getStyle(){return window.getComputedStyle(this.element)}appendChild(e){this.element.appendChild(new F(e).getElement())}remove(){this.element.remove()}removeAllChildren(){this.element.replaceChildren()}}var $={};n($,"WFDynamicList",()=>N);class N extends F{showLoadingState=!1;constructor(e,t){super(e),"string"==typeof t.rowSelector?this.rowComponent=this.getChildAsComponent(t.rowSelector):this.rowComponent=new F(t.rowSelector),this.rowComponent.remove(),t.loaderSelector&&("string"==typeof t.loaderSelector?this.loaderComponent=this.getChildAsComponent(t.loaderSelector):this.loaderComponent=new F(t.loaderSelector),this.loaderComponent.remove()),t.emptySelector&&("string"==typeof t.emptySelector?this.emptyComponent=this.getChildAsComponent(t.emptySelector):this.emptyComponent=new F(t.emptySelector),this.emptyComponent.remove())}rowRenderer(e){this.rowRendererCB=e}emptyRenderer(e){this.emptyRendererCB=e}loaderRenderer(e){this.loaderRendererCB=e}setData(e){this.data=e,this.render()}render(){if(!this.rowRendererCB)throw Error("Unable to find renderer");this.hideLoading(),this.removeAllChildren(),0===this.data.length&&this.emptyComponent&&this.showEmpty(),this.data.map((e,t,r)=>this.rowRendererCB({index:t,rowData:e,rowElement:this.rowComponent.getCloneAsComponent(),data:r})).filter(e=>e).forEach(e=>{this.appendChild(e)}),this.showLoadingState&&this.showLoading()}changeLoadingStatus(e){this.showLoadingState=e,e?this.showLoading():this.hideLoading()}showLoading(){this.hideLoading(),this.loaderComponent&&(this.loaderRendererCB?this.lastLoadingComponent=this.loaderRendererCB(this.loaderComponent.getCloneAsComponent()):this.lastLoadingComponent=this.loaderComponent.getCloneAsComponent(),this.appendChild(this.lastLoadingComponent))}showEmpty(){this.hideEmpty(),this.emptyRendererCB?this.lastEmptyComponent=this.emptyRendererCB(this.emptyComponent.getCloneAsComponent()):this.lastEmptyComponent=this.emptyComponent.getCloneAsComponent(),this.appendChild(this.lastEmptyComponent)}hideLoading(){this.lastLoadingComponent&&this.lastLoadingComponent.remove()}hideEmpty(){this.lastEmptyComponent&&this.lastEmptyComponent.remove()}forceRender(){this.render()}}var D={};n(D,"WFFormComponent",()=>U);class U extends F{defaultFormDisplayStyle="";constructor(e){super(e),this.formComponent=this.getChildAsComponents("form")[0],this.defaultFormDisplayStyle=window.getComputedStyle(this.formComponent.getElement()).display}getFormData(){let e={};return new FormData(this.formComponent.getElement()).forEach((t,r)=>{e[r]?e[r]=[e[r],t].flat():e[r]=t}),e}setFromData(e){Object.keys(e).forEach(t=>{this.getFormComponent().getElement().querySelector(`[name="${t}"]`).value=e[t]})}onFormSubmit(e){this.formComponent.getElement().onsubmit=t=>{t.preventDefault(),t.stopPropagation(),t.stopImmediatePropagation(),e(this.getFormData(),t)}}submitWebflowForm(){let e=Object.keys(this.formComponent.getElement()).filter(e=>e.includes("jQuery")).map(e=>this.formComponent.getElement()[e]).filter(e=>"object"==typeof e&&".wForm"in e).map(e=>e[".wForm"]).reduce(e=>e);e&&e.handler?e.handler(e):e&&e.action&&this.formComponent.getElement().submit()}getFormComponent(){return this.formComponent}getSuccessComponent(){return this.getChildAsComponents(".w-form-done")[0]}getErrorComponent(){return this.getChildAsComponents(".w-form-fail")[0]}showSuccessState(){this.formComponent.getElement().style.display="none",this.getErrorComponent().getElement().style.display="none",this.getSuccessComponent().getElement().style.display="block"}showErrorState(){this.getSuccessComponent().getElement().style.display="none",this.getErrorComponent().getElement().style.display="block",this.formComponent.getElement().style.display=this.defaultFormDisplayStyle}showForm(){this.getErrorComponent().getElement().style.display="none",this.getSuccessComponent().getElement().style.display="none",this.formComponent.getElement().style.display=this.defaultFormDisplayStyle}disableForm(){Array.from(this.formComponent.getElement().querySelectorAll("input, select, option, textarea, button")).forEach(e=>{e.setAttribute("disabled","disabled")})}enableForm(){Array.from(this.formComponent.getElement().querySelectorAll("input, select, option, textarea, button")).forEach(e=>{e.removeAttribute("disabled")})}getSubmitButton(){return this.formComponent.getChildAsComponents('[type="submit"]')[0]}resetForm(){this.formComponent.getElement().reset()}updateSubmitButtonText(e){this.getSubmitButton().setAttribute("value",e)}}var M={};n(M,"WFRoute",()=>q);class q{middlewareAllowExecutionOnFail=!1;constructor(e){this.route=e}withMiddleware(e,t,r="allow",s={}){return this.middleware=e,this.middlewareRole=t,this.middlewareType=r,"allowExecutionOnFail"in s&&(this.middlewareAllowExecutionOnFail=!0===s.allowExecutionOnFail),"onError"in s&&(this.middlewareErrorFn=s.onError),this}validateRole(){return"allow"===this.middlewareType?this.middleware.allowTo(this.middlewareRole):this.middleware.disallowedTo(this.middlewareRole)}execute(e){let t=O(this.route,location.pathname);if(t){if(p("matched fn start",this.route,location.pathname),this.middleware){let r=this.validateRole();p("checking access role",this.route,this.middlewareRole,this.middlewareType,"canAccess",r,this.middlewareAllowExecutionOnFail),r||this.middlewareAllowExecutionOnFail?e({...t,...y()},r,this.middleware.getAuth()):this.middlewareErrorFn&&this.middlewareErrorFn()}else e({...t,...y()},!0);p("matched fn end",this.route,location.pathname)}else p("did not match",this.route,location.pathname);return this}}var B={};n(B,"onReady",()=>H);let H=e=>{window.Webflow||=[],window.Webflow.push(()=>{e()})};var G={};n(G,"WFInvisibleForm",()=>J);class J{loading=!1;loadingListener=new Map;successListener=new Map;errorListener=new Map;constructor(e=""){this.fromName=e,this.siteId=document.querySelector("html").getAttribute("data-wf-site")||""}setFormName(e){this.fromName=e}getFormName(){return this.fromName}setFormData(e){this.data=e}getFormData(){return this.data}isLoading(){return this.loading}onLoadingChange(e){let t=(0,s.v4)();return this.loadingListener.set(t,e),()=>{this.loadingListener.delete(t)}}onSuccess(e){let t=(0,s.v4)();return this.successListener.set(t,e),()=>{this.successListener.delete(t)}}onError(e){let t=(0,s.v4)();return this.errorListener.set(t,e),()=>{this.errorListener.delete(t)}}updateLoadingState(e){this.loading=e,this.loadingListener.forEach(e=>{e(this.loading)})}formSubmitted(){this.successListener.forEach(e=>{e()})}formFailed(){this.errorListener.forEach(e=>{e()})}submitForm(){let e=e=>{this.updateLoadingState(e)},t=()=>{this.formFailed()},r=()=>{this.formSubmitted()};e(!0),window.jQuery.ajax({url:`https://webflow.com/api/v1/form/${this.siteId}`,type:"POST",data:{name:this.fromName||"Untitled Form",source:location.href,test:!1,fields:this.data,dolphin:!1},dataType:"json",crossDomain:!0}).done(function(s){e(!1),s&&200===s.code?r():t()}).fail(function(){e(!1),t()})}}i(t.exports,o),i(t.exports,l),i(t.exports,u),i(t.exports,$),i(t.exports,D),i(t.exports,M),i(t.exports,h),i(t.exports,B),i(t.exports,G)},{"116fc168c31b637d":"hIyym"}],hIyym:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"v1",()=>n.default),s.export(r,"v3",()=>a.default),s.export(r,"v4",()=>c.default),s.export(r,"v5",()=>h.default),s.export(r,"NIL",()=>p.default),s.export(r,"version",()=>m.default),s.export(r,"validate",()=>y.default),s.export(r,"stringify",()=>b.default),s.export(r,"parse",()=>_.default);var i=e("./v1.js"),n=s.interopDefault(i),o=e("./v3.js"),a=s.interopDefault(o),l=e("./v4.js"),c=s.interopDefault(l),u=e("./v5.js"),h=s.interopDefault(u),d=e("./nil.js"),p=s.interopDefault(d),f=e("./version.js"),m=s.interopDefault(f),g=e("./validate.js"),y=s.interopDefault(g),v=e("./stringify.js"),b=s.interopDefault(v),w=e("./parse.js"),_=s.interopDefault(w)},{"./v1.js":"iQ6UN","./v3.js":"fW2F8","./v4.js":"h4z53","./v5.js":"jMNKD","./nil.js":"5Bod7","./version.js":"dnsqZ","./validate.js":"eG5s0","./stringify.js":"doA1n","./parse.js":"j2gue","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],iQ6UN:[function(e,t,r){let s,i;var n=e("@parcel/transformer-js/src/esmodule-helpers.js");n.defineInteropFlag(r);var o=e("./rng.js"),a=n.interopDefault(o),l=e("./stringify.js");let c=0,u=0;r.default=function(e,t,r){let n=t&&r||0,o=t||Array(16),h=(e=e||{}).node||s,d=void 0!==e.clockseq?e.clockseq:i;if(null==h||null==d){let t=e.random||(e.rng||(0,a.default))();null==h&&(h=s=[1|t[0],t[1],t[2],t[3],t[4],t[5]]),null==d&&(d=i=(t[6]<<8|t[7])&16383)}let p=void 0!==e.msecs?e.msecs:Date.now(),f=void 0!==e.nsecs?e.nsecs:u+1,m=p-c+(f-u)/1e4;if(m<0&&void 0===e.clockseq&&(d=d+1&16383),(m<0||p>c)&&void 0===e.nsecs&&(f=0),f>=1e4)throw Error("uuid.v1(): Can't create more than 10M uuids/sec");c=p,u=f,i=d;let g=((268435455&(p+=122192928e5))*1e4+f)%4294967296;o[n++]=g>>>24&255,o[n++]=g>>>16&255,o[n++]=g>>>8&255,o[n++]=255&g;let y=p/4294967296*1e4&268435455;o[n++]=y>>>8&255,o[n++]=255&y,o[n++]=y>>>24&15|16,o[n++]=y>>>16&255,o[n++]=d>>>8|128,o[n++]=255&d;for(let e=0;e<6;++e)o[n+e]=h[e];return t||(0,l.unsafeStringify)(o)}},{"./rng.js":"fo5Bv","./stringify.js":"doA1n","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],fo5Bv:[function(e,t,r){let s;var i=e("@parcel/transformer-js/src/esmodule-helpers.js");i.defineInteropFlag(r),i.export(r,"default",()=>o);let n=new Uint8Array(16);function o(){if(!s&&!(s="undefined"!=typeof crypto&&crypto.getRandomValues&&crypto.getRandomValues.bind(crypto)))throw Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");return s(n)}},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],jiucr:[function(e,t,r){r.interopDefault=function(e){return e&&e.__esModule?e:{default:e}},r.defineInteropFlag=function(e){Object.defineProperty(e,"__esModule",{value:!0})},r.exportAll=function(e,t){return Object.keys(e).forEach(function(r){"default"===r||"__esModule"===r||Object.prototype.hasOwnProperty.call(t,r)||Object.defineProperty(t,r,{enumerable:!0,get:function(){return e[r]}})}),t},r.export=function(e,t,r){Object.defineProperty(e,t,{enumerable:!0,get:r})}},{}],doA1n:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"unsafeStringify",()=>a);var i=e("./validate.js"),n=s.interopDefault(i);let o=[];for(let e=0;e<256;++e)o.push((e+256).toString(16).slice(1));function a(e,t=0){return o[e[t+0]]+o[e[t+1]]+o[e[t+2]]+o[e[t+3]]+"-"+o[e[t+4]]+o[e[t+5]]+"-"+o[e[t+6]]+o[e[t+7]]+"-"+o[e[t+8]]+o[e[t+9]]+"-"+o[e[t+10]]+o[e[t+11]]+o[e[t+12]]+o[e[t+13]]+o[e[t+14]]+o[e[t+15]]}r.default=function(e,t=0){let r=a(e,t);if(!(0,n.default)(r))throw TypeError("Stringified UUID is invalid");return r}},{"./validate.js":"eG5s0","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],eG5s0:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r);var i=e("./regex.js"),n=s.interopDefault(i);r.default=function(e){return"string"==typeof e&&(0,n.default).test(e)}},{"./regex.js":"2jBiL","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"2jBiL":[function(e,t,r){e("@parcel/transformer-js/src/esmodule-helpers.js").defineInteropFlag(r),r.default=/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],fW2F8:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r);var i=e("./v35.js"),n=s.interopDefault(i),o=e("./md5.js"),a=s.interopDefault(o);let l=(0,n.default)("v3",48,a.default);r.default=l},{"./v35.js":"6feLd","./md5.js":"gsSTl","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"6feLd":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"DNS",()=>a),s.export(r,"URL",()=>l),s.export(r,"default",()=>c);var i=e("./stringify.js"),n=e("./parse.js"),o=s.interopDefault(n);let a="6ba7b810-9dad-11d1-80b4-00c04fd430c8",l="6ba7b811-9dad-11d1-80b4-00c04fd430c8";function c(e,t,r){function s(e,s,n,a){var l;if("string"==typeof e&&(e=function(e){e=unescape(encodeURIComponent(e));let t=[];for(let r=0;r<e.length;++r)t.push(e.charCodeAt(r));return t}(e)),"string"==typeof s&&(s=(0,o.default)(s)),(null===(l=s)||void 0===l?void 0:l.length)!==16)throw TypeError("Namespace must be array-like (16 iterable integer values, 0-255)");let c=new Uint8Array(16+e.length);if(c.set(s),c.set(e,s.length),(c=r(c))[6]=15&c[6]|t,c[8]=63&c[8]|128,n){a=a||0;for(let e=0;e<16;++e)n[a+e]=c[e];return n}return(0,i.unsafeStringify)(c)}try{s.name=e}catch(e){}return s.DNS=a,s.URL=l,s}},{"./stringify.js":"doA1n","./parse.js":"j2gue","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],j2gue:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r);var i=e("./validate.js"),n=s.interopDefault(i);r.default=function(e){let t;if(!(0,n.default)(e))throw TypeError("Invalid UUID");let r=new Uint8Array(16);return r[0]=(t=parseInt(e.slice(0,8),16))>>>24,r[1]=t>>>16&255,r[2]=t>>>8&255,r[3]=255&t,r[4]=(t=parseInt(e.slice(9,13),16))>>>8,r[5]=255&t,r[6]=(t=parseInt(e.slice(14,18),16))>>>8,r[7]=255&t,r[8]=(t=parseInt(e.slice(19,23),16))>>>8,r[9]=255&t,r[10]=(t=parseInt(e.slice(24,36),16))/1099511627776&255,r[11]=t/4294967296&255,r[12]=t>>>24&255,r[13]=t>>>16&255,r[14]=t>>>8&255,r[15]=255&t,r}},{"./validate.js":"eG5s0","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],gsSTl:[function(e,t,r){function s(e){return(e+64>>>9<<4)+14+1}function i(e,t){let r=(65535&e)+(65535&t);return(e>>16)+(t>>16)+(r>>16)<<16|65535&r}function n(e,t,r,s,n,o){var a;return i((a=i(i(t,e),i(s,o)))<<n|a>>>32-n,r)}function o(e,t,r,s,i,o,a){return n(t&r|~t&s,e,t,i,o,a)}function a(e,t,r,s,i,o,a){return n(t&s|r&~s,e,t,i,o,a)}function l(e,t,r,s,i,o,a){return n(t^r^s,e,t,i,o,a)}function c(e,t,r,s,i,o,a){return n(r^(t|~s),e,t,i,o,a)}e("@parcel/transformer-js/src/esmodule-helpers.js").defineInteropFlag(r),r.default=function(e){if("string"==typeof e){let t=unescape(encodeURIComponent(e));e=new Uint8Array(t.length);for(let r=0;r<t.length;++r)e[r]=t.charCodeAt(r)}return function(e){let t=[],r=32*e.length,s="0123456789abcdef";for(let i=0;i<r;i+=8){let r=e[i>>5]>>>i%32&255,n=parseInt(s.charAt(r>>>4&15)+s.charAt(15&r),16);t.push(n)}return t}(function(e,t){e[t>>5]|=128<<t%32,e[s(t)-1]=t;let r=1732584193,n=-271733879,u=-1732584194,h=271733878;for(let t=0;t<e.length;t+=16){let s=r,d=n,p=u,f=h;r=o(r,n,u,h,e[t],7,-680876936),h=o(h,r,n,u,e[t+1],12,-389564586),u=o(u,h,r,n,e[t+2],17,606105819),n=o(n,u,h,r,e[t+3],22,-1044525330),r=o(r,n,u,h,e[t+4],7,-176418897),h=o(h,r,n,u,e[t+5],12,1200080426),u=o(u,h,r,n,e[t+6],17,-1473231341),n=o(n,u,h,r,e[t+7],22,-45705983),r=o(r,n,u,h,e[t+8],7,1770035416),h=o(h,r,n,u,e[t+9],12,-1958414417),u=o(u,h,r,n,e[t+10],17,-42063),n=o(n,u,h,r,e[t+11],22,-1990404162),r=o(r,n,u,h,e[t+12],7,1804603682),h=o(h,r,n,u,e[t+13],12,-40341101),u=o(u,h,r,n,e[t+14],17,-1502002290),n=o(n,u,h,r,e[t+15],22,1236535329),r=a(r,n,u,h,e[t+1],5,-165796510),h=a(h,r,n,u,e[t+6],9,-1069501632),u=a(u,h,r,n,e[t+11],14,643717713),n=a(n,u,h,r,e[t],20,-373897302),r=a(r,n,u,h,e[t+5],5,-701558691),h=a(h,r,n,u,e[t+10],9,38016083),u=a(u,h,r,n,e[t+15],14,-660478335),n=a(n,u,h,r,e[t+4],20,-405537848),r=a(r,n,u,h,e[t+9],5,568446438),h=a(h,r,n,u,e[t+14],9,-1019803690),u=a(u,h,r,n,e[t+3],14,-187363961),n=a(n,u,h,r,e[t+8],20,1163531501),r=a(r,n,u,h,e[t+13],5,-1444681467),h=a(h,r,n,u,e[t+2],9,-51403784),u=a(u,h,r,n,e[t+7],14,1735328473),n=a(n,u,h,r,e[t+12],20,-1926607734),r=l(r,n,u,h,e[t+5],4,-378558),h=l(h,r,n,u,e[t+8],11,-2022574463),u=l(u,h,r,n,e[t+11],16,1839030562),n=l(n,u,h,r,e[t+14],23,-35309556),r=l(r,n,u,h,e[t+1],4,-1530992060),h=l(h,r,n,u,e[t+4],11,1272893353),u=l(u,h,r,n,e[t+7],16,-155497632),n=l(n,u,h,r,e[t+10],23,-1094730640),r=l(r,n,u,h,e[t+13],4,681279174),h=l(h,r,n,u,e[t],11,-358537222),u=l(u,h,r,n,e[t+3],16,-722521979),n=l(n,u,h,r,e[t+6],23,76029189),r=l(r,n,u,h,e[t+9],4,-640364487),h=l(h,r,n,u,e[t+12],11,-421815835),u=l(u,h,r,n,e[t+15],16,530742520),n=l(n,u,h,r,e[t+2],23,-995338651),r=c(r,n,u,h,e[t],6,-198630844),h=c(h,r,n,u,e[t+7],10,1126891415),u=c(u,h,r,n,e[t+14],15,-1416354905),n=c(n,u,h,r,e[t+5],21,-57434055),r=c(r,n,u,h,e[t+12],6,1700485571),h=c(h,r,n,u,e[t+3],10,-1894986606),u=c(u,h,r,n,e[t+10],15,-1051523),n=c(n,u,h,r,e[t+1],21,-2054922799),r=c(r,n,u,h,e[t+8],6,1873313359),h=c(h,r,n,u,e[t+15],10,-30611744),u=c(u,h,r,n,e[t+6],15,-1560198380),n=c(n,u,h,r,e[t+13],21,1309151649),r=c(r,n,u,h,e[t+4],6,-145523070),h=c(h,r,n,u,e[t+11],10,-1120210379),u=c(u,h,r,n,e[t+2],15,718787259),n=c(n,u,h,r,e[t+9],21,-343485551),r=i(r,s),n=i(n,d),u=i(u,p),h=i(h,f)}return[r,n,u,h]}(function(e){if(0===e.length)return[];let t=8*e.length,r=new Uint32Array(s(t));for(let s=0;s<t;s+=8)r[s>>5]|=(255&e[s/8])<<s%32;return r}(e),8*e.length))}},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],h4z53:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r);var i=e("./native.js"),n=s.interopDefault(i),o=e("./rng.js"),a=s.interopDefault(o),l=e("./stringify.js");r.default=function(e,t,r){if(n.default.randomUUID&&!t&&!e)return(0,n.default).randomUUID();let s=(e=e||{}).random||(e.rng||(0,a.default))();if(s[6]=15&s[6]|64,s[8]=63&s[8]|128,t){r=r||0;for(let e=0;e<16;++e)t[r+e]=s[e];return t}return(0,l.unsafeStringify)(s)}},{"./native.js":"agPy7","./rng.js":"fo5Bv","./stringify.js":"doA1n","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],agPy7:[function(e,t,r){e("@parcel/transformer-js/src/esmodule-helpers.js").defineInteropFlag(r);let s="undefined"!=typeof crypto&&crypto.randomUUID&&crypto.randomUUID.bind(crypto);r.default={randomUUID:s}},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],jMNKD:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r);var i=e("./v35.js"),n=s.interopDefault(i),o=e("./sha1.js"),a=s.interopDefault(o);let l=(0,n.default)("v5",80,a.default);r.default=l},{"./v35.js":"6feLd","./sha1.js":"bDFTF","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],bDFTF:[function(e,t,r){function s(e,t){return e<<t|e>>>32-t}e("@parcel/transformer-js/src/esmodule-helpers.js").defineInteropFlag(r),r.default=function(e){let t=[1518500249,1859775393,2400959708,3395469782],r=[1732584193,4023233417,2562383102,271733878,3285377520];if("string"==typeof e){let t=unescape(encodeURIComponent(e));e=[];for(let r=0;r<t.length;++r)e.push(t.charCodeAt(r))}else Array.isArray(e)||(e=Array.prototype.slice.call(e));e.push(128);let i=Math.ceil((e.length/4+2)/16),n=Array(i);for(let t=0;t<i;++t){let r=new Uint32Array(16);for(let s=0;s<16;++s)r[s]=e[64*t+4*s]<<24|e[64*t+4*s+1]<<16|e[64*t+4*s+2]<<8|e[64*t+4*s+3];n[t]=r}n[i-1][14]=(e.length-1)*8/4294967296,n[i-1][14]=Math.floor(n[i-1][14]),n[i-1][15]=(e.length-1)*8&4294967295;for(let e=0;e<i;++e){let i=new Uint32Array(80);for(let t=0;t<16;++t)i[t]=n[e][t];for(let e=16;e<80;++e)i[e]=s(i[e-3]^i[e-8]^i[e-14]^i[e-16],1);let o=r[0],a=r[1],l=r[2],c=r[3],u=r[4];for(let e=0;e<80;++e){let r=Math.floor(e/20),n=s(o,5)+function(e,t,r,s){switch(e){case 0:return t&r^~t&s;case 1:case 3:return t^r^s;case 2:return t&r^t&s^r&s}}(r,a,l,c)+u+t[r]+i[e]>>>0;u=c,c=l,l=s(a,30)>>>0,a=o,o=n}r[0]=r[0]+o>>>0,r[1]=r[1]+a>>>0,r[2]=r[2]+l>>>0,r[3]=r[3]+c>>>0,r[4]=r[4]+u>>>0}return[r[0]>>24&255,r[0]>>16&255,r[0]>>8&255,255&r[0],r[1]>>24&255,r[1]>>16&255,r[1]>>8&255,255&r[1],r[2]>>24&255,r[2]>>16&255,r[2]>>8&255,255&r[2],r[3]>>24&255,r[3]>>16&255,r[3]>>8&255,255&r[3],r[4]>>24&255,r[4]>>16&255,r[4]>>8&255,255&r[4]]}},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"5Bod7":[function(e,t,r){e("@parcel/transformer-js/src/esmodule-helpers.js").defineInteropFlag(r),r.default="00000000-0000-0000-0000-000000000000"},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],dnsqZ:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r);var i=e("./validate.js"),n=s.interopDefault(i);r.default=function(e){if(!(0,n.default)(e))throw TypeError("Invalid UUID");return parseInt(e.slice(14,15),16)}},{"./validate.js":"eG5s0","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"2uPfR":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"app",()=>o);var i=e("@xatom/core"),n=e("../modules/auth");let o=()=>{new(0,i.WFRoute)("/auth/(.*)").withMiddleware(n.userMiddleware,"GUEST","allow",{onError(){(0,i.navigate)("/dashboard/task-list")}}).execute(()=>{new(0,i.WFRoute)("/auth/sign-up").execute(()=>{e("8dff4a7369311fc").then(({signUp:e})=>e()).catch(console.error)}),new(0,i.WFRoute)("/auth/sign-in").execute(()=>{e("9b9ca3d1f354f9").then(({signIn:e})=>e()).catch(console.error)}),new(0,i.WFRoute)("/auth/verify").execute(()=>{e("d2ff0736bf12c1b5").then(({verify:e})=>e()).catch(console.error)})}),new(0,i.WFRoute)("/dashboard/(.*)").withMiddleware(n.userMiddleware,"USER","allow",{onError(){(0,i.navigate)("/auth/sign-in")}}).execute(()=>{new(0,i.WFRoute)("/dashboard/task-list").execute(()=>{e("afea6a146fbc403c").then(({taskList:e})=>e()).catch(console.error)})})}},{"@xatom/core":"5eqAK","../modules/auth":"apxUl","8dff4a7369311fc":"9iNzJ","9b9ca3d1f354f9":"dG3l5",d2ff0736bf12c1b5:"8G9fi",afea6a146fbc403c:"4t0RH","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],apxUl:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"userAuth",()=>a),s.export(r,"setUser",()=>l),s.export(r,"logout",()=>c),s.export(r,"userMiddleware",()=>u);var i=e("@xatom/core"),n=e("../supbase"),o=s.interopDefault(n);let a=new i.WFAuth;a.setRole("GUEST");let l=(e,t)=>{a.setUser({email:t,fullName:e}),a.setRole("USER")},c=()=>{(0,o.default).auth.signOut().then(()=>{a.logout(),(0,i.navigate)("/")})},u=new i.WFAuthMiddleware(a)},{"@xatom/core":"5eqAK","../supbase":"54PYi","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"54PYi":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"initSupabase",()=>a);var i=e("@supabase/supabase-js"),n=e("../auth");let o=(0,i.createClient)("https://xttlirufzajdycfkkflu.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh0dGxpcnVmemFqZHljZmtrZmx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDg3Nzk5MTcsImV4cCI6MjAyNDM1NTkxN30.RbbPizmpuc4BeCk3V8qi2o746SYujfUKIZo2J3nGe68",{db:{schema:"public"},auth:{autoRefreshToken:!0,persistSession:!0,detectSessionInUrl:!0}}),a=e=>{o.auth.getSession().then(e=>{!e.error&&e.data&&e.data.session&&(0,n.setUser)(e.data.session.user.user_metadata.fullName,e.data.session.user.email)}).catch(e=>{console.log(e)}).finally(e)};r.default=o},{"@supabase/supabase-js":"7aWuS","../auth":"apxUl","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"7aWuS":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"FunctionsHttpError",()=>a.FunctionsHttpError),s.export(r,"FunctionsFetchError",()=>a.FunctionsFetchError),s.export(r,"FunctionsRelayError",()=>a.FunctionsRelayError),s.export(r,"FunctionsError",()=>a.FunctionsError),s.export(r,"FunctionRegion",()=>a.FunctionRegion),s.export(r,"SupabaseClient",()=>n.default),s.export(r,"createClient",()=>c);var i=e("./SupabaseClient"),n=s.interopDefault(i),o=e("@supabase/auth-js");s.exportAll(o,r);var a=e("@supabase/functions-js"),l=e("@supabase/realtime-js");s.exportAll(l,r);let c=(e,t,r)=>new n.default(e,t,r)},{"./SupabaseClient":"3zLHT","@supabase/auth-js":"8VjzZ","@supabase/functions-js":!1,"@supabase/realtime-js":"dSbb2","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"3zLHT":[function(e,t,r){e("@parcel/transformer-js/src/esmodule-helpers.js").defineInteropFlag(r);var s=e("@supabase/functions-js"),i=e("@supabase/postgrest-js"),n=e("@supabase/realtime-js"),o=e("@supabase/storage-js"),a=e("./lib/constants"),l=e("./lib/fetch"),c=e("./lib/helpers"),u=e("./lib/SupabaseAuthClient");r.default=class{constructor(e,t,r){var s,n,o,u,h,d,p,f;if(this.supabaseUrl=e,this.supabaseKey=t,!e)throw Error("supabaseUrl is required.");if(!t)throw Error("supabaseKey is required.");let m=(0,c.stripTrailingSlash)(e);this.realtimeUrl=`${m}/realtime/v1`.replace(/^http/i,"ws"),this.authUrl=`${m}/auth/v1`,this.storageUrl=`${m}/storage/v1`,this.functionsUrl=`${m}/functions/v1`;let g=`sb-${new URL(this.authUrl).hostname.split(".")[0]}-auth-token`,y={db:a.DEFAULT_DB_OPTIONS,realtime:a.DEFAULT_REALTIME_OPTIONS,auth:Object.assign(Object.assign({},a.DEFAULT_AUTH_OPTIONS),{storageKey:g}),global:a.DEFAULT_GLOBAL_OPTIONS},v=(0,c.applySettingDefaults)(null!=r?r:{},y);this.storageKey=null!==(n=null===(s=v.auth)||void 0===s?void 0:s.storageKey)&&void 0!==n?n:"",this.headers=null!==(u=null===(o=v.global)||void 0===o?void 0:o.headers)&&void 0!==u?u:{},this.auth=this._initSupabaseAuthClient(null!==(h=v.auth)&&void 0!==h?h:{},this.headers,null===(d=v.global)||void 0===d?void 0:d.fetch),this.fetch=(0,l.fetchWithAuth)(t,this._getAccessToken.bind(this),null===(p=v.global)||void 0===p?void 0:p.fetch),this.realtime=this._initRealtimeClient(Object.assign({headers:this.headers},v.realtime)),this.rest=new i.PostgrestClient(`${m}/rest/v1`,{headers:this.headers,schema:null===(f=v.db)||void 0===f?void 0:f.schema,fetch:this.fetch}),this._listenForAuthEvents()}get functions(){return new s.FunctionsClient(this.functionsUrl,{headers:this.headers,customFetch:this.fetch})}get storage(){return new o.StorageClient(this.storageUrl,this.headers,this.fetch)}from(e){return this.rest.from(e)}schema(e){return this.rest.schema(e)}rpc(e,t={},r={}){return this.rest.rpc(e,t,r)}channel(e,t={config:{}}){return this.realtime.channel(e,t)}getChannels(){return this.realtime.getChannels()}removeChannel(e){return this.realtime.removeChannel(e)}removeAllChannels(){return this.realtime.removeAllChannels()}_getAccessToken(){var e,t,r,s,i,n;return r=this,s=void 0,i=void 0,n=function*(){let{data:r}=yield this.auth.getSession();return null!==(t=null===(e=r.session)||void 0===e?void 0:e.access_token)&&void 0!==t?t:null},new(i||(i=Promise))(function(e,t){function o(e){try{l(n.next(e))}catch(e){t(e)}}function a(e){try{l(n.throw(e))}catch(e){t(e)}}function l(t){var r;t.done?e(t.value):((r=t.value)instanceof i?r:new i(function(e){e(r)})).then(o,a)}l((n=n.apply(r,s||[])).next())})}_initSupabaseAuthClient({autoRefreshToken:e,persistSession:t,detectSessionInUrl:r,storage:s,storageKey:i,flowType:n,debug:o},a,l){let c={Authorization:`Bearer ${this.supabaseKey}`,apikey:`${this.supabaseKey}`};return new u.SupabaseAuthClient({url:this.authUrl,headers:Object.assign(Object.assign({},c),a),storageKey:i,autoRefreshToken:e,persistSession:t,detectSessionInUrl:r,storage:s,flowType:n,debug:o,fetch:l})}_initRealtimeClient(e){return new n.RealtimeClient(this.realtimeUrl,Object.assign(Object.assign({},e),{params:Object.assign({apikey:this.supabaseKey},null==e?void 0:e.params)}))}_listenForAuthEvents(){return this.auth.onAuthStateChange((e,t)=>{this._handleTokenChanged(e,"CLIENT",null==t?void 0:t.access_token)})}_handleTokenChanged(e,t,r){("TOKEN_REFRESHED"===e||"SIGNED_IN"===e)&&this.changedAccessToken!==r?(this.realtime.setAuth(null!=r?r:null),this.changedAccessToken=r):"SIGNED_OUT"===e&&(this.realtime.setAuth(this.supabaseKey),"STORAGE"==t&&this.auth.signOut(),this.changedAccessToken=void 0)}}},{"@supabase/functions-js":"bltAo","@supabase/postgrest-js":"b81If","@supabase/realtime-js":"dSbb2","@supabase/storage-js":"dLDMJ","./lib/constants":"1uIhb","./lib/fetch":"jU4vw","./lib/helpers":"3zuQC","./lib/SupabaseAuthClient":"7YJ7Q","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],bltAo:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"FunctionsClient",()=>i.FunctionsClient),s.export(r,"FunctionsError",()=>n.FunctionsError),s.export(r,"FunctionsFetchError",()=>n.FunctionsFetchError),s.export(r,"FunctionsHttpError",()=>n.FunctionsHttpError),s.export(r,"FunctionsRelayError",()=>n.FunctionsRelayError),s.export(r,"FunctionRegion",()=>n.FunctionRegion);var i=e("./FunctionsClient"),n=e("./types")},{"./FunctionsClient":"34eZ1","./types":!1,"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"34eZ1":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"FunctionsClient",()=>o);var i=e("./helper"),n=e("./types");class o{constructor(e,{headers:t={},customFetch:r,region:s=n.FunctionRegion.Any}={}){this.url=e,this.headers=t,this.region=s,this.fetch=(0,i.resolveFetch)(r)}setAuth(e){this.headers.Authorization=`Bearer ${e}`}invoke(e,t={}){var r,s,i,o,a;return s=this,i=void 0,o=void 0,a=function*(){try{let s;let{headers:i,method:o,body:a}=t,l={},{region:c}=t;c||(c=this.region),c&&"any"!==c&&(l["x-region"]=c),a&&(i&&!Object.prototype.hasOwnProperty.call(i,"Content-Type")||!i)&&("undefined"!=typeof Blob&&a instanceof Blob||a instanceof ArrayBuffer?(l["Content-Type"]="application/octet-stream",s=a):"string"==typeof a?(l["Content-Type"]="text/plain",s=a):"undefined"!=typeof FormData&&a instanceof FormData?s=a:(l["Content-Type"]="application/json",s=JSON.stringify(a)));let u=yield this.fetch(`${this.url}/${e}`,{method:o||"POST",headers:Object.assign(Object.assign(Object.assign({},l),this.headers),i),body:s}).catch(e=>{throw new n.FunctionsFetchError(e)}),h=u.headers.get("x-relay-error");if(h&&"true"===h)throw new n.FunctionsRelayError(u);if(!u.ok)throw new n.FunctionsHttpError(u);let d=(null!==(r=u.headers.get("Content-Type"))&&void 0!==r?r:"text/plain").split(";")[0].trim();return{data:"application/json"===d?yield u.json():"application/octet-stream"===d?yield u.blob():"multipart/form-data"===d?yield u.formData():yield u.text(),error:null}}catch(e){return{data:null,error:e}}},new(o||(o=Promise))(function(e,t){function r(e){try{l(a.next(e))}catch(e){t(e)}}function n(e){try{l(a.throw(e))}catch(e){t(e)}}function l(t){var s;t.done?e(t.value):((s=t.value)instanceof o?s:new o(function(e){e(s)})).then(r,n)}l((a=a.apply(s,i||[])).next())})}}},{"./helper":"6UEpC","./types":"f4Ykd","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"6UEpC":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"resolveFetch",()=>i);let i=t=>{let r;return t?r=t:"undefined"==typeof fetch?r=(...t)=>e("db8a7a5aa4509164").then(({default:e})=>e(...t)):r=fetch,(...e)=>r(...e)}},{db8a7a5aa4509164:"8FPuu","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"8FPuu":[function(e,t,r){t.exports=Promise.resolve(t.bundle.root("4Q5V1"))},{}],f4Ykd:[function(e,t,r){var s,i,n=e("@parcel/transformer-js/src/esmodule-helpers.js");n.defineInteropFlag(r),n.export(r,"FunctionsError",()=>o),n.export(r,"FunctionsFetchError",()=>a),n.export(r,"FunctionsRelayError",()=>l),n.export(r,"FunctionsHttpError",()=>c),n.export(r,"FunctionRegion",()=>i);class o extends Error{constructor(e,t="FunctionsError",r){super(e),this.name=t,this.context=r}}class a extends o{constructor(e){super("Failed to send a request to the Edge Function","FunctionsFetchError",e)}}class l extends o{constructor(e){super("Relay Error invoking the Edge Function","FunctionsRelayError",e)}}class c extends o{constructor(e){super("Edge Function returned a non-2xx status code","FunctionsHttpError",e)}}(s=i||(i={})).Any="any",s.ApNortheast1="ap-northeast-1",s.ApNortheast2="ap-northeast-2",s.ApSouth1="ap-south-1",s.ApSoutheast1="ap-southeast-1",s.ApSoutheast2="ap-southeast-2",s.CaCentral1="ca-central-1",s.EuCentral1="eu-central-1",s.EuWest1="eu-west-1",s.EuWest2="eu-west-2",s.EuWest3="eu-west-3",s.SaEast1="sa-east-1",s.UsEast1="us-east-1",s.UsWest1="us-west-1",s.UsWest2="us-west-2"},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],b81If:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"PostgrestClient",()=>n.default),s.export(r,"PostgrestQueryBuilder",()=>a.default),s.export(r,"PostgrestFilterBuilder",()=>c.default),s.export(r,"PostgrestTransformBuilder",()=>h.default),s.export(r,"PostgrestBuilder",()=>p.default);var i=e("./PostgrestClient"),n=s.interopDefault(i),o=e("./PostgrestQueryBuilder"),a=s.interopDefault(o),l=e("./PostgrestFilterBuilder"),c=s.interopDefault(l),u=e("./PostgrestTransformBuilder"),h=s.interopDefault(u),d=e("./PostgrestBuilder"),p=s.interopDefault(d)},{"./PostgrestClient":"i3DJG","./PostgrestQueryBuilder":"hxbFy","./PostgrestFilterBuilder":"cMjVx","./PostgrestTransformBuilder":"8dRPt","./PostgrestBuilder":"81IbN","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],i3DJG:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r);var i=e("./PostgrestQueryBuilder"),n=s.interopDefault(i),o=e("./PostgrestFilterBuilder"),a=s.interopDefault(o),l=e("./constants");class c{constructor(e,{headers:t={},schema:r,fetch:s}={}){this.url=e,this.headers=Object.assign(Object.assign({},l.DEFAULT_HEADERS),t),this.schemaName=r,this.fetch=s}from(e){let t=new URL(`${this.url}/${e}`);return new n.default(t,{headers:Object.assign({},this.headers),schema:this.schemaName,fetch:this.fetch})}schema(e){return new c(this.url,{headers:this.headers,schema:e,fetch:this.fetch})}rpc(e,t={},{head:r=!1,get:s=!1,count:i}={}){let n,o;let l=new URL(`${this.url}/rpc/${e}`);r?(n="HEAD",Object.entries(t).forEach(([e,t])=>{l.searchParams.append(e,`${t}`)})):s?(n="GET",Object.entries(t).forEach(([e,t])=>{l.searchParams.append(e,`${t}`)})):(n="POST",o=t);let c=Object.assign({},this.headers);return i&&(c.Prefer=`count=${i}`),new a.default({method:n,url:l,headers:c,schema:this.schemaName,body:o,fetch:this.fetch,allowEmpty:!1})}}r.default=c},{"./PostgrestQueryBuilder":"hxbFy","./PostgrestFilterBuilder":"cMjVx","./constants":"kSXE8","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],hxbFy:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r);var i=e("./PostgrestFilterBuilder"),n=s.interopDefault(i);r.default=class{constructor(e,{headers:t={},schema:r,fetch:s}){this.url=e,this.headers=t,this.schema=r,this.fetch=s}select(e,{head:t=!1,count:r}={}){let s=!1,i=(null!=e?e:"*").split("").map(e=>/\s/.test(e)&&!s?"":('"'===e&&(s=!s),e)).join("");return this.url.searchParams.set("select",i),r&&(this.headers.Prefer=`count=${r}`),new n.default({method:t?"HEAD":"GET",url:this.url,headers:this.headers,schema:this.schema,fetch:this.fetch,allowEmpty:!1})}insert(e,{count:t,defaultToNull:r=!0}={}){let s=[];if(this.headers.Prefer&&s.push(this.headers.Prefer),t&&s.push(`count=${t}`),r||s.push("missing=default"),this.headers.Prefer=s.join(","),Array.isArray(e)){let t=e.reduce((e,t)=>e.concat(Object.keys(t)),[]);if(t.length>0){let e=[...new Set(t)].map(e=>`"${e}"`);this.url.searchParams.set("columns",e.join(","))}}return new n.default({method:"POST",url:this.url,headers:this.headers,schema:this.schema,body:e,fetch:this.fetch,allowEmpty:!1})}upsert(e,{onConflict:t,ignoreDuplicates:r=!1,count:s,defaultToNull:i=!0}={}){let o=[`resolution=${r?"ignore":"merge"}-duplicates`];if(void 0!==t&&this.url.searchParams.set("on_conflict",t),this.headers.Prefer&&o.push(this.headers.Prefer),s&&o.push(`count=${s}`),i||o.push("missing=default"),this.headers.Prefer=o.join(","),Array.isArray(e)){let t=e.reduce((e,t)=>e.concat(Object.keys(t)),[]);if(t.length>0){let e=[...new Set(t)].map(e=>`"${e}"`);this.url.searchParams.set("columns",e.join(","))}}return new n.default({method:"POST",url:this.url,headers:this.headers,schema:this.schema,body:e,fetch:this.fetch,allowEmpty:!1})}update(e,{count:t}={}){let r=[];return this.headers.Prefer&&r.push(this.headers.Prefer),t&&r.push(`count=${t}`),this.headers.Prefer=r.join(","),new n.default({method:"PATCH",url:this.url,headers:this.headers,schema:this.schema,body:e,fetch:this.fetch,allowEmpty:!1})}delete({count:e}={}){let t=[];return e&&t.push(`count=${e}`),this.headers.Prefer&&t.unshift(this.headers.Prefer),this.headers.Prefer=t.join(","),new n.default({method:"DELETE",url:this.url,headers:this.headers,schema:this.schema,fetch:this.fetch,allowEmpty:!1})}}},{"./PostgrestFilterBuilder":"cMjVx","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],cMjVx:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r);var i=e("./PostgrestTransformBuilder"),n=s.interopDefault(i);class o extends n.default{eq(e,t){return this.url.searchParams.append(e,`eq.${t}`),this}neq(e,t){return this.url.searchParams.append(e,`neq.${t}`),this}gt(e,t){return this.url.searchParams.append(e,`gt.${t}`),this}gte(e,t){return this.url.searchParams.append(e,`gte.${t}`),this}lt(e,t){return this.url.searchParams.append(e,`lt.${t}`),this}lte(e,t){return this.url.searchParams.append(e,`lte.${t}`),this}like(e,t){return this.url.searchParams.append(e,`like.${t}`),this}likeAllOf(e,t){return this.url.searchParams.append(e,`like(all).{${t.join(",")}}`),this}likeAnyOf(e,t){return this.url.searchParams.append(e,`like(any).{${t.join(",")}}`),this}ilike(e,t){return this.url.searchParams.append(e,`ilike.${t}`),this}ilikeAllOf(e,t){return this.url.searchParams.append(e,`ilike(all).{${t.join(",")}}`),this}ilikeAnyOf(e,t){return this.url.searchParams.append(e,`ilike(any).{${t.join(",")}}`),this}is(e,t){return this.url.searchParams.append(e,`is.${t}`),this}in(e,t){let r=Array.from(new Set(t)).map(e=>"string"==typeof e&&RegExp("[,()]").test(e)?`"${e}"`:`${e}`).join(",");return this.url.searchParams.append(e,`in.(${r})`),this}contains(e,t){return"string"==typeof t?this.url.searchParams.append(e,`cs.${t}`):Array.isArray(t)?this.url.searchParams.append(e,`cs.{${t.join(",")}}`):this.url.searchParams.append(e,`cs.${JSON.stringify(t)}`),this}containedBy(e,t){return"string"==typeof t?this.url.searchParams.append(e,`cd.${t}`):Array.isArray(t)?this.url.searchParams.append(e,`cd.{${t.join(",")}}`):this.url.searchParams.append(e,`cd.${JSON.stringify(t)}`),this}rangeGt(e,t){return this.url.searchParams.append(e,`sr.${t}`),this}rangeGte(e,t){return this.url.searchParams.append(e,`nxl.${t}`),this}rangeLt(e,t){return this.url.searchParams.append(e,`sl.${t}`),this}rangeLte(e,t){return this.url.searchParams.append(e,`nxr.${t}`),this}rangeAdjacent(e,t){return this.url.searchParams.append(e,`adj.${t}`),this}overlaps(e,t){return"string"==typeof t?this.url.searchParams.append(e,`ov.${t}`):this.url.searchParams.append(e,`ov.{${t.join(",")}}`),this}textSearch(e,t,{config:r,type:s}={}){let i="";"plain"===s?i="pl":"phrase"===s?i="ph":"websearch"===s&&(i="w");let n=void 0===r?"":`(${r})`;return this.url.searchParams.append(e,`${i}fts${n}.${t}`),this}match(e){return Object.entries(e).forEach(([e,t])=>{this.url.searchParams.append(e,`eq.${t}`)}),this}not(e,t,r){return this.url.searchParams.append(e,`not.${t}.${r}`),this}or(e,{foreignTable:t,referencedTable:r=t}={}){let s=r?`${r}.or`:"or";return this.url.searchParams.append(s,`(${e})`),this}filter(e,t,r){return this.url.searchParams.append(e,`${t}.${r}`),this}}r.default=o},{"./PostgrestTransformBuilder":"8dRPt","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"8dRPt":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r);var i=e("./PostgrestBuilder"),n=s.interopDefault(i);class o extends n.default{select(e){let t=!1,r=(null!=e?e:"*").split("").map(e=>/\s/.test(e)&&!t?"":('"'===e&&(t=!t),e)).join("");return this.url.searchParams.set("select",r),this.headers.Prefer&&(this.headers.Prefer+=","),this.headers.Prefer+="return=representation",this}order(e,{ascending:t=!0,nullsFirst:r,foreignTable:s,referencedTable:i=s}={}){let n=i?`${i}.order`:"order",o=this.url.searchParams.get(n);return this.url.searchParams.set(n,`${o?`${o},`:""}${e}.${t?"asc":"desc"}${void 0===r?"":r?".nullsfirst":".nullslast"}`),this}limit(e,{foreignTable:t,referencedTable:r=t}={}){let s=void 0===r?"limit":`${r}.limit`;return this.url.searchParams.set(s,`${e}`),this}range(e,t,{foreignTable:r,referencedTable:s=r}={}){let i=void 0===s?"offset":`${s}.offset`,n=void 0===s?"limit":`${s}.limit`;return this.url.searchParams.set(i,`${e}`),this.url.searchParams.set(n,`${t-e+1}`),this}abortSignal(e){return this.signal=e,this}single(){return this.headers.Accept="application/vnd.pgrst.object+json",this}maybeSingle(){return"GET"===this.method?this.headers.Accept="application/json":this.headers.Accept="application/vnd.pgrst.object+json",this.isMaybeSingle=!0,this}csv(){return this.headers.Accept="text/csv",this}geojson(){return this.headers.Accept="application/geo+json",this}explain({analyze:e=!1,verbose:t=!1,settings:r=!1,buffers:s=!1,wal:i=!1,format:n="text"}={}){var o;let a=[e?"analyze":null,t?"verbose":null,r?"settings":null,s?"buffers":null,i?"wal":null].filter(Boolean).join("|"),l=null!==(o=this.headers.Accept)&&void 0!==o?o:"application/json";return this.headers.Accept=`application/vnd.pgrst.plan+${n}; for="${l}"; options=${a};`,this}rollback(){var e;return(null!==(e=this.headers.Prefer)&&void 0!==e?e:"").trim().length>0?this.headers.Prefer+=",tx=rollback":this.headers.Prefer="tx=rollback",this}returns(){return this}}r.default=o},{"./PostgrestBuilder":"81IbN","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"81IbN":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r);var i=e("@supabase/node-fetch"),n=s.interopDefault(i),o=e("./PostgrestError"),a=s.interopDefault(o);r.default=class{constructor(e){this.shouldThrowOnError=!1,this.method=e.method,this.url=e.url,this.headers=e.headers,this.schema=e.schema,this.body=e.body,this.shouldThrowOnError=e.shouldThrowOnError,this.signal=e.signal,this.isMaybeSingle=e.isMaybeSingle,e.fetch?this.fetch=e.fetch:"undefined"==typeof fetch?this.fetch=n.default:this.fetch=fetch}throwOnError(){return this.shouldThrowOnError=!0,this}then(e,t){void 0===this.schema||(["GET","HEAD"].includes(this.method)?this.headers["Accept-Profile"]=this.schema:this.headers["Content-Profile"]=this.schema),"GET"!==this.method&&"HEAD"!==this.method&&(this.headers["Content-Type"]="application/json");let r=(0,this.fetch)(this.url.toString(),{method:this.method,headers:this.headers,body:JSON.stringify(this.body),signal:this.signal}).then(async e=>{var t,r,s;let i=null,n=null,o=null,l=e.status,c=e.statusText;if(e.ok){if("HEAD"!==this.method){let t=await e.text();""===t||(n="text/csv"===this.headers.Accept?t:this.headers.Accept&&this.headers.Accept.includes("application/vnd.pgrst.plan+text")?t:JSON.parse(t))}let s=null===(t=this.headers.Prefer)||void 0===t?void 0:t.match(/count=(exact|planned|estimated)/),a=null===(r=e.headers.get("content-range"))||void 0===r?void 0:r.split("/");s&&a&&a.length>1&&(o=parseInt(a[1])),this.isMaybeSingle&&"GET"===this.method&&Array.isArray(n)&&(n.length>1?(i={code:"PGRST116",details:`Results contain ${n.length} rows, application/vnd.pgrst.object+json requires 1 row`,hint:null,message:"JSON object requested, multiple (or no) rows returned"},n=null,o=null,l=406,c="Not Acceptable"):n=1===n.length?n[0]:null)}else{let t=await e.text();try{i=JSON.parse(t),Array.isArray(i)&&404===e.status&&(n=[],i=null,l=200,c="OK")}catch(r){404===e.status&&""===t?(l=204,c="No Content"):i={message:t}}if(i&&this.isMaybeSingle&&(null===(s=null==i?void 0:i.details)||void 0===s?void 0:s.includes("0 rows"))&&(i=null,l=200,c="OK"),i&&this.shouldThrowOnError)throw new a.default(i)}return{error:i,data:n,count:o,status:l,statusText:c}});return this.shouldThrowOnError||(r=r.catch(e=>{var t,r,s;return{error:{message:`${null!==(t=null==e?void 0:e.name)&&void 0!==t?t:"FetchError"}: ${null==e?void 0:e.message}`,details:`${null!==(r=null==e?void 0:e.stack)&&void 0!==r?r:""}`,hint:"",code:`${null!==(s=null==e?void 0:e.code)&&void 0!==s?s:""}`},data:null,count:null,status:0,statusText:""}})),r.then(e,t)}}},{"@supabase/node-fetch":"4Q5V1","./PostgrestError":"3i3s5","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"4Q5V1":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"fetch",()=>o),s.export(r,"Headers",()=>a),s.export(r,"Request",()=>l),s.export(r,"Response",()=>c);var i=arguments[3],n=function(){if("undefined"!=typeof self)return self;if("undefined"!=typeof window)return window;if(void 0!==i)return i;throw Error("unable to locate global object")}();let o=n.fetch;r.default=n.fetch.bind(n);let a=n.Headers,l=n.Request,c=n.Response},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"3i3s5":[function(e,t,r){e("@parcel/transformer-js/src/esmodule-helpers.js").defineInteropFlag(r),r.default=class extends Error{constructor(e){super(e.message),this.name="PostgrestError",this.details=e.details,this.hint=e.hint,this.code=e.code}}},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],kSXE8:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"DEFAULT_HEADERS",()=>n);var i=e("./version");let n={"X-Client-Info":`postgrest-js/${i.version}`}},{"./version":"jsKtG","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],jsKtG:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"version",()=>i);let i="1.15.0"},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],dSbb2:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"RealtimePresence",()=>c.default),s.export(r,"RealtimeChannel",()=>a.default),s.export(r,"RealtimeClient",()=>n.default),s.export(r,"REALTIME_LISTEN_TYPES",()=>o.REALTIME_LISTEN_TYPES),s.export(r,"REALTIME_POSTGRES_CHANGES_LISTEN_EVENT",()=>o.REALTIME_POSTGRES_CHANGES_LISTEN_EVENT),s.export(r,"REALTIME_PRESENCE_LISTEN_EVENTS",()=>l.REALTIME_PRESENCE_LISTEN_EVENTS),s.export(r,"REALTIME_SUBSCRIBE_STATES",()=>o.REALTIME_SUBSCRIBE_STATES),s.export(r,"REALTIME_CHANNEL_STATES",()=>o.REALTIME_CHANNEL_STATES);var i=e("./RealtimeClient"),n=s.interopDefault(i),o=e("./RealtimeChannel"),a=s.interopDefault(o),l=e("./RealtimePresence"),c=s.interopDefault(l)},{"./RealtimeClient":"bwAzk","./RealtimeChannel":"kPfVs","./RealtimePresence":"1SbUv","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],bwAzk:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r);var i=e("./lib/constants"),n=e("./lib/timer"),o=s.interopDefault(n),a=e("./lib/serializer"),l=s.interopDefault(a),c=e("./RealtimeChannel"),u=s.interopDefault(c);let h=()=>{},d="undefined"!=typeof WebSocket;r.default=class{constructor(t,r){var s;this.accessToken=null,this.apiKey=null,this.channels=[],this.endPoint="",this.headers=i.DEFAULT_HEADERS,this.params={},this.timeout=i.DEFAULT_TIMEOUT,this.heartbeatIntervalMs=3e4,this.heartbeatTimer=void 0,this.pendingHeartbeatRef=null,this.ref=0,this.logger=h,this.conn=null,this.sendBuffer=[],this.serializer=new l.default,this.stateChangeCallbacks={open:[],close:[],error:[],message:[]},this._resolveFetch=t=>{let r;return t?r=t:"undefined"==typeof fetch?r=(...t)=>e("3ea8640035012c43").then(({default:e})=>e(...t)):r=fetch,(...e)=>r(...e)},this.endPoint=`${t}/${i.TRANSPORTS.websocket}`,(null==r?void 0:r.transport)?this.transport=r.transport:this.transport=null,(null==r?void 0:r.params)&&(this.params=r.params),(null==r?void 0:r.headers)&&(this.headers=Object.assign(Object.assign({},this.headers),r.headers)),(null==r?void 0:r.timeout)&&(this.timeout=r.timeout),(null==r?void 0:r.logger)&&(this.logger=r.logger),(null==r?void 0:r.heartbeatIntervalMs)&&(this.heartbeatIntervalMs=r.heartbeatIntervalMs);let n=null===(s=null==r?void 0:r.params)||void 0===s?void 0:s.apikey;n&&(this.accessToken=n,this.apiKey=n),this.reconnectAfterMs=(null==r?void 0:r.reconnectAfterMs)?r.reconnectAfterMs:e=>[1e3,2e3,5e3,1e4][e-1]||1e4,this.encode=(null==r?void 0:r.encode)?r.encode:(e,t)=>t(JSON.stringify(e)),this.decode=(null==r?void 0:r.decode)?r.decode:this.serializer.decode.bind(this.serializer),this.reconnectTimer=new o.default(async()=>{this.disconnect(),this.connect()},this.reconnectAfterMs),this.fetch=this._resolveFetch(null==r?void 0:r.fetch)}connect(){if(!this.conn){if(this.transport){this.conn=new this.transport(this._endPointURL(),void 0,{headers:this.headers});return}if(d){this.conn=new WebSocket(this._endPointURL()),this.setupConnection();return}this.conn=new p(this._endPointURL(),void 0,{close:()=>{this.conn=null}}),e("c4dfe9bfdd39a2b7").then(({default:e})=>{this.conn=new e(this._endPointURL(),void 0,{headers:this.headers}),this.setupConnection()})}}disconnect(e,t){this.conn&&(this.conn.onclose=function(){},e?this.conn.close(e,null!=t?t:""):this.conn.close(),this.conn=null,this.heartbeatTimer&&clearInterval(this.heartbeatTimer),this.reconnectTimer.reset())}getChannels(){return this.channels}async removeChannel(e){let t=await e.unsubscribe();return 0===this.channels.length&&this.disconnect(),t}async removeAllChannels(){let e=await Promise.all(this.channels.map(e=>e.unsubscribe()));return this.disconnect(),e}log(e,t,r){this.logger(e,t,r)}connectionState(){switch(this.conn&&this.conn.readyState){case i.SOCKET_STATES.connecting:return i.CONNECTION_STATE.Connecting;case i.SOCKET_STATES.open:return i.CONNECTION_STATE.Open;case i.SOCKET_STATES.closing:return i.CONNECTION_STATE.Closing;default:return i.CONNECTION_STATE.Closed}}isConnected(){return this.connectionState()===i.CONNECTION_STATE.Open}channel(e,t={config:{}}){let r=new u.default(`realtime:${e}`,t,this);return this.channels.push(r),r}push(e){let{topic:t,event:r,payload:s,ref:i}=e,n=()=>{this.encode(e,e=>{var t;null===(t=this.conn)||void 0===t||t.send(e)})};this.log("push",`${t} ${r} (${i})`,s),this.isConnected()?n():this.sendBuffer.push(n)}setAuth(e){this.accessToken=e,this.channels.forEach(t=>{e&&t.updateJoinPayload({access_token:e}),t.joinedOnce&&t._isJoined()&&t._push(i.CHANNEL_EVENTS.access_token,{access_token:e})})}_makeRef(){let e=this.ref+1;return e===this.ref?this.ref=0:this.ref=e,this.ref.toString()}_leaveOpenTopic(e){let t=this.channels.find(t=>t.topic===e&&(t._isJoined()||t._isJoining()));t&&(this.log("transport",`leaving duplicate topic "${e}"`),t.unsubscribe())}_remove(e){this.channels=this.channels.filter(t=>t._joinRef()!==e._joinRef())}setupConnection(){this.conn&&(this.conn.binaryType="arraybuffer",this.conn.onopen=()=>this._onConnOpen(),this.conn.onerror=e=>this._onConnError(e),this.conn.onmessage=e=>this._onConnMessage(e),this.conn.onclose=e=>this._onConnClose(e))}_endPointURL(){return this._appendParams(this.endPoint,Object.assign({},this.params,{vsn:i.VSN}))}_onConnMessage(e){this.decode(e.data,e=>{let{topic:t,event:r,payload:s,ref:i}=e;(i&&i===this.pendingHeartbeatRef||r===(null==s?void 0:s.type))&&(this.pendingHeartbeatRef=null),this.log("receive",`${s.status||""} ${t} ${r} ${i&&"("+i+")"||""}`,s),this.channels.filter(e=>e._isMember(t)).forEach(e=>e._trigger(r,s,i)),this.stateChangeCallbacks.message.forEach(t=>t(e))})}_onConnOpen(){this.log("transport",`connected to ${this._endPointURL()}`),this._flushSendBuffer(),this.reconnectTimer.reset(),this.heartbeatTimer&&clearInterval(this.heartbeatTimer),this.heartbeatTimer=setInterval(()=>this._sendHeartbeat(),this.heartbeatIntervalMs),this.stateChangeCallbacks.open.forEach(e=>e())}_onConnClose(e){this.log("transport","close",e),this._triggerChanError(),this.heartbeatTimer&&clearInterval(this.heartbeatTimer),this.reconnectTimer.scheduleTimeout(),this.stateChangeCallbacks.close.forEach(t=>t(e))}_onConnError(e){this.log("transport",e.message),this._triggerChanError(),this.stateChangeCallbacks.error.forEach(t=>t(e))}_triggerChanError(){this.channels.forEach(e=>e._trigger(i.CHANNEL_EVENTS.error))}_appendParams(e,t){if(0===Object.keys(t).length)return e;let r=e.match(/\?/)?"&":"?",s=new URLSearchParams(t);return`${e}${r}${s}`}_flushSendBuffer(){this.isConnected()&&this.sendBuffer.length>0&&(this.sendBuffer.forEach(e=>e()),this.sendBuffer=[])}_sendHeartbeat(){var e;if(this.isConnected()){if(this.pendingHeartbeatRef){this.pendingHeartbeatRef=null,this.log("transport","heartbeat timeout. Attempting to re-establish connection"),null===(e=this.conn)||void 0===e||e.close(i.WS_CLOSE_NORMAL,"hearbeat timeout");return}this.pendingHeartbeatRef=this._makeRef(),this.push({topic:"phoenix",event:"heartbeat",payload:{},ref:this.pendingHeartbeatRef}),this.setAuth(this.accessToken)}}};class p{constructor(e,t,r){this.binaryType="arraybuffer",this.onclose=()=>{},this.onerror=()=>{},this.onmessage=()=>{},this.onopen=()=>{},this.readyState=i.SOCKET_STATES.connecting,this.send=()=>{},this.url=null,this.url=e,this.close=r.close}}},{"./lib/constants":"b7Tfz","./lib/timer":"4kZpX","./lib/serializer":"bHUs4","./RealtimeChannel":"kPfVs","3ea8640035012c43":"8FPuu",c4dfe9bfdd39a2b7:"fY0I9","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],b7Tfz:[function(e,t,r){var s,i,n,o,a,l,c,u,h,d=e("@parcel/transformer-js/src/esmodule-helpers.js");d.defineInteropFlag(r),d.export(r,"DEFAULT_HEADERS",()=>f),d.export(r,"VSN",()=>m),d.export(r,"DEFAULT_TIMEOUT",()=>g),d.export(r,"WS_CLOSE_NORMAL",()=>y),d.export(r,"SOCKET_STATES",()=>a),d.export(r,"CHANNEL_STATES",()=>l),d.export(r,"CHANNEL_EVENTS",()=>c),d.export(r,"TRANSPORTS",()=>u),d.export(r,"CONNECTION_STATE",()=>h);var p=e("./version");let f={"X-Client-Info":`realtime-js/${p.version}`},m="1.0.0",g=1e4,y=1e3;(s=a||(a={}))[s.connecting=0]="connecting",s[s.open=1]="open",s[s.closing=2]="closing",s[s.closed=3]="closed",(i=l||(l={})).closed="closed",i.errored="errored",i.joined="joined",i.joining="joining",i.leaving="leaving",(n=c||(c={})).close="phx_close",n.error="phx_error",n.join="phx_join",n.reply="phx_reply",n.leave="phx_leave",n.access_token="access_token",(u||(u={})).websocket="websocket",(o=h||(h={})).Connecting="connecting",o.Open="open",o.Closing="closing",o.Closed="closed"},{"./version":"cD5jd","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],cD5jd:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"version",()=>i);let i="2.9.3"},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"4kZpX":[function(e,t,r){e("@parcel/transformer-js/src/esmodule-helpers.js").defineInteropFlag(r),r.default=class{constructor(e,t){this.callback=e,this.timerCalc=t,this.timer=void 0,this.tries=0,this.callback=e,this.timerCalc=t}reset(){this.tries=0,clearTimeout(this.timer)}scheduleTimeout(){clearTimeout(this.timer),this.timer=setTimeout(()=>{this.tries=this.tries+1,this.callback()},this.timerCalc(this.tries+1))}}},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],bHUs4:[function(e,t,r){e("@parcel/transformer-js/src/esmodule-helpers.js").defineInteropFlag(r),r.default=class{constructor(){this.HEADER_LENGTH=1}decode(e,t){return e.constructor===ArrayBuffer?t(this._binaryDecode(e)):"string"==typeof e?t(JSON.parse(e)):t({})}_binaryDecode(e){let t=new DataView(e),r=new TextDecoder;return this._decodeBroadcast(e,t,r)}_decodeBroadcast(e,t,r){let s=t.getUint8(1),i=t.getUint8(2),n=this.HEADER_LENGTH+2,o=r.decode(e.slice(n,n+s));n+=s;let a=r.decode(e.slice(n,n+i));return n+=i,{ref:null,topic:o,event:a,payload:JSON.parse(r.decode(e.slice(n,e.byteLength)))}}}},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],kPfVs:[function(e,t,r){var s,i,n,o,a,l,c=e("@parcel/transformer-js/src/esmodule-helpers.js");c.defineInteropFlag(r),c.export(r,"REALTIME_POSTGRES_CHANGES_LISTEN_EVENT",()=>o),c.export(r,"REALTIME_LISTEN_TYPES",()=>a),c.export(r,"REALTIME_SUBSCRIBE_STATES",()=>l),c.export(r,"REALTIME_CHANNEL_STATES",()=>v);var u=e("./lib/constants"),h=e("./lib/push"),d=c.interopDefault(h),p=e("./lib/timer"),f=c.interopDefault(p),m=e("./RealtimePresence"),g=c.interopDefault(m),y=e("./lib/transformers");(s=o||(o={})).ALL="*",s.INSERT="INSERT",s.UPDATE="UPDATE",s.DELETE="DELETE",(i=a||(a={})).BROADCAST="broadcast",i.PRESENCE="presence",i.POSTGRES_CHANGES="postgres_changes",(n=l||(l={})).SUBSCRIBED="SUBSCRIBED",n.TIMED_OUT="TIMED_OUT",n.CLOSED="CLOSED",n.CHANNEL_ERROR="CHANNEL_ERROR";let v=u.CHANNEL_STATES;class b{constructor(e,t={config:{}},r){this.topic=e,this.params=t,this.socket=r,this.bindings={},this.state=u.CHANNEL_STATES.closed,this.joinedOnce=!1,this.pushBuffer=[],this.subTopic=e.replace(/^realtime:/i,""),this.params.config=Object.assign({broadcast:{ack:!1,self:!1},presence:{key:""}},t.config),this.timeout=this.socket.timeout,this.joinPush=new d.default(this,u.CHANNEL_EVENTS.join,this.params,this.timeout),this.rejoinTimer=new f.default(()=>this._rejoinUntilConnected(),this.socket.reconnectAfterMs),this.joinPush.receive("ok",()=>{this.state=u.CHANNEL_STATES.joined,this.rejoinTimer.reset(),this.pushBuffer.forEach(e=>e.send()),this.pushBuffer=[]}),this._onClose(()=>{this.rejoinTimer.reset(),this.socket.log("channel",`close ${this.topic} ${this._joinRef()}`),this.state=u.CHANNEL_STATES.closed,this.socket._remove(this)}),this._onError(e=>{this._isLeaving()||this._isClosed()||(this.socket.log("channel",`error ${this.topic}`,e),this.state=u.CHANNEL_STATES.errored,this.rejoinTimer.scheduleTimeout())}),this.joinPush.receive("timeout",()=>{this._isJoining()&&(this.socket.log("channel",`timeout ${this.topic}`,this.joinPush.timeout),this.state=u.CHANNEL_STATES.errored,this.rejoinTimer.scheduleTimeout())}),this._on(u.CHANNEL_EVENTS.reply,{},(e,t)=>{this._trigger(this._replyEventName(t),e)}),this.presence=new g.default(this),this.broadcastEndpointURL=this._broadcastEndpointURL()}subscribe(e,t=this.timeout){var r,s;if(this.socket.isConnected()||this.socket.connect(),this.joinedOnce)throw"tried to subscribe multiple times. 'subscribe' can only be called a single time per channel instance";{let{config:{broadcast:i,presence:n}}=this.params;this._onError(t=>e&&e("CHANNEL_ERROR",t)),this._onClose(()=>e&&e("CLOSED"));let o={},a={broadcast:i,presence:n,postgres_changes:null!==(s=null===(r=this.bindings.postgres_changes)||void 0===r?void 0:r.map(e=>e.filter))&&void 0!==s?s:[]};this.socket.accessToken&&(o.access_token=this.socket.accessToken),this.updateJoinPayload(Object.assign({config:a},o)),this.joinedOnce=!0,this._rejoin(t),this.joinPush.receive("ok",({postgres_changes:t})=>{var r;if(this.socket.accessToken&&this.socket.setAuth(this.socket.accessToken),void 0===t){e&&e("SUBSCRIBED");return}{let s=this.bindings.postgres_changes,i=null!==(r=null==s?void 0:s.length)&&void 0!==r?r:0,n=[];for(let r=0;r<i;r++){let i=s[r],{filter:{event:o,schema:a,table:l,filter:c}}=i,u=t&&t[r];if(u&&u.event===o&&u.schema===a&&u.table===l&&u.filter===c)n.push(Object.assign(Object.assign({},i),{id:u.id}));else{this.unsubscribe(),e&&e("CHANNEL_ERROR",Error("mismatch between server and client bindings for postgres changes"));return}}this.bindings.postgres_changes=n,e&&e("SUBSCRIBED");return}}).receive("error",t=>{e&&e("CHANNEL_ERROR",Error(JSON.stringify(Object.values(t).join(", ")||"error")))}).receive("timeout",()=>{e&&e("TIMED_OUT")})}return this}presenceState(){return this.presence.state}async track(e,t={}){return await this.send({type:"presence",event:"track",payload:e},t.timeout||this.timeout)}async untrack(e={}){return await this.send({type:"presence",event:"untrack"},e)}on(e,t,r){return this._on(e,t,r)}async send(e,t={}){var r,s;if(this._canPush()||"broadcast"!==e.type)return new Promise(r=>{var s,i,n;let o=this._push(e.type,e,t.timeout||this.timeout);"broadcast"!==e.type||(null===(n=null===(i=null===(s=this.params)||void 0===s?void 0:s.config)||void 0===i?void 0:i.broadcast)||void 0===n?void 0:n.ack)||r("ok"),o.receive("ok",()=>r("ok")),o.receive("timeout",()=>r("timed out"))});{let{event:i,payload:n}=e,o={method:"POST",headers:{apikey:null!==(r=this.socket.apiKey)&&void 0!==r?r:"","Content-Type":"application/json"},body:JSON.stringify({messages:[{topic:this.subTopic,event:i,payload:n}]})};try{if((await this._fetchWithTimeout(this.broadcastEndpointURL,o,null!==(s=t.timeout)&&void 0!==s?s:this.timeout)).ok)return"ok";return"error"}catch(e){if("AbortError"===e.name)return"timed out";return"error"}}}updateJoinPayload(e){this.joinPush.updatePayload(e)}unsubscribe(e=this.timeout){this.state=u.CHANNEL_STATES.leaving;let t=()=>{this.socket.log("channel",`leave ${this.topic}`),this._trigger(u.CHANNEL_EVENTS.close,"leave",this._joinRef())};return this.rejoinTimer.reset(),this.joinPush.destroy(),new Promise(r=>{let s=new d.default(this,u.CHANNEL_EVENTS.leave,{},e);s.receive("ok",()=>{t(),r("ok")}).receive("timeout",()=>{t(),r("timed out")}).receive("error",()=>{r("error")}),s.send(),this._canPush()||s.trigger("ok",{})})}_broadcastEndpointURL(){let e=this.socket.endPoint;return(e=(e=e.replace(/^ws/i,"http")).replace(/(\/socket\/websocket|\/socket|\/websocket)\/?$/i,"")).replace(/\/+$/,"")+"/api/broadcast"}async _fetchWithTimeout(e,t,r){let s=new AbortController,i=setTimeout(()=>s.abort(),r),n=await this.socket.fetch(e,Object.assign(Object.assign({},t),{signal:s.signal}));return clearTimeout(i),n}_push(e,t,r=this.timeout){if(!this.joinedOnce)throw`tried to push '${e}' to '${this.topic}' before joining. Use channel.subscribe() before pushing events`;let s=new d.default(this,e,t,r);return this._canPush()?s.send():(s.startTimeout(),this.pushBuffer.push(s)),s}_onMessage(e,t,r){return t}_isMember(e){return this.topic===e}_joinRef(){return this.joinPush.ref}_trigger(e,t,r){var s,i;let n=e.toLocaleLowerCase(),{close:o,error:a,leave:l,join:c}=u.CHANNEL_EVENTS;if(r&&[o,a,l,c].indexOf(n)>=0&&r!==this._joinRef())return;let h=this._onMessage(n,t,r);if(t&&!h)throw"channel onMessage callbacks must return the payload, modified or unmodified";["insert","update","delete"].includes(n)?null===(s=this.bindings.postgres_changes)||void 0===s||s.filter(e=>{var t,r,s;return(null===(t=e.filter)||void 0===t?void 0:t.event)==="*"||(null===(s=null===(r=e.filter)||void 0===r?void 0:r.event)||void 0===s?void 0:s.toLocaleLowerCase())===n}).map(e=>e.callback(h,r)):null===(i=this.bindings[n])||void 0===i||i.filter(e=>{var r,s,i,o,a,l;if(!["broadcast","presence","postgres_changes"].includes(n))return e.type.toLocaleLowerCase()===n;if("id"in e){let n=e.id,o=null===(r=e.filter)||void 0===r?void 0:r.event;return n&&(null===(s=t.ids)||void 0===s?void 0:s.includes(n))&&("*"===o||(null==o?void 0:o.toLocaleLowerCase())===(null===(i=t.data)||void 0===i?void 0:i.type.toLocaleLowerCase()))}{let r=null===(a=null===(o=null==e?void 0:e.filter)||void 0===o?void 0:o.event)||void 0===a?void 0:a.toLocaleLowerCase();return"*"===r||r===(null===(l=null==t?void 0:t.event)||void 0===l?void 0:l.toLocaleLowerCase())}}).map(e=>{if("object"==typeof h&&"ids"in h){let e=h.data,{schema:t,table:r,commit_timestamp:s,type:i,errors:n}=e;h=Object.assign(Object.assign({},{schema:t,table:r,commit_timestamp:s,eventType:i,new:{},old:{},errors:n}),this._getPayloadRecords(e))}e.callback(h,r)})}_isClosed(){return this.state===u.CHANNEL_STATES.closed}_isJoined(){return this.state===u.CHANNEL_STATES.joined}_isJoining(){return this.state===u.CHANNEL_STATES.joining}_isLeaving(){return this.state===u.CHANNEL_STATES.leaving}_replyEventName(e){return`chan_reply_${e}`}_on(e,t,r){let s=e.toLocaleLowerCase(),i={type:s,filter:t,callback:r};return this.bindings[s]?this.bindings[s].push(i):this.bindings[s]=[i],this}_off(e,t){let r=e.toLocaleLowerCase();return this.bindings[r]=this.bindings[r].filter(e=>{var s;return!((null===(s=e.type)||void 0===s?void 0:s.toLocaleLowerCase())===r&&b.isEqual(e.filter,t))}),this}static isEqual(e,t){if(Object.keys(e).length!==Object.keys(t).length)return!1;for(let r in e)if(e[r]!==t[r])return!1;return!0}_rejoinUntilConnected(){this.rejoinTimer.scheduleTimeout(),this.socket.isConnected()&&this._rejoin()}_onClose(e){this._on(u.CHANNEL_EVENTS.close,{},e)}_onError(e){this._on(u.CHANNEL_EVENTS.error,{},t=>e(t))}_canPush(){return this.socket.isConnected()&&this._isJoined()}_rejoin(e=this.timeout){this._isLeaving()||(this.socket._leaveOpenTopic(this.topic),this.state=u.CHANNEL_STATES.joining,this.joinPush.resend(e))}_getPayloadRecords(e){let t={new:{},old:{}};return("INSERT"===e.type||"UPDATE"===e.type)&&(t.new=y.convertChangeData(e.columns,e.record)),("UPDATE"===e.type||"DELETE"===e.type)&&(t.old=y.convertChangeData(e.columns,e.old_record)),t}}r.default=b},{"./lib/constants":"b7Tfz","./lib/push":"04M5X","./lib/timer":"4kZpX","./RealtimePresence":"1SbUv","./lib/transformers":"fMnzi","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"04M5X":[function(e,t,r){e("@parcel/transformer-js/src/esmodule-helpers.js").defineInteropFlag(r);var s=e("../lib/constants");r.default=class{constructor(e,t,r={},i=s.DEFAULT_TIMEOUT){this.channel=e,this.event=t,this.payload=r,this.timeout=i,this.sent=!1,this.timeoutTimer=void 0,this.ref="",this.receivedResp=null,this.recHooks=[],this.refEvent=null}resend(e){this.timeout=e,this._cancelRefEvent(),this.ref="",this.refEvent=null,this.receivedResp=null,this.sent=!1,this.send()}send(){this._hasReceived("timeout")||(this.startTimeout(),this.sent=!0,this.channel.socket.push({topic:this.channel.topic,event:this.event,payload:this.payload,ref:this.ref,join_ref:this.channel._joinRef()}))}updatePayload(e){this.payload=Object.assign(Object.assign({},this.payload),e)}receive(e,t){var r;return this._hasReceived(e)&&t(null===(r=this.receivedResp)||void 0===r?void 0:r.response),this.recHooks.push({status:e,callback:t}),this}startTimeout(){this.timeoutTimer||(this.ref=this.channel.socket._makeRef(),this.refEvent=this.channel._replyEventName(this.ref),this.channel._on(this.refEvent,{},e=>{this._cancelRefEvent(),this._cancelTimeout(),this.receivedResp=e,this._matchReceive(e)}),this.timeoutTimer=setTimeout(()=>{this.trigger("timeout",{})},this.timeout))}trigger(e,t){this.refEvent&&this.channel._trigger(this.refEvent,{status:e,response:t})}destroy(){this._cancelRefEvent(),this._cancelTimeout()}_cancelRefEvent(){this.refEvent&&this.channel._off(this.refEvent,{})}_cancelTimeout(){clearTimeout(this.timeoutTimer),this.timeoutTimer=void 0}_matchReceive({status:e,response:t}){this.recHooks.filter(t=>t.status===e).forEach(e=>e.callback(t))}_hasReceived(e){return this.receivedResp&&this.receivedResp.status===e}}},{"../lib/constants":"b7Tfz","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"1SbUv":[function(e,t,r){var s,i,n=e("@parcel/transformer-js/src/esmodule-helpers.js");n.defineInteropFlag(r),n.export(r,"REALTIME_PRESENCE_LISTEN_EVENTS",()=>i),(s=i||(i={})).SYNC="sync",s.JOIN="join",s.LEAVE="leave";class o{constructor(e,t){this.channel=e,this.state={},this.pendingDiffs=[],this.joinRef=null,this.caller={onJoin:()=>{},onLeave:()=>{},onSync:()=>{}};let r=(null==t?void 0:t.events)||{state:"presence_state",diff:"presence_diff"};this.channel._on(r.state,{},e=>{let{onJoin:t,onLeave:r,onSync:s}=this.caller;this.joinRef=this.channel._joinRef(),this.state=o.syncState(this.state,e,t,r),this.pendingDiffs.forEach(e=>{this.state=o.syncDiff(this.state,e,t,r)}),this.pendingDiffs=[],s()}),this.channel._on(r.diff,{},e=>{let{onJoin:t,onLeave:r,onSync:s}=this.caller;this.inPendingSyncState()?this.pendingDiffs.push(e):(this.state=o.syncDiff(this.state,e,t,r),s())}),this.onJoin((e,t,r)=>{this.channel._trigger("presence",{event:"join",key:e,currentPresences:t,newPresences:r})}),this.onLeave((e,t,r)=>{this.channel._trigger("presence",{event:"leave",key:e,currentPresences:t,leftPresences:r})}),this.onSync(()=>{this.channel._trigger("presence",{event:"sync"})})}static syncState(e,t,r,s){let i=this.cloneDeep(e),n=this.transformState(t),o={},a={};return this.map(i,(e,t)=>{n[e]||(a[e]=t)}),this.map(n,(e,t)=>{let r=i[e];if(r){let s=t.map(e=>e.presence_ref),i=r.map(e=>e.presence_ref),n=t.filter(e=>0>i.indexOf(e.presence_ref)),l=r.filter(e=>0>s.indexOf(e.presence_ref));n.length>0&&(o[e]=n),l.length>0&&(a[e]=l)}else o[e]=t}),this.syncDiff(i,{joins:o,leaves:a},r,s)}static syncDiff(e,t,r,s){let{joins:i,leaves:n}={joins:this.transformState(t.joins),leaves:this.transformState(t.leaves)};return r||(r=()=>{}),s||(s=()=>{}),this.map(i,(t,s)=>{var i;let n=null!==(i=e[t])&&void 0!==i?i:[];if(e[t]=this.cloneDeep(s),n.length>0){let r=e[t].map(e=>e.presence_ref),s=n.filter(e=>0>r.indexOf(e.presence_ref));e[t].unshift(...s)}r(t,n,s)}),this.map(n,(t,r)=>{let i=e[t];if(!i)return;let n=r.map(e=>e.presence_ref);i=i.filter(e=>0>n.indexOf(e.presence_ref)),e[t]=i,s(t,i,r),0===i.length&&delete e[t]}),e}static map(e,t){return Object.getOwnPropertyNames(e).map(r=>t(r,e[r]))}static transformState(e){return Object.getOwnPropertyNames(e=this.cloneDeep(e)).reduce((t,r)=>{let s=e[r];return"metas"in s?t[r]=s.metas.map(e=>(e.presence_ref=e.phx_ref,delete e.phx_ref,delete e.phx_ref_prev,e)):t[r]=s,t},{})}static cloneDeep(e){return JSON.parse(JSON.stringify(e))}onJoin(e){this.caller.onJoin=e}onLeave(e){this.caller.onLeave=e}onSync(e){this.caller.onSync=e}inPendingSyncState(){return!this.joinRef||this.joinRef!==this.channel._joinRef()}}r.default=o},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],fMnzi:[function(e,t,r){var s,i,n=e("@parcel/transformer-js/src/esmodule-helpers.js");n.defineInteropFlag(r),n.export(r,"PostgresTypes",()=>i),n.export(r,"convertChangeData",()=>o),n.export(r,"convertColumn",()=>a),n.export(r,"convertCell",()=>l),n.export(r,"toBoolean",()=>u),n.export(r,"toNumber",()=>h),n.export(r,"toJson",()=>d),n.export(r,"toArray",()=>p),n.export(r,"toTimestampString",()=>f),(s=i||(i={})).abstime="abstime",s.bool="bool",s.date="date",s.daterange="daterange",s.float4="float4",s.float8="float8",s.int2="int2",s.int4="int4",s.int4range="int4range",s.int8="int8",s.int8range="int8range",s.json="json",s.jsonb="jsonb",s.money="money",s.numeric="numeric",s.oid="oid",s.reltime="reltime",s.text="text",s.time="time",s.timestamp="timestamp",s.timestamptz="timestamptz",s.timetz="timetz",s.tsrange="tsrange",s.tstzrange="tstzrange";let o=(e,t,r={})=>{var s;let i=null!==(s=r.skipTypes)&&void 0!==s?s:[];return Object.keys(t).reduce((r,s)=>(r[s]=a(s,e,t,i),r),{})},a=(e,t,r,s)=>{let i=t.find(t=>t.name===e),n=null==i?void 0:i.type,o=r[e];return n&&!s.includes(n)?l(n,o):c(o)},l=(e,t)=>{if("_"===e.charAt(0))return p(t,e.slice(1,e.length));switch(e){case i.bool:return u(t);case i.float4:case i.float8:case i.int2:case i.int4:case i.int8:case i.numeric:case i.oid:return h(t);case i.json:case i.jsonb:return d(t);case i.timestamp:return f(t);case i.abstime:case i.date:case i.daterange:case i.int4range:case i.int8range:case i.money:case i.reltime:case i.text:case i.time:case i.timestamptz:case i.timetz:case i.tsrange:case i.tstzrange:default:return c(t)}},c=e=>e,u=e=>{switch(e){case"t":return!0;case"f":return!1;default:return e}},h=e=>{if("string"==typeof e){let t=parseFloat(e);if(!Number.isNaN(t))return t}return e},d=e=>{if("string"==typeof e)try{return JSON.parse(e)}catch(e){console.log(`JSON parse error: ${e}`)}return e},p=(e,t)=>{if("string"!=typeof e)return e;let r=e.length-1,s=e[r];if("{"===e[0]&&"}"===s){let s;let i=e.slice(1,r);try{s=JSON.parse("["+i+"]")}catch(e){s=i?i.split(","):[]}return s.map(e=>l(t,e))}return e},f=e=>"string"==typeof e?e.replace(" ","T"):e},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],fY0I9:[function(e,t,r){t.exports=e("2e9f6a28a39963c7")(e("7645f7596fe4a0d6").resolve("bDAMX")).then(()=>t.bundle.root("44gAr"))},{"2e9f6a28a39963c7":"9wKyf","7645f7596fe4a0d6":"gSiLw"}],"9wKyf":[function(e,t,r){var s=e("ca2a84f7fa4a3bb0");t.exports=s(function(e){return new Promise(function(t,r){if([].concat(document.getElementsByTagName("script")).some(function(t){return t.src===e})){t();return}var s=document.createElement("link");s.href=e,s.rel="preload",s.as="script",document.head.appendChild(s);var i=document.createElement("script");i.async=!0,i.type="text/javascript",i.src=e,i.onerror=function(t){var s=TypeError("Failed to fetch dynamically imported module: ".concat(e,". Error: ").concat(t.message));i.onerror=i.onload=null,i.remove(),r(s)},i.onload=function(){i.onerror=i.onload=null,t()},document.getElementsByTagName("head")[0].appendChild(i)})})},{ca2a84f7fa4a3bb0:"e8xyU"}],e8xyU:[function(e,t,r){var s={},i={},n={};t.exports=function(e,t){return function(r){var o=function(e){switch(e){case"preload":return i;case"prefetch":return n;default:return s}}(t);return o[r]?o[r]:o[r]=e.apply(null,arguments).catch(function(e){throw delete o[r],e})}}},{}],dLDMJ:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"StorageClient",()=>i.StorageClient);var i=e("./StorageClient"),n=e("./lib/types");s.exportAll(n,r);var o=e("./lib/errors");s.exportAll(o,r)},{"./StorageClient":"lznxO","./lib/types":!1,"./lib/errors":!1,"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],lznxO:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"StorageClient",()=>l);var i=e("./packages/StorageFileApi"),n=s.interopDefault(i),o=e("./packages/StorageBucketApi"),a=s.interopDefault(o);class l extends a.default{constructor(e,t={},r){super(e,t,r)}from(e){return new n.default(this.url,this.headers,e,this.fetch)}}},{"./packages/StorageFileApi":"7RmCB","./packages/StorageBucketApi":"d3OVP","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"7RmCB":[function(e,t,r){e("@parcel/transformer-js/src/esmodule-helpers.js").defineInteropFlag(r);var s=e("../lib/errors"),i=e("../lib/fetch"),n=e("../lib/helpers"),o=function(e,t,r,s){return new(r||(r=Promise))(function(i,n){function o(e){try{l(s.next(e))}catch(e){n(e)}}function a(e){try{l(s.throw(e))}catch(e){n(e)}}function l(e){var t;e.done?i(e.value):((t=e.value)instanceof r?t:new r(function(e){e(t)})).then(o,a)}l((s=s.apply(e,t||[])).next())})};let a={limit:100,offset:0,sortBy:{column:"name",order:"asc"}},l={cacheControl:"3600",contentType:"text/plain;charset=UTF-8",upsert:!1};r.default=class{constructor(e,t={},r,s){this.url=e,this.headers=t,this.bucketId=r,this.fetch=(0,n.resolveFetch)(s)}uploadOrUpdate(e,t,r,i){return o(this,void 0,void 0,function*(){try{let s;let n=Object.assign(Object.assign({},l),i),o=Object.assign(Object.assign({},this.headers),"POST"===e&&{"x-upsert":String(n.upsert)});"undefined"!=typeof Blob&&r instanceof Blob?((s=new FormData).append("cacheControl",n.cacheControl),s.append("",r)):"undefined"!=typeof FormData&&r instanceof FormData?(s=r).append("cacheControl",n.cacheControl):(s=r,o["cache-control"]=`max-age=${n.cacheControl}`,o["content-type"]=n.contentType);let a=this._removeEmptyFolders(t),c=this._getFinalPath(a),u=yield this.fetch(`${this.url}/object/${c}`,Object.assign({method:e,body:s,headers:o},(null==n?void 0:n.duplex)?{duplex:n.duplex}:{})),h=yield u.json();if(u.ok)return{data:{path:a,id:h.Id,fullPath:h.Key},error:null};return{data:null,error:h}}catch(e){if((0,s.isStorageError)(e))return{data:null,error:e};throw e}})}upload(e,t,r){return o(this,void 0,void 0,function*(){return this.uploadOrUpdate("POST",e,t,r)})}uploadToSignedUrl(e,t,r,i){return o(this,void 0,void 0,function*(){let n=this._removeEmptyFolders(e),o=this._getFinalPath(n),a=new URL(this.url+`/object/upload/sign/${o}`);a.searchParams.set("token",t);try{let e;let t=Object.assign({upsert:l.upsert},i),s=Object.assign(Object.assign({},this.headers),{"x-upsert":String(t.upsert)});"undefined"!=typeof Blob&&r instanceof Blob?((e=new FormData).append("cacheControl",t.cacheControl),e.append("",r)):"undefined"!=typeof FormData&&r instanceof FormData?(e=r).append("cacheControl",t.cacheControl):(e=r,s["cache-control"]=`max-age=${t.cacheControl}`,s["content-type"]=t.contentType);let o=yield this.fetch(a.toString(),{method:"PUT",body:e,headers:s}),c=yield o.json();if(o.ok)return{data:{path:n,fullPath:c.Key},error:null};return{data:null,error:c}}catch(e){if((0,s.isStorageError)(e))return{data:null,error:e};throw e}})}createSignedUploadUrl(e){return o(this,void 0,void 0,function*(){try{let t=this._getFinalPath(e),r=yield(0,i.post)(this.fetch,`${this.url}/object/upload/sign/${t}`,{},{headers:this.headers}),n=new URL(this.url+r.url),o=n.searchParams.get("token");if(!o)throw new s.StorageError("No token returned by API");return{data:{signedUrl:n.toString(),path:e,token:o},error:null}}catch(e){if((0,s.isStorageError)(e))return{data:null,error:e};throw e}})}update(e,t,r){return o(this,void 0,void 0,function*(){return this.uploadOrUpdate("PUT",e,t,r)})}move(e,t){return o(this,void 0,void 0,function*(){try{return{data:yield(0,i.post)(this.fetch,`${this.url}/object/move`,{bucketId:this.bucketId,sourceKey:e,destinationKey:t},{headers:this.headers}),error:null}}catch(e){if((0,s.isStorageError)(e))return{data:null,error:e};throw e}})}copy(e,t){return o(this,void 0,void 0,function*(){try{return{data:{path:(yield(0,i.post)(this.fetch,`${this.url}/object/copy`,{bucketId:this.bucketId,sourceKey:e,destinationKey:t},{headers:this.headers})).Key},error:null}}catch(e){if((0,s.isStorageError)(e))return{data:null,error:e};throw e}})}createSignedUrl(e,t,r){return o(this,void 0,void 0,function*(){try{let s=this._getFinalPath(e),n=yield(0,i.post)(this.fetch,`${this.url}/object/sign/${s}`,Object.assign({expiresIn:t},(null==r?void 0:r.transform)?{transform:r.transform}:{}),{headers:this.headers}),o=(null==r?void 0:r.download)?`&download=${!0===r.download?"":r.download}`:"";return{data:n={signedUrl:encodeURI(`${this.url}${n.signedURL}${o}`)},error:null}}catch(e){if((0,s.isStorageError)(e))return{data:null,error:e};throw e}})}createSignedUrls(e,t,r){return o(this,void 0,void 0,function*(){try{let s=yield(0,i.post)(this.fetch,`${this.url}/object/sign/${this.bucketId}`,{expiresIn:t,paths:e},{headers:this.headers}),n=(null==r?void 0:r.download)?`&download=${!0===r.download?"":r.download}`:"";return{data:s.map(e=>Object.assign(Object.assign({},e),{signedUrl:e.signedURL?encodeURI(`${this.url}${e.signedURL}${n}`):null})),error:null}}catch(e){if((0,s.isStorageError)(e))return{data:null,error:e};throw e}})}download(e,t){return o(this,void 0,void 0,function*(){let r=void 0!==(null==t?void 0:t.transform),n=this.transformOptsToQueryString((null==t?void 0:t.transform)||{}),o=n?`?${n}`:"";try{let t=this._getFinalPath(e),s=yield(0,i.get)(this.fetch,`${this.url}/${r?"render/image/authenticated":"object"}/${t}${o}`,{headers:this.headers,noResolveJson:!0});return{data:yield s.blob(),error:null}}catch(e){if((0,s.isStorageError)(e))return{data:null,error:e};throw e}})}getPublicUrl(e,t){let r=this._getFinalPath(e),s=[],i=(null==t?void 0:t.download)?`download=${!0===t.download?"":t.download}`:"";""!==i&&s.push(i);let n=void 0!==(null==t?void 0:t.transform),o=this.transformOptsToQueryString((null==t?void 0:t.transform)||{});""!==o&&s.push(o);let a=s.join("&");return""!==a&&(a=`?${a}`),{data:{publicUrl:encodeURI(`${this.url}/${n?"render/image":"object"}/public/${r}${a}`)}}}remove(e){return o(this,void 0,void 0,function*(){try{return{data:yield(0,i.remove)(this.fetch,`${this.url}/object/${this.bucketId}`,{prefixes:e},{headers:this.headers}),error:null}}catch(e){if((0,s.isStorageError)(e))return{data:null,error:e};throw e}})}list(e,t,r){return o(this,void 0,void 0,function*(){try{let s=Object.assign(Object.assign(Object.assign({},a),t),{prefix:e||""});return{data:yield(0,i.post)(this.fetch,`${this.url}/object/list/${this.bucketId}`,s,{headers:this.headers},r),error:null}}catch(e){if((0,s.isStorageError)(e))return{data:null,error:e};throw e}})}_getFinalPath(e){return`${this.bucketId}/${e}`}_removeEmptyFolders(e){return e.replace(/^\/|\/$/g,"").replace(/\/+/g,"/")}transformOptsToQueryString(e){let t=[];return e.width&&t.push(`width=${e.width}`),e.height&&t.push(`height=${e.height}`),e.resize&&t.push(`resize=${e.resize}`),e.format&&t.push(`format=${e.format}`),e.quality&&t.push(`quality=${e.quality}`),t.join("&")}}},{"../lib/errors":"pVJlf","../lib/fetch":"7gpc7","../lib/helpers":"glFBz","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],pVJlf:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"StorageError",()=>i),s.export(r,"isStorageError",()=>n),s.export(r,"StorageApiError",()=>o),s.export(r,"StorageUnknownError",()=>a);class i extends Error{constructor(e){super(e),this.__isStorageError=!0,this.name="StorageError"}}function n(e){return"object"==typeof e&&null!==e&&"__isStorageError"in e}class o extends i{constructor(e,t){super(e),this.name="StorageApiError",this.status=t}toJSON(){return{name:this.name,message:this.message,status:this.status}}}class a extends i{constructor(e,t){super(e),this.name="StorageUnknownError",this.originalError=t}}},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"7gpc7":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"get",()=>h),s.export(r,"post",()=>d),s.export(r,"put",()=>p),s.export(r,"remove",()=>f);var i=e("./errors"),n=e("./helpers"),o=function(e,t,r,s){return new(r||(r=Promise))(function(i,n){function o(e){try{l(s.next(e))}catch(e){n(e)}}function a(e){try{l(s.throw(e))}catch(e){n(e)}}function l(e){var t;e.done?i(e.value):((t=e.value)instanceof r?t:new r(function(e){e(t)})).then(o,a)}l((s=s.apply(e,t||[])).next())})};let a=e=>e.msg||e.message||e.error_description||e.error||JSON.stringify(e),l=(e,t)=>o(void 0,void 0,void 0,function*(){e instanceof(yield(0,n.resolveResponse)())?e.json().then(r=>{t(new i.StorageApiError(a(r),e.status||500))}).catch(e=>{t(new i.StorageUnknownError(a(e),e))}):t(new i.StorageUnknownError(a(e),e))}),c=(e,t,r,s)=>{let i={method:e,headers:(null==t?void 0:t.headers)||{}};return"GET"===e?i:(i.headers=Object.assign({"Content-Type":"application/json"},null==t?void 0:t.headers),i.body=JSON.stringify(s),Object.assign(Object.assign({},i),r))};function u(e,t,r,s,i,n){return o(this,void 0,void 0,function*(){return new Promise((o,a)=>{e(r,c(t,s,i,n)).then(e=>{if(!e.ok)throw e;return(null==s?void 0:s.noResolveJson)?e:e.json()}).then(e=>o(e)).catch(e=>l(e,a))})})}function h(e,t,r,s){return o(this,void 0,void 0,function*(){return u(e,"GET",t,r,s)})}function d(e,t,r,s,i){return o(this,void 0,void 0,function*(){return u(e,"POST",t,s,i,r)})}function p(e,t,r,s,i){return o(this,void 0,void 0,function*(){return u(e,"PUT",t,s,i,r)})}function f(e,t,r,s,i){return o(this,void 0,void 0,function*(){return u(e,"DELETE",t,s,i,r)})}},{"./errors":"pVJlf","./helpers":"glFBz","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],glFBz:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"resolveFetch",()=>i),s.export(r,"resolveResponse",()=>n);let i=t=>{let r;return t?r=t:"undefined"==typeof fetch?r=(...t)=>e("d0262cf6b6e3064e").then(({default:e})=>e(...t)):r=fetch,(...e)=>r(...e)},n=()=>{var t,r,s,i;return t=void 0,r=void 0,s=void 0,i=function*(){return"undefined"==typeof Response?(yield e("d0262cf6b6e3064e")).Response:Response},new(s||(s=Promise))(function(e,n){function o(e){try{l(i.next(e))}catch(e){n(e)}}function a(e){try{l(i.throw(e))}catch(e){n(e)}}function l(t){var r;t.done?e(t.value):((r=t.value)instanceof s?r:new s(function(e){e(r)})).then(o,a)}l((i=i.apply(t,r||[])).next())})}},{d0262cf6b6e3064e:"8FPuu","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],d3OVP:[function(e,t,r){e("@parcel/transformer-js/src/esmodule-helpers.js").defineInteropFlag(r);var s=e("../lib/constants"),i=e("../lib/errors"),n=e("../lib/fetch"),o=e("../lib/helpers"),a=function(e,t,r,s){return new(r||(r=Promise))(function(i,n){function o(e){try{l(s.next(e))}catch(e){n(e)}}function a(e){try{l(s.throw(e))}catch(e){n(e)}}function l(e){var t;e.done?i(e.value):((t=e.value)instanceof r?t:new r(function(e){e(t)})).then(o,a)}l((s=s.apply(e,t||[])).next())})};r.default=class{constructor(e,t={},r){this.url=e,this.headers=Object.assign(Object.assign({},s.DEFAULT_HEADERS),t),this.fetch=(0,o.resolveFetch)(r)}listBuckets(){return a(this,void 0,void 0,function*(){try{return{data:yield(0,n.get)(this.fetch,`${this.url}/bucket`,{headers:this.headers}),error:null}}catch(e){if((0,i.isStorageError)(e))return{data:null,error:e};throw e}})}getBucket(e){return a(this,void 0,void 0,function*(){try{return{data:yield(0,n.get)(this.fetch,`${this.url}/bucket/${e}`,{headers:this.headers}),error:null}}catch(e){if((0,i.isStorageError)(e))return{data:null,error:e};throw e}})}createBucket(e,t={public:!1}){return a(this,void 0,void 0,function*(){try{return{data:yield(0,n.post)(this.fetch,`${this.url}/bucket`,{id:e,name:e,public:t.public,file_size_limit:t.fileSizeLimit,allowed_mime_types:t.allowedMimeTypes},{headers:this.headers}),error:null}}catch(e){if((0,i.isStorageError)(e))return{data:null,error:e};throw e}})}updateBucket(e,t){return a(this,void 0,void 0,function*(){try{return{data:yield(0,n.put)(this.fetch,`${this.url}/bucket/${e}`,{id:e,name:e,public:t.public,file_size_limit:t.fileSizeLimit,allowed_mime_types:t.allowedMimeTypes},{headers:this.headers}),error:null}}catch(e){if((0,i.isStorageError)(e))return{data:null,error:e};throw e}})}emptyBucket(e){return a(this,void 0,void 0,function*(){try{return{data:yield(0,n.post)(this.fetch,`${this.url}/bucket/${e}/empty`,{},{headers:this.headers}),error:null}}catch(e){if((0,i.isStorageError)(e))return{data:null,error:e};throw e}})}deleteBucket(e){return a(this,void 0,void 0,function*(){try{return{data:yield(0,n.remove)(this.fetch,`${this.url}/bucket/${e}`,{},{headers:this.headers}),error:null}}catch(e){if((0,i.isStorageError)(e))return{data:null,error:e};throw e}})}}},{"../lib/constants":"bnkrr","../lib/errors":"pVJlf","../lib/fetch":"7gpc7","../lib/helpers":"glFBz","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],bnkrr:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"DEFAULT_HEADERS",()=>n);var i=e("./version");let n={"X-Client-Info":`storage-js/${i.version}`}},{"./version":"7HfjH","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"7HfjH":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"version",()=>i);let i="2.5.5"},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"1uIhb":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"DEFAULT_HEADERS",()=>o),s.export(r,"DEFAULT_GLOBAL_OPTIONS",()=>a),s.export(r,"DEFAULT_DB_OPTIONS",()=>l),s.export(r,"DEFAULT_AUTH_OPTIONS",()=>c),s.export(r,"DEFAULT_REALTIME_OPTIONS",()=>u);var i=e("./version");let n="";"undefined"!=typeof Deno?n="deno":"undefined"!=typeof document?n="web":"undefined"!=typeof navigator&&"ReactNative"===navigator.product?n="react-native":n="node";let o={"X-Client-Info":`supabase-js-${n}/${i.version}`},a={headers:o},l={schema:"public"},c={autoRefreshToken:!0,persistSession:!0,detectSessionInUrl:!0,flowType:"implicit"},u={}},{"./version":"lmgeJ","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],lmgeJ:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"version",()=>i);let i="2.42.0"},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],jU4vw:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"resolveFetch",()=>o),s.export(r,"resolveHeadersConstructor",()=>a),s.export(r,"fetchWithAuth",()=>l);var i=e("@supabase/node-fetch"),n=s.interopDefault(i);let o=e=>{let t;return e?t=e:"undefined"==typeof fetch?t=n.default:t=fetch,(...e)=>t(...e)},a=()=>"undefined"==typeof Headers?i.Headers:Headers,l=(e,t,r)=>{let s=o(r),i=a();return(r,n)=>{var o,a,l,c;return o=void 0,a=void 0,l=void 0,c=function*(){var o;let a=null!==(o=yield t())&&void 0!==o?o:e,l=new i(null==n?void 0:n.headers);return l.has("apikey")||l.set("apikey",e),l.has("Authorization")||l.set("Authorization",`Bearer ${a}`),s(r,Object.assign(Object.assign({},n),{headers:l}))},new(l||(l=Promise))(function(e,t){function r(e){try{i(c.next(e))}catch(e){t(e)}}function s(e){try{i(c.throw(e))}catch(e){t(e)}}function i(t){var i;t.done?e(t.value):((i=t.value)instanceof l?i:new l(function(e){e(i)})).then(r,s)}i((c=c.apply(o,a||[])).next())})}}},{"@supabase/node-fetch":"4Q5V1","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"3zuQC":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");function i(){return"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,function(e){var t=16*Math.random()|0;return("x"==e?t:3&t|8).toString(16)})}function n(e){return e.replace(/\/$/,"")}s.defineInteropFlag(r),s.export(r,"uuid",()=>i),s.export(r,"stripTrailingSlash",()=>n),s.export(r,"isBrowser",()=>o),s.export(r,"applySettingDefaults",()=>a);let o=()=>"undefined"!=typeof window;function a(e,t){let{db:r,auth:s,realtime:i,global:n}=e,{db:o,auth:a,realtime:l,global:c}=t;return{db:Object.assign(Object.assign({},o),r),auth:Object.assign(Object.assign({},a),s),realtime:Object.assign(Object.assign({},l),i),global:Object.assign(Object.assign({},c),n)}}},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"7YJ7Q":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"SupabaseAuthClient",()=>n);var i=e("@supabase/auth-js");class n extends i.AuthClient{constructor(e){super(e)}}},{"@supabase/auth-js":"8VjzZ","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"8VjzZ":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"navigatorLock",()=>f.navigatorLock),s.export(r,"NavigatorLockAcquireTimeoutError",()=>f.NavigatorLockAcquireTimeoutError),s.export(r,"lockInternals",()=>f.internals),s.export(r,"GoTrueAdminApi",()=>n.default),s.export(r,"GoTrueClient",()=>a.default),s.export(r,"AuthAdminApi",()=>c.default),s.export(r,"AuthClient",()=>h.default);var i=e("./GoTrueAdminApi"),n=s.interopDefault(i),o=e("./GoTrueClient"),a=s.interopDefault(o),l=e("./AuthAdminApi"),c=s.interopDefault(l),u=e("./AuthClient"),h=s.interopDefault(u),d=e("./lib/types");s.exportAll(d,r);var p=e("./lib/errors");s.exportAll(p,r);var f=e("./lib/locks")},{"./GoTrueAdminApi":"5bmQV","./GoTrueClient":"8QbFP","./AuthAdminApi":"dTWKm","./AuthClient":"itpDP","./lib/types":"aKMd1","./lib/errors":"8RHqO","./lib/locks":"4RjEn","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"5bmQV":[function(e,t,r){e("@parcel/transformer-js/src/esmodule-helpers.js").defineInteropFlag(r);var s=e("./lib/fetch"),i=e("./lib/helpers"),n=e("./lib/errors"),o=function(e,t){var r={};for(var s in e)Object.prototype.hasOwnProperty.call(e,s)&&0>t.indexOf(s)&&(r[s]=e[s]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols)for(var i=0,s=Object.getOwnPropertySymbols(e);i<s.length;i++)0>t.indexOf(s[i])&&Object.prototype.propertyIsEnumerable.call(e,s[i])&&(r[s[i]]=e[s[i]]);return r};r.default=class{constructor({url:e="",headers:t={},fetch:r}){this.url=e,this.headers=t,this.fetch=(0,i.resolveFetch)(r),this.mfa={listFactors:this._listFactors.bind(this),deleteFactor:this._deleteFactor.bind(this)}}async signOut(e,t="global"){try{return await (0,s._request)(this.fetch,"POST",`${this.url}/logout?scope=${t}`,{headers:this.headers,jwt:e,noResolveJson:!0}),{data:null,error:null}}catch(e){if((0,n.isAuthError)(e))return{data:null,error:e};throw e}}async inviteUserByEmail(e,t={}){try{return await (0,s._request)(this.fetch,"POST",`${this.url}/invite`,{body:{email:e,data:t.data},headers:this.headers,redirectTo:t.redirectTo,xform:s._userResponse})}catch(e){if((0,n.isAuthError)(e))return{data:{user:null},error:e};throw e}}async generateLink(e){try{let{options:t}=e,r=o(e,["options"]),i=Object.assign(Object.assign({},r),t);return"newEmail"in r&&(i.new_email=null==r?void 0:r.newEmail,delete i.newEmail),await (0,s._request)(this.fetch,"POST",`${this.url}/admin/generate_link`,{body:i,headers:this.headers,xform:s._generateLinkResponse,redirectTo:null==t?void 0:t.redirectTo})}catch(e){if((0,n.isAuthError)(e))return{data:{properties:null,user:null},error:e};throw e}}async createUser(e){try{return await (0,s._request)(this.fetch,"POST",`${this.url}/admin/users`,{body:e,headers:this.headers,xform:s._userResponse})}catch(e){if((0,n.isAuthError)(e))return{data:{user:null},error:e};throw e}}async listUsers(e){var t,r,i,o,a,l,c;try{let n={nextPage:null,lastPage:0,total:0},u=await (0,s._request)(this.fetch,"GET",`${this.url}/admin/users`,{headers:this.headers,noResolveJson:!0,query:{page:null!==(r=null===(t=null==e?void 0:e.page)||void 0===t?void 0:t.toString())&&void 0!==r?r:"",per_page:null!==(o=null===(i=null==e?void 0:e.perPage)||void 0===i?void 0:i.toString())&&void 0!==o?o:""},xform:s._noResolveJsonResponse});if(u.error)throw u.error;let h=await u.json(),d=null!==(a=u.headers.get("x-total-count"))&&void 0!==a?a:0,p=null!==(c=null===(l=u.headers.get("link"))||void 0===l?void 0:l.split(","))&&void 0!==c?c:[];return p.length>0&&(p.forEach(e=>{let t=parseInt(e.split(";")[0].split("=")[1].substring(0,1)),r=JSON.parse(e.split(";")[1].split("=")[1]);n[`${r}Page`]=t}),n.total=parseInt(d)),{data:Object.assign(Object.assign({},h),n),error:null}}catch(e){if((0,n.isAuthError)(e))return{data:{users:[]},error:e};throw e}}async getUserById(e){try{return await (0,s._request)(this.fetch,"GET",`${this.url}/admin/users/${e}`,{headers:this.headers,xform:s._userResponse})}catch(e){if((0,n.isAuthError)(e))return{data:{user:null},error:e};throw e}}async updateUserById(e,t){try{return await (0,s._request)(this.fetch,"PUT",`${this.url}/admin/users/${e}`,{body:t,headers:this.headers,xform:s._userResponse})}catch(e){if((0,n.isAuthError)(e))return{data:{user:null},error:e};throw e}}async deleteUser(e,t=!1){try{return await (0,s._request)(this.fetch,"DELETE",`${this.url}/admin/users/${e}`,{headers:this.headers,body:{should_soft_delete:t},xform:s._userResponse})}catch(e){if((0,n.isAuthError)(e))return{data:{user:null},error:e};throw e}}async _listFactors(e){try{let{data:t,error:r}=await (0,s._request)(this.fetch,"GET",`${this.url}/admin/users/${e.userId}/factors`,{headers:this.headers,xform:e=>({data:{factors:e},error:null})});return{data:t,error:r}}catch(e){if((0,n.isAuthError)(e))return{data:null,error:e};throw e}}async _deleteFactor(e){try{return{data:await (0,s._request)(this.fetch,"DELETE",`${this.url}/admin/users/${e.userId}/factors/${e.id}`,{headers:this.headers}),error:null}}catch(e){if((0,n.isAuthError)(e))return{data:null,error:e};throw e}}}},{"./lib/fetch":"dOWmM","./lib/helpers":"lQJ1C","./lib/errors":"8RHqO","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],dOWmM:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"handleError",()=>u),s.export(r,"_request",()=>d),s.export(r,"_sessionResponse",()=>f),s.export(r,"_sessionResponsePassword",()=>m),s.export(r,"_userResponse",()=>g),s.export(r,"_ssoResponse",()=>y),s.export(r,"_generateLinkResponse",()=>v),s.export(r,"_noResolveJsonResponse",()=>b);var i=e("./constants"),n=e("./helpers"),o=e("./errors"),a=function(e,t){var r={};for(var s in e)Object.prototype.hasOwnProperty.call(e,s)&&0>t.indexOf(s)&&(r[s]=e[s]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols)for(var i=0,s=Object.getOwnPropertySymbols(e);i<s.length;i++)0>t.indexOf(s[i])&&Object.prototype.propertyIsEnumerable.call(e,s[i])&&(r[s[i]]=e[s[i]]);return r};let l=e=>e.msg||e.message||e.error_description||e.error||JSON.stringify(e),c=[502,503,504];async function u(e){var t;let r,s;if(!(0,n.looksLikeFetchResponse)(e))throw new o.AuthRetryableFetchError(l(e),0);if(c.includes(e.status))throw new o.AuthRetryableFetchError(l(e),e.status);try{r=await e.json()}catch(e){throw new o.AuthUnknownError(l(e),e)}let a=(0,n.parseResponseAPIVersion)(e);if(a&&a.getTime()>=i.API_VERSIONS["2024-01-01"].timestamp&&"object"==typeof r&&r&&"string"==typeof r.code?s=r.code:"object"==typeof r&&r&&"string"==typeof r.error_code&&(s=r.error_code),s){if("weak_password"===s)throw new o.AuthWeakPasswordError(l(r),e.status,(null===(t=r.weak_password)||void 0===t?void 0:t.reasons)||[])}else if("object"==typeof r&&r&&"object"==typeof r.weak_password&&r.weak_password&&Array.isArray(r.weak_password.reasons)&&r.weak_password.reasons.length&&r.weak_password.reasons.reduce((e,t)=>e&&"string"==typeof t,!0))throw new o.AuthWeakPasswordError(l(r),e.status,r.weak_password.reasons);throw new o.AuthApiError(l(r),e.status||500,s)}let h=(e,t,r,s)=>{let i={method:e,headers:(null==t?void 0:t.headers)||{}};return"GET"===e?i:(i.headers=Object.assign({"Content-Type":"application/json;charset=UTF-8"},null==t?void 0:t.headers),i.body=JSON.stringify(s),Object.assign(Object.assign({},i),r))};async function d(e,t,r,s){var n;let o=Object.assign({},null==s?void 0:s.headers);o[i.API_VERSION_HEADER_NAME]||(o[i.API_VERSION_HEADER_NAME]=i.API_VERSIONS["2024-01-01"].name),(null==s?void 0:s.jwt)&&(o.Authorization=`Bearer ${s.jwt}`);let a=null!==(n=null==s?void 0:s.query)&&void 0!==n?n:{};(null==s?void 0:s.redirectTo)&&(a.redirect_to=s.redirectTo);let l=Object.keys(a).length?"?"+new URLSearchParams(a).toString():"",c=await p(e,t,r+l,{headers:o,noResolveJson:null==s?void 0:s.noResolveJson},{},null==s?void 0:s.body);return(null==s?void 0:s.xform)?null==s?void 0:s.xform(c):{data:Object.assign({},c),error:null}}async function p(e,t,r,s,i,n){let a;let c=h(t,s,i,n);try{a=await e(r,Object.assign(Object.assign({},c),{cache:"no-store"}))}catch(e){throw console.error(e),new o.AuthRetryableFetchError(l(e),0)}if(a.ok||await u(a),null==s?void 0:s.noResolveJson)return a;try{return await a.json()}catch(e){await u(e)}}function f(e){var t;let r=null;return e.access_token&&e.refresh_token&&e.expires_in&&(r=Object.assign({},e),e.expires_at||(r.expires_at=(0,n.expiresAt)(e.expires_in))),{data:{session:r,user:null!==(t=e.user)&&void 0!==t?t:e},error:null}}function m(e){let t=f(e);return!t.error&&e.weak_password&&"object"==typeof e.weak_password&&Array.isArray(e.weak_password.reasons)&&e.weak_password.reasons.length&&e.weak_password.message&&"string"==typeof e.weak_password.message&&e.weak_password.reasons.reduce((e,t)=>e&&"string"==typeof t,!0)&&(t.data.weak_password=e.weak_password),t}function g(e){var t;return{data:{user:null!==(t=e.user)&&void 0!==t?t:e},error:null}}function y(e){return{data:e,error:null}}function v(e){let{action_link:t,email_otp:r,hashed_token:s,redirect_to:i,verification_type:n}=e;return{data:{properties:{action_link:t,email_otp:r,hashed_token:s,redirect_to:i,verification_type:n},user:Object.assign({},a(e,["action_link","email_otp","hashed_token","redirect_to","verification_type"]))},error:null}}function b(e){return e}},{"./constants":"5kgHI","./helpers":"lQJ1C","./errors":"8RHqO","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"5kgHI":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"GOTRUE_URL",()=>n),s.export(r,"STORAGE_KEY",()=>o),s.export(r,"AUDIENCE",()=>a),s.export(r,"DEFAULT_HEADERS",()=>l),s.export(r,"EXPIRY_MARGIN",()=>c),s.export(r,"NETWORK_FAILURE",()=>u),s.export(r,"API_VERSION_HEADER_NAME",()=>h),s.export(r,"API_VERSIONS",()=>d);var i=e("./version");let n="http://localhost:9999",o="supabase.auth.token",a="",l={"X-Client-Info":`gotrue-js/${i.version}`},c=10,u={MAX_RETRIES:10,RETRY_INTERVAL:2},h="X-Supabase-Api-Version",d={"2024-01-01":{timestamp:Date.parse("2024-01-01T00:00:00.0Z"),name:"2024-01-01"}}},{"./version":"gfN29","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],gfN29:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"version",()=>i);let i="2.63.0"},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],lQJ1C:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"expiresAt",()=>n),s.export(r,"uuid",()=>o),s.export(r,"isBrowser",()=>a),s.export(r,"supportsLocalStorage",()=>c),s.export(r,"parseParametersFromURL",()=>u),s.export(r,"resolveFetch",()=>h),s.export(r,"looksLikeFetchResponse",()=>d),s.export(r,"setItemAsync",()=>p),s.export(r,"getItemAsync",()=>f),s.export(r,"removeItemAsync",()=>m),s.export(r,"decodeBase64URL",()=>g),s.export(r,"Deferred",()=>y),s.export(r,"decodeJWTPayload",()=>v),s.export(r,"sleep",()=>b),s.export(r,"retryable",()=>w),s.export(r,"generatePKCEVerifier",()=>E),s.export(r,"generatePKCEChallenge",()=>S),s.export(r,"getCodeChallengeAndMethod",()=>A),s.export(r,"parseResponseAPIVersion",()=>x);var i=e("./constants");function n(e){return Math.round(Date.now()/1e3)+e}function o(){return"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,function(e){let t=16*Math.random()|0;return("x"==e?t:3&t|8).toString(16)})}let a=()=>"undefined"!=typeof document,l={tested:!1,writable:!1},c=()=>{if(!a())return!1;try{if("object"!=typeof globalThis.localStorage)return!1}catch(e){return!1}if(l.tested)return l.writable;let e=`lswt-${Math.random()}${Math.random()}`;try{globalThis.localStorage.setItem(e,e),globalThis.localStorage.removeItem(e),l.tested=!0,l.writable=!0}catch(e){l.tested=!0,l.writable=!1}return l.writable};function u(e){let t={},r=new URL(e);if(r.hash&&"#"===r.hash[0])try{new URLSearchParams(r.hash.substring(1)).forEach((e,r)=>{t[r]=e})}catch(e){}return r.searchParams.forEach((e,r)=>{t[r]=e}),t}let h=t=>{let r;return t?r=t:"undefined"==typeof fetch?r=(...t)=>e("b14de0e012a619af").then(({default:e})=>e(...t)):r=fetch,(...e)=>r(...e)},d=e=>"object"==typeof e&&null!==e&&"status"in e&&"ok"in e&&"json"in e&&"function"==typeof e.json,p=async(e,t,r)=>{await e.setItem(t,JSON.stringify(r))},f=async(e,t)=>{let r=await e.getItem(t);if(!r)return null;try{return JSON.parse(r)}catch(e){return r}},m=async(e,t)=>{await e.removeItem(t)};function g(e){let t,r,s,i,n,o,a;let l="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",c="",u=0;for(e=e.replace("-","+").replace("_","/");u<e.length;)i=l.indexOf(e.charAt(u++)),n=l.indexOf(e.charAt(u++)),o=l.indexOf(e.charAt(u++)),a=l.indexOf(e.charAt(u++)),t=i<<2|n>>4,r=(15&n)<<4|o>>2,s=(3&o)<<6|a,c+=String.fromCharCode(t),64!=o&&0!=r&&(c+=String.fromCharCode(r)),64!=a&&0!=s&&(c+=String.fromCharCode(s));return c}class y{constructor(){this.promise=new y.promiseConstructor((e,t)=>{this.resolve=e,this.reject=t})}}function v(e){let t=e.split(".");if(3!==t.length)throw Error("JWT is not valid: not a JWT structure");if(!/^([a-z0-9_-]{4})*($|[a-z0-9_-]{3}=?$|[a-z0-9_-]{2}(==)?$)$/i.test(t[1]))throw Error("JWT is not valid: payload is not in base64url format");return JSON.parse(g(t[1]))}async function b(e){return await new Promise(t=>{setTimeout(()=>t(null),e)})}function w(e,t){return new Promise((r,s)=>{(async()=>{for(let i=0;i<1/0;i++)try{let s=await e(i);if(!t(i,null,s)){r(s);return}}catch(e){if(!t(i,e)){s(e);return}}})()})}function _(e){return("0"+e.toString(16)).substr(-2)}function E(){let e=new Uint32Array(56);if("undefined"==typeof crypto){let e="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~",t=e.length,r="";for(let s=0;s<56;s++)r+=e.charAt(Math.floor(Math.random()*t));return r}return crypto.getRandomValues(e),Array.from(e,_).join("")}async function j(e){let t=new TextEncoder().encode(e);return Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256",t))).map(e=>String.fromCharCode(e)).join("")}async function S(e){return"undefined"!=typeof crypto&&void 0!==crypto.subtle&&"undefined"!=typeof TextEncoder?btoa(await j(e)).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,""):(console.warn("WebCrypto API is not supported. Code challenge method will default to use plain instead of sha256."),e)}async function A(e,t,r=!1){let s=E(),i=s;r&&(i+="/PASSWORD_RECOVERY"),await p(e,`${t}-code-verifier`,i);let n=await S(s),o=s===n?"plain":"s256";return[n,o]}y.promiseConstructor=Promise;let T=/^2[0-9]{3}-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1])$/i;function x(e){let t=e.headers.get(i.API_VERSION_HEADER_NAME);if(!t||!t.match(T))return null;try{return new Date(`${t}T00:00:00.0Z`)}catch(e){return null}}},{"./constants":"5kgHI",b14de0e012a619af:"8FPuu","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"8RHqO":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"AuthError",()=>i),s.export(r,"isAuthError",()=>n),s.export(r,"AuthApiError",()=>o),s.export(r,"isAuthApiError",()=>a),s.export(r,"AuthUnknownError",()=>l),s.export(r,"CustomAuthError",()=>c),s.export(r,"AuthSessionMissingError",()=>u),s.export(r,"AuthInvalidTokenResponseError",()=>h),s.export(r,"AuthInvalidCredentialsError",()=>d),s.export(r,"AuthImplicitGrantRedirectError",()=>p),s.export(r,"AuthPKCEGrantCodeExchangeError",()=>f),s.export(r,"AuthRetryableFetchError",()=>m),s.export(r,"isAuthRetryableFetchError",()=>g),s.export(r,"AuthWeakPasswordError",()=>y),s.export(r,"isAuthWeakPasswordError",()=>v);class i extends Error{constructor(e,t,r){super(e),this.__isAuthError=!0,this.name="AuthError",this.status=t,this.code=r}}function n(e){return"object"==typeof e&&null!==e&&"__isAuthError"in e}class o extends i{constructor(e,t,r){super(e,t,r),this.name="AuthApiError",this.status=t,this.code=r}}function a(e){return n(e)&&"AuthApiError"===e.name}class l extends i{constructor(e,t){super(e),this.name="AuthUnknownError",this.originalError=t}}class c extends i{constructor(e,t,r,s){super(e,r,s),this.name=t,this.status=r}}class u extends c{constructor(){super("Auth session missing!","AuthSessionMissingError",400,void 0)}}class h extends c{constructor(){super("Auth session or user missing","AuthInvalidTokenResponseError",500,void 0)}}class d extends c{constructor(e){super(e,"AuthInvalidCredentialsError",400,void 0)}}class p extends c{constructor(e,t=null){super(e,"AuthImplicitGrantRedirectError",500,void 0),this.details=null,this.details=t}toJSON(){return{name:this.name,message:this.message,status:this.status,details:this.details}}}class f extends c{constructor(e,t=null){super(e,"AuthPKCEGrantCodeExchangeError",500,void 0),this.details=null,this.details=t}toJSON(){return{name:this.name,message:this.message,status:this.status,details:this.details}}}class m extends c{constructor(e,t){super(e,"AuthRetryableFetchError",t,void 0)}}function g(e){return n(e)&&"AuthRetryableFetchError"===e.name}class y extends c{constructor(e,t,r){super(e,"AuthWeakPasswordError",t,"weak_password"),this.reasons=r}}function v(e){return n(e)&&"AuthWeakPasswordError"===e.name}},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"8QbFP":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r);var i=e("./GoTrueAdminApi"),n=s.interopDefault(i),o=e("./lib/constants"),a=e("./lib/errors"),l=e("./lib/fetch"),c=e("./lib/helpers"),u=e("./lib/local-storage"),h=e("./lib/polyfills"),d=e("./lib/version"),p=e("./lib/locks");(0,h.polyfillGlobalThis)();let f={url:o.GOTRUE_URL,storageKey:o.STORAGE_KEY,autoRefreshToken:!0,persistSession:!0,detectSessionInUrl:!0,headers:o.DEFAULT_HEADERS,flowType:"implicit",debug:!1};async function m(e,t,r){return await r()}class g{constructor(e){var t,r;this.memoryStorage=null,this.stateChangeEmitters=new Map,this.autoRefreshTicker=null,this.visibilityChangedCallback=null,this.refreshingDeferred=null,this.initializePromise=null,this.detectSessionInUrl=!0,this.lockAcquired=!1,this.pendingInLock=[],this.broadcastChannel=null,this.logger=console.log,this.insecureGetSessionWarningShown=!1,this.instanceID=g.nextInstanceID,g.nextInstanceID+=1,this.instanceID>0&&(0,c.isBrowser)()&&console.warn("Multiple GoTrueClient instances detected in the same browser context. It is not an error, but this should be avoided as it may produce undefined behavior when used concurrently under the same storage key.");let s=Object.assign(Object.assign({},f),e);if(this.logDebugMessages=!!s.debug,"function"==typeof s.debug&&(this.logger=s.debug),this.persistSession=s.persistSession,this.storageKey=s.storageKey,this.autoRefreshToken=s.autoRefreshToken,this.admin=new n.default({url:s.url,headers:s.headers,fetch:s.fetch}),this.url=s.url,this.headers=s.headers,this.fetch=(0,c.resolveFetch)(s.fetch),this.lock=s.lock||m,this.detectSessionInUrl=s.detectSessionInUrl,this.flowType=s.flowType,s.lock?this.lock=s.lock:(0,c.isBrowser)()&&(null===(t=null==globalThis?void 0:globalThis.navigator)||void 0===t?void 0:t.locks)?this.lock=p.navigatorLock:this.lock=m,this.mfa={verify:this._verify.bind(this),enroll:this._enroll.bind(this),unenroll:this._unenroll.bind(this),challenge:this._challenge.bind(this),listFactors:this._listFactors.bind(this),challengeAndVerify:this._challengeAndVerify.bind(this),getAuthenticatorAssuranceLevel:this._getAuthenticatorAssuranceLevel.bind(this)},this.persistSession?s.storage?this.storage=s.storage:(0,c.supportsLocalStorage)()?this.storage=u.localStorageAdapter:(this.memoryStorage={},this.storage=(0,u.memoryLocalStorageAdapter)(this.memoryStorage)):(this.memoryStorage={},this.storage=(0,u.memoryLocalStorageAdapter)(this.memoryStorage)),(0,c.isBrowser)()&&globalThis.BroadcastChannel&&this.persistSession&&this.storageKey){try{this.broadcastChannel=new globalThis.BroadcastChannel(this.storageKey)}catch(e){console.error("Failed to create a new BroadcastChannel, multi-tab state changes will not be available",e)}null===(r=this.broadcastChannel)||void 0===r||r.addEventListener("message",async e=>{this._debug("received broadcast notification from other tab or client",e),await this._notifyAllSubscribers(e.data.event,e.data.session,!1)})}this.initialize()}_debug(...e){return this.logDebugMessages&&this.logger(`GoTrueClient@${this.instanceID} (${d.version}) ${new Date().toISOString()}`,...e),this}async initialize(){return this.initializePromise||(this.initializePromise=(async()=>await this._acquireLock(-1,async()=>await this._initialize()))()),await this.initializePromise}async _initialize(){try{let e=!!(0,c.isBrowser)()&&await this._isPKCEFlow();if(this._debug("#_initialize()","begin","is PKCE flow",e),e||this.detectSessionInUrl&&this._isImplicitGrantFlow()){let{data:t,error:r}=await this._getSessionFromURL(e);if(r){if(this._debug("#_initialize()","error detecting session from URL",r),(null==r?void 0:r.message)==="Identity is already linked"||(null==r?void 0:r.message)==="Identity is already linked to another user")return{error:r};return await this._removeSession(),{error:r}}let{session:s,redirectType:i}=t;return this._debug("#_initialize()","detected session in URL",s,"redirect type",i),await this._saveSession(s),setTimeout(async()=>{"recovery"===i?await this._notifyAllSubscribers("PASSWORD_RECOVERY",s):await this._notifyAllSubscribers("SIGNED_IN",s)},0),{error:null}}return await this._recoverAndRefresh(),{error:null}}catch(e){if((0,a.isAuthError)(e))return{error:e};return{error:new a.AuthUnknownError("Unexpected error during initialization",e)}}finally{await this._handleVisibilityChange(),this._debug("#_initialize()","end")}}async signInAnonymously(e){var t,r,s;try{await this._removeSession();let{data:i,error:n}=await (0,l._request)(this.fetch,"POST",`${this.url}/signup`,{headers:this.headers,body:{data:null!==(r=null===(t=null==e?void 0:e.options)||void 0===t?void 0:t.data)&&void 0!==r?r:{},gotrue_meta_security:{captcha_token:null===(s=null==e?void 0:e.options)||void 0===s?void 0:s.captchaToken}},xform:l._sessionResponse});if(n||!i)return{data:{user:null,session:null},error:n};let o=i.session,a=i.user;return i.session&&(await this._saveSession(i.session),await this._notifyAllSubscribers("SIGNED_IN",o)),{data:{user:a,session:o},error:null}}catch(e){if((0,a.isAuthError)(e))return{data:{user:null,session:null},error:e};throw e}}async signUp(e){var t,r,s;try{let i;if(await this._removeSession(),"email"in e){let{email:r,password:s,options:n}=e,o=null,a=null;"pkce"===this.flowType&&([o,a]=await (0,c.getCodeChallengeAndMethod)(this.storage,this.storageKey)),i=await (0,l._request)(this.fetch,"POST",`${this.url}/signup`,{headers:this.headers,redirectTo:null==n?void 0:n.emailRedirectTo,body:{email:r,password:s,data:null!==(t=null==n?void 0:n.data)&&void 0!==t?t:{},gotrue_meta_security:{captcha_token:null==n?void 0:n.captchaToken},code_challenge:o,code_challenge_method:a},xform:l._sessionResponse})}else if("phone"in e){let{phone:t,password:n,options:o}=e;i=await (0,l._request)(this.fetch,"POST",`${this.url}/signup`,{headers:this.headers,body:{phone:t,password:n,data:null!==(r=null==o?void 0:o.data)&&void 0!==r?r:{},channel:null!==(s=null==o?void 0:o.channel)&&void 0!==s?s:"sms",gotrue_meta_security:{captcha_token:null==o?void 0:o.captchaToken}},xform:l._sessionResponse})}else throw new a.AuthInvalidCredentialsError("You must provide either an email or phone number and a password");let{data:n,error:o}=i;if(o||!n)return{data:{user:null,session:null},error:o};let u=n.session,h=n.user;return n.session&&(await this._saveSession(n.session),await this._notifyAllSubscribers("SIGNED_IN",u)),{data:{user:h,session:u},error:null}}catch(e){if((0,a.isAuthError)(e))return{data:{user:null,session:null},error:e};throw e}}async signInWithPassword(e){try{let t;if(await this._removeSession(),"email"in e){let{email:r,password:s,options:i}=e;t=await (0,l._request)(this.fetch,"POST",`${this.url}/token?grant_type=password`,{headers:this.headers,body:{email:r,password:s,gotrue_meta_security:{captcha_token:null==i?void 0:i.captchaToken}},xform:l._sessionResponsePassword})}else if("phone"in e){let{phone:r,password:s,options:i}=e;t=await (0,l._request)(this.fetch,"POST",`${this.url}/token?grant_type=password`,{headers:this.headers,body:{phone:r,password:s,gotrue_meta_security:{captcha_token:null==i?void 0:i.captchaToken}},xform:l._sessionResponsePassword})}else throw new a.AuthInvalidCredentialsError("You must provide either an email or phone number and a password");let{data:r,error:s}=t;if(s)return{data:{user:null,session:null},error:s};if(!r||!r.session||!r.user)return{data:{user:null,session:null},error:new a.AuthInvalidTokenResponseError};return r.session&&(await this._saveSession(r.session),await this._notifyAllSubscribers("SIGNED_IN",r.session)),{data:Object.assign({user:r.user,session:r.session},r.weak_password?{weakPassword:r.weak_password}:null),error:s}}catch(e){if((0,a.isAuthError)(e))return{data:{user:null,session:null},error:e};throw e}}async signInWithOAuth(e){var t,r,s,i;return await this._removeSession(),await this._handleProviderSignIn(e.provider,{redirectTo:null===(t=e.options)||void 0===t?void 0:t.redirectTo,scopes:null===(r=e.options)||void 0===r?void 0:r.scopes,queryParams:null===(s=e.options)||void 0===s?void 0:s.queryParams,skipBrowserRedirect:null===(i=e.options)||void 0===i?void 0:i.skipBrowserRedirect})}async exchangeCodeForSession(e){return await this.initializePromise,this._acquireLock(-1,async()=>this._exchangeCodeForSession(e))}async _exchangeCodeForSession(e){let t=await (0,c.getItemAsync)(this.storage,`${this.storageKey}-code-verifier`),[r,s]=(null!=t?t:"").split("/"),{data:i,error:n}=await (0,l._request)(this.fetch,"POST",`${this.url}/token?grant_type=pkce`,{headers:this.headers,body:{auth_code:e,code_verifier:r},xform:l._sessionResponse});return(await (0,c.removeItemAsync)(this.storage,`${this.storageKey}-code-verifier`),n)?{data:{user:null,session:null,redirectType:null},error:n}:i&&i.session&&i.user?(i.session&&(await this._saveSession(i.session),await this._notifyAllSubscribers("SIGNED_IN",i.session)),{data:Object.assign(Object.assign({},i),{redirectType:null!=s?s:null}),error:n}):{data:{user:null,session:null,redirectType:null},error:new a.AuthInvalidTokenResponseError}}async signInWithIdToken(e){await this._removeSession();try{let{options:t,provider:r,token:s,access_token:i,nonce:n}=e,{data:o,error:c}=await (0,l._request)(this.fetch,"POST",`${this.url}/token?grant_type=id_token`,{headers:this.headers,body:{provider:r,id_token:s,access_token:i,nonce:n,gotrue_meta_security:{captcha_token:null==t?void 0:t.captchaToken}},xform:l._sessionResponse});if(c)return{data:{user:null,session:null},error:c};if(!o||!o.session||!o.user)return{data:{user:null,session:null},error:new a.AuthInvalidTokenResponseError};return o.session&&(await this._saveSession(o.session),await this._notifyAllSubscribers("SIGNED_IN",o.session)),{data:o,error:c}}catch(e){if((0,a.isAuthError)(e))return{data:{user:null,session:null},error:e};throw e}}async signInWithOtp(e){var t,r,s,i,n;try{if(await this._removeSession(),"email"in e){let{email:s,options:i}=e,n=null,o=null;"pkce"===this.flowType&&([n,o]=await (0,c.getCodeChallengeAndMethod)(this.storage,this.storageKey));let{error:a}=await (0,l._request)(this.fetch,"POST",`${this.url}/otp`,{headers:this.headers,body:{email:s,data:null!==(t=null==i?void 0:i.data)&&void 0!==t?t:{},create_user:null===(r=null==i?void 0:i.shouldCreateUser)||void 0===r||r,gotrue_meta_security:{captcha_token:null==i?void 0:i.captchaToken},code_challenge:n,code_challenge_method:o},redirectTo:null==i?void 0:i.emailRedirectTo});return{data:{user:null,session:null},error:a}}if("phone"in e){let{phone:t,options:r}=e,{data:o,error:a}=await (0,l._request)(this.fetch,"POST",`${this.url}/otp`,{headers:this.headers,body:{phone:t,data:null!==(s=null==r?void 0:r.data)&&void 0!==s?s:{},create_user:null===(i=null==r?void 0:r.shouldCreateUser)||void 0===i||i,gotrue_meta_security:{captcha_token:null==r?void 0:r.captchaToken},channel:null!==(n=null==r?void 0:r.channel)&&void 0!==n?n:"sms"}});return{data:{user:null,session:null,messageId:null==o?void 0:o.message_id},error:a}}throw new a.AuthInvalidCredentialsError("You must provide either an email or phone number.")}catch(e){if((0,a.isAuthError)(e))return{data:{user:null,session:null},error:e};throw e}}async verifyOtp(e){var t,r;try{let s,i;"email_change"!==e.type&&"phone_change"!==e.type&&await this._removeSession(),"options"in e&&(s=null===(t=e.options)||void 0===t?void 0:t.redirectTo,i=null===(r=e.options)||void 0===r?void 0:r.captchaToken);let{data:n,error:o}=await (0,l._request)(this.fetch,"POST",`${this.url}/verify`,{headers:this.headers,body:Object.assign(Object.assign({},e),{gotrue_meta_security:{captcha_token:i}}),redirectTo:s,xform:l._sessionResponse});if(o)throw o;if(!n)throw Error("An error occurred on token verification.");let a=n.session,c=n.user;return(null==a?void 0:a.access_token)&&(await this._saveSession(a),await this._notifyAllSubscribers("recovery"==e.type?"PASSWORD_RECOVERY":"SIGNED_IN",a)),{data:{user:c,session:a},error:null}}catch(e){if((0,a.isAuthError)(e))return{data:{user:null,session:null},error:e};throw e}}async signInWithSSO(e){var t,r,s;try{await this._removeSession();let i=null,n=null;return"pkce"===this.flowType&&([i,n]=await (0,c.getCodeChallengeAndMethod)(this.storage,this.storageKey)),await (0,l._request)(this.fetch,"POST",`${this.url}/sso`,{body:Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({},"providerId"in e?{provider_id:e.providerId}:null),"domain"in e?{domain:e.domain}:null),{redirect_to:null!==(r=null===(t=e.options)||void 0===t?void 0:t.redirectTo)&&void 0!==r?r:void 0}),(null===(s=null==e?void 0:e.options)||void 0===s?void 0:s.captchaToken)?{gotrue_meta_security:{captcha_token:e.options.captchaToken}}:null),{skip_http_redirect:!0,code_challenge:i,code_challenge_method:n}),headers:this.headers,xform:l._ssoResponse})}catch(e){if((0,a.isAuthError)(e))return{data:null,error:e};throw e}}async reauthenticate(){return await this.initializePromise,await this._acquireLock(-1,async()=>await this._reauthenticate())}async _reauthenticate(){try{return await this._useSession(async e=>{let{data:{session:t},error:r}=e;if(r)throw r;if(!t)throw new a.AuthSessionMissingError;let{error:s}=await (0,l._request)(this.fetch,"GET",`${this.url}/reauthenticate`,{headers:this.headers,jwt:t.access_token});return{data:{user:null,session:null},error:s}})}catch(e){if((0,a.isAuthError)(e))return{data:{user:null,session:null},error:e};throw e}}async resend(e){try{"email_change"!=e.type&&"phone_change"!=e.type&&await this._removeSession();let t=`${this.url}/resend`;if("email"in e){let{email:r,type:s,options:i}=e,{error:n}=await (0,l._request)(this.fetch,"POST",t,{headers:this.headers,body:{email:r,type:s,gotrue_meta_security:{captcha_token:null==i?void 0:i.captchaToken}},redirectTo:null==i?void 0:i.emailRedirectTo});return{data:{user:null,session:null},error:n}}if("phone"in e){let{phone:r,type:s,options:i}=e,{data:n,error:o}=await (0,l._request)(this.fetch,"POST",t,{headers:this.headers,body:{phone:r,type:s,gotrue_meta_security:{captcha_token:null==i?void 0:i.captchaToken}}});return{data:{user:null,session:null,messageId:null==n?void 0:n.message_id},error:o}}throw new a.AuthInvalidCredentialsError("You must provide either an email or phone number and a type")}catch(e){if((0,a.isAuthError)(e))return{data:{user:null,session:null},error:e};throw e}}async getSession(){await this.initializePromise;let e=await this._acquireLock(-1,async()=>this._useSession(async e=>e));return e.data&&this.storage.isServer&&!this.insecureGetSessionWarningShown&&(console.warn("Using supabase.auth.getSession() is potentially insecure as it loads data directly from the storage medium (typically cookies) which may not be authentic. Prefer using supabase.auth.getUser() instead. To suppress this warning call supabase.auth.getUser() before you call supabase.auth.getSession()."),this.insecureGetSessionWarningShown=!0),e}async _acquireLock(e,t){this._debug("#_acquireLock","begin",e);try{if(this.lockAcquired){let e=this.pendingInLock.length?this.pendingInLock[this.pendingInLock.length-1]:Promise.resolve(),r=(async()=>(await e,await t()))();return this.pendingInLock.push((async()=>{try{await r}catch(e){}})()),r}return await this.lock(`lock:${this.storageKey}`,e,async()=>{this._debug("#_acquireLock","lock acquired for storage key",this.storageKey);try{this.lockAcquired=!0;let e=t();for(this.pendingInLock.push((async()=>{try{await e}catch(e){}})()),await e;this.pendingInLock.length;){let e=[...this.pendingInLock];await Promise.all(e),this.pendingInLock.splice(0,e.length)}return await e}finally{this._debug("#_acquireLock","lock released for storage key",this.storageKey),this.lockAcquired=!1}})}finally{this._debug("#_acquireLock","end")}}async _useSession(e){this._debug("#_useSession","begin");try{let t=await this.__loadSession();return await e(t)}finally{this._debug("#_useSession","end")}}async __loadSession(){this._debug("#__loadSession()","begin"),this.lockAcquired||this._debug("#__loadSession()","used outside of an acquired lock!",Error().stack);try{let e=null,t=await (0,c.getItemAsync)(this.storage,this.storageKey);if(this._debug("#getSession()","session from storage",t),null!==t&&(this._isValidSession(t)?e=t:(this._debug("#getSession()","session from storage is not valid"),await this._removeSession())),!e)return{data:{session:null},error:null};let r=!!e.expires_at&&e.expires_at<=Date.now()/1e3;if(this._debug("#__loadSession()",`session has${r?"":" not"} expired`,"expires_at",e.expires_at),!r){if(this.storage.isServer){let t=e.user;delete e.user,Object.defineProperty(e,"user",{enumerable:!0,get:()=>(e.__suppressUserWarning||console.warn("Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and many not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server."),t),set:e=>{t=e}})}return{data:{session:e},error:null}}let{session:s,error:i}=await this._callRefreshToken(e.refresh_token);if(i)return{data:{session:null},error:i};return{data:{session:s},error:null}}finally{this._debug("#__loadSession()","end")}}async getUser(e){if(e)return await this._getUser(e);await this.initializePromise;let t=await this._acquireLock(-1,async()=>await this._getUser());return t.data&&this.storage.isServer&&(this.insecureGetSessionWarningShown=!0),t}async _getUser(e){try{if(e)return await (0,l._request)(this.fetch,"GET",`${this.url}/user`,{headers:this.headers,jwt:e,xform:l._userResponse});return await this._useSession(async e=>{var t,r;let{data:s,error:i}=e;if(i)throw i;return await (0,l._request)(this.fetch,"GET",`${this.url}/user`,{headers:this.headers,jwt:null!==(r=null===(t=s.session)||void 0===t?void 0:t.access_token)&&void 0!==r?r:void 0,xform:l._userResponse})})}catch(e){if((0,a.isAuthError)(e))return{data:{user:null},error:e};throw e}}async updateUser(e,t={}){return await this.initializePromise,await this._acquireLock(-1,async()=>await this._updateUser(e,t))}async _updateUser(e,t={}){try{return await this._useSession(async r=>{let{data:s,error:i}=r;if(i)throw i;if(!s.session)throw new a.AuthSessionMissingError;let n=s.session,o=null,u=null;"pkce"===this.flowType&&null!=e.email&&([o,u]=await (0,c.getCodeChallengeAndMethod)(this.storage,this.storageKey));let{data:h,error:d}=await (0,l._request)(this.fetch,"PUT",`${this.url}/user`,{headers:this.headers,redirectTo:null==t?void 0:t.emailRedirectTo,body:Object.assign(Object.assign({},e),{code_challenge:o,code_challenge_method:u}),jwt:n.access_token,xform:l._userResponse});if(d)throw d;return n.user=h.user,await this._saveSession(n),await this._notifyAllSubscribers("USER_UPDATED",n),{data:{user:n.user},error:null}})}catch(e){if((0,a.isAuthError)(e))return{data:{user:null},error:e};throw e}}_decodeJWT(e){return(0,c.decodeJWTPayload)(e)}async setSession(e){return await this.initializePromise,await this._acquireLock(-1,async()=>await this._setSession(e))}async _setSession(e){try{if(!e.access_token||!e.refresh_token)throw new a.AuthSessionMissingError;let t=Date.now()/1e3,r=t,s=!0,i=null,n=(0,c.decodeJWTPayload)(e.access_token);if(n.exp&&(s=(r=n.exp)<=t),s){let{session:t,error:r}=await this._callRefreshToken(e.refresh_token);if(r)return{data:{user:null,session:null},error:r};if(!t)return{data:{user:null,session:null},error:null};i=t}else{let{data:s,error:n}=await this._getUser(e.access_token);if(n)throw n;i={access_token:e.access_token,refresh_token:e.refresh_token,user:s.user,token_type:"bearer",expires_in:r-t,expires_at:r},await this._saveSession(i),await this._notifyAllSubscribers("SIGNED_IN",i)}return{data:{user:i.user,session:i},error:null}}catch(e){if((0,a.isAuthError)(e))return{data:{session:null,user:null},error:e};throw e}}async refreshSession(e){return await this.initializePromise,await this._acquireLock(-1,async()=>await this._refreshSession(e))}async _refreshSession(e){try{return await this._useSession(async t=>{var r;if(!e){let{data:s,error:i}=t;if(i)throw i;e=null!==(r=s.session)&&void 0!==r?r:void 0}if(!(null==e?void 0:e.refresh_token))throw new a.AuthSessionMissingError;let{session:s,error:i}=await this._callRefreshToken(e.refresh_token);return i?{data:{user:null,session:null},error:i}:s?{data:{user:s.user,session:s},error:null}:{data:{user:null,session:null},error:null}})}catch(e){if((0,a.isAuthError)(e))return{data:{user:null,session:null},error:e};throw e}}async _getSessionFromURL(e){try{if(!(0,c.isBrowser)())throw new a.AuthImplicitGrantRedirectError("No browser detected.");if("implicit"!==this.flowType||this._isImplicitGrantFlow()){if("pkce"==this.flowType&&!e)throw new a.AuthPKCEGrantCodeExchangeError("Not a valid PKCE flow url.")}else throw new a.AuthImplicitGrantRedirectError("Not a valid implicit grant flow url.");let t=(0,c.parseParametersFromURL)(window.location.href);if(e){if(!t.code)throw new a.AuthPKCEGrantCodeExchangeError("No code detected.");let{data:e,error:r}=await this._exchangeCodeForSession(t.code);if(r)throw r;let s=new URL(window.location.href);return s.searchParams.delete("code"),window.history.replaceState(window.history.state,"",s.toString()),{data:{session:e.session,redirectType:null},error:null}}if(t.error||t.error_description||t.error_code)throw new a.AuthImplicitGrantRedirectError(t.error_description||"Error in URL with unspecified error_description",{error:t.error||"unspecified_error",code:t.error_code||"unspecified_code"});let{provider_token:r,provider_refresh_token:s,access_token:i,refresh_token:n,expires_in:o,expires_at:l,token_type:u}=t;if(!i||!o||!n||!u)throw new a.AuthImplicitGrantRedirectError("No session defined in URL");let h=Math.round(Date.now()/1e3),d=parseInt(o),p=h+d;l&&(p=parseInt(l));let f=p-h;1e3*f<=3e4&&console.warn(`@supabase/gotrue-js: Session as retrieved from URL expires in ${f}s, should have been closer to ${d}s`);let m=p-d;h-m>=120?console.warn("@supabase/gotrue-js: Session as retrieved from URL was issued over 120s ago, URL could be stale",m,p,h):h-m<0&&console.warn("@supabase/gotrue-js: Session as retrieved from URL was issued in the future? Check the device clok for skew",m,p,h);let{data:g,error:y}=await this._getUser(i);if(y)throw y;let v={provider_token:r,provider_refresh_token:s,access_token:i,expires_in:d,expires_at:p,refresh_token:n,token_type:u,user:g.user};return window.location.hash="",this._debug("#_getSessionFromURL()","clearing window.location.hash"),{data:{session:v,redirectType:t.type},error:null}}catch(e){if((0,a.isAuthError)(e))return{data:{session:null,redirectType:null},error:e};throw e}}_isImplicitGrantFlow(){let e=(0,c.parseParametersFromURL)(window.location.href);return!!((0,c.isBrowser)()&&(e.access_token||e.error_description))}async _isPKCEFlow(){let e=(0,c.parseParametersFromURL)(window.location.href),t=await (0,c.getItemAsync)(this.storage,`${this.storageKey}-code-verifier`);return!!(e.code&&t)}async signOut(e={scope:"global"}){return await this.initializePromise,await this._acquireLock(-1,async()=>await this._signOut(e))}async _signOut({scope:e}={scope:"global"}){return await this._useSession(async t=>{var r;let{data:s,error:i}=t;if(i)return{error:i};let n=null===(r=s.session)||void 0===r?void 0:r.access_token;if(n){let{error:t}=await this.admin.signOut(n,e);if(t&&!((0,a.isAuthApiError)(t)&&(404===t.status||401===t.status)))return{error:t}}return"others"!==e&&(await this._removeSession(),await (0,c.removeItemAsync)(this.storage,`${this.storageKey}-code-verifier`),await this._notifyAllSubscribers("SIGNED_OUT",null)),{error:null}})}onAuthStateChange(e){let t=(0,c.uuid)(),r={id:t,callback:e,unsubscribe:()=>{this._debug("#unsubscribe()","state change callback with id removed",t),this.stateChangeEmitters.delete(t)}};return this._debug("#onAuthStateChange()","registered callback with id",t),this.stateChangeEmitters.set(t,r),(async()=>{await this.initializePromise,await this._acquireLock(-1,async()=>{this._emitInitialSession(t)})})(),{data:{subscription:r}}}async _emitInitialSession(e){return await this._useSession(async t=>{var r,s;try{let{data:{session:s},error:i}=t;if(i)throw i;await (null===(r=this.stateChangeEmitters.get(e))||void 0===r?void 0:r.callback("INITIAL_SESSION",s)),this._debug("INITIAL_SESSION","callback id",e,"session",s)}catch(t){await (null===(s=this.stateChangeEmitters.get(e))||void 0===s?void 0:s.callback("INITIAL_SESSION",null)),this._debug("INITIAL_SESSION","callback id",e,"error",t),console.error(t)}})}async resetPasswordForEmail(e,t={}){let r=null,s=null;"pkce"===this.flowType&&([r,s]=await (0,c.getCodeChallengeAndMethod)(this.storage,this.storageKey,!0));try{return await (0,l._request)(this.fetch,"POST",`${this.url}/recover`,{body:{email:e,code_challenge:r,code_challenge_method:s,gotrue_meta_security:{captcha_token:t.captchaToken}},headers:this.headers,redirectTo:t.redirectTo})}catch(e){if((0,a.isAuthError)(e))return{data:null,error:e};throw e}}async getUserIdentities(){var e;try{let{data:t,error:r}=await this.getUser();if(r)throw r;return{data:{identities:null!==(e=t.user.identities)&&void 0!==e?e:[]},error:null}}catch(e){if((0,a.isAuthError)(e))return{data:null,error:e};throw e}}async linkIdentity(e){var t;try{let{data:r,error:s}=await this._useSession(async t=>{var r,s,i,n,o;let{data:a,error:c}=t;if(c)throw c;let u=await this._getUrlForProvider(`${this.url}/user/identities/authorize`,e.provider,{redirectTo:null===(r=e.options)||void 0===r?void 0:r.redirectTo,scopes:null===(s=e.options)||void 0===s?void 0:s.scopes,queryParams:null===(i=e.options)||void 0===i?void 0:i.queryParams,skipBrowserRedirect:!0});return await (0,l._request)(this.fetch,"GET",u,{headers:this.headers,jwt:null!==(o=null===(n=a.session)||void 0===n?void 0:n.access_token)&&void 0!==o?o:void 0})});if(s)throw s;return!(0,c.isBrowser)()||(null===(t=e.options)||void 0===t?void 0:t.skipBrowserRedirect)||window.location.assign(null==r?void 0:r.url),{data:{provider:e.provider,url:null==r?void 0:r.url},error:null}}catch(t){if((0,a.isAuthError)(t))return{data:{provider:e.provider,url:null},error:t};throw t}}async unlinkIdentity(e){try{return await this._useSession(async t=>{var r,s;let{data:i,error:n}=t;if(n)throw n;return await (0,l._request)(this.fetch,"DELETE",`${this.url}/user/identities/${e.identity_id}`,{headers:this.headers,jwt:null!==(s=null===(r=i.session)||void 0===r?void 0:r.access_token)&&void 0!==s?s:void 0})})}catch(e){if((0,a.isAuthError)(e))return{data:null,error:e};throw e}}async _refreshAccessToken(e){let t=`#_refreshAccessToken(${e.substring(0,5)}...)`;this._debug(t,"begin");try{let r=Date.now();return await (0,c.retryable)(async r=>(await (0,c.sleep)(200*r),this._debug(t,"refreshing attempt",r),await (0,l._request)(this.fetch,"POST",`${this.url}/token?grant_type=refresh_token`,{body:{refresh_token:e},headers:this.headers,xform:l._sessionResponse})),(e,t,s)=>s&&s.error&&(0,a.isAuthRetryableFetchError)(s.error)&&Date.now()+(e+1)*200-r<3e4)}catch(e){if(this._debug(t,"error",e),(0,a.isAuthError)(e))return{data:{session:null,user:null},error:e};throw e}finally{this._debug(t,"end")}}_isValidSession(e){return"object"==typeof e&&null!==e&&"access_token"in e&&"refresh_token"in e&&"expires_at"in e}async _handleProviderSignIn(e,t){let r=await this._getUrlForProvider(`${this.url}/authorize`,e,{redirectTo:t.redirectTo,scopes:t.scopes,queryParams:t.queryParams});return this._debug("#_handleProviderSignIn()","provider",e,"options",t,"url",r),(0,c.isBrowser)()&&!t.skipBrowserRedirect&&window.location.assign(r),{data:{provider:e,url:r},error:null}}async _recoverAndRefresh(){var e;let t="#_recoverAndRefresh()";this._debug(t,"begin");try{let r=await (0,c.getItemAsync)(this.storage,this.storageKey);if(this._debug(t,"session from storage",r),!this._isValidSession(r)){this._debug(t,"session is not valid"),null!==r&&await this._removeSession();return}let s=Math.round(Date.now()/1e3),i=(null!==(e=r.expires_at)&&void 0!==e?e:1/0)<s+o.EXPIRY_MARGIN;if(this._debug(t,`session has${i?"":" not"} expired with margin of ${o.EXPIRY_MARGIN}s`),i){if(this.autoRefreshToken&&r.refresh_token){let{error:e}=await this._callRefreshToken(r.refresh_token);e&&(console.error(e),(0,a.isAuthRetryableFetchError)(e)||(this._debug(t,"refresh failed with a non-retryable error, removing the session",e),await this._removeSession()))}}else await this._notifyAllSubscribers("SIGNED_IN",r)}catch(e){this._debug(t,"error",e),console.error(e);return}finally{this._debug(t,"end")}}async _callRefreshToken(e){var t,r;if(!e)throw new a.AuthSessionMissingError;if(this.refreshingDeferred)return this.refreshingDeferred.promise;let s=`#_callRefreshToken(${e.substring(0,5)}...)`;this._debug(s,"begin");try{this.refreshingDeferred=new c.Deferred;let{data:t,error:r}=await this._refreshAccessToken(e);if(r)throw r;if(!t.session)throw new a.AuthSessionMissingError;await this._saveSession(t.session),await this._notifyAllSubscribers("TOKEN_REFRESHED",t.session);let s={session:t.session,error:null};return this.refreshingDeferred.resolve(s),s}catch(e){if(this._debug(s,"error",e),(0,a.isAuthError)(e)){let r={session:null,error:e};return(0,a.isAuthRetryableFetchError)(e)||(await this._removeSession(),await this._notifyAllSubscribers("SIGNED_OUT",null)),null===(t=this.refreshingDeferred)||void 0===t||t.resolve(r),r}throw null===(r=this.refreshingDeferred)||void 0===r||r.reject(e),e}finally{this.refreshingDeferred=null,this._debug(s,"end")}}async _notifyAllSubscribers(e,t,r=!0){let s=`#_notifyAllSubscribers(${e})`;this._debug(s,"begin",t,`broadcast = ${r}`);try{this.broadcastChannel&&r&&this.broadcastChannel.postMessage({event:e,session:t});let s=[],i=Array.from(this.stateChangeEmitters.values()).map(async r=>{try{await r.callback(e,t)}catch(e){s.push(e)}});if(await Promise.all(i),s.length>0){for(let e=0;e<s.length;e+=1)console.error(s[e]);throw s[0]}}finally{this._debug(s,"end")}}async _saveSession(e){this._debug("#_saveSession()",e),await (0,c.setItemAsync)(this.storage,this.storageKey,e)}async _removeSession(){this._debug("#_removeSession()"),await (0,c.removeItemAsync)(this.storage,this.storageKey)}_removeVisibilityChangedCallback(){this._debug("#_removeVisibilityChangedCallback()");let e=this.visibilityChangedCallback;this.visibilityChangedCallback=null;try{e&&(0,c.isBrowser)()&&(null==window?void 0:window.removeEventListener)&&window.removeEventListener("visibilitychange",e)}catch(e){console.error("removing visibilitychange callback failed",e)}}async _startAutoRefresh(){await this._stopAutoRefresh(),this._debug("#_startAutoRefresh()");let e=setInterval(()=>this._autoRefreshTokenTick(),3e4);this.autoRefreshTicker=e,e&&"object"==typeof e&&"function"==typeof e.unref?e.unref():"undefined"!=typeof Deno&&"function"==typeof Deno.unrefTimer&&Deno.unrefTimer(e),setTimeout(async()=>{await this.initializePromise,await this._autoRefreshTokenTick()},0)}async _stopAutoRefresh(){this._debug("#_stopAutoRefresh()");let e=this.autoRefreshTicker;this.autoRefreshTicker=null,e&&clearInterval(e)}async startAutoRefresh(){this._removeVisibilityChangedCallback(),await this._startAutoRefresh()}async stopAutoRefresh(){this._removeVisibilityChangedCallback(),await this._stopAutoRefresh()}async _autoRefreshTokenTick(){this._debug("#_autoRefreshTokenTick()","begin");try{await this._acquireLock(0,async()=>{try{let e=Date.now();try{return await this._useSession(async t=>{let{data:{session:r}}=t;if(!r||!r.refresh_token||!r.expires_at){this._debug("#_autoRefreshTokenTick()","no session");return}let s=Math.floor((1e3*r.expires_at-e)/3e4);this._debug("#_autoRefreshTokenTick()",`access token expires in ${s} ticks, a tick lasts 30000ms, refresh threshold is 3 ticks`),s<=3&&await this._callRefreshToken(r.refresh_token)})}catch(e){console.error("Auto refresh tick failed with error. This is likely a transient error.",e)}}finally{this._debug("#_autoRefreshTokenTick()","end")}})}catch(e){if(e.isAcquireTimeout||e instanceof p.LockAcquireTimeoutError)this._debug("auto refresh token tick lock not available");else throw e}}async _handleVisibilityChange(){if(this._debug("#_handleVisibilityChange()"),!(0,c.isBrowser)()||!(null==window?void 0:window.addEventListener))return this.autoRefreshToken&&this.startAutoRefresh(),!1;try{this.visibilityChangedCallback=async()=>await this._onVisibilityChanged(!1),null==window||window.addEventListener("visibilitychange",this.visibilityChangedCallback),await this._onVisibilityChanged(!0)}catch(e){console.error("_handleVisibilityChange",e)}}async _onVisibilityChanged(e){let t=`#_onVisibilityChanged(${e})`;this._debug(t,"visibilityState",document.visibilityState),"visible"===document.visibilityState?(this.autoRefreshToken&&this._startAutoRefresh(),e||(await this.initializePromise,await this._acquireLock(-1,async()=>{if("visible"!==document.visibilityState){this._debug(t,"acquired the lock to recover the session, but the browser visibilityState is no longer visible, aborting");return}await this._recoverAndRefresh()}))):"hidden"===document.visibilityState&&this.autoRefreshToken&&this._stopAutoRefresh()}async _getUrlForProvider(e,t,r){let s=[`provider=${encodeURIComponent(t)}`];if((null==r?void 0:r.redirectTo)&&s.push(`redirect_to=${encodeURIComponent(r.redirectTo)}`),(null==r?void 0:r.scopes)&&s.push(`scopes=${encodeURIComponent(r.scopes)}`),"pkce"===this.flowType){let[e,t]=await (0,c.getCodeChallengeAndMethod)(this.storage,this.storageKey),r=new URLSearchParams({code_challenge:`${encodeURIComponent(e)}`,code_challenge_method:`${encodeURIComponent(t)}`});s.push(r.toString())}if(null==r?void 0:r.queryParams){let e=new URLSearchParams(r.queryParams);s.push(e.toString())}return(null==r?void 0:r.skipBrowserRedirect)&&s.push(`skip_http_redirect=${r.skipBrowserRedirect}`),`${e}?${s.join("&")}`}async _unenroll(e){try{return await this._useSession(async t=>{var r;let{data:s,error:i}=t;return i?{data:null,error:i}:await (0,l._request)(this.fetch,"DELETE",`${this.url}/factors/${e.factorId}`,{headers:this.headers,jwt:null===(r=null==s?void 0:s.session)||void 0===r?void 0:r.access_token})})}catch(e){if((0,a.isAuthError)(e))return{data:null,error:e};throw e}}async _enroll(e){try{return await this._useSession(async t=>{var r,s;let{data:i,error:n}=t;if(n)return{data:null,error:n};let{data:o,error:a}=await (0,l._request)(this.fetch,"POST",`${this.url}/factors`,{body:{friendly_name:e.friendlyName,factor_type:e.factorType,issuer:e.issuer},headers:this.headers,jwt:null===(r=null==i?void 0:i.session)||void 0===r?void 0:r.access_token});return a?{data:null,error:a}:((null===(s=null==o?void 0:o.totp)||void 0===s?void 0:s.qr_code)&&(o.totp.qr_code=`data:image/svg+xml;utf-8,${o.totp.qr_code}`),{data:o,error:null})})}catch(e){if((0,a.isAuthError)(e))return{data:null,error:e};throw e}}async _verify(e){return this._acquireLock(-1,async()=>{try{return await this._useSession(async t=>{var r;let{data:s,error:i}=t;if(i)return{data:null,error:i};let{data:n,error:o}=await (0,l._request)(this.fetch,"POST",`${this.url}/factors/${e.factorId}/verify`,{body:{code:e.code,challenge_id:e.challengeId},headers:this.headers,jwt:null===(r=null==s?void 0:s.session)||void 0===r?void 0:r.access_token});return o?{data:null,error:o}:(await this._saveSession(Object.assign({expires_at:Math.round(Date.now()/1e3)+n.expires_in},n)),await this._notifyAllSubscribers("MFA_CHALLENGE_VERIFIED",n),{data:n,error:o})})}catch(e){if((0,a.isAuthError)(e))return{data:null,error:e};throw e}})}async _challenge(e){return this._acquireLock(-1,async()=>{try{return await this._useSession(async t=>{var r;let{data:s,error:i}=t;return i?{data:null,error:i}:await (0,l._request)(this.fetch,"POST",`${this.url}/factors/${e.factorId}/challenge`,{headers:this.headers,jwt:null===(r=null==s?void 0:s.session)||void 0===r?void 0:r.access_token})})}catch(e){if((0,a.isAuthError)(e))return{data:null,error:e};throw e}})}async _challengeAndVerify(e){let{data:t,error:r}=await this._challenge({factorId:e.factorId});return r?{data:null,error:r}:await this._verify({factorId:e.factorId,challengeId:t.id,code:e.code})}async _listFactors(){let{data:{user:e},error:t}=await this.getUser();if(t)return{data:null,error:t};let r=(null==e?void 0:e.factors)||[],s=r.filter(e=>"totp"===e.factor_type&&"verified"===e.status);return{data:{all:r,totp:s},error:null}}async _getAuthenticatorAssuranceLevel(){return this._acquireLock(-1,async()=>await this._useSession(async e=>{var t,r;let{data:{session:s},error:i}=e;if(i)return{data:null,error:i};if(!s)return{data:{currentLevel:null,nextLevel:null,currentAuthenticationMethods:[]},error:null};let n=this._decodeJWT(s.access_token),o=null;n.aal&&(o=n.aal);let a=o;return(null!==(r=null===(t=s.user.factors)||void 0===t?void 0:t.filter(e=>"verified"===e.status))&&void 0!==r?r:[]).length>0&&(a="aal2"),{data:{currentLevel:o,nextLevel:a,currentAuthenticationMethods:n.amr||[]},error:null}}))}}r.default=g,g.nextInstanceID=0},{"./GoTrueAdminApi":"5bmQV","./lib/constants":"5kgHI","./lib/errors":"8RHqO","./lib/fetch":"dOWmM","./lib/helpers":"lQJ1C","./lib/local-storage":"ej9PT","./lib/polyfills":"9gKt7","./lib/version":"gfN29","./lib/locks":"4RjEn","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],ej9PT:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"localStorageAdapter",()=>n),s.export(r,"memoryLocalStorageAdapter",()=>o);var i=e("./helpers");let n={getItem:e=>(0,i.supportsLocalStorage)()?globalThis.localStorage.getItem(e):null,setItem:(e,t)=>{(0,i.supportsLocalStorage)()&&globalThis.localStorage.setItem(e,t)},removeItem:e=>{(0,i.supportsLocalStorage)()&&globalThis.localStorage.removeItem(e)}};function o(e={}){return{getItem:t=>e[t]||null,setItem:(t,r)=>{e[t]=r},removeItem:t=>{delete e[t]}}}},{"./helpers":"lQJ1C","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"9gKt7":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");function i(){if("object"!=typeof globalThis)try{Object.defineProperty(Object.prototype,"__magic__",{get:function(){return this},configurable:!0}),__magic__.globalThis=__magic__,delete Object.prototype.__magic__}catch(e){"undefined"!=typeof self&&(self.globalThis=self)}}s.defineInteropFlag(r),s.export(r,"polyfillGlobalThis",()=>i)},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"4RjEn":[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r),s.export(r,"internals",()=>n),s.export(r,"LockAcquireTimeoutError",()=>o),s.export(r,"NavigatorLockAcquireTimeoutError",()=>a),s.export(r,"navigatorLock",()=>l);var i=e("./helpers");let n={debug:!!(globalThis&&(0,i.supportsLocalStorage)()&&globalThis.localStorage&&"true"===globalThis.localStorage.getItem("supabase.gotrue-js.locks.debug"))};class o extends Error{constructor(e){super(e),this.isAcquireTimeout=!0}}class a extends o{}async function l(e,t,r){n.debug&&console.log("@supabase/gotrue-js: navigatorLock: acquire lock",e,t);let s=new globalThis.AbortController;return t>0&&setTimeout(()=>{s.abort(),n.debug&&console.log("@supabase/gotrue-js: navigatorLock acquire timed out",e)},t),await globalThis.navigator.locks.request(e,0===t?{mode:"exclusive",ifAvailable:!0}:{mode:"exclusive",signal:s.signal},async s=>{if(s){n.debug&&console.log("@supabase/gotrue-js: navigatorLock: acquired",e,s.name);try{return await r()}finally{n.debug&&console.log("@supabase/gotrue-js: navigatorLock: released",e,s.name)}}else if(0===t)throw n.debug&&console.log("@supabase/gotrue-js: navigatorLock: not immediately available",e),new a(`Acquiring an exclusive Navigator LockManager lock "${e}" immediately failed`);else{if(n.debug)try{let e=await globalThis.navigator.locks.query();console.log("@supabase/gotrue-js: Navigator LockManager state",JSON.stringify(e,null,"  "))}catch(e){console.warn("@supabase/gotrue-js: Error when querying Navigator LockManager state",e)}return console.warn("@supabase/gotrue-js: Navigator LockManager returned a null lock when using #request without ifAvailable set to true, it appears this browser is not following the LockManager spec https://developer.mozilla.org/en-US/docs/Web/API/LockManager/request"),await r()}})}},{"./helpers":"lQJ1C","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],dTWKm:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r);var i=e("./GoTrueAdminApi");let n=s.interopDefault(i).default;r.default=n},{"./GoTrueAdminApi":"5bmQV","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],itpDP:[function(e,t,r){var s=e("@parcel/transformer-js/src/esmodule-helpers.js");s.defineInteropFlag(r);var i=e("./GoTrueClient");let n=s.interopDefault(i).default;r.default=n},{"./GoTrueClient":"8QbFP","@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],aKMd1:[function(e,t,r){e("@parcel/transformer-js/src/esmodule-helpers.js").defineInteropFlag(r)},{"@parcel/transformer-js/src/esmodule-helpers.js":"jiucr"}],"9iNzJ":[function(e,t,r){t.exports=e("2784d5d0438f2ef0")(e("d2015f7ce3ffcba").resolve("8JkDf")).then(()=>t.bundle.root("dzqwq"))},{"2784d5d0438f2ef0":"9wKyf",d2015f7ce3ffcba:"gSiLw"}],dG3l5:[function(e,t,r){t.exports=e("86493fbe20c27b4c")(e("31a6e20118082356").resolve("hNOg1")).then(()=>t.bundle.root("jOZyB"))},{"86493fbe20c27b4c":"9wKyf","31a6e20118082356":"gSiLw"}],"8G9fi":[function(e,t,r){t.exports=e("e40dee58dda186a9")(e("c797dc6de1bb6412").resolve("4o371")).then(()=>t.bundle.root("dRyYX"))},{e40dee58dda186a9:"9wKyf",c797dc6de1bb6412:"gSiLw"}],"4t0RH":[function(e,t,r){t.exports=e("b0607f49eba8493b")(e("5d635c5a9d0b73b8").resolve("2gAwy")).then(()=>t.bundle.root("2nMYY"))},{b0607f49eba8493b:"9wKyf","5d635c5a9d0b73b8":"gSiLw"}]},["1RM2K","83hJF"],"83hJF","parcelRequire89a0");
+// modules are defined as an array
+// [ module function, map of requires ]
+//
+// map of requires is short require name -> numeric require
+//
+// anything defined in a previous bundle is accessed via the
+// orig method which is the require for previous bundles
+
+(function (modules, entry, mainEntry, parcelRequireName, globalName) {
+  /* eslint-disable no-undef */
+  var globalObject =
+    typeof globalThis !== 'undefined'
+      ? globalThis
+      : typeof self !== 'undefined'
+      ? self
+      : typeof window !== 'undefined'
+      ? window
+      : typeof global !== 'undefined'
+      ? global
+      : {};
+  /* eslint-enable no-undef */
+
+  // Save the require from previous bundle to this closure if any
+  var previousRequire =
+    typeof globalObject[parcelRequireName] === 'function' &&
+    globalObject[parcelRequireName];
+
+  var cache = previousRequire.cache || {};
+  // Do not use `require` to prevent Webpack from trying to bundle this call
+  var nodeRequire =
+    typeof module !== 'undefined' &&
+    typeof module.require === 'function' &&
+    module.require.bind(module);
+
+  function newRequire(name, jumped) {
+    if (!cache[name]) {
+      if (!modules[name]) {
+        // if we cannot find the module within our internal map or
+        // cache jump to the current global require ie. the last bundle
+        // that was added to the page.
+        var currentRequire =
+          typeof globalObject[parcelRequireName] === 'function' &&
+          globalObject[parcelRequireName];
+        if (!jumped && currentRequire) {
+          return currentRequire(name, true);
+        }
+
+        // If there are other bundles on this page the require from the
+        // previous one is saved to 'previousRequire'. Repeat this as
+        // many times as there are bundles until the module is found or
+        // we exhaust the require chain.
+        if (previousRequire) {
+          return previousRequire(name, true);
+        }
+
+        // Try the node require function if it exists.
+        if (nodeRequire && typeof name === 'string') {
+          return nodeRequire(name);
+        }
+
+        var err = new Error("Cannot find module '" + name + "'");
+        err.code = 'MODULE_NOT_FOUND';
+        throw err;
+      }
+
+      localRequire.resolve = resolve;
+      localRequire.cache = {};
+
+      var module = (cache[name] = new newRequire.Module(name));
+
+      modules[name][0].call(
+        module.exports,
+        localRequire,
+        module,
+        module.exports,
+        this
+      );
+    }
+
+    return cache[name].exports;
+
+    function localRequire(x) {
+      var res = localRequire.resolve(x);
+      return res === false ? {} : newRequire(res);
+    }
+
+    function resolve(x) {
+      var id = modules[name][1][x];
+      return id != null ? id : x;
+    }
+  }
+
+  function Module(moduleName) {
+    this.id = moduleName;
+    this.bundle = newRequire;
+    this.exports = {};
+  }
+
+  newRequire.isParcelRequire = true;
+  newRequire.Module = Module;
+  newRequire.modules = modules;
+  newRequire.cache = cache;
+  newRequire.parent = previousRequire;
+  newRequire.register = function (id, exports) {
+    modules[id] = [
+      function (require, module) {
+        module.exports = exports;
+      },
+      {},
+    ];
+  };
+
+  Object.defineProperty(newRequire, 'root', {
+    get: function () {
+      return globalObject[parcelRequireName];
+    },
+  });
+
+  globalObject[parcelRequireName] = newRequire;
+
+  for (var i = 0; i < entry.length; i++) {
+    newRequire(entry[i]);
+  }
+
+  if (mainEntry) {
+    // Expose entry point to Node, AMD or browser globals
+    // Based on https://github.com/ForbesLindesay/umd/blob/master/template.js
+    var mainExports = newRequire(mainEntry);
+
+    // CommonJS
+    if (typeof exports === 'object' && typeof module !== 'undefined') {
+      module.exports = mainExports;
+
+      // RequireJS
+    } else if (typeof define === 'function' && define.amd) {
+      define(function () {
+        return mainExports;
+      });
+
+      // <script>
+    } else if (globalName) {
+      this[globalName] = mainExports;
+    }
+  }
+})({"jeTtx":[function(require,module,exports) {
+var _core = require("@xatom/core");
+var _routes = require("./routes");
+var _supbase = require("./modules/supbase");
+window.WFDebug = true;
+(0, _core.onReady)(()=>{
+    (0, _supbase.initSupabase)(()=>{
+        (0, _routes.app)();
+    });
+});
+
+},{"@xatom/core":"8w4K8","./routes":"fnEL6","./modules/supbase":"anyOU"}],"8w4K8":[function(require,module,exports) {
+var $iEn1Z$uuid = require("116fc168c31b637d");
+function $parcel$exportWildcard(dest, source) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function get() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+}
+function $parcel$export(e, n, v, s) {
+    Object.defineProperty(e, n, {
+        get: v,
+        set: s,
+        enumerable: true,
+        configurable: true
+    });
+}
+var $90b1e0f272b5544a$exports = {};
+$parcel$export($90b1e0f272b5544a$exports, "WFAuth", ()=>$90b1e0f272b5544a$export$cb2138cd710ea58a);
+class $90b1e0f272b5544a$export$cb2138cd710ea58a {
+    constructor(config = {}){
+        this.config = config;
+    }
+    isLoggedIn() {
+        return !!this.user;
+    }
+    getRole() {
+        return this.role;
+    }
+    getUser() {
+        return this.user;
+    }
+    getConfig() {
+        return this.config;
+    }
+    logout() {
+        this.user = null;
+        this.role = null;
+        this.config = null;
+    }
+    setUser(user) {
+        this.user = user;
+    }
+    setRole(role) {
+        this.role = role;
+    }
+    setConfig(config) {
+        this.config = config;
+    }
+}
+var $336c7a32b438dc35$exports = {};
+$parcel$export($336c7a32b438dc35$exports, "WFAuthMiddleware", ()=>$336c7a32b438dc35$export$42f600804a30f397);
+class $336c7a32b438dc35$export$42f600804a30f397 {
+    constructor(auth){
+        this.auth = auth;
+    }
+    allowTo(role) {
+        return this.auth.getRole() === role;
+    }
+    disallowedTo(role) {
+        return this.auth.getRole() !== role;
+    }
+    getAuth() {
+        return this.auth;
+    }
+}
+var $5ce0995b4e579efe$exports = {};
+$parcel$export($5ce0995b4e579efe$exports, "WFComponent", ()=>$5ce0995b4e579efe$export$b8941e06d24ae728);
+var $30d957643bf2e67a$exports = {};
+var $62881ab850a57a38$exports = {};
+$parcel$export($62881ab850a57a38$exports, "debug", ()=>$62881ab850a57a38$export$1c9f709888824e05);
+const $62881ab850a57a38$export$1c9f709888824e05 = (...args)=>{
+    if (window.WFDebug) console.log(...args);
+};
+var $9e73fdbf37a9aa00$exports = {};
+$parcel$export($9e73fdbf37a9aa00$exports, "getElementByXPath", ()=>$9e73fdbf37a9aa00$export$7ffef3582c93037b);
+function $9e73fdbf37a9aa00$export$7ffef3582c93037b(xpath, parent) {
+    const result = document.evaluate(xpath, parent, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+    return result.singleNodeValue;
+}
+var $100caf27c28c32c0$exports = {};
+$parcel$export($100caf27c28c32c0$exports, "getRouteQueryParams", ()=>$100caf27c28c32c0$export$1346b4a9ff9b6881);
+const $100caf27c28c32c0$export$1346b4a9ff9b6881 = ()=>{
+    const _data = {};
+    new URLSearchParams(location.search).forEach((val, key)=>{
+        _data[key] = val;
+    });
+    return _data;
+};
+var $e533c87ae7d96e3e$exports = {};
+$parcel$export($e533c87ae7d96e3e$exports, "getXPathForChangedChild", ()=>$e533c87ae7d96e3e$export$5fe4b019801f5ef1);
+function $e533c87ae7d96e3e$export$5fe4b019801f5ef1(node, parent) {
+    const xpathParts = [];
+    // Traverse up the DOM tree from the node and generate an XPath expression for each parent element
+    while(node && node !== parent && node.nodeType === Node.ELEMENT_NODE){
+        let xpath = node.nodeName.toLowerCase();
+        // If the element has an ID attribute, add it to the XPath expression
+        if (node.hasAttribute("id")) xpath += '[@id="' + node.getAttribute("id") + '"]';
+        else if (node.hasAttribute("class")) xpath += '[@class="' + node.getAttribute("class") + '"]';
+        // Add the XPath expression for this element to the list
+        xpathParts.unshift(xpath);
+        // Move up to the parent element
+        node = node.parentNode;
+    }
+    // Combine the XPath parts into a single XPath expression
+    return xpathParts.join("/");
+}
+var $4117225480b0cc44$exports = {};
+$parcel$export($4117225480b0cc44$exports, "navigate", ()=>$4117225480b0cc44$export$ff7962acd6052c28);
+const $4117225480b0cc44$export$ff7962acd6052c28 = (arg)=>{
+    if (typeof arg === "string") window.location.assign(arg);
+    else if (typeof arg === "object" && arg.type === "replace") window.location.replace(arg.to);
+    else if (typeof arg === "object" && arg.type === "reload") window.location.reload();
+};
+var $0b3f70b8f06eedca$exports = {};
+$parcel$export($0b3f70b8f06eedca$exports, "parse", ()=>$0b3f70b8f06eedca$export$98e6a39c04603d36);
+$parcel$export($0b3f70b8f06eedca$exports, "compile", ()=>$0b3f70b8f06eedca$export$ef7acd7185315e22);
+$parcel$export($0b3f70b8f06eedca$exports, "tokensToFunction", ()=>$0b3f70b8f06eedca$export$5b9bad9e403cf3d9);
+$parcel$export($0b3f70b8f06eedca$exports, "match", ()=>$0b3f70b8f06eedca$export$4659b591c19bdf3d);
+$parcel$export($0b3f70b8f06eedca$exports, "pathToRegexp", ()=>$0b3f70b8f06eedca$export$71304158c7e35877);
+$parcel$export($0b3f70b8f06eedca$exports, "regexpToFunction", ()=>$0b3f70b8f06eedca$export$968e97c88708237a);
+$parcel$export($0b3f70b8f06eedca$exports, "tokensToRegexp", ()=>$0b3f70b8f06eedca$export$9a9303716def6456);
+$parcel$export($0b3f70b8f06eedca$exports, "routeMatch", ()=>$0b3f70b8f06eedca$export$6c50148cf1d992bd);
+/**
+ * Tokenizer results.
+ */ /**
+ * Tokenize input string.
+ */ function $0b3f70b8f06eedca$var$lexer(str) {
+    const tokens = [];
+    let i = 0;
+    while(i < str.length){
+        const char = str[i];
+        if (char === "*" || char === "+" || char === "?") {
+            tokens.push({
+                type: "MODIFIER",
+                index: i,
+                value: str[i++]
+            });
+            continue;
+        }
+        if (char === "\\") {
+            tokens.push({
+                type: "ESCAPED_CHAR",
+                index: i++,
+                value: str[i++]
+            });
+            continue;
+        }
+        if (char === "{") {
+            tokens.push({
+                type: "OPEN",
+                index: i,
+                value: str[i++]
+            });
+            continue;
+        }
+        if (char === "}") {
+            tokens.push({
+                type: "CLOSE",
+                index: i,
+                value: str[i++]
+            });
+            continue;
+        }
+        if (char === ":") {
+            let name = "";
+            let j = i + 1;
+            while(j < str.length){
+                const code = str.charCodeAt(j);
+                if (code >= 48 && code <= 57 || // `A-Z`
+                code >= 65 && code <= 90 || // `a-z`
+                code >= 97 && code <= 122 || // `_`
+                code === 95) {
+                    name += str[j++];
+                    continue;
+                }
+                break;
+            }
+            if (!name) throw new TypeError(`Missing parameter name at ${i}`);
+            tokens.push({
+                type: "NAME",
+                index: i,
+                value: name
+            });
+            i = j;
+            continue;
+        }
+        if (char === "(") {
+            let count = 1;
+            let pattern = "";
+            let j = i + 1;
+            if (str[j] === "?") throw new TypeError(`Pattern cannot start with "?" at ${j}`);
+            while(j < str.length){
+                if (str[j] === "\\") {
+                    pattern += str[j++] + str[j++];
+                    continue;
+                }
+                if (str[j] === ")") {
+                    count--;
+                    if (count === 0) {
+                        j++;
+                        break;
+                    }
+                } else if (str[j] === "(") {
+                    count++;
+                    if (str[j + 1] !== "?") throw new TypeError(`Capturing groups are not allowed at ${j}`);
+                }
+                pattern += str[j++];
+            }
+            if (count) throw new TypeError(`Unbalanced pattern at ${i}`);
+            if (!pattern) throw new TypeError(`Missing pattern at ${i}`);
+            tokens.push({
+                type: "PATTERN",
+                index: i,
+                value: pattern
+            });
+            i = j;
+            continue;
+        }
+        tokens.push({
+            type: "CHAR",
+            index: i,
+            value: str[i++]
+        });
+    }
+    tokens.push({
+        type: "END",
+        index: i,
+        value: ""
+    });
+    return tokens;
+}
+function $0b3f70b8f06eedca$export$98e6a39c04603d36(str, options = {}) {
+    const tokens = $0b3f70b8f06eedca$var$lexer(str);
+    const { prefixes: prefixes = "./" } = options;
+    const defaultPattern = `[^${$0b3f70b8f06eedca$var$escapeString(options.delimiter || "/#?")}]+?`;
+    const result = [];
+    let key = 0;
+    let i = 0;
+    let path = "";
+    const tryConsume = (type)=>{
+        if (i < tokens.length && tokens[i].type === type) return tokens[i++].value;
+    };
+    const mustConsume = (type)=>{
+        const value = tryConsume(type);
+        if (value !== undefined) return value;
+        const { type: nextType, index: index } = tokens[i];
+        throw new TypeError(`Unexpected ${nextType} at ${index}, expected ${type}`);
+    };
+    const consumeText = ()=>{
+        let result = "";
+        let value;
+        while(value = tryConsume("CHAR") || tryConsume("ESCAPED_CHAR"))result += value;
+        return result;
+    };
+    while(i < tokens.length){
+        const char = tryConsume("CHAR");
+        const name = tryConsume("NAME");
+        const pattern = tryConsume("PATTERN");
+        if (name || pattern) {
+            let prefix = char || "";
+            if (prefixes.indexOf(prefix) === -1) {
+                path += prefix;
+                prefix = "";
+            }
+            if (path) {
+                result.push(path);
+                path = "";
+            }
+            result.push({
+                name: name || key++,
+                prefix: prefix,
+                suffix: "",
+                pattern: pattern || defaultPattern,
+                modifier: tryConsume("MODIFIER") || ""
+            });
+            continue;
+        }
+        const value = char || tryConsume("ESCAPED_CHAR");
+        if (value) {
+            path += value;
+            continue;
+        }
+        if (path) {
+            result.push(path);
+            path = "";
+        }
+        const open = tryConsume("OPEN");
+        if (open) {
+            const prefix = consumeText();
+            const name = tryConsume("NAME") || "";
+            const pattern = tryConsume("PATTERN") || "";
+            const suffix = consumeText();
+            mustConsume("CLOSE");
+            result.push({
+                name: name || (pattern ? key++ : ""),
+                pattern: name && !pattern ? defaultPattern : pattern,
+                prefix: prefix,
+                suffix: suffix,
+                modifier: tryConsume("MODIFIER") || ""
+            });
+            continue;
+        }
+        mustConsume("END");
+    }
+    return result;
+}
+function $0b3f70b8f06eedca$export$ef7acd7185315e22(str, options) {
+    return $0b3f70b8f06eedca$export$5b9bad9e403cf3d9($0b3f70b8f06eedca$export$98e6a39c04603d36(str, options), options);
+}
+function $0b3f70b8f06eedca$export$5b9bad9e403cf3d9(tokens, options = {}) {
+    const reFlags = $0b3f70b8f06eedca$var$flags(options);
+    const { encode: encode = (x)=>x, validate: validate = true } = options;
+    // Compile all the tokens into regexps.
+    const matches = tokens.map((token)=>{
+        if (typeof token === "object") return new RegExp(`^(?:${token.pattern})$`, reFlags);
+    });
+    return (data)=>{
+        let path = "";
+        for(let i = 0; i < tokens.length; i++){
+            const token = tokens[i];
+            if (typeof token === "string") {
+                path += token;
+                continue;
+            }
+            const value = data ? data[token.name] : undefined;
+            const optional = token.modifier === "?" || token.modifier === "*";
+            const repeat = token.modifier === "*" || token.modifier === "+";
+            if (Array.isArray(value)) {
+                if (!repeat) throw new TypeError(`Expected "${token.name}" to not repeat, but got an array`);
+                if (value.length === 0) {
+                    if (optional) continue;
+                    throw new TypeError(`Expected "${token.name}" to not be empty`);
+                }
+                for(let j = 0; j < value.length; j++){
+                    const segment = encode(value[j], token);
+                    if (validate && !matches[i].test(segment)) throw new TypeError(`Expected all "${token.name}" to match "${token.pattern}", but got "${segment}"`);
+                    path += token.prefix + segment + token.suffix;
+                }
+                continue;
+            }
+            if (typeof value === "string" || typeof value === "number") {
+                const segment = encode(String(value), token);
+                if (validate && !matches[i].test(segment)) throw new TypeError(`Expected "${token.name}" to match "${token.pattern}", but got "${segment}"`);
+                path += token.prefix + segment + token.suffix;
+                continue;
+            }
+            if (optional) continue;
+            const typeOfMessage = repeat ? "an array" : "a string";
+            throw new TypeError(`Expected "${token.name}" to be ${typeOfMessage}`);
+        }
+        return path;
+    };
+}
+function $0b3f70b8f06eedca$export$4659b591c19bdf3d(str, options) {
+    const keys = [];
+    const re = $0b3f70b8f06eedca$export$71304158c7e35877(str, keys, options);
+    return $0b3f70b8f06eedca$export$968e97c88708237a(re, keys, options);
+}
+function $0b3f70b8f06eedca$export$968e97c88708237a(re, keys, options = {}) {
+    const { decode: decode = (x)=>x } = options;
+    return function(pathname) {
+        const m = re.exec(pathname);
+        if (!m) return false;
+        const { 0: path, index: index } = m;
+        const params = Object.create(null);
+        for(let i = 1; i < m.length; i++){
+            if (m[i] === undefined) continue;
+            const key = keys[i - 1];
+            if (key.modifier === "*" || key.modifier === "+") params[key.name] = m[i].split(key.prefix + key.suffix).map((value)=>{
+                return decode(value, key);
+            });
+            else params[key.name] = decode(m[i], key);
+        }
+        return {
+            path: path,
+            index: index,
+            params: params
+        };
+    };
+}
+/**
+ * Escape a regular expression string.
+ */ function $0b3f70b8f06eedca$var$escapeString(str) {
+    return str.replace(/([.+*?=^!:${}()[\]|/\\])/g, "\\$1");
+}
+/**
+ * Get the flags for a regexp from the options.
+ */ function $0b3f70b8f06eedca$var$flags(options) {
+    return options && options.sensitive ? "" : "i";
+}
+/**
+ * Pull out keys from a regexp.
+ */ function $0b3f70b8f06eedca$var$regexpToRegexp(path, keys) {
+    if (!keys) return path;
+    const groupsRegex = /\((?:\?<(.*?)>)?(?!\?)/g;
+    let index = 0;
+    let execResult = groupsRegex.exec(path.source);
+    while(execResult){
+        keys.push({
+            // Use parenthesized substring match if available, index otherwise
+            name: execResult[1] || index++,
+            prefix: "",
+            suffix: "",
+            modifier: "",
+            pattern: ""
+        });
+        execResult = groupsRegex.exec(path.source);
+    }
+    return path;
+}
+/**
+ * Transform an array into a regexp.
+ */ function $0b3f70b8f06eedca$var$arrayToRegexp(paths, keys, options) {
+    const parts = paths.map((path)=>$0b3f70b8f06eedca$export$71304158c7e35877(path, keys, options).source);
+    return new RegExp(`(?:${parts.join("|")})`, $0b3f70b8f06eedca$var$flags(options));
+}
+/**
+ * Create a path regexp from string input.
+ */ function $0b3f70b8f06eedca$var$stringToRegexp(path, keys, options) {
+    return $0b3f70b8f06eedca$export$9a9303716def6456($0b3f70b8f06eedca$export$98e6a39c04603d36(path, options), keys, options);
+}
+function $0b3f70b8f06eedca$export$9a9303716def6456(tokens, keys, options = {}) {
+    const { strict: strict = false, start: start = true, end: end = true, encode: encode = (x)=>x, delimiter: delimiter = "/#?", endsWith: endsWith = "" } = options;
+    const endsWithRe = `[${$0b3f70b8f06eedca$var$escapeString(endsWith)}]|$`;
+    const delimiterRe = `[${$0b3f70b8f06eedca$var$escapeString(delimiter)}]`;
+    let route = start ? "^" : "";
+    // Iterate over the tokens and create our regexp string.
+    for (const token of tokens)if (typeof token === "string") route += $0b3f70b8f06eedca$var$escapeString(encode(token));
+    else {
+        const prefix = $0b3f70b8f06eedca$var$escapeString(encode(token.prefix));
+        const suffix = $0b3f70b8f06eedca$var$escapeString(encode(token.suffix));
+        if (token.pattern) {
+            if (keys) keys.push(token);
+            if (prefix || suffix) {
+                if (token.modifier === "+" || token.modifier === "*") {
+                    const mod = token.modifier === "*" ? "?" : "";
+                    route += `(?:${prefix}((?:${token.pattern})(?:${suffix}${prefix}(?:${token.pattern}))*)${suffix})${mod}`;
+                } else route += `(?:${prefix}(${token.pattern})${suffix})${token.modifier}`;
+            } else if (token.modifier === "+" || token.modifier === "*") route += `((?:${token.pattern})${token.modifier})`;
+            else route += `(${token.pattern})${token.modifier}`;
+        } else route += `(?:${prefix}${suffix})${token.modifier}`;
+    }
+    if (end) {
+        if (!strict) route += `${delimiterRe}?`;
+        route += !options.endsWith ? "$" : `(?=${endsWithRe})`;
+    } else {
+        const endToken = tokens[tokens.length - 1];
+        const isEndDelimited = typeof endToken === "string" ? delimiterRe.indexOf(endToken[endToken.length - 1]) > -1 : endToken === undefined;
+        if (!strict) route += `(?:${delimiterRe}(?=${endsWithRe}))?`;
+        if (!isEndDelimited) route += `(?=${delimiterRe}|${endsWithRe})`;
+    }
+    return new RegExp(route, $0b3f70b8f06eedca$var$flags(options));
+}
+function $0b3f70b8f06eedca$export$71304158c7e35877(path, keys, options) {
+    if (path instanceof RegExp) return $0b3f70b8f06eedca$var$regexpToRegexp(path, keys);
+    if (Array.isArray(path)) return $0b3f70b8f06eedca$var$arrayToRegexp(path, keys, options);
+    return $0b3f70b8f06eedca$var$stringToRegexp(path, keys, options);
+}
+function $0b3f70b8f06eedca$var$pathMatch(options = {}) {
+    return function(path) {
+        var keys = [];
+        var re = $0b3f70b8f06eedca$export$71304158c7e35877(path, keys, options);
+        return function(pathname, params) {
+            var m = re.exec(pathname);
+            if (!m) return false;
+            params = params || {};
+            var key, param;
+            for(var i = 0; i < keys.length; i++){
+                key = keys[i];
+                param = m[i + 1];
+                if (!param) continue;
+                params[key.name] = $0b3f70b8f06eedca$var$decodeParam(param);
+                if (key.repeat) params[key.name] = params[key.name].split(key.delimiter);
+            }
+            return params;
+        };
+    };
+}
+const $0b3f70b8f06eedca$export$6c50148cf1d992bd = (routeToMatch, route, defaultParams = {}, options = {})=>{
+    return $0b3f70b8f06eedca$var$pathMatch(options)(routeToMatch)(route, defaultParams);
+};
+function $0b3f70b8f06eedca$var$decodeParam(param) {
+    try {
+        return decodeURIComponent(param);
+    } catch (_) {
+        throw new Error('failed to decode param "' + param + '"');
+    }
+}
+var $36bdd128d4111a37$exports = {};
+$parcel$export($36bdd128d4111a37$exports, "createComponent", ()=>$36bdd128d4111a37$export$60e54eaca7e7fb38);
+const $36bdd128d4111a37$export$60e54eaca7e7fb38 = (type)=>{
+    return new $5ce0995b4e579efe$export$b8941e06d24ae728(document.createElement(type));
+};
+$parcel$exportWildcard($30d957643bf2e67a$exports, $62881ab850a57a38$exports);
+$parcel$exportWildcard($30d957643bf2e67a$exports, $9e73fdbf37a9aa00$exports);
+$parcel$exportWildcard($30d957643bf2e67a$exports, $100caf27c28c32c0$exports);
+$parcel$exportWildcard($30d957643bf2e67a$exports, $e533c87ae7d96e3e$exports);
+$parcel$exportWildcard($30d957643bf2e67a$exports, $4117225480b0cc44$exports);
+$parcel$exportWildcard($30d957643bf2e67a$exports, $0b3f70b8f06eedca$exports);
+$parcel$exportWildcard($30d957643bf2e67a$exports, $36bdd128d4111a37$exports);
+class $5ce0995b4e579efe$export$b8941e06d24ae728 {
+    constructor(query){
+        if (typeof query === "string") {
+            const el = document.querySelector(query);
+            if (el) {
+                this.element = el;
+                this.updateClone();
+            } else throw new Error(`Could not find ${query}`);
+        } else if (typeof query === "object" && query instanceof HTMLElement) {
+            this.element = query;
+            this.updateClone();
+        } else if (typeof query === "object" && query instanceof SVGSVGElement) {
+            this.element = query;
+            this.updateClone();
+        } else if (query instanceof $5ce0995b4e579efe$export$b8941e06d24ae728) {
+            this.element = query.getElement();
+            this.updateClone();
+        } else throw new Error(`Could not find ${query}`);
+    }
+    updateClone() {
+        this.cloneEl = this.element.cloneNode(true);
+    }
+    getElement() {
+        return this.element;
+    }
+    updateTextViaAttrVar(keyPair) {
+        const fields = {};
+        const addEl = (key, val)=>{
+            if (!(key in fields)) fields[key] = [];
+            fields[key].push(val);
+        };
+        if (this.hasAttribute("xa-var")) addEl(this.getAttribute("xa-var"), this.getElement());
+        const _els = this.getChildAsComponents(`[xa-var]`);
+        _els.forEach((el)=>{
+            addEl(el.getAttribute("xa-var"), el.getElement());
+        });
+        Object.keys(keyPair).forEach((key)=>{
+            if (key in fields) fields[key].forEach((d)=>{
+                d.textContent = keyPair[key].toString();
+            });
+        });
+    }
+    updateTextVariable(keyPair) {
+        if (this.cloneEl.childNodes.length === 1 && this.cloneEl.firstChild instanceof Text) Object.keys(keyPair).forEach((key)=>{
+            if (this.cloneEl.textContent.includes(`{{${key}}}`)) this.element.textContent = this.cloneEl.textContent.replace(`{{${key}}}`, keyPair[key].toString());
+        });
+        else {
+            const els = Array.from(this.cloneEl.querySelectorAll("*")).map((el)=>Array.from(el.childNodes).filter((node)=>node instanceof Text && node.textContent.trim().length > 0)).flat();
+            // console.log(els, this.cloneEl);
+            Object.keys(keyPair).forEach((key)=>{
+                els.filter((el)=>el.textContent.includes(`{{${key}}}`)).forEach((el)=>{
+                    const path = $e533c87ae7d96e3e$export$5fe4b019801f5ef1(el.parentElement, this.cloneEl);
+                    const _el = $9e73fdbf37a9aa00$export$7ffef3582c93037b(path, this.element);
+                    // console.log(
+                    //   el,
+                    //   _el,
+                    //   " found",
+                    //   path,
+                    //   el.parentElement,
+                    //   this
+                    // );
+                    if (_el) _el.textContent = el.textContent.replace(`{{${key}}}`, keyPair[key].toString());
+                    else console.log(el, _el, "not found", path, el.parentElement, this);
+                });
+            });
+        }
+    }
+    setAttribute(key, value) {
+        this.element.setAttribute(key, value);
+    }
+    removeAttribute(key) {
+        this.element.removeAttribute(key);
+    }
+    getAttribute(key) {
+        return this.element.getAttribute(key);
+    }
+    hasAttribute(key) {
+        return this.element.hasAttribute(key);
+    }
+    getChildAsComponents(selector) {
+        return Array.from(this.element.querySelectorAll(selector)).map((el)=>new $5ce0995b4e579efe$export$b8941e06d24ae728(el));
+    }
+    getChildAsComponent(selector) {
+        return new $5ce0995b4e579efe$export$b8941e06d24ae728(this.element.querySelector(selector));
+    }
+    getManyChildAsComponents(selectors) {
+        let _els = {};
+        Object.keys(selectors).forEach((key)=>{
+            _els[key] = new $5ce0995b4e579efe$export$b8941e06d24ae728(this.element.querySelector(selectors[key]));
+        });
+        return _els;
+    }
+    getCssClass() {
+        return Array.from(this.element.classList);
+    }
+    addCssClass(className) {
+        this.element.classList.add(className);
+        this.cloneEl.classList.add(className);
+    }
+    removeCssClass(className) {
+        this.element.classList.remove(className);
+        this.cloneEl.classList.remove(className);
+    }
+    replaceCssClass(className, newClassName) {
+        this.element.classList.replace(className, newClassName);
+        this.cloneEl.classList.replace(className, newClassName);
+    }
+    toggleCssClass(className) {
+        this.element.classList.toggle(className);
+        this.cloneEl.classList.toggle(className);
+    }
+    on(type, listener, options) {
+        this.element.addEventListener(type, listener, options);
+    }
+    off(type, listener, options) {
+        this.element.removeEventListener(type, listener, options);
+    }
+    setText(text) {
+        this.getElement().innerText = text.toString();
+    }
+    getText() {
+        return this.getElement().innerText;
+    }
+    setTextContent(text) {
+        this.getElement().textContent = text;
+    }
+    getTextContent() {
+        return this.getElement().textContent;
+    }
+    setHTML(htmlText) {
+        this.getElement().innerHTML = htmlText;
+    }
+    getHTML() {
+        return this.getElement().innerHTML;
+    }
+    getCloneAsComponent() {
+        return new $5ce0995b4e579efe$export$b8941e06d24ae728(this.cloneEl.cloneNode(true));
+    }
+    setStyle(style = {}) {
+        Object.keys(style).forEach((key)=>{
+            this.element.style[key] = style[key];
+        });
+    }
+    getStyle() {
+        return window.getComputedStyle(this.element);
+    }
+    appendChild(child) {
+        this.element.appendChild(new $5ce0995b4e579efe$export$b8941e06d24ae728(child).getElement());
+    }
+    remove() {
+        this.element.remove();
+    }
+    removeAllChildren() {
+        this.element.replaceChildren();
+    }
+}
+var $0105599dd5ebe189$exports = {};
+$parcel$export($0105599dd5ebe189$exports, "WFDynamicList", ()=>$0105599dd5ebe189$export$688e73055717bd51);
+class $0105599dd5ebe189$export$688e73055717bd51 extends $5ce0995b4e579efe$export$b8941e06d24ae728 {
+    showLoadingState = false;
+    constructor(query, config){
+        super(query);
+        if (typeof config.rowSelector === "string") this.rowComponent = this.getChildAsComponent(config.rowSelector);
+        else this.rowComponent = new $5ce0995b4e579efe$export$b8941e06d24ae728(config.rowSelector);
+        this.rowComponent.remove();
+        if (config.loaderSelector) {
+            if (typeof config.loaderSelector === "string") this.loaderComponent = this.getChildAsComponent(config.loaderSelector);
+            else this.loaderComponent = new $5ce0995b4e579efe$export$b8941e06d24ae728(config.loaderSelector);
+            this.loaderComponent.remove();
+        }
+        if (config.emptySelector) {
+            if (typeof config.emptySelector === "string") this.emptyComponent = this.getChildAsComponent(config.emptySelector);
+            else this.emptyComponent = new $5ce0995b4e579efe$export$b8941e06d24ae728(config.emptySelector);
+            this.emptyComponent.remove();
+        }
+    }
+    rowRenderer(cb) {
+        this.rowRendererCB = cb;
+    }
+    emptyRenderer(cb) {
+        this.emptyRendererCB = cb;
+    }
+    loaderRenderer(cb) {
+        this.loaderRendererCB = cb;
+    }
+    setData(data) {
+        this.data = data;
+        this.render();
+    }
+    render() {
+        if (!this.rowRendererCB) throw new Error("Unable to find renderer");
+        this.hideLoading();
+        this.removeAllChildren();
+        if (this.data.length === 0 && this.emptyComponent) this.showEmpty();
+        this.data.map((rowData, index, data)=>this.rowRendererCB({
+                index: index,
+                rowData: rowData,
+                rowElement: this.rowComponent.getCloneAsComponent(),
+                data: data
+            })).filter((d)=>d).forEach((d)=>{
+            this.appendChild(d);
+        });
+        if (this.showLoadingState) this.showLoading();
+    }
+    changeLoadingStatus(state) {
+        this.showLoadingState = state;
+        if (state) this.showLoading();
+        else this.hideLoading();
+    }
+    showLoading() {
+        this.hideLoading();
+        if (!this.loaderComponent) return;
+        if (this.loaderRendererCB) {
+            this.lastLoadingComponent = this.loaderRendererCB(this.loaderComponent.getCloneAsComponent());
+            this.appendChild(this.lastLoadingComponent);
+        } else {
+            this.lastLoadingComponent = this.loaderComponent.getCloneAsComponent();
+            this.appendChild(this.lastLoadingComponent);
+        }
+    }
+    showEmpty() {
+        this.hideEmpty();
+        if (this.emptyRendererCB) {
+            this.lastEmptyComponent = this.emptyRendererCB(this.emptyComponent.getCloneAsComponent());
+            this.appendChild(this.lastEmptyComponent);
+        } else {
+            this.lastEmptyComponent = this.emptyComponent.getCloneAsComponent();
+            this.appendChild(this.lastEmptyComponent);
+        }
+    }
+    hideLoading() {
+        if (this.lastLoadingComponent) this.lastLoadingComponent.remove();
+    }
+    hideEmpty() {
+        if (this.lastEmptyComponent) this.lastEmptyComponent.remove();
+    }
+    forceRender() {
+        this.render();
+    }
+}
+var $ce18c18667e54846$exports = {};
+$parcel$export($ce18c18667e54846$exports, "WFFormComponent", ()=>$ce18c18667e54846$export$e7173e584c7cbeff);
+class $ce18c18667e54846$export$e7173e584c7cbeff extends $5ce0995b4e579efe$export$b8941e06d24ae728 {
+    defaultFormDisplayStyle = "";
+    constructor(query){
+        super(query);
+        this.formComponent = this.getChildAsComponents("form")[0];
+        this.defaultFormDisplayStyle = window.getComputedStyle(this.formComponent.getElement()).display;
+    }
+    getFormData() {
+        const _data = {};
+        new FormData(this.formComponent.getElement()).forEach((val, key)=>{
+            if (_data[key]) _data[key] = [
+                _data[key],
+                val
+            ].flat();
+            else _data[key] = val;
+        });
+        return _data;
+    }
+    setFromData(data) {
+        Object.keys(data).forEach((key)=>{
+            this.getFormComponent().getElement().querySelector(`[name="${key}"]`).value = data[key];
+        });
+    }
+    onFormSubmit(cb) {
+        this.formComponent.getElement().onsubmit = (ev)=>{
+            ev.preventDefault();
+            ev.stopPropagation();
+            ev.stopImmediatePropagation();
+            cb(this.getFormData(), ev);
+        };
+    }
+    submitWebflowForm() {
+        const wfForm = Object.keys(this.formComponent.getElement()).filter((d)=>d.includes("jQuery")).map((d)=>this.formComponent.getElement()[d]).filter((d)=>typeof d === "object" && ".wForm" in d).map((d)=>d[".wForm"]).reduce((d)=>d);
+        if (wfForm && wfForm.handler) wfForm.handler(wfForm);
+        else if (wfForm && wfForm.action) this.formComponent.getElement().submit();
+    }
+    getFormComponent() {
+        return this.formComponent;
+    }
+    getSuccessComponent() {
+        return this.getChildAsComponents(".w-form-done")[0];
+    }
+    getErrorComponent() {
+        return this.getChildAsComponents(".w-form-fail")[0];
+    }
+    showSuccessState() {
+        this.formComponent.getElement().style.display = "none";
+        this.getErrorComponent().getElement().style.display = "none";
+        this.getSuccessComponent().getElement().style.display = "block";
+    }
+    showErrorState() {
+        this.getSuccessComponent().getElement().style.display = "none";
+        this.getErrorComponent().getElement().style.display = "block";
+        this.formComponent.getElement().style.display = this.defaultFormDisplayStyle;
+    }
+    showForm() {
+        this.getErrorComponent().getElement().style.display = "none";
+        this.getSuccessComponent().getElement().style.display = "none";
+        this.formComponent.getElement().style.display = this.defaultFormDisplayStyle;
+    }
+    disableForm() {
+        const _els = this.formComponent.getElement().querySelectorAll("input, select, option, textarea, button");
+        Array.from(_els).forEach((el)=>{
+            el.setAttribute("disabled", "disabled");
+        });
+    }
+    enableForm() {
+        const _els = this.formComponent.getElement().querySelectorAll("input, select, option, textarea, button");
+        Array.from(_els).forEach((el)=>{
+            el.removeAttribute("disabled");
+        });
+    }
+    getSubmitButton() {
+        return this.formComponent.getChildAsComponents(`[type="submit"]`)[0];
+    }
+    resetForm() {
+        this.formComponent.getElement().reset();
+    }
+    updateSubmitButtonText(text) {
+        this.getSubmitButton().setAttribute("value", text);
+    }
+}
+var $b73002af79232c1a$exports = {};
+$parcel$export($b73002af79232c1a$exports, "WFRoute", ()=>$b73002af79232c1a$export$4e1b92c1162557be);
+class $b73002af79232c1a$export$4e1b92c1162557be {
+    middlewareAllowExecutionOnFail = false;
+    constructor(route){
+        this.route = route;
+    }
+    withMiddleware(middleware, role, type = "allow", options = {}) {
+        this.middleware = middleware;
+        this.middlewareRole = role;
+        this.middlewareType = type;
+        if ("allowExecutionOnFail" in options) this.middlewareAllowExecutionOnFail = options.allowExecutionOnFail === true;
+        if ("onError" in options) this.middlewareErrorFn = options.onError;
+        return this;
+    }
+    validateRole() {
+        return this.middlewareType === "allow" ? this.middleware.allowTo(this.middlewareRole) : this.middleware.disallowedTo(this.middlewareRole);
+    }
+    execute(fn) {
+        const _match = $0b3f70b8f06eedca$export$6c50148cf1d992bd(this.route, location.pathname);
+        if (_match) {
+            $62881ab850a57a38$export$1c9f709888824e05("matched fn start", this.route, location.pathname);
+            if (this.middleware) {
+                const canAccess = this.validateRole();
+                $62881ab850a57a38$export$1c9f709888824e05("checking access role", this.route, this.middlewareRole, this.middlewareType, "canAccess", canAccess, this.middlewareAllowExecutionOnFail);
+                if (canAccess || this.middlewareAllowExecutionOnFail) fn({
+                    ..._match,
+                    ...$100caf27c28c32c0$export$1346b4a9ff9b6881()
+                }, canAccess, this.middleware.getAuth());
+                else this.middlewareErrorFn && this.middlewareErrorFn();
+            } else fn({
+                ..._match,
+                ...$100caf27c28c32c0$export$1346b4a9ff9b6881()
+            }, true);
+            $62881ab850a57a38$export$1c9f709888824e05("matched fn end", this.route, location.pathname);
+        } else $62881ab850a57a38$export$1c9f709888824e05("did not match", this.route, location.pathname);
+        return this;
+    }
+}
+var $16d2504bbe4bb459$exports = {};
+$parcel$export($16d2504bbe4bb459$exports, "onReady", ()=>$16d2504bbe4bb459$export$ef1639a4b889352d);
+/**
+ * @description execute code when the page is loaded
+ * @param cb callback function
+ */ const $16d2504bbe4bb459$export$ef1639a4b889352d = (cb)=>{
+    window.Webflow ||= [];
+    window.Webflow.push(()=>{
+        cb();
+    });
+};
+var $78395a99ad91c494$exports = {};
+$parcel$export($78395a99ad91c494$exports, "WFInvisibleForm", ()=>$78395a99ad91c494$export$bc36999d76b95c72);
+class $78395a99ad91c494$export$bc36999d76b95c72 {
+    loading = false;
+    loadingListener = new Map();
+    successListener = new Map();
+    errorListener = new Map();
+    constructor(formName = ""){
+        this.fromName = formName;
+        this.siteId = document.querySelector("html").getAttribute("data-wf-site") || "";
+    }
+    setFormName(formName) {
+        this.fromName = formName;
+    }
+    getFormName() {
+        return this.fromName;
+    }
+    setFormData(data) {
+        this.data = data;
+    }
+    getFormData() {
+        return this.data;
+    }
+    isLoading() {
+        return this.loading;
+    }
+    onLoadingChange(fn) {
+        const _id = (0, $iEn1Z$uuid.v4)();
+        this.loadingListener.set(_id, fn);
+        return ()=>{
+            this.loadingListener.delete(_id);
+        };
+    }
+    onSuccess(fn) {
+        const _id = (0, $iEn1Z$uuid.v4)();
+        this.successListener.set(_id, fn);
+        return ()=>{
+            this.successListener.delete(_id);
+        };
+    }
+    onError(fn) {
+        const _id = (0, $iEn1Z$uuid.v4)();
+        this.errorListener.set(_id, fn);
+        return ()=>{
+            this.errorListener.delete(_id);
+        };
+    }
+    updateLoadingState(state) {
+        this.loading = state;
+        this.loadingListener.forEach((fn)=>{
+            fn(this.loading);
+        });
+    }
+    formSubmitted() {
+        this.successListener.forEach((fn)=>{
+            fn();
+        });
+    }
+    formFailed() {
+        this.errorListener.forEach((fn)=>{
+            fn();
+        });
+    }
+    submitForm() {
+        const _updateStatus = (state)=>{
+            this.updateLoadingState(state);
+        };
+        const onFailed = ()=>{
+            this.formFailed();
+        };
+        const onDone = ()=>{
+            this.formSubmitted();
+        };
+        _updateStatus(true);
+        window["jQuery"].ajax({
+            url: `https://webflow.com/api/v1/form/${this.siteId}`,
+            type: "POST",
+            data: {
+                name: this.fromName || "Untitled Form",
+                source: location.href,
+                test: false,
+                fields: this.data,
+                dolphin: false
+            },
+            dataType: "json",
+            crossDomain: true
+        }).done(function(response) {
+            _updateStatus(false);
+            if (response && response.code === 200) onDone();
+            else onFailed();
+        }).fail(function() {
+            _updateStatus(false);
+            onFailed();
+        });
+    }
+}
+$parcel$exportWildcard(module.exports, $90b1e0f272b5544a$exports);
+$parcel$exportWildcard(module.exports, $336c7a32b438dc35$exports);
+$parcel$exportWildcard(module.exports, $5ce0995b4e579efe$exports);
+$parcel$exportWildcard(module.exports, $0105599dd5ebe189$exports);
+$parcel$exportWildcard(module.exports, $ce18c18667e54846$exports);
+$parcel$exportWildcard(module.exports, $b73002af79232c1a$exports);
+$parcel$exportWildcard(module.exports, $30d957643bf2e67a$exports);
+$parcel$exportWildcard(module.exports, $16d2504bbe4bb459$exports);
+$parcel$exportWildcard(module.exports, $78395a99ad91c494$exports);
+
+},{"116fc168c31b637d":"ggZPL"}],"ggZPL":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "v1", ()=>(0, _v1JsDefault.default));
+parcelHelpers.export(exports, "v3", ()=>(0, _v3JsDefault.default));
+parcelHelpers.export(exports, "v4", ()=>(0, _v4JsDefault.default));
+parcelHelpers.export(exports, "v5", ()=>(0, _v5JsDefault.default));
+parcelHelpers.export(exports, "NIL", ()=>(0, _nilJsDefault.default));
+parcelHelpers.export(exports, "version", ()=>(0, _versionJsDefault.default));
+parcelHelpers.export(exports, "validate", ()=>(0, _validateJsDefault.default));
+parcelHelpers.export(exports, "stringify", ()=>(0, _stringifyJsDefault.default));
+parcelHelpers.export(exports, "parse", ()=>(0, _parseJsDefault.default));
+var _v1Js = require("./v1.js");
+var _v1JsDefault = parcelHelpers.interopDefault(_v1Js);
+var _v3Js = require("./v3.js");
+var _v3JsDefault = parcelHelpers.interopDefault(_v3Js);
+var _v4Js = require("./v4.js");
+var _v4JsDefault = parcelHelpers.interopDefault(_v4Js);
+var _v5Js = require("./v5.js");
+var _v5JsDefault = parcelHelpers.interopDefault(_v5Js);
+var _nilJs = require("./nil.js");
+var _nilJsDefault = parcelHelpers.interopDefault(_nilJs);
+var _versionJs = require("./version.js");
+var _versionJsDefault = parcelHelpers.interopDefault(_versionJs);
+var _validateJs = require("./validate.js");
+var _validateJsDefault = parcelHelpers.interopDefault(_validateJs);
+var _stringifyJs = require("./stringify.js");
+var _stringifyJsDefault = parcelHelpers.interopDefault(_stringifyJs);
+var _parseJs = require("./parse.js");
+var _parseJsDefault = parcelHelpers.interopDefault(_parseJs);
+
+},{"./v1.js":"jG1dk","./v3.js":"ap9Ro","./v4.js":"6RfIs","./v5.js":"eBz2t","./nil.js":"8sEtz","./version.js":"4vEj5","./validate.js":"dfZI5","./stringify.js":"bFRkJ","./parse.js":"1KoND","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"jG1dk":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _rngJs = require("./rng.js");
+var _rngJsDefault = parcelHelpers.interopDefault(_rngJs);
+var _stringifyJs = require("./stringify.js"); // **`v1()` - Generate time-based UUID**
+//
+// Inspired by https://github.com/LiosK/UUID.js
+// and http://docs.python.org/library/uuid.html
+let _nodeId;
+let _clockseq; // Previous uuid creation time
+let _lastMSecs = 0;
+let _lastNSecs = 0; // See https://github.com/uuidjs/uuid for API details
+function v1(options, buf, offset) {
+    let i = buf && offset || 0;
+    const b = buf || new Array(16);
+    options = options || {};
+    let node = options.node || _nodeId;
+    let clockseq = options.clockseq !== undefined ? options.clockseq : _clockseq; // node and clockseq need to be initialized to random values if they're not
+    // specified.  We do this lazily to minimize issues related to insufficient
+    // system entropy.  See #189
+    if (node == null || clockseq == null) {
+        const seedBytes = options.random || (options.rng || (0, _rngJsDefault.default))();
+        if (node == null) // Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)
+        node = _nodeId = [
+            seedBytes[0] | 0x01,
+            seedBytes[1],
+            seedBytes[2],
+            seedBytes[3],
+            seedBytes[4],
+            seedBytes[5]
+        ];
+        if (clockseq == null) // Per 4.2.2, randomize (14 bit) clockseq
+        clockseq = _clockseq = (seedBytes[6] << 8 | seedBytes[7]) & 0x3fff;
+    } // UUID timestamps are 100 nano-second units since the Gregorian epoch,
+    // (1582-10-15 00:00).  JSNumbers aren't precise enough for this, so
+    // time is handled internally as 'msecs' (integer milliseconds) and 'nsecs'
+    // (100-nanoseconds offset from msecs) since unix epoch, 1970-01-01 00:00.
+    let msecs = options.msecs !== undefined ? options.msecs : Date.now(); // Per 4.2.1.2, use count of uuid's generated during the current clock
+    // cycle to simulate higher resolution clock
+    let nsecs = options.nsecs !== undefined ? options.nsecs : _lastNSecs + 1; // Time since last uuid creation (in msecs)
+    const dt = msecs - _lastMSecs + (nsecs - _lastNSecs) / 10000; // Per 4.2.1.2, Bump clockseq on clock regression
+    if (dt < 0 && options.clockseq === undefined) clockseq = clockseq + 1 & 0x3fff;
+     // Reset nsecs if clock regresses (new clockseq) or we've moved onto a new
+    // time interval
+    if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === undefined) nsecs = 0;
+     // Per 4.2.1.2 Throw error if too many uuids are requested
+    if (nsecs >= 10000) throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");
+    _lastMSecs = msecs;
+    _lastNSecs = nsecs;
+    _clockseq = clockseq; // Per 4.1.4 - Convert from unix epoch to Gregorian epoch
+    msecs += 12219292800000; // `time_low`
+    const tl = ((msecs & 0xfffffff) * 10000 + nsecs) % 0x100000000;
+    b[i++] = tl >>> 24 & 0xff;
+    b[i++] = tl >>> 16 & 0xff;
+    b[i++] = tl >>> 8 & 0xff;
+    b[i++] = tl & 0xff; // `time_mid`
+    const tmh = msecs / 0x100000000 * 10000 & 0xfffffff;
+    b[i++] = tmh >>> 8 & 0xff;
+    b[i++] = tmh & 0xff; // `time_high_and_version`
+    b[i++] = tmh >>> 24 & 0xf | 0x10; // include version
+    b[i++] = tmh >>> 16 & 0xff; // `clock_seq_hi_and_reserved` (Per 4.2.2 - include variant)
+    b[i++] = clockseq >>> 8 | 0x80; // `clock_seq_low`
+    b[i++] = clockseq & 0xff; // `node`
+    for(let n = 0; n < 6; ++n)b[i + n] = node[n];
+    return buf || (0, _stringifyJs.unsafeStringify)(b);
+}
+exports.default = v1;
+
+},{"./rng.js":"cHt7R","./stringify.js":"bFRkJ","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"cHt7R":[function(require,module,exports) {
+// Unique ID creation requires a high quality random # generator. In the browser we therefore
+// require the crypto API and do not support built-in fallback to lower quality random number
+// generators (like Math.random()).
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>rng);
+let getRandomValues;
+const rnds8 = new Uint8Array(16);
+function rng() {
+    // lazy load so that environments that need to polyfill have a chance to do so
+    if (!getRandomValues) {
+        // getRandomValues needs to be invoked in a context where "this" is a Crypto implementation.
+        getRandomValues = typeof crypto !== "undefined" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto);
+        if (!getRandomValues) throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");
+    }
+    return getRandomValues(rnds8);
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"5oERU":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"bFRkJ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "unsafeStringify", ()=>unsafeStringify);
+var _validateJs = require("./validate.js");
+var _validateJsDefault = parcelHelpers.interopDefault(_validateJs);
+/**
+ * Convert array of 16 byte values to UUID string format of the form:
+ * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+ */ const byteToHex = [];
+for(let i = 0; i < 256; ++i)byteToHex.push((i + 0x100).toString(16).slice(1));
+function unsafeStringify(arr, offset = 0) {
+    // Note: Be careful editing this code!  It's been tuned for performance
+    // and works in ways you may not expect. See https://github.com/uuidjs/uuid/pull/434
+    return byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]];
+}
+function stringify(arr, offset = 0) {
+    const uuid = unsafeStringify(arr, offset); // Consistency check for valid UUID.  If this throws, it's likely due to one
+    // of the following:
+    // - One or more input array values don't map to a hex octet (leading to
+    // "undefined" in the uuid)
+    // - Invalid input values for the RFC `version` or `variant` fields
+    if (!(0, _validateJsDefault.default)(uuid)) throw TypeError("Stringified UUID is invalid");
+    return uuid;
+}
+exports.default = stringify;
+
+},{"./validate.js":"dfZI5","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"dfZI5":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _regexJs = require("./regex.js");
+var _regexJsDefault = parcelHelpers.interopDefault(_regexJs);
+function validate(uuid) {
+    return typeof uuid === "string" && (0, _regexJsDefault.default).test(uuid);
+}
+exports.default = validate;
+
+},{"./regex.js":"5bk3T","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"5bk3T":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"ap9Ro":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _v35Js = require("./v35.js");
+var _v35JsDefault = parcelHelpers.interopDefault(_v35Js);
+var _md5Js = require("./md5.js");
+var _md5JsDefault = parcelHelpers.interopDefault(_md5Js);
+const v3 = (0, _v35JsDefault.default)("v3", 0x30, (0, _md5JsDefault.default));
+exports.default = v3;
+
+},{"./v35.js":"asOV2","./md5.js":"ieSzG","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"asOV2":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "DNS", ()=>DNS);
+parcelHelpers.export(exports, "URL", ()=>URL);
+parcelHelpers.export(exports, "default", ()=>v35);
+var _stringifyJs = require("./stringify.js");
+var _parseJs = require("./parse.js");
+var _parseJsDefault = parcelHelpers.interopDefault(_parseJs);
+function stringToBytes(str) {
+    str = unescape(encodeURIComponent(str)); // UTF8 escape
+    const bytes = [];
+    for(let i = 0; i < str.length; ++i)bytes.push(str.charCodeAt(i));
+    return bytes;
+}
+const DNS = "6ba7b810-9dad-11d1-80b4-00c04fd430c8";
+const URL = "6ba7b811-9dad-11d1-80b4-00c04fd430c8";
+function v35(name, version, hashfunc) {
+    function generateUUID(value, namespace, buf, offset) {
+        var _namespace;
+        if (typeof value === "string") value = stringToBytes(value);
+        if (typeof namespace === "string") namespace = (0, _parseJsDefault.default)(namespace);
+        if (((_namespace = namespace) === null || _namespace === void 0 ? void 0 : _namespace.length) !== 16) throw TypeError("Namespace must be array-like (16 iterable integer values, 0-255)");
+         // Compute hash of namespace and value, Per 4.3
+        // Future: Use spread syntax when supported on all platforms, e.g. `bytes =
+        // hashfunc([...namespace, ... value])`
+        let bytes = new Uint8Array(16 + value.length);
+        bytes.set(namespace);
+        bytes.set(value, namespace.length);
+        bytes = hashfunc(bytes);
+        bytes[6] = bytes[6] & 0x0f | version;
+        bytes[8] = bytes[8] & 0x3f | 0x80;
+        if (buf) {
+            offset = offset || 0;
+            for(let i = 0; i < 16; ++i)buf[offset + i] = bytes[i];
+            return buf;
+        }
+        return (0, _stringifyJs.unsafeStringify)(bytes);
+    } // Function#name is not settable on some platforms (#270)
+    try {
+        generateUUID.name = name; // eslint-disable-next-line no-empty
+    } catch (err) {} // For CommonJS default export support
+    generateUUID.DNS = DNS;
+    generateUUID.URL = URL;
+    return generateUUID;
+}
+
+},{"./stringify.js":"bFRkJ","./parse.js":"1KoND","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"1KoND":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _validateJs = require("./validate.js");
+var _validateJsDefault = parcelHelpers.interopDefault(_validateJs);
+function parse(uuid) {
+    if (!(0, _validateJsDefault.default)(uuid)) throw TypeError("Invalid UUID");
+    let v;
+    const arr = new Uint8Array(16); // Parse ########-....-....-....-............
+    arr[0] = (v = parseInt(uuid.slice(0, 8), 16)) >>> 24;
+    arr[1] = v >>> 16 & 0xff;
+    arr[2] = v >>> 8 & 0xff;
+    arr[3] = v & 0xff; // Parse ........-####-....-....-............
+    arr[4] = (v = parseInt(uuid.slice(9, 13), 16)) >>> 8;
+    arr[5] = v & 0xff; // Parse ........-....-####-....-............
+    arr[6] = (v = parseInt(uuid.slice(14, 18), 16)) >>> 8;
+    arr[7] = v & 0xff; // Parse ........-....-....-####-............
+    arr[8] = (v = parseInt(uuid.slice(19, 23), 16)) >>> 8;
+    arr[9] = v & 0xff; // Parse ........-....-....-....-############
+    // (Use "/" to avoid 32-bit truncation when bit-shifting high-order bytes)
+    arr[10] = (v = parseInt(uuid.slice(24, 36), 16)) / 0x10000000000 & 0xff;
+    arr[11] = v / 0x100000000 & 0xff;
+    arr[12] = v >>> 24 & 0xff;
+    arr[13] = v >>> 16 & 0xff;
+    arr[14] = v >>> 8 & 0xff;
+    arr[15] = v & 0xff;
+    return arr;
+}
+exports.default = parse;
+
+},{"./validate.js":"dfZI5","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"ieSzG":[function(require,module,exports) {
+/*
+ * Browser-compatible JavaScript MD5
+ *
+ * Modification of JavaScript MD5
+ * https://github.com/blueimp/JavaScript-MD5
+ *
+ * Copyright 2011, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * https://opensource.org/licenses/MIT
+ *
+ * Based on
+ * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
+ * Digest Algorithm, as defined in RFC 1321.
+ * Version 2.2 Copyright (C) Paul Johnston 1999 - 2009
+ * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+ * Distributed under the BSD License
+ * See http://pajhome.org.uk/crypt/md5 for more info.
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function md5(bytes) {
+    if (typeof bytes === "string") {
+        const msg = unescape(encodeURIComponent(bytes)); // UTF8 escape
+        bytes = new Uint8Array(msg.length);
+        for(let i = 0; i < msg.length; ++i)bytes[i] = msg.charCodeAt(i);
+    }
+    return md5ToHexEncodedArray(wordsToMd5(bytesToWords(bytes), bytes.length * 8));
+}
+/*
+ * Convert an array of little-endian words to an array of bytes
+ */ function md5ToHexEncodedArray(input) {
+    const output = [];
+    const length32 = input.length * 32;
+    const hexTab = "0123456789abcdef";
+    for(let i = 0; i < length32; i += 8){
+        const x = input[i >> 5] >>> i % 32 & 0xff;
+        const hex = parseInt(hexTab.charAt(x >>> 4 & 0x0f) + hexTab.charAt(x & 0x0f), 16);
+        output.push(hex);
+    }
+    return output;
+}
+/**
+ * Calculate output length with padding and bit length
+ */ function getOutputLength(inputLength8) {
+    return (inputLength8 + 64 >>> 9 << 4) + 14 + 1;
+}
+/*
+ * Calculate the MD5 of an array of little-endian words, and a bit length.
+ */ function wordsToMd5(x, len) {
+    /* append padding */ x[len >> 5] |= 0x80 << len % 32;
+    x[getOutputLength(len) - 1] = len;
+    let a = 1732584193;
+    let b = -271733879;
+    let c = -1732584194;
+    let d = 271733878;
+    for(let i = 0; i < x.length; i += 16){
+        const olda = a;
+        const oldb = b;
+        const oldc = c;
+        const oldd = d;
+        a = md5ff(a, b, c, d, x[i], 7, -680876936);
+        d = md5ff(d, a, b, c, x[i + 1], 12, -389564586);
+        c = md5ff(c, d, a, b, x[i + 2], 17, 606105819);
+        b = md5ff(b, c, d, a, x[i + 3], 22, -1044525330);
+        a = md5ff(a, b, c, d, x[i + 4], 7, -176418897);
+        d = md5ff(d, a, b, c, x[i + 5], 12, 1200080426);
+        c = md5ff(c, d, a, b, x[i + 6], 17, -1473231341);
+        b = md5ff(b, c, d, a, x[i + 7], 22, -45705983);
+        a = md5ff(a, b, c, d, x[i + 8], 7, 1770035416);
+        d = md5ff(d, a, b, c, x[i + 9], 12, -1958414417);
+        c = md5ff(c, d, a, b, x[i + 10], 17, -42063);
+        b = md5ff(b, c, d, a, x[i + 11], 22, -1990404162);
+        a = md5ff(a, b, c, d, x[i + 12], 7, 1804603682);
+        d = md5ff(d, a, b, c, x[i + 13], 12, -40341101);
+        c = md5ff(c, d, a, b, x[i + 14], 17, -1502002290);
+        b = md5ff(b, c, d, a, x[i + 15], 22, 1236535329);
+        a = md5gg(a, b, c, d, x[i + 1], 5, -165796510);
+        d = md5gg(d, a, b, c, x[i + 6], 9, -1069501632);
+        c = md5gg(c, d, a, b, x[i + 11], 14, 643717713);
+        b = md5gg(b, c, d, a, x[i], 20, -373897302);
+        a = md5gg(a, b, c, d, x[i + 5], 5, -701558691);
+        d = md5gg(d, a, b, c, x[i + 10], 9, 38016083);
+        c = md5gg(c, d, a, b, x[i + 15], 14, -660478335);
+        b = md5gg(b, c, d, a, x[i + 4], 20, -405537848);
+        a = md5gg(a, b, c, d, x[i + 9], 5, 568446438);
+        d = md5gg(d, a, b, c, x[i + 14], 9, -1019803690);
+        c = md5gg(c, d, a, b, x[i + 3], 14, -187363961);
+        b = md5gg(b, c, d, a, x[i + 8], 20, 1163531501);
+        a = md5gg(a, b, c, d, x[i + 13], 5, -1444681467);
+        d = md5gg(d, a, b, c, x[i + 2], 9, -51403784);
+        c = md5gg(c, d, a, b, x[i + 7], 14, 1735328473);
+        b = md5gg(b, c, d, a, x[i + 12], 20, -1926607734);
+        a = md5hh(a, b, c, d, x[i + 5], 4, -378558);
+        d = md5hh(d, a, b, c, x[i + 8], 11, -2022574463);
+        c = md5hh(c, d, a, b, x[i + 11], 16, 1839030562);
+        b = md5hh(b, c, d, a, x[i + 14], 23, -35309556);
+        a = md5hh(a, b, c, d, x[i + 1], 4, -1530992060);
+        d = md5hh(d, a, b, c, x[i + 4], 11, 1272893353);
+        c = md5hh(c, d, a, b, x[i + 7], 16, -155497632);
+        b = md5hh(b, c, d, a, x[i + 10], 23, -1094730640);
+        a = md5hh(a, b, c, d, x[i + 13], 4, 681279174);
+        d = md5hh(d, a, b, c, x[i], 11, -358537222);
+        c = md5hh(c, d, a, b, x[i + 3], 16, -722521979);
+        b = md5hh(b, c, d, a, x[i + 6], 23, 76029189);
+        a = md5hh(a, b, c, d, x[i + 9], 4, -640364487);
+        d = md5hh(d, a, b, c, x[i + 12], 11, -421815835);
+        c = md5hh(c, d, a, b, x[i + 15], 16, 530742520);
+        b = md5hh(b, c, d, a, x[i + 2], 23, -995338651);
+        a = md5ii(a, b, c, d, x[i], 6, -198630844);
+        d = md5ii(d, a, b, c, x[i + 7], 10, 1126891415);
+        c = md5ii(c, d, a, b, x[i + 14], 15, -1416354905);
+        b = md5ii(b, c, d, a, x[i + 5], 21, -57434055);
+        a = md5ii(a, b, c, d, x[i + 12], 6, 1700485571);
+        d = md5ii(d, a, b, c, x[i + 3], 10, -1894986606);
+        c = md5ii(c, d, a, b, x[i + 10], 15, -1051523);
+        b = md5ii(b, c, d, a, x[i + 1], 21, -2054922799);
+        a = md5ii(a, b, c, d, x[i + 8], 6, 1873313359);
+        d = md5ii(d, a, b, c, x[i + 15], 10, -30611744);
+        c = md5ii(c, d, a, b, x[i + 6], 15, -1560198380);
+        b = md5ii(b, c, d, a, x[i + 13], 21, 1309151649);
+        a = md5ii(a, b, c, d, x[i + 4], 6, -145523070);
+        d = md5ii(d, a, b, c, x[i + 11], 10, -1120210379);
+        c = md5ii(c, d, a, b, x[i + 2], 15, 718787259);
+        b = md5ii(b, c, d, a, x[i + 9], 21, -343485551);
+        a = safeAdd(a, olda);
+        b = safeAdd(b, oldb);
+        c = safeAdd(c, oldc);
+        d = safeAdd(d, oldd);
+    }
+    return [
+        a,
+        b,
+        c,
+        d
+    ];
+}
+/*
+ * Convert an array bytes to an array of little-endian words
+ * Characters >255 have their high-byte silently ignored.
+ */ function bytesToWords(input) {
+    if (input.length === 0) return [];
+    const length8 = input.length * 8;
+    const output = new Uint32Array(getOutputLength(length8));
+    for(let i = 0; i < length8; i += 8)output[i >> 5] |= (input[i / 8] & 0xff) << i % 32;
+    return output;
+}
+/*
+ * Add integers, wrapping at 2^32. This uses 16-bit operations internally
+ * to work around bugs in some JS interpreters.
+ */ function safeAdd(x, y) {
+    const lsw = (x & 0xffff) + (y & 0xffff);
+    const msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+    return msw << 16 | lsw & 0xffff;
+}
+/*
+ * Bitwise rotate a 32-bit number to the left.
+ */ function bitRotateLeft(num, cnt) {
+    return num << cnt | num >>> 32 - cnt;
+}
+/*
+ * These functions implement the four basic operations the algorithm uses.
+ */ function md5cmn(q, a, b, x, s, t) {
+    return safeAdd(bitRotateLeft(safeAdd(safeAdd(a, q), safeAdd(x, t)), s), b);
+}
+function md5ff(a, b, c, d, x, s, t) {
+    return md5cmn(b & c | ~b & d, a, b, x, s, t);
+}
+function md5gg(a, b, c, d, x, s, t) {
+    return md5cmn(b & d | c & ~d, a, b, x, s, t);
+}
+function md5hh(a, b, c, d, x, s, t) {
+    return md5cmn(b ^ c ^ d, a, b, x, s, t);
+}
+function md5ii(a, b, c, d, x, s, t) {
+    return md5cmn(c ^ (b | ~d), a, b, x, s, t);
+}
+exports.default = md5;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"6RfIs":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _nativeJs = require("./native.js");
+var _nativeJsDefault = parcelHelpers.interopDefault(_nativeJs);
+var _rngJs = require("./rng.js");
+var _rngJsDefault = parcelHelpers.interopDefault(_rngJs);
+var _stringifyJs = require("./stringify.js");
+function v4(options, buf, offset) {
+    if ((0, _nativeJsDefault.default).randomUUID && !buf && !options) return (0, _nativeJsDefault.default).randomUUID();
+    options = options || {};
+    const rnds = options.random || (options.rng || (0, _rngJsDefault.default))(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+    rnds[6] = rnds[6] & 0x0f | 0x40;
+    rnds[8] = rnds[8] & 0x3f | 0x80; // Copy bytes to buffer, if provided
+    if (buf) {
+        offset = offset || 0;
+        for(let i = 0; i < 16; ++i)buf[offset + i] = rnds[i];
+        return buf;
+    }
+    return (0, _stringifyJs.unsafeStringify)(rnds);
+}
+exports.default = v4;
+
+},{"./native.js":"8mdcZ","./rng.js":"cHt7R","./stringify.js":"bFRkJ","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"8mdcZ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const randomUUID = typeof crypto !== "undefined" && crypto.randomUUID && crypto.randomUUID.bind(crypto);
+exports.default = {
+    randomUUID
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"eBz2t":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _v35Js = require("./v35.js");
+var _v35JsDefault = parcelHelpers.interopDefault(_v35Js);
+var _sha1Js = require("./sha1.js");
+var _sha1JsDefault = parcelHelpers.interopDefault(_sha1Js);
+const v5 = (0, _v35JsDefault.default)("v5", 0x50, (0, _sha1JsDefault.default));
+exports.default = v5;
+
+},{"./v35.js":"asOV2","./sha1.js":"lger1","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"lger1":[function(require,module,exports) {
+// Adapted from Chris Veness' SHA1 code at
+// http://www.movable-type.co.uk/scripts/sha1.html
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function f(s, x, y, z) {
+    switch(s){
+        case 0:
+            return x & y ^ ~x & z;
+        case 1:
+            return x ^ y ^ z;
+        case 2:
+            return x & y ^ x & z ^ y & z;
+        case 3:
+            return x ^ y ^ z;
+    }
+}
+function ROTL(x, n) {
+    return x << n | x >>> 32 - n;
+}
+function sha1(bytes) {
+    const K = [
+        0x5a827999,
+        0x6ed9eba1,
+        0x8f1bbcdc,
+        0xca62c1d6
+    ];
+    const H = [
+        0x67452301,
+        0xefcdab89,
+        0x98badcfe,
+        0x10325476,
+        0xc3d2e1f0
+    ];
+    if (typeof bytes === "string") {
+        const msg = unescape(encodeURIComponent(bytes)); // UTF8 escape
+        bytes = [];
+        for(let i = 0; i < msg.length; ++i)bytes.push(msg.charCodeAt(i));
+    } else if (!Array.isArray(bytes)) // Convert Array-like to Array
+    bytes = Array.prototype.slice.call(bytes);
+    bytes.push(0x80);
+    const l = bytes.length / 4 + 2;
+    const N = Math.ceil(l / 16);
+    const M = new Array(N);
+    for(let i = 0; i < N; ++i){
+        const arr = new Uint32Array(16);
+        for(let j = 0; j < 16; ++j)arr[j] = bytes[i * 64 + j * 4] << 24 | bytes[i * 64 + j * 4 + 1] << 16 | bytes[i * 64 + j * 4 + 2] << 8 | bytes[i * 64 + j * 4 + 3];
+        M[i] = arr;
+    }
+    M[N - 1][14] = (bytes.length - 1) * 8 / Math.pow(2, 32);
+    M[N - 1][14] = Math.floor(M[N - 1][14]);
+    M[N - 1][15] = (bytes.length - 1) * 8 & 0xffffffff;
+    for(let i = 0; i < N; ++i){
+        const W = new Uint32Array(80);
+        for(let t = 0; t < 16; ++t)W[t] = M[i][t];
+        for(let t = 16; t < 80; ++t)W[t] = ROTL(W[t - 3] ^ W[t - 8] ^ W[t - 14] ^ W[t - 16], 1);
+        let a = H[0];
+        let b = H[1];
+        let c = H[2];
+        let d = H[3];
+        let e = H[4];
+        for(let t = 0; t < 80; ++t){
+            const s = Math.floor(t / 20);
+            const T = ROTL(a, 5) + f(s, b, c, d) + e + K[s] + W[t] >>> 0;
+            e = d;
+            d = c;
+            c = ROTL(b, 30) >>> 0;
+            b = a;
+            a = T;
+        }
+        H[0] = H[0] + a >>> 0;
+        H[1] = H[1] + b >>> 0;
+        H[2] = H[2] + c >>> 0;
+        H[3] = H[3] + d >>> 0;
+        H[4] = H[4] + e >>> 0;
+    }
+    return [
+        H[0] >> 24 & 0xff,
+        H[0] >> 16 & 0xff,
+        H[0] >> 8 & 0xff,
+        H[0] & 0xff,
+        H[1] >> 24 & 0xff,
+        H[1] >> 16 & 0xff,
+        H[1] >> 8 & 0xff,
+        H[1] & 0xff,
+        H[2] >> 24 & 0xff,
+        H[2] >> 16 & 0xff,
+        H[2] >> 8 & 0xff,
+        H[2] & 0xff,
+        H[3] >> 24 & 0xff,
+        H[3] >> 16 & 0xff,
+        H[3] >> 8 & 0xff,
+        H[3] & 0xff,
+        H[4] >> 24 & 0xff,
+        H[4] >> 16 & 0xff,
+        H[4] >> 8 & 0xff,
+        H[4] & 0xff
+    ];
+}
+exports.default = sha1;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"8sEtz":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = "00000000-0000-0000-0000-000000000000";
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"4vEj5":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _validateJs = require("./validate.js");
+var _validateJsDefault = parcelHelpers.interopDefault(_validateJs);
+function version(uuid) {
+    if (!(0, _validateJsDefault.default)(uuid)) throw TypeError("Invalid UUID");
+    return parseInt(uuid.slice(14, 15), 16);
+}
+exports.default = version;
+
+},{"./validate.js":"dfZI5","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"fnEL6":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "app", ()=>app);
+var _core = require("@xatom/core");
+var _auth = require("../modules/auth");
+const app = ()=>{
+    //will trigger route matches /auth/*
+    new (0, _core.WFRoute)("/auth/(.*)").withMiddleware((0, _auth.userMiddleware), "GUEST", "allow", {
+        onError () {
+            (0, _core.navigate)("/dashboard/task-list");
+        }
+    }).execute(()=>{
+        //will trigger route matches /auth/sign-up
+        new (0, _core.WFRoute)("/auth/sign-up").execute(()=>{
+            //lazy loading route
+            require("8dff4a7369311fc").then(({ signUp })=>signUp()).catch(console.error);
+        });
+        //will trigger route matches /auth/sign-in
+        new (0, _core.WFRoute)("/auth/sign-in").execute(()=>{
+            //lazy loading route
+            require("9b9ca3d1f354f9").then(({ signIn })=>signIn()).catch(console.error);
+        });
+        //will trigger route matches /auth/verify
+        new (0, _core.WFRoute)("/auth/verify").execute(()=>{
+            //lazy loading route
+            require("d2ff0736bf12c1b5").then(({ verify })=>verify()).catch(console.error);
+        });
+    });
+    //will trigger route matches /dashboard/*
+    new (0, _core.WFRoute)("/dashboard/(.*)").withMiddleware((0, _auth.userMiddleware), "USER", "allow", {
+        onError () {
+            (0, _core.navigate)("/auth/sign-in");
+        }
+    }).execute(()=>{
+        //will trigger route matches /dashboard/task-list
+        new (0, _core.WFRoute)("/dashboard/task-list").execute(()=>{
+            //lazy loading route
+            require("afea6a146fbc403c").then(({ taskList })=>taskList()).catch(console.error);
+        });
+    });
+};
+
+},{"@xatom/core":"8w4K8","../modules/auth":"du3Bh","8dff4a7369311fc":"bNcCE","9b9ca3d1f354f9":"60Ikj","d2ff0736bf12c1b5":"cS9T6","afea6a146fbc403c":"h4qbd","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"du3Bh":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "userAuth", ()=>userAuth);
+parcelHelpers.export(exports, "setUser", ()=>setUser);
+parcelHelpers.export(exports, "logout", ()=>logout);
+parcelHelpers.export(exports, "userMiddleware", ()=>userMiddleware);
+var _core = require("@xatom/core");
+var _supbase = require("../supbase");
+var _supbaseDefault = parcelHelpers.interopDefault(_supbase);
+const userAuth = new (0, _core.WFAuth)();
+//setting default role
+userAuth.setRole("GUEST");
+const setUser = (fullName, email)=>{
+    userAuth.setUser({
+        email,
+        fullName
+    });
+    userAuth.setRole("USER");
+};
+const logout = ()=>{
+    (0, _supbaseDefault.default).auth.signOut().then(()=>{
+        userAuth.logout();
+        (0, _core.navigate)("/");
+    });
+};
+const userMiddleware = new (0, _core.WFAuthMiddleware)(userAuth);
+
+},{"@xatom/core":"8w4K8","../supbase":"anyOU","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"anyOU":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "initSupabase", ()=>initSupabase);
+var _supabaseJs = require("@supabase/supabase-js");
+var _auth = require("../auth");
+const options = {
+    db: {
+        schema: "public"
+    },
+    auth: {
+        autoRefreshToken: true,
+        persistSession: true,
+        detectSessionInUrl: true
+    }
+};
+const supabaseUrl = "https://xttlirufzajdycfkkflu.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh0dGxpcnVmemFqZHljZmtrZmx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDg3Nzk5MTcsImV4cCI6MjAyNDM1NTkxN30.RbbPizmpuc4BeCk3V8qi2o746SYujfUKIZo2J3nGe68";
+const supabase = (0, _supabaseJs.createClient)(supabaseUrl, supabaseKey, options);
+const initSupabase = (cb)=>{
+    supabase.auth.getSession().then((data)=>{
+        if (!data.error && data.data && data.data.session) (0, _auth.setUser)(data.data.session.user.user_metadata.fullName, data.data.session.user.email);
+    }).catch((err)=>{
+        console.log(err);
+    }).finally(cb);
+};
+// supabase.auth
+//   .getSession()
+//   .then(console.log)
+//   .catch(console.error);
+// supabase.auth.onAuthStateChange((event, session) => {
+//   console.log(event, session);
+//   if (event === "INITIAL_SESSION") {
+//     // handle initial session
+//   } else if (event === "SIGNED_IN") {
+//     // handle sign in event
+//   } else if (event === "SIGNED_OUT") {
+//     // handle sign out event
+//   } else if (event === "PASSWORD_RECOVERY") {
+//     // handle password recovery event
+//   } else if (event === "TOKEN_REFRESHED") {
+//     // handle token refreshed event
+//   } else if (event === "USER_UPDATED") {
+//     // handle user updated event
+//   }
+// });
+exports.default = supabase;
+
+},{"@supabase/supabase-js":"jJzpM","../auth":"du3Bh","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"jJzpM":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "FunctionsHttpError", ()=>(0, _functionsJs.FunctionsHttpError));
+parcelHelpers.export(exports, "FunctionsFetchError", ()=>(0, _functionsJs.FunctionsFetchError));
+parcelHelpers.export(exports, "FunctionsRelayError", ()=>(0, _functionsJs.FunctionsRelayError));
+parcelHelpers.export(exports, "FunctionsError", ()=>(0, _functionsJs.FunctionsError));
+parcelHelpers.export(exports, "FunctionRegion", ()=>(0, _functionsJs.FunctionRegion));
+parcelHelpers.export(exports, "SupabaseClient", ()=>(0, _supabaseClientDefault.default));
+parcelHelpers.export(exports, "createClient", ()=>createClient);
+var _supabaseClient = require("./SupabaseClient");
+var _supabaseClientDefault = parcelHelpers.interopDefault(_supabaseClient);
+var _authJs = require("@supabase/auth-js");
+parcelHelpers.exportAll(_authJs, exports);
+var _functionsJs = require("@supabase/functions-js");
+var _realtimeJs = require("@supabase/realtime-js");
+parcelHelpers.exportAll(_realtimeJs, exports);
+const createClient = (supabaseUrl, supabaseKey, options)=>{
+    return new (0, _supabaseClientDefault.default)(supabaseUrl, supabaseKey, options);
+};
+
+},{"./SupabaseClient":"8QwKy","@supabase/auth-js":"H9zoK","@supabase/functions-js":false,"@supabase/realtime-js":"d0MPi","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"8QwKy":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _functionsJs = require("@supabase/functions-js");
+var _postgrestJs = require("@supabase/postgrest-js");
+var _realtimeJs = require("@supabase/realtime-js");
+var _storageJs = require("@supabase/storage-js");
+var _constants = require("./lib/constants");
+var _fetch = require("./lib/fetch");
+var _helpers = require("./lib/helpers");
+var _supabaseAuthClient = require("./lib/SupabaseAuthClient");
+var __awaiter = undefined && undefined.__awaiter || function(thisArg, _arguments, P, generator) {
+    function adopt(value) {
+        return value instanceof P ? value : new P(function(resolve) {
+            resolve(value);
+        });
+    }
+    return new (P || (P = Promise))(function(resolve, reject) {
+        function fulfilled(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function rejected(value) {
+            try {
+                step(generator["throw"](value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function step(result) {
+            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+class SupabaseClient {
+    /**
+     * Create a new client for use in the browser.
+     * @param supabaseUrl The unique Supabase URL which is supplied when you create a new project in your project dashboard.
+     * @param supabaseKey The unique Supabase Key which is supplied when you create a new project in your project dashboard.
+     * @param options.db.schema You can switch in between schemas. The schema needs to be on the list of exposed schemas inside Supabase.
+     * @param options.auth.autoRefreshToken Set to "true" if you want to automatically refresh the token before expiring.
+     * @param options.auth.persistSession Set to "true" if you want to automatically save the user session into local storage.
+     * @param options.auth.detectSessionInUrl Set to "true" if you want to automatically detects OAuth grants in the URL and signs in the user.
+     * @param options.realtime Options passed along to realtime-js constructor.
+     * @param options.global.fetch A custom fetch implementation.
+     * @param options.global.headers Any additional headers to send with each network request.
+     */ constructor(supabaseUrl, supabaseKey, options){
+        var _a, _b, _c, _d, _e, _f, _g, _h;
+        this.supabaseUrl = supabaseUrl;
+        this.supabaseKey = supabaseKey;
+        if (!supabaseUrl) throw new Error("supabaseUrl is required.");
+        if (!supabaseKey) throw new Error("supabaseKey is required.");
+        const _supabaseUrl = (0, _helpers.stripTrailingSlash)(supabaseUrl);
+        this.realtimeUrl = `${_supabaseUrl}/realtime/v1`.replace(/^http/i, "ws");
+        this.authUrl = `${_supabaseUrl}/auth/v1`;
+        this.storageUrl = `${_supabaseUrl}/storage/v1`;
+        this.functionsUrl = `${_supabaseUrl}/functions/v1`;
+        // default storage key uses the supabase project ref as a namespace
+        const defaultStorageKey = `sb-${new URL(this.authUrl).hostname.split(".")[0]}-auth-token`;
+        const DEFAULTS = {
+            db: (0, _constants.DEFAULT_DB_OPTIONS),
+            realtime: (0, _constants.DEFAULT_REALTIME_OPTIONS),
+            auth: Object.assign(Object.assign({}, (0, _constants.DEFAULT_AUTH_OPTIONS)), {
+                storageKey: defaultStorageKey
+            }),
+            global: (0, _constants.DEFAULT_GLOBAL_OPTIONS)
+        };
+        const settings = (0, _helpers.applySettingDefaults)(options !== null && options !== void 0 ? options : {}, DEFAULTS);
+        this.storageKey = (_b = (_a = settings.auth) === null || _a === void 0 ? void 0 : _a.storageKey) !== null && _b !== void 0 ? _b : "";
+        this.headers = (_d = (_c = settings.global) === null || _c === void 0 ? void 0 : _c.headers) !== null && _d !== void 0 ? _d : {};
+        this.auth = this._initSupabaseAuthClient((_e = settings.auth) !== null && _e !== void 0 ? _e : {}, this.headers, (_f = settings.global) === null || _f === void 0 ? void 0 : _f.fetch);
+        this.fetch = (0, _fetch.fetchWithAuth)(supabaseKey, this._getAccessToken.bind(this), (_g = settings.global) === null || _g === void 0 ? void 0 : _g.fetch);
+        this.realtime = this._initRealtimeClient(Object.assign({
+            headers: this.headers
+        }, settings.realtime));
+        this.rest = new (0, _postgrestJs.PostgrestClient)(`${_supabaseUrl}/rest/v1`, {
+            headers: this.headers,
+            schema: (_h = settings.db) === null || _h === void 0 ? void 0 : _h.schema,
+            fetch: this.fetch
+        });
+        this._listenForAuthEvents();
+    }
+    /**
+     * Supabase Functions allows you to deploy and invoke edge functions.
+     */ get functions() {
+        return new (0, _functionsJs.FunctionsClient)(this.functionsUrl, {
+            headers: this.headers,
+            customFetch: this.fetch
+        });
+    }
+    /**
+     * Supabase Storage allows you to manage user-generated content, such as photos or videos.
+     */ get storage() {
+        return new (0, _storageJs.StorageClient)(this.storageUrl, this.headers, this.fetch);
+    }
+    /**
+     * Perform a query on a table or a view.
+     *
+     * @param relation - The table or view name to query
+     */ from(relation) {
+        return this.rest.from(relation);
+    }
+    // NOTE: signatures must be kept in sync with PostgrestClient.schema
+    /**
+     * Select a schema to query or perform an function (rpc) call.
+     *
+     * The schema needs to be on the list of exposed schemas inside Supabase.
+     *
+     * @param schema - The schema to query
+     */ schema(schema) {
+        return this.rest.schema(schema);
+    }
+    // NOTE: signatures must be kept in sync with PostgrestClient.rpc
+    /**
+     * Perform a function call.
+     *
+     * @param fn - The function name to call
+     * @param args - The arguments to pass to the function call
+     * @param options - Named parameters
+     * @param options.head - When set to `true`, `data` will not be returned.
+     * Useful if you only need the count.
+     * @param options.count - Count algorithm to use to count rows returned by the
+     * function. Only applicable for [set-returning
+     * functions](https://www.postgresql.org/docs/current/functions-srf.html).
+     *
+     * `"exact"`: Exact but slow count algorithm. Performs a `COUNT(*)` under the
+     * hood.
+     *
+     * `"planned"`: Approximated but fast count algorithm. Uses the Postgres
+     * statistics under the hood.
+     *
+     * `"estimated"`: Uses exact count for low numbers and planned count for high
+     * numbers.
+     */ rpc(fn, args = {}, options = {}) {
+        return this.rest.rpc(fn, args, options);
+    }
+    /**
+     * Creates a Realtime channel with Broadcast, Presence, and Postgres Changes.
+     *
+     * @param {string} name - The name of the Realtime channel.
+     * @param {Object} opts - The options to pass to the Realtime channel.
+     *
+     */ channel(name, opts = {
+        config: {}
+    }) {
+        return this.realtime.channel(name, opts);
+    }
+    /**
+     * Returns all Realtime channels.
+     */ getChannels() {
+        return this.realtime.getChannels();
+    }
+    /**
+     * Unsubscribes and removes Realtime channel from Realtime client.
+     *
+     * @param {RealtimeChannel} channel - The name of the Realtime channel.
+     *
+     */ removeChannel(channel) {
+        return this.realtime.removeChannel(channel);
+    }
+    /**
+     * Unsubscribes and removes all Realtime channels from Realtime client.
+     */ removeAllChannels() {
+        return this.realtime.removeAllChannels();
+    }
+    _getAccessToken() {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function*() {
+            const { data } = yield this.auth.getSession();
+            return (_b = (_a = data.session) === null || _a === void 0 ? void 0 : _a.access_token) !== null && _b !== void 0 ? _b : null;
+        });
+    }
+    _initSupabaseAuthClient({ autoRefreshToken, persistSession, detectSessionInUrl, storage, storageKey, flowType, debug }, headers, fetch) {
+        const authHeaders = {
+            Authorization: `Bearer ${this.supabaseKey}`,
+            apikey: `${this.supabaseKey}`
+        };
+        return new (0, _supabaseAuthClient.SupabaseAuthClient)({
+            url: this.authUrl,
+            headers: Object.assign(Object.assign({}, authHeaders), headers),
+            storageKey: storageKey,
+            autoRefreshToken,
+            persistSession,
+            detectSessionInUrl,
+            storage,
+            flowType,
+            debug,
+            fetch
+        });
+    }
+    _initRealtimeClient(options) {
+        return new (0, _realtimeJs.RealtimeClient)(this.realtimeUrl, Object.assign(Object.assign({}, options), {
+            params: Object.assign({
+                apikey: this.supabaseKey
+            }, options === null || options === void 0 ? void 0 : options.params)
+        }));
+    }
+    _listenForAuthEvents() {
+        let data = this.auth.onAuthStateChange((event, session)=>{
+            this._handleTokenChanged(event, "CLIENT", session === null || session === void 0 ? void 0 : session.access_token);
+        });
+        return data;
+    }
+    _handleTokenChanged(event, source, token) {
+        if ((event === "TOKEN_REFRESHED" || event === "SIGNED_IN") && this.changedAccessToken !== token) {
+            // Token has changed
+            this.realtime.setAuth(token !== null && token !== void 0 ? token : null);
+            this.changedAccessToken = token;
+        } else if (event === "SIGNED_OUT") {
+            // Token is removed
+            this.realtime.setAuth(this.supabaseKey);
+            if (source == "STORAGE") this.auth.signOut();
+            this.changedAccessToken = undefined;
+        }
+    }
+}
+exports.default = SupabaseClient;
+
+},{"@supabase/functions-js":"1SHHd","@supabase/postgrest-js":"lIpFd","@supabase/realtime-js":"d0MPi","@supabase/storage-js":"d6HNz","./lib/constants":"iNMpT","./lib/fetch":"bL75C","./lib/helpers":"6daKy","./lib/SupabaseAuthClient":"fhW0J","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"1SHHd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "FunctionsClient", ()=>(0, _functionsClient.FunctionsClient));
+parcelHelpers.export(exports, "FunctionsError", ()=>(0, _types.FunctionsError));
+parcelHelpers.export(exports, "FunctionsFetchError", ()=>(0, _types.FunctionsFetchError));
+parcelHelpers.export(exports, "FunctionsHttpError", ()=>(0, _types.FunctionsHttpError));
+parcelHelpers.export(exports, "FunctionsRelayError", ()=>(0, _types.FunctionsRelayError));
+parcelHelpers.export(exports, "FunctionRegion", ()=>(0, _types.FunctionRegion));
+var _functionsClient = require("./FunctionsClient");
+var _types = require("./types");
+
+},{"./FunctionsClient":"kgqNf","./types":false,"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"kgqNf":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "FunctionsClient", ()=>FunctionsClient);
+var _helper = require("./helper");
+var _types = require("./types");
+var __awaiter = undefined && undefined.__awaiter || function(thisArg, _arguments, P, generator) {
+    function adopt(value) {
+        return value instanceof P ? value : new P(function(resolve) {
+            resolve(value);
+        });
+    }
+    return new (P || (P = Promise))(function(resolve, reject) {
+        function fulfilled(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function rejected(value) {
+            try {
+                step(generator["throw"](value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function step(result) {
+            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+class FunctionsClient {
+    constructor(url, { headers = {}, customFetch, region = (0, _types.FunctionRegion).Any } = {}){
+        this.url = url;
+        this.headers = headers;
+        this.region = region;
+        this.fetch = (0, _helper.resolveFetch)(customFetch);
+    }
+    /**
+     * Updates the authorization header
+     * @param token - the new jwt token sent in the authorisation header
+     */ setAuth(token) {
+        this.headers.Authorization = `Bearer ${token}`;
+    }
+    /**
+     * Invokes a function
+     * @param functionName - The name of the Function to invoke.
+     * @param options - Options for invoking the Function.
+     */ invoke(functionName, options = {}) {
+        var _a;
+        return __awaiter(this, void 0, void 0, function*() {
+            try {
+                const { headers, method, body: functionArgs } = options;
+                let _headers = {};
+                let { region } = options;
+                if (!region) region = this.region;
+                if (region && region !== "any") _headers["x-region"] = region;
+                let body;
+                if (functionArgs && (headers && !Object.prototype.hasOwnProperty.call(headers, "Content-Type") || !headers)) {
+                    if (typeof Blob !== "undefined" && functionArgs instanceof Blob || functionArgs instanceof ArrayBuffer) {
+                        // will work for File as File inherits Blob
+                        // also works for ArrayBuffer as it is the same underlying structure as a Blob
+                        _headers["Content-Type"] = "application/octet-stream";
+                        body = functionArgs;
+                    } else if (typeof functionArgs === "string") {
+                        // plain string
+                        _headers["Content-Type"] = "text/plain";
+                        body = functionArgs;
+                    } else if (typeof FormData !== "undefined" && functionArgs instanceof FormData) // don't set content-type headers
+                    // Request will automatically add the right boundary value
+                    body = functionArgs;
+                    else {
+                        // default, assume this is JSON
+                        _headers["Content-Type"] = "application/json";
+                        body = JSON.stringify(functionArgs);
+                    }
+                }
+                const response = yield this.fetch(`${this.url}/${functionName}`, {
+                    method: method || "POST",
+                    // headers priority is (high to low):
+                    // 1. invoke-level headers
+                    // 2. client-level headers
+                    // 3. default Content-Type header
+                    headers: Object.assign(Object.assign(Object.assign({}, _headers), this.headers), headers),
+                    body
+                }).catch((fetchError)=>{
+                    throw new (0, _types.FunctionsFetchError)(fetchError);
+                });
+                const isRelayError = response.headers.get("x-relay-error");
+                if (isRelayError && isRelayError === "true") throw new (0, _types.FunctionsRelayError)(response);
+                if (!response.ok) throw new (0, _types.FunctionsHttpError)(response);
+                let responseType = ((_a = response.headers.get("Content-Type")) !== null && _a !== void 0 ? _a : "text/plain").split(";")[0].trim();
+                let data;
+                if (responseType === "application/json") data = yield response.json();
+                else if (responseType === "application/octet-stream") data = yield response.blob();
+                else if (responseType === "multipart/form-data") data = yield response.formData();
+                else // default to text
+                data = yield response.text();
+                return {
+                    data,
+                    error: null
+                };
+            } catch (error) {
+                return {
+                    data: null,
+                    error
+                };
+            }
+        });
+    }
+}
+
+},{"./helper":"3lyjj","./types":"lzqBJ","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"3lyjj":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "resolveFetch", ()=>resolveFetch);
+const resolveFetch = (customFetch)=>{
+    let _fetch;
+    if (customFetch) _fetch = customFetch;
+    else if (typeof fetch === "undefined") _fetch = (...args)=>require("db8a7a5aa4509164").then(({ default: fetch1 })=>fetch1(...args));
+    else _fetch = fetch;
+    return (...args)=>_fetch(...args);
+};
+
+},{"db8a7a5aa4509164":"5aZ41","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"5aZ41":[function(require,module,exports) {
+module.exports = Promise.resolve(module.bundle.root("inpgO"));
+
+},{}],"lzqBJ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "FunctionsError", ()=>FunctionsError);
+parcelHelpers.export(exports, "FunctionsFetchError", ()=>FunctionsFetchError);
+parcelHelpers.export(exports, "FunctionsRelayError", ()=>FunctionsRelayError);
+parcelHelpers.export(exports, "FunctionsHttpError", ()=>FunctionsHttpError);
+parcelHelpers.export(exports, "FunctionRegion", ()=>FunctionRegion);
+class FunctionsError extends Error {
+    constructor(message, name = "FunctionsError", context){
+        super(message);
+        this.name = name;
+        this.context = context;
+    }
+}
+class FunctionsFetchError extends FunctionsError {
+    constructor(context){
+        super("Failed to send a request to the Edge Function", "FunctionsFetchError", context);
+    }
+}
+class FunctionsRelayError extends FunctionsError {
+    constructor(context){
+        super("Relay Error invoking the Edge Function", "FunctionsRelayError", context);
+    }
+}
+class FunctionsHttpError extends FunctionsError {
+    constructor(context){
+        super("Edge Function returned a non-2xx status code", "FunctionsHttpError", context);
+    }
+}
+var FunctionRegion;
+(function(FunctionRegion) {
+    FunctionRegion["Any"] = "any";
+    FunctionRegion["ApNortheast1"] = "ap-northeast-1";
+    FunctionRegion["ApNortheast2"] = "ap-northeast-2";
+    FunctionRegion["ApSouth1"] = "ap-south-1";
+    FunctionRegion["ApSoutheast1"] = "ap-southeast-1";
+    FunctionRegion["ApSoutheast2"] = "ap-southeast-2";
+    FunctionRegion["CaCentral1"] = "ca-central-1";
+    FunctionRegion["EuCentral1"] = "eu-central-1";
+    FunctionRegion["EuWest1"] = "eu-west-1";
+    FunctionRegion["EuWest2"] = "eu-west-2";
+    FunctionRegion["EuWest3"] = "eu-west-3";
+    FunctionRegion["SaEast1"] = "sa-east-1";
+    FunctionRegion["UsEast1"] = "us-east-1";
+    FunctionRegion["UsWest1"] = "us-west-1";
+    FunctionRegion["UsWest2"] = "us-west-2";
+})(FunctionRegion || (FunctionRegion = {}));
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"lIpFd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "PostgrestClient", ()=>(0, _postgrestClientDefault.default));
+parcelHelpers.export(exports, "PostgrestQueryBuilder", ()=>(0, _postgrestQueryBuilderDefault.default));
+parcelHelpers.export(exports, "PostgrestFilterBuilder", ()=>(0, _postgrestFilterBuilderDefault.default));
+parcelHelpers.export(exports, "PostgrestTransformBuilder", ()=>(0, _postgrestTransformBuilderDefault.default));
+parcelHelpers.export(exports, "PostgrestBuilder", ()=>(0, _postgrestBuilderDefault.default));
+var _postgrestClient = require("./PostgrestClient");
+var _postgrestClientDefault = parcelHelpers.interopDefault(_postgrestClient);
+var _postgrestQueryBuilder = require("./PostgrestQueryBuilder");
+var _postgrestQueryBuilderDefault = parcelHelpers.interopDefault(_postgrestQueryBuilder);
+var _postgrestFilterBuilder = require("./PostgrestFilterBuilder");
+var _postgrestFilterBuilderDefault = parcelHelpers.interopDefault(_postgrestFilterBuilder);
+var _postgrestTransformBuilder = require("./PostgrestTransformBuilder");
+var _postgrestTransformBuilderDefault = parcelHelpers.interopDefault(_postgrestTransformBuilder);
+var _postgrestBuilder = require("./PostgrestBuilder");
+var _postgrestBuilderDefault = parcelHelpers.interopDefault(_postgrestBuilder);
+
+},{"./PostgrestClient":"id607","./PostgrestQueryBuilder":"iiYGe","./PostgrestFilterBuilder":"8Yor9","./PostgrestTransformBuilder":"bJLIS","./PostgrestBuilder":"lp7k6","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"id607":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _postgrestQueryBuilder = require("./PostgrestQueryBuilder");
+var _postgrestQueryBuilderDefault = parcelHelpers.interopDefault(_postgrestQueryBuilder);
+var _postgrestFilterBuilder = require("./PostgrestFilterBuilder");
+var _postgrestFilterBuilderDefault = parcelHelpers.interopDefault(_postgrestFilterBuilder);
+var _constants = require("./constants");
+class PostgrestClient {
+    // TODO: Add back shouldThrowOnError once we figure out the typings
+    /**
+     * Creates a PostgREST client.
+     *
+     * @param url - URL of the PostgREST endpoint
+     * @param options - Named parameters
+     * @param options.headers - Custom headers
+     * @param options.schema - Postgres schema to switch to
+     * @param options.fetch - Custom fetch
+     */ constructor(url, { headers = {}, schema, fetch } = {}){
+        this.url = url;
+        this.headers = Object.assign(Object.assign({}, (0, _constants.DEFAULT_HEADERS)), headers);
+        this.schemaName = schema;
+        this.fetch = fetch;
+    }
+    /**
+     * Perform a query on a table or a view.
+     *
+     * @param relation - The table or view name to query
+     */ from(relation) {
+        const url = new URL(`${this.url}/${relation}`);
+        return new (0, _postgrestQueryBuilderDefault.default)(url, {
+            headers: Object.assign({}, this.headers),
+            schema: this.schemaName,
+            fetch: this.fetch
+        });
+    }
+    /**
+     * Select a schema to query or perform an function (rpc) call.
+     *
+     * The schema needs to be on the list of exposed schemas inside Supabase.
+     *
+     * @param schema - The schema to query
+     */ schema(schema) {
+        return new PostgrestClient(this.url, {
+            headers: this.headers,
+            schema,
+            fetch: this.fetch
+        });
+    }
+    /**
+     * Perform a function call.
+     *
+     * @param fn - The function name to call
+     * @param args - The arguments to pass to the function call
+     * @param options - Named parameters
+     * @param options.head - When set to `true`, `data` will not be returned.
+     * Useful if you only need the count.
+     * @param options.get - When set to `true`, the function will be called with
+     * read-only access mode.
+     * @param options.count - Count algorithm to use to count rows returned by the
+     * function. Only applicable for [set-returning
+     * functions](https://www.postgresql.org/docs/current/functions-srf.html).
+     *
+     * `"exact"`: Exact but slow count algorithm. Performs a `COUNT(*)` under the
+     * hood.
+     *
+     * `"planned"`: Approximated but fast count algorithm. Uses the Postgres
+     * statistics under the hood.
+     *
+     * `"estimated"`: Uses exact count for low numbers and planned count for high
+     * numbers.
+     */ rpc(fn, args = {}, { head = false, get = false, count } = {}) {
+        let method;
+        const url = new URL(`${this.url}/rpc/${fn}`);
+        let body;
+        if (head) {
+            method = "HEAD";
+            Object.entries(args).forEach(([name, value])=>{
+                url.searchParams.append(name, `${value}`);
+            });
+        } else if (get) {
+            method = "GET";
+            Object.entries(args).forEach(([name, value])=>{
+                url.searchParams.append(name, `${value}`);
+            });
+        } else {
+            method = "POST";
+            body = args;
+        }
+        const headers = Object.assign({}, this.headers);
+        if (count) headers["Prefer"] = `count=${count}`;
+        return new (0, _postgrestFilterBuilderDefault.default)({
+            method,
+            url,
+            headers,
+            schema: this.schemaName,
+            body,
+            fetch: this.fetch,
+            allowEmpty: false
+        });
+    }
+}
+exports.default = PostgrestClient;
+
+},{"./PostgrestQueryBuilder":"iiYGe","./PostgrestFilterBuilder":"8Yor9","./constants":"aQ01G","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"iiYGe":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _postgrestFilterBuilder = require("./PostgrestFilterBuilder");
+var _postgrestFilterBuilderDefault = parcelHelpers.interopDefault(_postgrestFilterBuilder);
+class PostgrestQueryBuilder {
+    constructor(url, { headers = {}, schema, fetch }){
+        this.url = url;
+        this.headers = headers;
+        this.schema = schema;
+        this.fetch = fetch;
+    }
+    /**
+     * Perform a SELECT query on the table or view.
+     *
+     * @param columns - The columns to retrieve, separated by commas. Columns can be renamed when returned with `customName:columnName`
+     *
+     * @param options - Named parameters
+     *
+     * @param options.head - When set to `true`, `data` will not be returned.
+     * Useful if you only need the count.
+     *
+     * @param options.count - Count algorithm to use to count rows in the table or view.
+     *
+     * `"exact"`: Exact but slow count algorithm. Performs a `COUNT(*)` under the
+     * hood.
+     *
+     * `"planned"`: Approximated but fast count algorithm. Uses the Postgres
+     * statistics under the hood.
+     *
+     * `"estimated"`: Uses exact count for low numbers and planned count for high
+     * numbers.
+     */ select(columns, { head = false, count } = {}) {
+        const method = head ? "HEAD" : "GET";
+        // Remove whitespaces except when quoted
+        let quoted = false;
+        const cleanedColumns = (columns !== null && columns !== void 0 ? columns : "*").split("").map((c)=>{
+            if (/\s/.test(c) && !quoted) return "";
+            if (c === '"') quoted = !quoted;
+            return c;
+        }).join("");
+        this.url.searchParams.set("select", cleanedColumns);
+        if (count) this.headers["Prefer"] = `count=${count}`;
+        return new (0, _postgrestFilterBuilderDefault.default)({
+            method,
+            url: this.url,
+            headers: this.headers,
+            schema: this.schema,
+            fetch: this.fetch,
+            allowEmpty: false
+        });
+    }
+    /**
+     * Perform an INSERT into the table or view.
+     *
+     * By default, inserted rows are not returned. To return it, chain the call
+     * with `.select()`.
+     *
+     * @param values - The values to insert. Pass an object to insert a single row
+     * or an array to insert multiple rows.
+     *
+     * @param options - Named parameters
+     *
+     * @param options.count - Count algorithm to use to count inserted rows.
+     *
+     * `"exact"`: Exact but slow count algorithm. Performs a `COUNT(*)` under the
+     * hood.
+     *
+     * `"planned"`: Approximated but fast count algorithm. Uses the Postgres
+     * statistics under the hood.
+     *
+     * `"estimated"`: Uses exact count for low numbers and planned count for high
+     * numbers.
+     *
+     * @param options.defaultToNull - Make missing fields default to `null`.
+     * Otherwise, use the default value for the column. Only applies for bulk
+     * inserts.
+     */ insert(values, { count, defaultToNull = true } = {}) {
+        const method = "POST";
+        const prefersHeaders = [];
+        if (this.headers["Prefer"]) prefersHeaders.push(this.headers["Prefer"]);
+        if (count) prefersHeaders.push(`count=${count}`);
+        if (!defaultToNull) prefersHeaders.push("missing=default");
+        this.headers["Prefer"] = prefersHeaders.join(",");
+        if (Array.isArray(values)) {
+            const columns = values.reduce((acc, x)=>acc.concat(Object.keys(x)), []);
+            if (columns.length > 0) {
+                const uniqueColumns = [
+                    ...new Set(columns)
+                ].map((column)=>`"${column}"`);
+                this.url.searchParams.set("columns", uniqueColumns.join(","));
+            }
+        }
+        return new (0, _postgrestFilterBuilderDefault.default)({
+            method,
+            url: this.url,
+            headers: this.headers,
+            schema: this.schema,
+            body: values,
+            fetch: this.fetch,
+            allowEmpty: false
+        });
+    }
+    /**
+     * Perform an UPSERT on the table or view. Depending on the column(s) passed
+     * to `onConflict`, `.upsert()` allows you to perform the equivalent of
+     * `.insert()` if a row with the corresponding `onConflict` columns doesn't
+     * exist, or if it does exist, perform an alternative action depending on
+     * `ignoreDuplicates`.
+     *
+     * By default, upserted rows are not returned. To return it, chain the call
+     * with `.select()`.
+     *
+     * @param values - The values to upsert with. Pass an object to upsert a
+     * single row or an array to upsert multiple rows.
+     *
+     * @param options - Named parameters
+     *
+     * @param options.onConflict - Comma-separated UNIQUE column(s) to specify how
+     * duplicate rows are determined. Two rows are duplicates if all the
+     * `onConflict` columns are equal.
+     *
+     * @param options.ignoreDuplicates - If `true`, duplicate rows are ignored. If
+     * `false`, duplicate rows are merged with existing rows.
+     *
+     * @param options.count - Count algorithm to use to count upserted rows.
+     *
+     * `"exact"`: Exact but slow count algorithm. Performs a `COUNT(*)` under the
+     * hood.
+     *
+     * `"planned"`: Approximated but fast count algorithm. Uses the Postgres
+     * statistics under the hood.
+     *
+     * `"estimated"`: Uses exact count for low numbers and planned count for high
+     * numbers.
+     *
+     * @param options.defaultToNull - Make missing fields default to `null`.
+     * Otherwise, use the default value for the column. This only applies when
+     * inserting new rows, not when merging with existing rows under
+     * `ignoreDuplicates: false`. This also only applies when doing bulk upserts.
+     */ upsert(values, { onConflict, ignoreDuplicates = false, count, defaultToNull = true } = {}) {
+        const method = "POST";
+        const prefersHeaders = [
+            `resolution=${ignoreDuplicates ? "ignore" : "merge"}-duplicates`
+        ];
+        if (onConflict !== undefined) this.url.searchParams.set("on_conflict", onConflict);
+        if (this.headers["Prefer"]) prefersHeaders.push(this.headers["Prefer"]);
+        if (count) prefersHeaders.push(`count=${count}`);
+        if (!defaultToNull) prefersHeaders.push("missing=default");
+        this.headers["Prefer"] = prefersHeaders.join(",");
+        if (Array.isArray(values)) {
+            const columns = values.reduce((acc, x)=>acc.concat(Object.keys(x)), []);
+            if (columns.length > 0) {
+                const uniqueColumns = [
+                    ...new Set(columns)
+                ].map((column)=>`"${column}"`);
+                this.url.searchParams.set("columns", uniqueColumns.join(","));
+            }
+        }
+        return new (0, _postgrestFilterBuilderDefault.default)({
+            method,
+            url: this.url,
+            headers: this.headers,
+            schema: this.schema,
+            body: values,
+            fetch: this.fetch,
+            allowEmpty: false
+        });
+    }
+    /**
+     * Perform an UPDATE on the table or view.
+     *
+     * By default, updated rows are not returned. To return it, chain the call
+     * with `.select()` after filters.
+     *
+     * @param values - The values to update with
+     *
+     * @param options - Named parameters
+     *
+     * @param options.count - Count algorithm to use to count updated rows.
+     *
+     * `"exact"`: Exact but slow count algorithm. Performs a `COUNT(*)` under the
+     * hood.
+     *
+     * `"planned"`: Approximated but fast count algorithm. Uses the Postgres
+     * statistics under the hood.
+     *
+     * `"estimated"`: Uses exact count for low numbers and planned count for high
+     * numbers.
+     */ update(values, { count } = {}) {
+        const method = "PATCH";
+        const prefersHeaders = [];
+        if (this.headers["Prefer"]) prefersHeaders.push(this.headers["Prefer"]);
+        if (count) prefersHeaders.push(`count=${count}`);
+        this.headers["Prefer"] = prefersHeaders.join(",");
+        return new (0, _postgrestFilterBuilderDefault.default)({
+            method,
+            url: this.url,
+            headers: this.headers,
+            schema: this.schema,
+            body: values,
+            fetch: this.fetch,
+            allowEmpty: false
+        });
+    }
+    /**
+     * Perform a DELETE on the table or view.
+     *
+     * By default, deleted rows are not returned. To return it, chain the call
+     * with `.select()` after filters.
+     *
+     * @param options - Named parameters
+     *
+     * @param options.count - Count algorithm to use to count deleted rows.
+     *
+     * `"exact"`: Exact but slow count algorithm. Performs a `COUNT(*)` under the
+     * hood.
+     *
+     * `"planned"`: Approximated but fast count algorithm. Uses the Postgres
+     * statistics under the hood.
+     *
+     * `"estimated"`: Uses exact count for low numbers and planned count for high
+     * numbers.
+     */ delete({ count } = {}) {
+        const method = "DELETE";
+        const prefersHeaders = [];
+        if (count) prefersHeaders.push(`count=${count}`);
+        if (this.headers["Prefer"]) prefersHeaders.unshift(this.headers["Prefer"]);
+        this.headers["Prefer"] = prefersHeaders.join(",");
+        return new (0, _postgrestFilterBuilderDefault.default)({
+            method,
+            url: this.url,
+            headers: this.headers,
+            schema: this.schema,
+            fetch: this.fetch,
+            allowEmpty: false
+        });
+    }
+}
+exports.default = PostgrestQueryBuilder;
+
+},{"./PostgrestFilterBuilder":"8Yor9","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"8Yor9":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _postgrestTransformBuilder = require("./PostgrestTransformBuilder");
+var _postgrestTransformBuilderDefault = parcelHelpers.interopDefault(_postgrestTransformBuilder);
+class PostgrestFilterBuilder extends (0, _postgrestTransformBuilderDefault.default) {
+    /**
+     * Match only rows where `column` is equal to `value`.
+     *
+     * To check if the value of `column` is NULL, you should use `.is()` instead.
+     *
+     * @param column - The column to filter on
+     * @param value - The value to filter with
+     */ eq(column, value) {
+        this.url.searchParams.append(column, `eq.${value}`);
+        return this;
+    }
+    /**
+     * Match only rows where `column` is not equal to `value`.
+     *
+     * @param column - The column to filter on
+     * @param value - The value to filter with
+     */ neq(column, value) {
+        this.url.searchParams.append(column, `neq.${value}`);
+        return this;
+    }
+    /**
+     * Match only rows where `column` is greater than `value`.
+     *
+     * @param column - The column to filter on
+     * @param value - The value to filter with
+     */ gt(column, value) {
+        this.url.searchParams.append(column, `gt.${value}`);
+        return this;
+    }
+    /**
+     * Match only rows where `column` is greater than or equal to `value`.
+     *
+     * @param column - The column to filter on
+     * @param value - The value to filter with
+     */ gte(column, value) {
+        this.url.searchParams.append(column, `gte.${value}`);
+        return this;
+    }
+    /**
+     * Match only rows where `column` is less than `value`.
+     *
+     * @param column - The column to filter on
+     * @param value - The value to filter with
+     */ lt(column, value) {
+        this.url.searchParams.append(column, `lt.${value}`);
+        return this;
+    }
+    /**
+     * Match only rows where `column` is less than or equal to `value`.
+     *
+     * @param column - The column to filter on
+     * @param value - The value to filter with
+     */ lte(column, value) {
+        this.url.searchParams.append(column, `lte.${value}`);
+        return this;
+    }
+    /**
+     * Match only rows where `column` matches `pattern` case-sensitively.
+     *
+     * @param column - The column to filter on
+     * @param pattern - The pattern to match with
+     */ like(column, pattern) {
+        this.url.searchParams.append(column, `like.${pattern}`);
+        return this;
+    }
+    /**
+     * Match only rows where `column` matches all of `patterns` case-sensitively.
+     *
+     * @param column - The column to filter on
+     * @param patterns - The patterns to match with
+     */ likeAllOf(column, patterns) {
+        this.url.searchParams.append(column, `like(all).{${patterns.join(",")}}`);
+        return this;
+    }
+    /**
+     * Match only rows where `column` matches any of `patterns` case-sensitively.
+     *
+     * @param column - The column to filter on
+     * @param patterns - The patterns to match with
+     */ likeAnyOf(column, patterns) {
+        this.url.searchParams.append(column, `like(any).{${patterns.join(",")}}`);
+        return this;
+    }
+    /**
+     * Match only rows where `column` matches `pattern` case-insensitively.
+     *
+     * @param column - The column to filter on
+     * @param pattern - The pattern to match with
+     */ ilike(column, pattern) {
+        this.url.searchParams.append(column, `ilike.${pattern}`);
+        return this;
+    }
+    /**
+     * Match only rows where `column` matches all of `patterns` case-insensitively.
+     *
+     * @param column - The column to filter on
+     * @param patterns - The patterns to match with
+     */ ilikeAllOf(column, patterns) {
+        this.url.searchParams.append(column, `ilike(all).{${patterns.join(",")}}`);
+        return this;
+    }
+    /**
+     * Match only rows where `column` matches any of `patterns` case-insensitively.
+     *
+     * @param column - The column to filter on
+     * @param patterns - The patterns to match with
+     */ ilikeAnyOf(column, patterns) {
+        this.url.searchParams.append(column, `ilike(any).{${patterns.join(",")}}`);
+        return this;
+    }
+    /**
+     * Match only rows where `column` IS `value`.
+     *
+     * For non-boolean columns, this is only relevant for checking if the value of
+     * `column` is NULL by setting `value` to `null`.
+     *
+     * For boolean columns, you can also set `value` to `true` or `false` and it
+     * will behave the same way as `.eq()`.
+     *
+     * @param column - The column to filter on
+     * @param value - The value to filter with
+     */ is(column, value) {
+        this.url.searchParams.append(column, `is.${value}`);
+        return this;
+    }
+    /**
+     * Match only rows where `column` is included in the `values` array.
+     *
+     * @param column - The column to filter on
+     * @param values - The values array to filter with
+     */ in(column, values) {
+        const cleanedValues = Array.from(new Set(values)).map((s)=>{
+            // handle postgrest reserved characters
+            // https://postgrest.org/en/v7.0.0/api.html#reserved-characters
+            if (typeof s === "string" && new RegExp("[,()]").test(s)) return `"${s}"`;
+            else return `${s}`;
+        }).join(",");
+        this.url.searchParams.append(column, `in.(${cleanedValues})`);
+        return this;
+    }
+    /**
+     * Only relevant for jsonb, array, and range columns. Match only rows where
+     * `column` contains every element appearing in `value`.
+     *
+     * @param column - The jsonb, array, or range column to filter on
+     * @param value - The jsonb, array, or range value to filter with
+     */ contains(column, value) {
+        if (typeof value === "string") // range types can be inclusive '[', ']' or exclusive '(', ')' so just
+        // keep it simple and accept a string
+        this.url.searchParams.append(column, `cs.${value}`);
+        else if (Array.isArray(value)) // array
+        this.url.searchParams.append(column, `cs.{${value.join(",")}}`);
+        else // json
+        this.url.searchParams.append(column, `cs.${JSON.stringify(value)}`);
+        return this;
+    }
+    /**
+     * Only relevant for jsonb, array, and range columns. Match only rows where
+     * every element appearing in `column` is contained by `value`.
+     *
+     * @param column - The jsonb, array, or range column to filter on
+     * @param value - The jsonb, array, or range value to filter with
+     */ containedBy(column, value) {
+        if (typeof value === "string") // range
+        this.url.searchParams.append(column, `cd.${value}`);
+        else if (Array.isArray(value)) // array
+        this.url.searchParams.append(column, `cd.{${value.join(",")}}`);
+        else // json
+        this.url.searchParams.append(column, `cd.${JSON.stringify(value)}`);
+        return this;
+    }
+    /**
+     * Only relevant for range columns. Match only rows where every element in
+     * `column` is greater than any element in `range`.
+     *
+     * @param column - The range column to filter on
+     * @param range - The range to filter with
+     */ rangeGt(column, range) {
+        this.url.searchParams.append(column, `sr.${range}`);
+        return this;
+    }
+    /**
+     * Only relevant for range columns. Match only rows where every element in
+     * `column` is either contained in `range` or greater than any element in
+     * `range`.
+     *
+     * @param column - The range column to filter on
+     * @param range - The range to filter with
+     */ rangeGte(column, range) {
+        this.url.searchParams.append(column, `nxl.${range}`);
+        return this;
+    }
+    /**
+     * Only relevant for range columns. Match only rows where every element in
+     * `column` is less than any element in `range`.
+     *
+     * @param column - The range column to filter on
+     * @param range - The range to filter with
+     */ rangeLt(column, range) {
+        this.url.searchParams.append(column, `sl.${range}`);
+        return this;
+    }
+    /**
+     * Only relevant for range columns. Match only rows where every element in
+     * `column` is either contained in `range` or less than any element in
+     * `range`.
+     *
+     * @param column - The range column to filter on
+     * @param range - The range to filter with
+     */ rangeLte(column, range) {
+        this.url.searchParams.append(column, `nxr.${range}`);
+        return this;
+    }
+    /**
+     * Only relevant for range columns. Match only rows where `column` is
+     * mutually exclusive to `range` and there can be no element between the two
+     * ranges.
+     *
+     * @param column - The range column to filter on
+     * @param range - The range to filter with
+     */ rangeAdjacent(column, range) {
+        this.url.searchParams.append(column, `adj.${range}`);
+        return this;
+    }
+    /**
+     * Only relevant for array and range columns. Match only rows where
+     * `column` and `value` have an element in common.
+     *
+     * @param column - The array or range column to filter on
+     * @param value - The array or range value to filter with
+     */ overlaps(column, value) {
+        if (typeof value === "string") // range
+        this.url.searchParams.append(column, `ov.${value}`);
+        else // array
+        this.url.searchParams.append(column, `ov.{${value.join(",")}}`);
+        return this;
+    }
+    /**
+     * Only relevant for text and tsvector columns. Match only rows where
+     * `column` matches the query string in `query`.
+     *
+     * @param column - The text or tsvector column to filter on
+     * @param query - The query text to match with
+     * @param options - Named parameters
+     * @param options.config - The text search configuration to use
+     * @param options.type - Change how the `query` text is interpreted
+     */ textSearch(column, query, { config, type } = {}) {
+        let typePart = "";
+        if (type === "plain") typePart = "pl";
+        else if (type === "phrase") typePart = "ph";
+        else if (type === "websearch") typePart = "w";
+        const configPart = config === undefined ? "" : `(${config})`;
+        this.url.searchParams.append(column, `${typePart}fts${configPart}.${query}`);
+        return this;
+    }
+    /**
+     * Match only rows where each column in `query` keys is equal to its
+     * associated value. Shorthand for multiple `.eq()`s.
+     *
+     * @param query - The object to filter with, with column names as keys mapped
+     * to their filter values
+     */ match(query) {
+        Object.entries(query).forEach(([column, value])=>{
+            this.url.searchParams.append(column, `eq.${value}`);
+        });
+        return this;
+    }
+    /**
+     * Match only rows which doesn't satisfy the filter.
+     *
+     * Unlike most filters, `opearator` and `value` are used as-is and need to
+     * follow [PostgREST
+     * syntax](https://postgrest.org/en/stable/api.html#operators). You also need
+     * to make sure they are properly sanitized.
+     *
+     * @param column - The column to filter on
+     * @param operator - The operator to be negated to filter with, following
+     * PostgREST syntax
+     * @param value - The value to filter with, following PostgREST syntax
+     */ not(column, operator, value) {
+        this.url.searchParams.append(column, `not.${operator}.${value}`);
+        return this;
+    }
+    /**
+     * Match only rows which satisfy at least one of the filters.
+     *
+     * Unlike most filters, `filters` is used as-is and needs to follow [PostgREST
+     * syntax](https://postgrest.org/en/stable/api.html#operators). You also need
+     * to make sure it's properly sanitized.
+     *
+     * It's currently not possible to do an `.or()` filter across multiple tables.
+     *
+     * @param filters - The filters to use, following PostgREST syntax
+     * @param options - Named parameters
+     * @param options.referencedTable - Set this to filter on referenced tables
+     * instead of the parent table
+     * @param options.foreignTable - Deprecated, use `referencedTable` instead
+     */ or(filters, { foreignTable, referencedTable = foreignTable } = {}) {
+        const key = referencedTable ? `${referencedTable}.or` : "or";
+        this.url.searchParams.append(key, `(${filters})`);
+        return this;
+    }
+    /**
+     * Match only rows which satisfy the filter. This is an escape hatch - you
+     * should use the specific filter methods wherever possible.
+     *
+     * Unlike most filters, `opearator` and `value` are used as-is and need to
+     * follow [PostgREST
+     * syntax](https://postgrest.org/en/stable/api.html#operators). You also need
+     * to make sure they are properly sanitized.
+     *
+     * @param column - The column to filter on
+     * @param operator - The operator to filter with, following PostgREST syntax
+     * @param value - The value to filter with, following PostgREST syntax
+     */ filter(column, operator, value) {
+        this.url.searchParams.append(column, `${operator}.${value}`);
+        return this;
+    }
+}
+exports.default = PostgrestFilterBuilder;
+
+},{"./PostgrestTransformBuilder":"bJLIS","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"bJLIS":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _postgrestBuilder = require("./PostgrestBuilder");
+var _postgrestBuilderDefault = parcelHelpers.interopDefault(_postgrestBuilder);
+class PostgrestTransformBuilder extends (0, _postgrestBuilderDefault.default) {
+    /**
+     * Perform a SELECT on the query result.
+     *
+     * By default, `.insert()`, `.update()`, `.upsert()`, and `.delete()` do not
+     * return modified rows. By calling this method, modified rows are returned in
+     * `data`.
+     *
+     * @param columns - The columns to retrieve, separated by commas
+     */ select(columns) {
+        // Remove whitespaces except when quoted
+        let quoted = false;
+        const cleanedColumns = (columns !== null && columns !== void 0 ? columns : "*").split("").map((c)=>{
+            if (/\s/.test(c) && !quoted) return "";
+            if (c === '"') quoted = !quoted;
+            return c;
+        }).join("");
+        this.url.searchParams.set("select", cleanedColumns);
+        if (this.headers["Prefer"]) this.headers["Prefer"] += ",";
+        this.headers["Prefer"] += "return=representation";
+        return this;
+    }
+    /**
+     * Order the query result by `column`.
+     *
+     * You can call this method multiple times to order by multiple columns.
+     *
+     * You can order referenced tables, but it only affects the ordering of the
+     * parent table if you use `!inner` in the query.
+     *
+     * @param column - The column to order by
+     * @param options - Named parameters
+     * @param options.ascending - If `true`, the result will be in ascending order
+     * @param options.nullsFirst - If `true`, `null`s appear first. If `false`,
+     * `null`s appear last.
+     * @param options.referencedTable - Set this to order a referenced table by
+     * its columns
+     * @param options.foreignTable - Deprecated, use `options.referencedTable`
+     * instead
+     */ order(column, { ascending = true, nullsFirst, foreignTable, referencedTable = foreignTable } = {}) {
+        const key = referencedTable ? `${referencedTable}.order` : "order";
+        const existingOrder = this.url.searchParams.get(key);
+        this.url.searchParams.set(key, `${existingOrder ? `${existingOrder},` : ""}${column}.${ascending ? "asc" : "desc"}${nullsFirst === undefined ? "" : nullsFirst ? ".nullsfirst" : ".nullslast"}`);
+        return this;
+    }
+    /**
+     * Limit the query result by `count`.
+     *
+     * @param count - The maximum number of rows to return
+     * @param options - Named parameters
+     * @param options.referencedTable - Set this to limit rows of referenced
+     * tables instead of the parent table
+     * @param options.foreignTable - Deprecated, use `options.referencedTable`
+     * instead
+     */ limit(count, { foreignTable, referencedTable = foreignTable } = {}) {
+        const key = typeof referencedTable === "undefined" ? "limit" : `${referencedTable}.limit`;
+        this.url.searchParams.set(key, `${count}`);
+        return this;
+    }
+    /**
+     * Limit the query result by starting at an offset (`from`) and ending at the offset (`from + to`).
+     * Only records within this range are returned.
+     * This respects the query order and if there is no order clause the range could behave unexpectedly.
+     * The `from` and `to` values are 0-based and inclusive: `range(1, 3)` will include the second, third
+     * and fourth rows of the query.
+     *
+     * @param from - The starting index from which to limit the result
+     * @param to - The last index to which to limit the result
+     * @param options - Named parameters
+     * @param options.referencedTable - Set this to limit rows of referenced
+     * tables instead of the parent table
+     * @param options.foreignTable - Deprecated, use `options.referencedTable`
+     * instead
+     */ range(from, to, { foreignTable, referencedTable = foreignTable } = {}) {
+        const keyOffset = typeof referencedTable === "undefined" ? "offset" : `${referencedTable}.offset`;
+        const keyLimit = typeof referencedTable === "undefined" ? "limit" : `${referencedTable}.limit`;
+        this.url.searchParams.set(keyOffset, `${from}`);
+        // Range is inclusive, so add 1
+        this.url.searchParams.set(keyLimit, `${to - from + 1}`);
+        return this;
+    }
+    /**
+     * Set the AbortSignal for the fetch request.
+     *
+     * @param signal - The AbortSignal to use for the fetch request
+     */ abortSignal(signal) {
+        this.signal = signal;
+        return this;
+    }
+    /**
+     * Return `data` as a single object instead of an array of objects.
+     *
+     * Query result must be one row (e.g. using `.limit(1)`), otherwise this
+     * returns an error.
+     */ single() {
+        this.headers["Accept"] = "application/vnd.pgrst.object+json";
+        return this;
+    }
+    /**
+     * Return `data` as a single object instead of an array of objects.
+     *
+     * Query result must be zero or one row (e.g. using `.limit(1)`), otherwise
+     * this returns an error.
+     */ maybeSingle() {
+        // Temporary partial fix for https://github.com/supabase/postgrest-js/issues/361
+        // Issue persists e.g. for `.insert([...]).select().maybeSingle()`
+        if (this.method === "GET") this.headers["Accept"] = "application/json";
+        else this.headers["Accept"] = "application/vnd.pgrst.object+json";
+        this.isMaybeSingle = true;
+        return this;
+    }
+    /**
+     * Return `data` as a string in CSV format.
+     */ csv() {
+        this.headers["Accept"] = "text/csv";
+        return this;
+    }
+    /**
+     * Return `data` as an object in [GeoJSON](https://geojson.org) format.
+     */ geojson() {
+        this.headers["Accept"] = "application/geo+json";
+        return this;
+    }
+    /**
+     * Return `data` as the EXPLAIN plan for the query.
+     *
+     * You need to enable the
+     * [db_plan_enabled](https://supabase.com/docs/guides/database/debugging-performance#enabling-explain)
+     * setting before using this method.
+     *
+     * @param options - Named parameters
+     *
+     * @param options.analyze - If `true`, the query will be executed and the
+     * actual run time will be returned
+     *
+     * @param options.verbose - If `true`, the query identifier will be returned
+     * and `data` will include the output columns of the query
+     *
+     * @param options.settings - If `true`, include information on configuration
+     * parameters that affect query planning
+     *
+     * @param options.buffers - If `true`, include information on buffer usage
+     *
+     * @param options.wal - If `true`, include information on WAL record generation
+     *
+     * @param options.format - The format of the output, can be `"text"` (default)
+     * or `"json"`
+     */ explain({ analyze = false, verbose = false, settings = false, buffers = false, wal = false, format = "text" } = {}) {
+        var _a;
+        const options = [
+            analyze ? "analyze" : null,
+            verbose ? "verbose" : null,
+            settings ? "settings" : null,
+            buffers ? "buffers" : null,
+            wal ? "wal" : null
+        ].filter(Boolean).join("|");
+        // An Accept header can carry multiple media types but postgrest-js always sends one
+        const forMediatype = (_a = this.headers["Accept"]) !== null && _a !== void 0 ? _a : "application/json";
+        this.headers["Accept"] = `application/vnd.pgrst.plan+${format}; for="${forMediatype}"; options=${options};`;
+        if (format === "json") return this;
+        else return this;
+    }
+    /**
+     * Rollback the query.
+     *
+     * `data` will still be returned, but the query is not committed.
+     */ rollback() {
+        var _a;
+        if (((_a = this.headers["Prefer"]) !== null && _a !== void 0 ? _a : "").trim().length > 0) this.headers["Prefer"] += ",tx=rollback";
+        else this.headers["Prefer"] = "tx=rollback";
+        return this;
+    }
+    /**
+     * Override the type of the returned `data`.
+     *
+     * @typeParam NewResult - The new result type to override with
+     */ returns() {
+        return this;
+    }
+}
+exports.default = PostgrestTransformBuilder;
+
+},{"./PostgrestBuilder":"lp7k6","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"lp7k6":[function(require,module,exports) {
+// @ts-ignore
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _nodeFetch = require("@supabase/node-fetch");
+var _nodeFetchDefault = parcelHelpers.interopDefault(_nodeFetch);
+var _postgrestError = require("./PostgrestError");
+var _postgrestErrorDefault = parcelHelpers.interopDefault(_postgrestError);
+class PostgrestBuilder {
+    constructor(builder){
+        this.shouldThrowOnError = false;
+        this.method = builder.method;
+        this.url = builder.url;
+        this.headers = builder.headers;
+        this.schema = builder.schema;
+        this.body = builder.body;
+        this.shouldThrowOnError = builder.shouldThrowOnError;
+        this.signal = builder.signal;
+        this.isMaybeSingle = builder.isMaybeSingle;
+        if (builder.fetch) this.fetch = builder.fetch;
+        else if (typeof fetch === "undefined") this.fetch = (0, _nodeFetchDefault.default);
+        else this.fetch = fetch;
+    }
+    /**
+     * If there's an error with the query, throwOnError will reject the promise by
+     * throwing the error instead of returning it as part of a successful response.
+     *
+     * {@link https://github.com/supabase/supabase-js/issues/92}
+     */ throwOnError() {
+        this.shouldThrowOnError = true;
+        return this;
+    }
+    then(onfulfilled, onrejected) {
+        // https://postgrest.org/en/stable/api.html#switching-schemas
+        if (this.schema === undefined) ;
+        else if ([
+            "GET",
+            "HEAD"
+        ].includes(this.method)) this.headers["Accept-Profile"] = this.schema;
+        else this.headers["Content-Profile"] = this.schema;
+        if (this.method !== "GET" && this.method !== "HEAD") this.headers["Content-Type"] = "application/json";
+        // NOTE: Invoke w/o `this` to avoid illegal invocation error.
+        // https://github.com/supabase/postgrest-js/pull/247
+        const _fetch = this.fetch;
+        let res = _fetch(this.url.toString(), {
+            method: this.method,
+            headers: this.headers,
+            body: JSON.stringify(this.body),
+            signal: this.signal
+        }).then(async (res)=>{
+            var _a, _b, _c;
+            let error = null;
+            let data = null;
+            let count = null;
+            let status = res.status;
+            let statusText = res.statusText;
+            if (res.ok) {
+                if (this.method !== "HEAD") {
+                    const body = await res.text();
+                    if (body === "") ;
+                    else if (this.headers["Accept"] === "text/csv") data = body;
+                    else if (this.headers["Accept"] && this.headers["Accept"].includes("application/vnd.pgrst.plan+text")) data = body;
+                    else data = JSON.parse(body);
+                }
+                const countHeader = (_a = this.headers["Prefer"]) === null || _a === void 0 ? void 0 : _a.match(/count=(exact|planned|estimated)/);
+                const contentRange = (_b = res.headers.get("content-range")) === null || _b === void 0 ? void 0 : _b.split("/");
+                if (countHeader && contentRange && contentRange.length > 1) count = parseInt(contentRange[1]);
+                // Temporary partial fix for https://github.com/supabase/postgrest-js/issues/361
+                // Issue persists e.g. for `.insert([...]).select().maybeSingle()`
+                if (this.isMaybeSingle && this.method === "GET" && Array.isArray(data)) {
+                    if (data.length > 1) {
+                        error = {
+                            // https://github.com/PostgREST/postgrest/blob/a867d79c42419af16c18c3fb019eba8df992626f/src/PostgREST/Error.hs#L553
+                            code: "PGRST116",
+                            details: `Results contain ${data.length} rows, application/vnd.pgrst.object+json requires 1 row`,
+                            hint: null,
+                            message: "JSON object requested, multiple (or no) rows returned"
+                        };
+                        data = null;
+                        count = null;
+                        status = 406;
+                        statusText = "Not Acceptable";
+                    } else if (data.length === 1) data = data[0];
+                    else data = null;
+                }
+            } else {
+                const body = await res.text();
+                try {
+                    error = JSON.parse(body);
+                    // Workaround for https://github.com/supabase/postgrest-js/issues/295
+                    if (Array.isArray(error) && res.status === 404) {
+                        data = [];
+                        error = null;
+                        status = 200;
+                        statusText = "OK";
+                    }
+                } catch (_d) {
+                    // Workaround for https://github.com/supabase/postgrest-js/issues/295
+                    if (res.status === 404 && body === "") {
+                        status = 204;
+                        statusText = "No Content";
+                    } else error = {
+                        message: body
+                    };
+                }
+                if (error && this.isMaybeSingle && ((_c = error === null || error === void 0 ? void 0 : error.details) === null || _c === void 0 ? void 0 : _c.includes("0 rows"))) {
+                    error = null;
+                    status = 200;
+                    statusText = "OK";
+                }
+                if (error && this.shouldThrowOnError) throw new (0, _postgrestErrorDefault.default)(error);
+            }
+            const postgrestResponse = {
+                error,
+                data,
+                count,
+                status,
+                statusText
+            };
+            return postgrestResponse;
+        });
+        if (!this.shouldThrowOnError) res = res.catch((fetchError)=>{
+            var _a, _b, _c;
+            return {
+                error: {
+                    message: `${(_a = fetchError === null || fetchError === void 0 ? void 0 : fetchError.name) !== null && _a !== void 0 ? _a : "FetchError"}: ${fetchError === null || fetchError === void 0 ? void 0 : fetchError.message}`,
+                    details: `${(_b = fetchError === null || fetchError === void 0 ? void 0 : fetchError.stack) !== null && _b !== void 0 ? _b : ""}`,
+                    hint: "",
+                    code: `${(_c = fetchError === null || fetchError === void 0 ? void 0 : fetchError.code) !== null && _c !== void 0 ? _c : ""}`
+                },
+                data: null,
+                count: null,
+                status: 0,
+                statusText: ""
+            };
+        });
+        return res.then(onfulfilled, onrejected);
+    }
+}
+exports.default = PostgrestBuilder;
+
+},{"@supabase/node-fetch":"inpgO","./PostgrestError":"azrrf","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"inpgO":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "fetch", ()=>fetch);
+parcelHelpers.export(exports, "Headers", ()=>Headers);
+parcelHelpers.export(exports, "Request", ()=>Request);
+parcelHelpers.export(exports, "Response", ()=>Response);
+var global = arguments[3];
+"use strict";
+// ref: https://github.com/tc39/proposal-global
+var getGlobal = function() {
+    // the only reliable means to get the global object is
+    // `Function('return this')()`
+    // However, this causes CSP violations in Chrome apps.
+    if (typeof self !== "undefined") return self;
+    if (typeof window !== "undefined") return window;
+    if (typeof global !== "undefined") return global;
+    throw new Error("unable to locate global object");
+};
+var globalObject = getGlobal();
+const fetch = globalObject.fetch;
+exports.default = globalObject.fetch.bind(globalObject);
+const Headers = globalObject.Headers;
+const Request = globalObject.Request;
+const Response = globalObject.Response;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"azrrf":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class PostgrestError extends Error {
+    constructor(context){
+        super(context.message);
+        this.name = "PostgrestError";
+        this.details = context.details;
+        this.hint = context.hint;
+        this.code = context.code;
+    }
+}
+exports.default = PostgrestError;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"aQ01G":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "DEFAULT_HEADERS", ()=>DEFAULT_HEADERS);
+var _version = require("./version");
+const DEFAULT_HEADERS = {
+    "X-Client-Info": `postgrest-js/${(0, _version.version)}`
+};
+
+},{"./version":"eF1zz","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"eF1zz":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "version", ()=>version);
+const version = "1.15.0";
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"d0MPi":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "RealtimePresence", ()=>(0, _realtimePresenceDefault.default));
+parcelHelpers.export(exports, "RealtimeChannel", ()=>(0, _realtimeChannelDefault.default));
+parcelHelpers.export(exports, "RealtimeClient", ()=>(0, _realtimeClientDefault.default));
+parcelHelpers.export(exports, "REALTIME_LISTEN_TYPES", ()=>(0, _realtimeChannel.REALTIME_LISTEN_TYPES));
+parcelHelpers.export(exports, "REALTIME_POSTGRES_CHANGES_LISTEN_EVENT", ()=>(0, _realtimeChannel.REALTIME_POSTGRES_CHANGES_LISTEN_EVENT));
+parcelHelpers.export(exports, "REALTIME_PRESENCE_LISTEN_EVENTS", ()=>(0, _realtimePresence.REALTIME_PRESENCE_LISTEN_EVENTS));
+parcelHelpers.export(exports, "REALTIME_SUBSCRIBE_STATES", ()=>(0, _realtimeChannel.REALTIME_SUBSCRIBE_STATES));
+parcelHelpers.export(exports, "REALTIME_CHANNEL_STATES", ()=>(0, _realtimeChannel.REALTIME_CHANNEL_STATES));
+var _realtimeClient = require("./RealtimeClient");
+var _realtimeClientDefault = parcelHelpers.interopDefault(_realtimeClient);
+var _realtimeChannel = require("./RealtimeChannel");
+var _realtimeChannelDefault = parcelHelpers.interopDefault(_realtimeChannel);
+var _realtimePresence = require("./RealtimePresence");
+var _realtimePresenceDefault = parcelHelpers.interopDefault(_realtimePresence);
+
+},{"./RealtimeClient":"eZ0B3","./RealtimeChannel":"kytee","./RealtimePresence":"iOr8b","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"eZ0B3":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _constants = require("./lib/constants");
+var _timer = require("./lib/timer");
+var _timerDefault = parcelHelpers.interopDefault(_timer);
+var _serializer = require("./lib/serializer");
+var _serializerDefault = parcelHelpers.interopDefault(_serializer);
+var _realtimeChannel = require("./RealtimeChannel");
+var _realtimeChannelDefault = parcelHelpers.interopDefault(_realtimeChannel);
+const noop = ()=>{};
+const NATIVE_WEBSOCKET_AVAILABLE = typeof WebSocket !== "undefined";
+class RealtimeClient {
+    /**
+     * Initializes the Socket.
+     *
+     * @param endPoint The string WebSocket endpoint, ie, "ws://example.com/socket", "wss://example.com", "/socket" (inherited host & protocol)
+     * @param options.transport The Websocket Transport, for example WebSocket.
+     * @param options.timeout The default timeout in milliseconds to trigger push timeouts.
+     * @param options.params The optional params to pass when connecting.
+     * @param options.headers The optional headers to pass when connecting.
+     * @param options.heartbeatIntervalMs The millisec interval to send a heartbeat message.
+     * @param options.logger The optional function for specialized logging, ie: logger: (kind, msg, data) => { console.log(`${kind}: ${msg}`, data) }
+     * @param options.encode The function to encode outgoing messages. Defaults to JSON: (payload, callback) => callback(JSON.stringify(payload))
+     * @param options.decode The function to decode incoming messages. Defaults to Serializer's decode.
+     * @param options.reconnectAfterMs he optional function that returns the millsec reconnect interval. Defaults to stepped backoff off.
+     */ constructor(endPoint, options){
+        var _a;
+        this.accessToken = null;
+        this.apiKey = null;
+        this.channels = [];
+        this.endPoint = "";
+        this.headers = (0, _constants.DEFAULT_HEADERS);
+        this.params = {};
+        this.timeout = (0, _constants.DEFAULT_TIMEOUT);
+        this.heartbeatIntervalMs = 30000;
+        this.heartbeatTimer = undefined;
+        this.pendingHeartbeatRef = null;
+        this.ref = 0;
+        this.logger = noop;
+        this.conn = null;
+        this.sendBuffer = [];
+        this.serializer = new (0, _serializerDefault.default)();
+        this.stateChangeCallbacks = {
+            open: [],
+            close: [],
+            error: [],
+            message: []
+        };
+        /**
+         * Use either custom fetch, if provided, or default fetch to make HTTP requests
+         *
+         * @internal
+         */ this._resolveFetch = (customFetch)=>{
+            let _fetch;
+            if (customFetch) _fetch = customFetch;
+            else if (typeof fetch === "undefined") _fetch = (...args)=>require("3ea8640035012c43").then(({ default: fetch1 })=>fetch1(...args));
+            else _fetch = fetch;
+            return (...args)=>_fetch(...args);
+        };
+        this.endPoint = `${endPoint}/${(0, _constants.TRANSPORTS).websocket}`;
+        if (options === null || options === void 0 ? void 0 : options.transport) this.transport = options.transport;
+        else this.transport = null;
+        if (options === null || options === void 0 ? void 0 : options.params) this.params = options.params;
+        if (options === null || options === void 0 ? void 0 : options.headers) this.headers = Object.assign(Object.assign({}, this.headers), options.headers);
+        if (options === null || options === void 0 ? void 0 : options.timeout) this.timeout = options.timeout;
+        if (options === null || options === void 0 ? void 0 : options.logger) this.logger = options.logger;
+        if (options === null || options === void 0 ? void 0 : options.heartbeatIntervalMs) this.heartbeatIntervalMs = options.heartbeatIntervalMs;
+        const accessToken = (_a = options === null || options === void 0 ? void 0 : options.params) === null || _a === void 0 ? void 0 : _a.apikey;
+        if (accessToken) {
+            this.accessToken = accessToken;
+            this.apiKey = accessToken;
+        }
+        this.reconnectAfterMs = (options === null || options === void 0 ? void 0 : options.reconnectAfterMs) ? options.reconnectAfterMs : (tries)=>{
+            return [
+                1000,
+                2000,
+                5000,
+                10000
+            ][tries - 1] || 10000;
+        };
+        this.encode = (options === null || options === void 0 ? void 0 : options.encode) ? options.encode : (payload, callback)=>{
+            return callback(JSON.stringify(payload));
+        };
+        this.decode = (options === null || options === void 0 ? void 0 : options.decode) ? options.decode : this.serializer.decode.bind(this.serializer);
+        this.reconnectTimer = new (0, _timerDefault.default)(async ()=>{
+            this.disconnect();
+            this.connect();
+        }, this.reconnectAfterMs);
+        this.fetch = this._resolveFetch(options === null || options === void 0 ? void 0 : options.fetch);
+    }
+    /**
+     * Connects the socket, unless already connected.
+     */ connect() {
+        if (this.conn) return;
+        if (this.transport) {
+            this.conn = new this.transport(this._endPointURL(), undefined, {
+                headers: this.headers
+            });
+            return;
+        }
+        if (NATIVE_WEBSOCKET_AVAILABLE) {
+            this.conn = new WebSocket(this._endPointURL());
+            this.setupConnection();
+            return;
+        }
+        this.conn = new WSWebSocketDummy(this._endPointURL(), undefined, {
+            close: ()=>{
+                this.conn = null;
+            }
+        });
+        require("c4dfe9bfdd39a2b7").then(({ default: WS })=>{
+            this.conn = new WS(this._endPointURL(), undefined, {
+                headers: this.headers
+            });
+            this.setupConnection();
+        });
+    }
+    /**
+     * Disconnects the socket.
+     *
+     * @param code A numeric status code to send on disconnect.
+     * @param reason A custom reason for the disconnect.
+     */ disconnect(code, reason) {
+        if (this.conn) {
+            this.conn.onclose = function() {}; // noop
+            if (code) this.conn.close(code, reason !== null && reason !== void 0 ? reason : "");
+            else this.conn.close();
+            this.conn = null;
+            // remove open handles
+            this.heartbeatTimer && clearInterval(this.heartbeatTimer);
+            this.reconnectTimer.reset();
+        }
+    }
+    /**
+     * Returns all created channels
+     */ getChannels() {
+        return this.channels;
+    }
+    /**
+     * Unsubscribes and removes a single channel
+     * @param channel A RealtimeChannel instance
+     */ async removeChannel(channel) {
+        const status = await channel.unsubscribe();
+        if (this.channels.length === 0) this.disconnect();
+        return status;
+    }
+    /**
+     * Unsubscribes and removes all channels
+     */ async removeAllChannels() {
+        const values_1 = await Promise.all(this.channels.map((channel)=>channel.unsubscribe()));
+        this.disconnect();
+        return values_1;
+    }
+    /**
+     * Logs the message.
+     *
+     * For customized logging, `this.logger` can be overridden.
+     */ log(kind, msg, data) {
+        this.logger(kind, msg, data);
+    }
+    /**
+     * Returns the current state of the socket.
+     */ connectionState() {
+        switch(this.conn && this.conn.readyState){
+            case (0, _constants.SOCKET_STATES).connecting:
+                return (0, _constants.CONNECTION_STATE).Connecting;
+            case (0, _constants.SOCKET_STATES).open:
+                return (0, _constants.CONNECTION_STATE).Open;
+            case (0, _constants.SOCKET_STATES).closing:
+                return (0, _constants.CONNECTION_STATE).Closing;
+            default:
+                return (0, _constants.CONNECTION_STATE).Closed;
+        }
+    }
+    /**
+     * Returns `true` is the connection is open.
+     */ isConnected() {
+        return this.connectionState() === (0, _constants.CONNECTION_STATE).Open;
+    }
+    channel(topic, params = {
+        config: {}
+    }) {
+        const chan = new (0, _realtimeChannelDefault.default)(`realtime:${topic}`, params, this);
+        this.channels.push(chan);
+        return chan;
+    }
+    /**
+     * Push out a message if the socket is connected.
+     *
+     * If the socket is not connected, the message gets enqueued within a local buffer, and sent out when a connection is next established.
+     */ push(data) {
+        const { topic, event, payload, ref } = data;
+        const callback = ()=>{
+            this.encode(data, (result)=>{
+                var _a;
+                (_a = this.conn) === null || _a === void 0 || _a.send(result);
+            });
+        };
+        this.log("push", `${topic} ${event} (${ref})`, payload);
+        if (this.isConnected()) callback();
+        else this.sendBuffer.push(callback);
+    }
+    /**
+     * Sets the JWT access token used for channel subscription authorization and Realtime RLS.
+     *
+     * @param token A JWT string.
+     */ setAuth(token) {
+        this.accessToken = token;
+        this.channels.forEach((channel)=>{
+            token && channel.updateJoinPayload({
+                access_token: token
+            });
+            if (channel.joinedOnce && channel._isJoined()) channel._push((0, _constants.CHANNEL_EVENTS).access_token, {
+                access_token: token
+            });
+        });
+    }
+    /**
+     * Return the next message ref, accounting for overflows
+     *
+     * @internal
+     */ _makeRef() {
+        let newRef = this.ref + 1;
+        if (newRef === this.ref) this.ref = 0;
+        else this.ref = newRef;
+        return this.ref.toString();
+    }
+    /**
+     * Unsubscribe from channels with the specified topic.
+     *
+     * @internal
+     */ _leaveOpenTopic(topic) {
+        let dupChannel = this.channels.find((c)=>c.topic === topic && (c._isJoined() || c._isJoining()));
+        if (dupChannel) {
+            this.log("transport", `leaving duplicate topic "${topic}"`);
+            dupChannel.unsubscribe();
+        }
+    }
+    /**
+     * Removes a subscription from the socket.
+     *
+     * @param channel An open subscription.
+     *
+     * @internal
+     */ _remove(channel) {
+        this.channels = this.channels.filter((c)=>c._joinRef() !== channel._joinRef());
+    }
+    /**
+     * Sets up connection handlers.
+     *
+     * @internal
+     */ setupConnection() {
+        if (this.conn) {
+            this.conn.binaryType = "arraybuffer";
+            this.conn.onopen = ()=>this._onConnOpen();
+            this.conn.onerror = (error)=>this._onConnError(error);
+            this.conn.onmessage = (event)=>this._onConnMessage(event);
+            this.conn.onclose = (event)=>this._onConnClose(event);
+        }
+    }
+    /**
+     * Returns the URL of the websocket.
+     *
+     * @internal
+     */ _endPointURL() {
+        return this._appendParams(this.endPoint, Object.assign({}, this.params, {
+            vsn: (0, _constants.VSN)
+        }));
+    }
+    /** @internal */ _onConnMessage(rawMessage) {
+        this.decode(rawMessage.data, (msg)=>{
+            let { topic, event, payload, ref } = msg;
+            if (ref && ref === this.pendingHeartbeatRef || event === (payload === null || payload === void 0 ? void 0 : payload.type)) this.pendingHeartbeatRef = null;
+            this.log("receive", `${payload.status || ""} ${topic} ${event} ${ref && "(" + ref + ")" || ""}`, payload);
+            this.channels.filter((channel)=>channel._isMember(topic)).forEach((channel)=>channel._trigger(event, payload, ref));
+            this.stateChangeCallbacks.message.forEach((callback)=>callback(msg));
+        });
+    }
+    /** @internal */ _onConnOpen() {
+        this.log("transport", `connected to ${this._endPointURL()}`);
+        this._flushSendBuffer();
+        this.reconnectTimer.reset();
+        this.heartbeatTimer && clearInterval(this.heartbeatTimer);
+        this.heartbeatTimer = setInterval(()=>this._sendHeartbeat(), this.heartbeatIntervalMs);
+        this.stateChangeCallbacks.open.forEach((callback)=>callback());
+    }
+    /** @internal */ _onConnClose(event) {
+        this.log("transport", "close", event);
+        this._triggerChanError();
+        this.heartbeatTimer && clearInterval(this.heartbeatTimer);
+        this.reconnectTimer.scheduleTimeout();
+        this.stateChangeCallbacks.close.forEach((callback)=>callback(event));
+    }
+    /** @internal */ _onConnError(error) {
+        this.log("transport", error.message);
+        this._triggerChanError();
+        this.stateChangeCallbacks.error.forEach((callback)=>callback(error));
+    }
+    /** @internal */ _triggerChanError() {
+        this.channels.forEach((channel)=>channel._trigger((0, _constants.CHANNEL_EVENTS).error));
+    }
+    /** @internal */ _appendParams(url, params) {
+        if (Object.keys(params).length === 0) return url;
+        const prefix = url.match(/\?/) ? "&" : "?";
+        const query = new URLSearchParams(params);
+        return `${url}${prefix}${query}`;
+    }
+    /** @internal */ _flushSendBuffer() {
+        if (this.isConnected() && this.sendBuffer.length > 0) {
+            this.sendBuffer.forEach((callback)=>callback());
+            this.sendBuffer = [];
+        }
+    }
+    /** @internal */ _sendHeartbeat() {
+        var _a;
+        if (!this.isConnected()) return;
+        if (this.pendingHeartbeatRef) {
+            this.pendingHeartbeatRef = null;
+            this.log("transport", "heartbeat timeout. Attempting to re-establish connection");
+            (_a = this.conn) === null || _a === void 0 || _a.close((0, _constants.WS_CLOSE_NORMAL), "hearbeat timeout");
+            return;
+        }
+        this.pendingHeartbeatRef = this._makeRef();
+        this.push({
+            topic: "phoenix",
+            event: "heartbeat",
+            payload: {},
+            ref: this.pendingHeartbeatRef
+        });
+        this.setAuth(this.accessToken);
+    }
+}
+exports.default = RealtimeClient;
+class WSWebSocketDummy {
+    constructor(address, _protocols, options){
+        this.binaryType = "arraybuffer";
+        this.onclose = ()=>{};
+        this.onerror = ()=>{};
+        this.onmessage = ()=>{};
+        this.onopen = ()=>{};
+        this.readyState = (0, _constants.SOCKET_STATES).connecting;
+        this.send = ()=>{};
+        this.url = null;
+        this.url = address;
+        this.close = options.close;
+    }
+}
+
+},{"./lib/constants":"jMQgQ","./lib/timer":"2jFhh","./lib/serializer":"aXeGH","./RealtimeChannel":"kytee","3ea8640035012c43":"5aZ41","c4dfe9bfdd39a2b7":"grgiq","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"jMQgQ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "DEFAULT_HEADERS", ()=>DEFAULT_HEADERS);
+parcelHelpers.export(exports, "VSN", ()=>VSN);
+parcelHelpers.export(exports, "DEFAULT_TIMEOUT", ()=>DEFAULT_TIMEOUT);
+parcelHelpers.export(exports, "WS_CLOSE_NORMAL", ()=>WS_CLOSE_NORMAL);
+parcelHelpers.export(exports, "SOCKET_STATES", ()=>SOCKET_STATES);
+parcelHelpers.export(exports, "CHANNEL_STATES", ()=>CHANNEL_STATES);
+parcelHelpers.export(exports, "CHANNEL_EVENTS", ()=>CHANNEL_EVENTS);
+parcelHelpers.export(exports, "TRANSPORTS", ()=>TRANSPORTS);
+parcelHelpers.export(exports, "CONNECTION_STATE", ()=>CONNECTION_STATE);
+var _version = require("./version");
+const DEFAULT_HEADERS = {
+    "X-Client-Info": `realtime-js/${(0, _version.version)}`
+};
+const VSN = "1.0.0";
+const DEFAULT_TIMEOUT = 10000;
+const WS_CLOSE_NORMAL = 1000;
+var SOCKET_STATES;
+(function(SOCKET_STATES) {
+    SOCKET_STATES[SOCKET_STATES["connecting"] = 0] = "connecting";
+    SOCKET_STATES[SOCKET_STATES["open"] = 1] = "open";
+    SOCKET_STATES[SOCKET_STATES["closing"] = 2] = "closing";
+    SOCKET_STATES[SOCKET_STATES["closed"] = 3] = "closed";
+})(SOCKET_STATES || (SOCKET_STATES = {}));
+var CHANNEL_STATES;
+(function(CHANNEL_STATES) {
+    CHANNEL_STATES["closed"] = "closed";
+    CHANNEL_STATES["errored"] = "errored";
+    CHANNEL_STATES["joined"] = "joined";
+    CHANNEL_STATES["joining"] = "joining";
+    CHANNEL_STATES["leaving"] = "leaving";
+})(CHANNEL_STATES || (CHANNEL_STATES = {}));
+var CHANNEL_EVENTS;
+(function(CHANNEL_EVENTS) {
+    CHANNEL_EVENTS["close"] = "phx_close";
+    CHANNEL_EVENTS["error"] = "phx_error";
+    CHANNEL_EVENTS["join"] = "phx_join";
+    CHANNEL_EVENTS["reply"] = "phx_reply";
+    CHANNEL_EVENTS["leave"] = "phx_leave";
+    CHANNEL_EVENTS["access_token"] = "access_token";
+})(CHANNEL_EVENTS || (CHANNEL_EVENTS = {}));
+var TRANSPORTS;
+(function(TRANSPORTS) {
+    TRANSPORTS["websocket"] = "websocket";
+})(TRANSPORTS || (TRANSPORTS = {}));
+var CONNECTION_STATE;
+(function(CONNECTION_STATE) {
+    CONNECTION_STATE["Connecting"] = "connecting";
+    CONNECTION_STATE["Open"] = "open";
+    CONNECTION_STATE["Closing"] = "closing";
+    CONNECTION_STATE["Closed"] = "closed";
+})(CONNECTION_STATE || (CONNECTION_STATE = {}));
+
+},{"./version":"b78QW","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"b78QW":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "version", ()=>version);
+const version = "2.9.3";
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"2jFhh":[function(require,module,exports) {
+/**
+ * Creates a timer that accepts a `timerCalc` function to perform calculated timeout retries, such as exponential backoff.
+ *
+ * @example
+ *    let reconnectTimer = new Timer(() => this.connect(), function(tries){
+ *      return [1000, 5000, 10000][tries - 1] || 10000
+ *    })
+ *    reconnectTimer.scheduleTimeout() // fires after 1000
+ *    reconnectTimer.scheduleTimeout() // fires after 5000
+ *    reconnectTimer.reset()
+ *    reconnectTimer.scheduleTimeout() // fires after 1000
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class Timer {
+    constructor(callback, timerCalc){
+        this.callback = callback;
+        this.timerCalc = timerCalc;
+        this.timer = undefined;
+        this.tries = 0;
+        this.callback = callback;
+        this.timerCalc = timerCalc;
+    }
+    reset() {
+        this.tries = 0;
+        clearTimeout(this.timer);
+    }
+    // Cancels any previous scheduleTimeout and schedules callback
+    scheduleTimeout() {
+        clearTimeout(this.timer);
+        this.timer = setTimeout(()=>{
+            this.tries = this.tries + 1;
+            this.callback();
+        }, this.timerCalc(this.tries + 1));
+    }
+}
+exports.default = Timer;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"aXeGH":[function(require,module,exports) {
+// This file draws heavily from https://github.com/phoenixframework/phoenix/commit/cf098e9cf7a44ee6479d31d911a97d3c7430c6fe
+// License: https://github.com/phoenixframework/phoenix/blob/master/LICENSE.md
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class Serializer {
+    constructor(){
+        this.HEADER_LENGTH = 1;
+    }
+    decode(rawPayload, callback) {
+        if (rawPayload.constructor === ArrayBuffer) return callback(this._binaryDecode(rawPayload));
+        if (typeof rawPayload === "string") return callback(JSON.parse(rawPayload));
+        return callback({});
+    }
+    _binaryDecode(buffer) {
+        const view = new DataView(buffer);
+        const decoder = new TextDecoder();
+        return this._decodeBroadcast(buffer, view, decoder);
+    }
+    _decodeBroadcast(buffer, view, decoder) {
+        const topicSize = view.getUint8(1);
+        const eventSize = view.getUint8(2);
+        let offset = this.HEADER_LENGTH + 2;
+        const topic = decoder.decode(buffer.slice(offset, offset + topicSize));
+        offset = offset + topicSize;
+        const event = decoder.decode(buffer.slice(offset, offset + eventSize));
+        offset = offset + eventSize;
+        const data = JSON.parse(decoder.decode(buffer.slice(offset, buffer.byteLength)));
+        return {
+            ref: null,
+            topic: topic,
+            event: event,
+            payload: data
+        };
+    }
+}
+exports.default = Serializer;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"kytee":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "REALTIME_POSTGRES_CHANGES_LISTEN_EVENT", ()=>REALTIME_POSTGRES_CHANGES_LISTEN_EVENT);
+parcelHelpers.export(exports, "REALTIME_LISTEN_TYPES", ()=>REALTIME_LISTEN_TYPES);
+parcelHelpers.export(exports, "REALTIME_SUBSCRIBE_STATES", ()=>REALTIME_SUBSCRIBE_STATES);
+parcelHelpers.export(exports, "REALTIME_CHANNEL_STATES", ()=>REALTIME_CHANNEL_STATES);
+var _constants = require("./lib/constants");
+var _push = require("./lib/push");
+var _pushDefault = parcelHelpers.interopDefault(_push);
+var _timer = require("./lib/timer");
+var _timerDefault = parcelHelpers.interopDefault(_timer);
+var _realtimePresence = require("./RealtimePresence");
+var _realtimePresenceDefault = parcelHelpers.interopDefault(_realtimePresence);
+var _transformers = require("./lib/transformers");
+var REALTIME_POSTGRES_CHANGES_LISTEN_EVENT;
+(function(REALTIME_POSTGRES_CHANGES_LISTEN_EVENT) {
+    REALTIME_POSTGRES_CHANGES_LISTEN_EVENT["ALL"] = "*";
+    REALTIME_POSTGRES_CHANGES_LISTEN_EVENT["INSERT"] = "INSERT";
+    REALTIME_POSTGRES_CHANGES_LISTEN_EVENT["UPDATE"] = "UPDATE";
+    REALTIME_POSTGRES_CHANGES_LISTEN_EVENT["DELETE"] = "DELETE";
+})(REALTIME_POSTGRES_CHANGES_LISTEN_EVENT || (REALTIME_POSTGRES_CHANGES_LISTEN_EVENT = {}));
+var REALTIME_LISTEN_TYPES;
+(function(REALTIME_LISTEN_TYPES) {
+    REALTIME_LISTEN_TYPES["BROADCAST"] = "broadcast";
+    REALTIME_LISTEN_TYPES["PRESENCE"] = "presence";
+    /**
+     * listen to Postgres changes.
+     */ REALTIME_LISTEN_TYPES["POSTGRES_CHANGES"] = "postgres_changes";
+})(REALTIME_LISTEN_TYPES || (REALTIME_LISTEN_TYPES = {}));
+var REALTIME_SUBSCRIBE_STATES;
+(function(REALTIME_SUBSCRIBE_STATES) {
+    REALTIME_SUBSCRIBE_STATES["SUBSCRIBED"] = "SUBSCRIBED";
+    REALTIME_SUBSCRIBE_STATES["TIMED_OUT"] = "TIMED_OUT";
+    REALTIME_SUBSCRIBE_STATES["CLOSED"] = "CLOSED";
+    REALTIME_SUBSCRIBE_STATES["CHANNEL_ERROR"] = "CHANNEL_ERROR";
+})(REALTIME_SUBSCRIBE_STATES || (REALTIME_SUBSCRIBE_STATES = {}));
+const REALTIME_CHANNEL_STATES = (0, _constants.CHANNEL_STATES);
+class RealtimeChannel {
+    constructor(/** Topic name can be any string. */ topic, params = {
+        config: {}
+    }, socket){
+        this.topic = topic;
+        this.params = params;
+        this.socket = socket;
+        this.bindings = {};
+        this.state = (0, _constants.CHANNEL_STATES).closed;
+        this.joinedOnce = false;
+        this.pushBuffer = [];
+        this.subTopic = topic.replace(/^realtime:/i, "");
+        this.params.config = Object.assign({
+            broadcast: {
+                ack: false,
+                self: false
+            },
+            presence: {
+                key: ""
+            }
+        }, params.config);
+        this.timeout = this.socket.timeout;
+        this.joinPush = new (0, _pushDefault.default)(this, (0, _constants.CHANNEL_EVENTS).join, this.params, this.timeout);
+        this.rejoinTimer = new (0, _timerDefault.default)(()=>this._rejoinUntilConnected(), this.socket.reconnectAfterMs);
+        this.joinPush.receive("ok", ()=>{
+            this.state = (0, _constants.CHANNEL_STATES).joined;
+            this.rejoinTimer.reset();
+            this.pushBuffer.forEach((pushEvent)=>pushEvent.send());
+            this.pushBuffer = [];
+        });
+        this._onClose(()=>{
+            this.rejoinTimer.reset();
+            this.socket.log("channel", `close ${this.topic} ${this._joinRef()}`);
+            this.state = (0, _constants.CHANNEL_STATES).closed;
+            this.socket._remove(this);
+        });
+        this._onError((reason)=>{
+            if (this._isLeaving() || this._isClosed()) return;
+            this.socket.log("channel", `error ${this.topic}`, reason);
+            this.state = (0, _constants.CHANNEL_STATES).errored;
+            this.rejoinTimer.scheduleTimeout();
+        });
+        this.joinPush.receive("timeout", ()=>{
+            if (!this._isJoining()) return;
+            this.socket.log("channel", `timeout ${this.topic}`, this.joinPush.timeout);
+            this.state = (0, _constants.CHANNEL_STATES).errored;
+            this.rejoinTimer.scheduleTimeout();
+        });
+        this._on((0, _constants.CHANNEL_EVENTS).reply, {}, (payload, ref)=>{
+            this._trigger(this._replyEventName(ref), payload);
+        });
+        this.presence = new (0, _realtimePresenceDefault.default)(this);
+        this.broadcastEndpointURL = this._broadcastEndpointURL();
+    }
+    /** Subscribe registers your client with the server */ subscribe(callback, timeout = this.timeout) {
+        var _a, _b;
+        if (!this.socket.isConnected()) this.socket.connect();
+        if (this.joinedOnce) throw `tried to subscribe multiple times. 'subscribe' can only be called a single time per channel instance`;
+        else {
+            const { config: { broadcast, presence } } = this.params;
+            this._onError((e)=>callback && callback("CHANNEL_ERROR", e));
+            this._onClose(()=>callback && callback("CLOSED"));
+            const accessTokenPayload = {};
+            const config = {
+                broadcast,
+                presence,
+                postgres_changes: (_b = (_a = this.bindings.postgres_changes) === null || _a === void 0 ? void 0 : _a.map((r)=>r.filter)) !== null && _b !== void 0 ? _b : []
+            };
+            if (this.socket.accessToken) accessTokenPayload.access_token = this.socket.accessToken;
+            this.updateJoinPayload(Object.assign({
+                config
+            }, accessTokenPayload));
+            this.joinedOnce = true;
+            this._rejoin(timeout);
+            this.joinPush.receive("ok", ({ postgres_changes: serverPostgresFilters })=>{
+                var _a;
+                this.socket.accessToken && this.socket.setAuth(this.socket.accessToken);
+                if (serverPostgresFilters === undefined) {
+                    callback && callback("SUBSCRIBED");
+                    return;
+                } else {
+                    const clientPostgresBindings = this.bindings.postgres_changes;
+                    const bindingsLen = (_a = clientPostgresBindings === null || clientPostgresBindings === void 0 ? void 0 : clientPostgresBindings.length) !== null && _a !== void 0 ? _a : 0;
+                    const newPostgresBindings = [];
+                    for(let i = 0; i < bindingsLen; i++){
+                        const clientPostgresBinding = clientPostgresBindings[i];
+                        const { filter: { event, schema, table, filter } } = clientPostgresBinding;
+                        const serverPostgresFilter = serverPostgresFilters && serverPostgresFilters[i];
+                        if (serverPostgresFilter && serverPostgresFilter.event === event && serverPostgresFilter.schema === schema && serverPostgresFilter.table === table && serverPostgresFilter.filter === filter) newPostgresBindings.push(Object.assign(Object.assign({}, clientPostgresBinding), {
+                            id: serverPostgresFilter.id
+                        }));
+                        else {
+                            this.unsubscribe();
+                            callback && callback("CHANNEL_ERROR", new Error("mismatch between server and client bindings for postgres changes"));
+                            return;
+                        }
+                    }
+                    this.bindings.postgres_changes = newPostgresBindings;
+                    callback && callback("SUBSCRIBED");
+                    return;
+                }
+            }).receive("error", (error)=>{
+                callback && callback("CHANNEL_ERROR", new Error(JSON.stringify(Object.values(error).join(", ") || "error")));
+                return;
+            }).receive("timeout", ()=>{
+                callback && callback("TIMED_OUT");
+                return;
+            });
+        }
+        return this;
+    }
+    presenceState() {
+        return this.presence.state;
+    }
+    async track(payload, opts = {}) {
+        return await this.send({
+            type: "presence",
+            event: "track",
+            payload
+        }, opts.timeout || this.timeout);
+    }
+    async untrack(opts = {}) {
+        return await this.send({
+            type: "presence",
+            event: "untrack"
+        }, opts);
+    }
+    on(type, filter, callback) {
+        return this._on(type, filter, callback);
+    }
+    /**
+     * Sends a message into the channel.
+     *
+     * @param args Arguments to send to channel
+     * @param args.type The type of event to send
+     * @param args.event The name of the event being sent
+     * @param args.payload Payload to be sent
+     * @param opts Options to be used during the send process
+     */ async send(args, opts = {}) {
+        var _a, _b;
+        if (!this._canPush() && args.type === "broadcast") {
+            const { event, payload: endpoint_payload } = args;
+            const options = {
+                method: "POST",
+                headers: {
+                    apikey: (_a = this.socket.apiKey) !== null && _a !== void 0 ? _a : "",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    messages: [
+                        {
+                            topic: this.subTopic,
+                            event,
+                            payload: endpoint_payload
+                        }
+                    ]
+                })
+            };
+            try {
+                const response = await this._fetchWithTimeout(this.broadcastEndpointURL, options, (_b = opts.timeout) !== null && _b !== void 0 ? _b : this.timeout);
+                if (response.ok) return "ok";
+                else return "error";
+            } catch (error) {
+                if (error.name === "AbortError") return "timed out";
+                else return "error";
+            }
+        } else return new Promise((resolve)=>{
+            var _a, _b, _c;
+            const push = this._push(args.type, args, opts.timeout || this.timeout);
+            if (args.type === "broadcast" && !((_c = (_b = (_a = this.params) === null || _a === void 0 ? void 0 : _a.config) === null || _b === void 0 ? void 0 : _b.broadcast) === null || _c === void 0 ? void 0 : _c.ack)) resolve("ok");
+            push.receive("ok", ()=>resolve("ok"));
+            push.receive("timeout", ()=>resolve("timed out"));
+        });
+    }
+    updateJoinPayload(payload) {
+        this.joinPush.updatePayload(payload);
+    }
+    /**
+     * Leaves the channel.
+     *
+     * Unsubscribes from server events, and instructs channel to terminate on server.
+     * Triggers onClose() hooks.
+     *
+     * To receive leave acknowledgements, use the a `receive` hook to bind to the server ack, ie:
+     * channel.unsubscribe().receive("ok", () => alert("left!") )
+     */ unsubscribe(timeout = this.timeout) {
+        this.state = (0, _constants.CHANNEL_STATES).leaving;
+        const onClose = ()=>{
+            this.socket.log("channel", `leave ${this.topic}`);
+            this._trigger((0, _constants.CHANNEL_EVENTS).close, "leave", this._joinRef());
+        };
+        this.rejoinTimer.reset();
+        // Destroy joinPush to avoid connection timeouts during unscription phase
+        this.joinPush.destroy();
+        return new Promise((resolve)=>{
+            const leavePush = new (0, _pushDefault.default)(this, (0, _constants.CHANNEL_EVENTS).leave, {}, timeout);
+            leavePush.receive("ok", ()=>{
+                onClose();
+                resolve("ok");
+            }).receive("timeout", ()=>{
+                onClose();
+                resolve("timed out");
+            }).receive("error", ()=>{
+                resolve("error");
+            });
+            leavePush.send();
+            if (!this._canPush()) leavePush.trigger("ok", {});
+        });
+    }
+    /** @internal */ _broadcastEndpointURL() {
+        let url = this.socket.endPoint;
+        url = url.replace(/^ws/i, "http");
+        url = url.replace(/(\/socket\/websocket|\/socket|\/websocket)\/?$/i, "");
+        return url.replace(/\/+$/, "") + "/api/broadcast";
+    }
+    async _fetchWithTimeout(url, options, timeout) {
+        const controller = new AbortController();
+        const id = setTimeout(()=>controller.abort(), timeout);
+        const response = await this.socket.fetch(url, Object.assign(Object.assign({}, options), {
+            signal: controller.signal
+        }));
+        clearTimeout(id);
+        return response;
+    }
+    /** @internal */ _push(event, payload, timeout = this.timeout) {
+        if (!this.joinedOnce) throw `tried to push '${event}' to '${this.topic}' before joining. Use channel.subscribe() before pushing events`;
+        let pushEvent = new (0, _pushDefault.default)(this, event, payload, timeout);
+        if (this._canPush()) pushEvent.send();
+        else {
+            pushEvent.startTimeout();
+            this.pushBuffer.push(pushEvent);
+        }
+        return pushEvent;
+    }
+    /**
+     * Overridable message hook
+     *
+     * Receives all events for specialized message handling before dispatching to the channel callbacks.
+     * Must return the payload, modified or unmodified.
+     *
+     * @internal
+     */ _onMessage(_event, payload, _ref) {
+        return payload;
+    }
+    /** @internal */ _isMember(topic) {
+        return this.topic === topic;
+    }
+    /** @internal */ _joinRef() {
+        return this.joinPush.ref;
+    }
+    /** @internal */ _trigger(type, payload, ref) {
+        var _a, _b;
+        const typeLower = type.toLocaleLowerCase();
+        const { close, error, leave, join } = (0, _constants.CHANNEL_EVENTS);
+        const events = [
+            close,
+            error,
+            leave,
+            join
+        ];
+        if (ref && events.indexOf(typeLower) >= 0 && ref !== this._joinRef()) return;
+        let handledPayload = this._onMessage(typeLower, payload, ref);
+        if (payload && !handledPayload) throw "channel onMessage callbacks must return the payload, modified or unmodified";
+        if ([
+            "insert",
+            "update",
+            "delete"
+        ].includes(typeLower)) (_a = this.bindings.postgres_changes) === null || _a === void 0 || _a.filter((bind)=>{
+            var _a, _b, _c;
+            return ((_a = bind.filter) === null || _a === void 0 ? void 0 : _a.event) === "*" || ((_c = (_b = bind.filter) === null || _b === void 0 ? void 0 : _b.event) === null || _c === void 0 ? void 0 : _c.toLocaleLowerCase()) === typeLower;
+        }).map((bind)=>bind.callback(handledPayload, ref));
+        else (_b = this.bindings[typeLower]) === null || _b === void 0 || _b.filter((bind)=>{
+            var _a, _b, _c, _d, _e, _f;
+            if ([
+                "broadcast",
+                "presence",
+                "postgres_changes"
+            ].includes(typeLower)) {
+                if ("id" in bind) {
+                    const bindId = bind.id;
+                    const bindEvent = (_a = bind.filter) === null || _a === void 0 ? void 0 : _a.event;
+                    return bindId && ((_b = payload.ids) === null || _b === void 0 ? void 0 : _b.includes(bindId)) && (bindEvent === "*" || (bindEvent === null || bindEvent === void 0 ? void 0 : bindEvent.toLocaleLowerCase()) === ((_c = payload.data) === null || _c === void 0 ? void 0 : _c.type.toLocaleLowerCase()));
+                } else {
+                    const bindEvent = (_e = (_d = bind === null || bind === void 0 ? void 0 : bind.filter) === null || _d === void 0 ? void 0 : _d.event) === null || _e === void 0 ? void 0 : _e.toLocaleLowerCase();
+                    return bindEvent === "*" || bindEvent === ((_f = payload === null || payload === void 0 ? void 0 : payload.event) === null || _f === void 0 ? void 0 : _f.toLocaleLowerCase());
+                }
+            } else return bind.type.toLocaleLowerCase() === typeLower;
+        }).map((bind)=>{
+            if (typeof handledPayload === "object" && "ids" in handledPayload) {
+                const postgresChanges = handledPayload.data;
+                const { schema, table, commit_timestamp, type, errors } = postgresChanges;
+                const enrichedPayload = {
+                    schema: schema,
+                    table: table,
+                    commit_timestamp: commit_timestamp,
+                    eventType: type,
+                    new: {},
+                    old: {},
+                    errors: errors
+                };
+                handledPayload = Object.assign(Object.assign({}, enrichedPayload), this._getPayloadRecords(postgresChanges));
+            }
+            bind.callback(handledPayload, ref);
+        });
+    }
+    /** @internal */ _isClosed() {
+        return this.state === (0, _constants.CHANNEL_STATES).closed;
+    }
+    /** @internal */ _isJoined() {
+        return this.state === (0, _constants.CHANNEL_STATES).joined;
+    }
+    /** @internal */ _isJoining() {
+        return this.state === (0, _constants.CHANNEL_STATES).joining;
+    }
+    /** @internal */ _isLeaving() {
+        return this.state === (0, _constants.CHANNEL_STATES).leaving;
+    }
+    /** @internal */ _replyEventName(ref) {
+        return `chan_reply_${ref}`;
+    }
+    /** @internal */ _on(type, filter, callback) {
+        const typeLower = type.toLocaleLowerCase();
+        const binding = {
+            type: typeLower,
+            filter: filter,
+            callback: callback
+        };
+        if (this.bindings[typeLower]) this.bindings[typeLower].push(binding);
+        else this.bindings[typeLower] = [
+            binding
+        ];
+        return this;
+    }
+    /** @internal */ _off(type, filter) {
+        const typeLower = type.toLocaleLowerCase();
+        this.bindings[typeLower] = this.bindings[typeLower].filter((bind)=>{
+            var _a;
+            return !(((_a = bind.type) === null || _a === void 0 ? void 0 : _a.toLocaleLowerCase()) === typeLower && RealtimeChannel.isEqual(bind.filter, filter));
+        });
+        return this;
+    }
+    /** @internal */ static isEqual(obj1, obj2) {
+        if (Object.keys(obj1).length !== Object.keys(obj2).length) return false;
+        for(const k in obj1){
+            if (obj1[k] !== obj2[k]) return false;
+        }
+        return true;
+    }
+    /** @internal */ _rejoinUntilConnected() {
+        this.rejoinTimer.scheduleTimeout();
+        if (this.socket.isConnected()) this._rejoin();
+    }
+    /**
+     * Registers a callback that will be executed when the channel closes.
+     *
+     * @internal
+     */ _onClose(callback) {
+        this._on((0, _constants.CHANNEL_EVENTS).close, {}, callback);
+    }
+    /**
+     * Registers a callback that will be executed when the channel encounteres an error.
+     *
+     * @internal
+     */ _onError(callback) {
+        this._on((0, _constants.CHANNEL_EVENTS).error, {}, (reason)=>callback(reason));
+    }
+    /**
+     * Returns `true` if the socket is connected and the channel has been joined.
+     *
+     * @internal
+     */ _canPush() {
+        return this.socket.isConnected() && this._isJoined();
+    }
+    /** @internal */ _rejoin(timeout = this.timeout) {
+        if (this._isLeaving()) return;
+        this.socket._leaveOpenTopic(this.topic);
+        this.state = (0, _constants.CHANNEL_STATES).joining;
+        this.joinPush.resend(timeout);
+    }
+    /** @internal */ _getPayloadRecords(payload) {
+        const records = {
+            new: {},
+            old: {}
+        };
+        if (payload.type === "INSERT" || payload.type === "UPDATE") records.new = _transformers.convertChangeData(payload.columns, payload.record);
+        if (payload.type === "UPDATE" || payload.type === "DELETE") records.old = _transformers.convertChangeData(payload.columns, payload.old_record);
+        return records;
+    }
+}
+exports.default = RealtimeChannel;
+
+},{"./lib/constants":"jMQgQ","./lib/push":"1ZEEl","./lib/timer":"2jFhh","./RealtimePresence":"iOr8b","./lib/transformers":"30HoB","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"1ZEEl":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _constants = require("../lib/constants");
+class Push {
+    /**
+     * Initializes the Push
+     *
+     * @param channel The Channel
+     * @param event The event, for example `"phx_join"`
+     * @param payload The payload, for example `{user_id: 123}`
+     * @param timeout The push timeout in milliseconds
+     */ constructor(channel, event, payload = {}, timeout = (0, _constants.DEFAULT_TIMEOUT)){
+        this.channel = channel;
+        this.event = event;
+        this.payload = payload;
+        this.timeout = timeout;
+        this.sent = false;
+        this.timeoutTimer = undefined;
+        this.ref = "";
+        this.receivedResp = null;
+        this.recHooks = [];
+        this.refEvent = null;
+    }
+    resend(timeout) {
+        this.timeout = timeout;
+        this._cancelRefEvent();
+        this.ref = "";
+        this.refEvent = null;
+        this.receivedResp = null;
+        this.sent = false;
+        this.send();
+    }
+    send() {
+        if (this._hasReceived("timeout")) return;
+        this.startTimeout();
+        this.sent = true;
+        this.channel.socket.push({
+            topic: this.channel.topic,
+            event: this.event,
+            payload: this.payload,
+            ref: this.ref,
+            join_ref: this.channel._joinRef()
+        });
+    }
+    updatePayload(payload) {
+        this.payload = Object.assign(Object.assign({}, this.payload), payload);
+    }
+    receive(status, callback) {
+        var _a;
+        if (this._hasReceived(status)) callback((_a = this.receivedResp) === null || _a === void 0 ? void 0 : _a.response);
+        this.recHooks.push({
+            status,
+            callback
+        });
+        return this;
+    }
+    startTimeout() {
+        if (this.timeoutTimer) return;
+        this.ref = this.channel.socket._makeRef();
+        this.refEvent = this.channel._replyEventName(this.ref);
+        const callback = (payload)=>{
+            this._cancelRefEvent();
+            this._cancelTimeout();
+            this.receivedResp = payload;
+            this._matchReceive(payload);
+        };
+        this.channel._on(this.refEvent, {}, callback);
+        this.timeoutTimer = setTimeout(()=>{
+            this.trigger("timeout", {});
+        }, this.timeout);
+    }
+    trigger(status, response) {
+        if (this.refEvent) this.channel._trigger(this.refEvent, {
+            status,
+            response
+        });
+    }
+    destroy() {
+        this._cancelRefEvent();
+        this._cancelTimeout();
+    }
+    _cancelRefEvent() {
+        if (!this.refEvent) return;
+        this.channel._off(this.refEvent, {});
+    }
+    _cancelTimeout() {
+        clearTimeout(this.timeoutTimer);
+        this.timeoutTimer = undefined;
+    }
+    _matchReceive({ status, response }) {
+        this.recHooks.filter((h)=>h.status === status).forEach((h)=>h.callback(response));
+    }
+    _hasReceived(status) {
+        return this.receivedResp && this.receivedResp.status === status;
+    }
+}
+exports.default = Push;
+
+},{"../lib/constants":"jMQgQ","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"iOr8b":[function(require,module,exports) {
+/*
+  This file draws heavily from https://github.com/phoenixframework/phoenix/blob/d344ec0a732ab4ee204215b31de69cf4be72e3bf/assets/js/phoenix/presence.js
+  License: https://github.com/phoenixframework/phoenix/blob/d344ec0a732ab4ee204215b31de69cf4be72e3bf/LICENSE.md
+*/ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "REALTIME_PRESENCE_LISTEN_EVENTS", ()=>REALTIME_PRESENCE_LISTEN_EVENTS);
+var REALTIME_PRESENCE_LISTEN_EVENTS;
+(function(REALTIME_PRESENCE_LISTEN_EVENTS) {
+    REALTIME_PRESENCE_LISTEN_EVENTS["SYNC"] = "sync";
+    REALTIME_PRESENCE_LISTEN_EVENTS["JOIN"] = "join";
+    REALTIME_PRESENCE_LISTEN_EVENTS["LEAVE"] = "leave";
+})(REALTIME_PRESENCE_LISTEN_EVENTS || (REALTIME_PRESENCE_LISTEN_EVENTS = {}));
+class RealtimePresence {
+    /**
+     * Initializes the Presence.
+     *
+     * @param channel - The RealtimeChannel
+     * @param opts - The options,
+     *        for example `{events: {state: 'state', diff: 'diff'}}`
+     */ constructor(channel, opts){
+        this.channel = channel;
+        this.state = {};
+        this.pendingDiffs = [];
+        this.joinRef = null;
+        this.caller = {
+            onJoin: ()=>{},
+            onLeave: ()=>{},
+            onSync: ()=>{}
+        };
+        const events = (opts === null || opts === void 0 ? void 0 : opts.events) || {
+            state: "presence_state",
+            diff: "presence_diff"
+        };
+        this.channel._on(events.state, {}, (newState)=>{
+            const { onJoin, onLeave, onSync } = this.caller;
+            this.joinRef = this.channel._joinRef();
+            this.state = RealtimePresence.syncState(this.state, newState, onJoin, onLeave);
+            this.pendingDiffs.forEach((diff)=>{
+                this.state = RealtimePresence.syncDiff(this.state, diff, onJoin, onLeave);
+            });
+            this.pendingDiffs = [];
+            onSync();
+        });
+        this.channel._on(events.diff, {}, (diff)=>{
+            const { onJoin, onLeave, onSync } = this.caller;
+            if (this.inPendingSyncState()) this.pendingDiffs.push(diff);
+            else {
+                this.state = RealtimePresence.syncDiff(this.state, diff, onJoin, onLeave);
+                onSync();
+            }
+        });
+        this.onJoin((key, currentPresences, newPresences)=>{
+            this.channel._trigger("presence", {
+                event: "join",
+                key,
+                currentPresences,
+                newPresences
+            });
+        });
+        this.onLeave((key, currentPresences, leftPresences)=>{
+            this.channel._trigger("presence", {
+                event: "leave",
+                key,
+                currentPresences,
+                leftPresences
+            });
+        });
+        this.onSync(()=>{
+            this.channel._trigger("presence", {
+                event: "sync"
+            });
+        });
+    }
+    /**
+     * Used to sync the list of presences on the server with the
+     * client's state.
+     *
+     * An optional `onJoin` and `onLeave` callback can be provided to
+     * react to changes in the client's local presences across
+     * disconnects and reconnects with the server.
+     *
+     * @internal
+     */ static syncState(currentState, newState, onJoin, onLeave) {
+        const state = this.cloneDeep(currentState);
+        const transformedState = this.transformState(newState);
+        const joins = {};
+        const leaves = {};
+        this.map(state, (key, presences)=>{
+            if (!transformedState[key]) leaves[key] = presences;
+        });
+        this.map(transformedState, (key, newPresences)=>{
+            const currentPresences = state[key];
+            if (currentPresences) {
+                const newPresenceRefs = newPresences.map((m)=>m.presence_ref);
+                const curPresenceRefs = currentPresences.map((m)=>m.presence_ref);
+                const joinedPresences = newPresences.filter((m)=>curPresenceRefs.indexOf(m.presence_ref) < 0);
+                const leftPresences = currentPresences.filter((m)=>newPresenceRefs.indexOf(m.presence_ref) < 0);
+                if (joinedPresences.length > 0) joins[key] = joinedPresences;
+                if (leftPresences.length > 0) leaves[key] = leftPresences;
+            } else joins[key] = newPresences;
+        });
+        return this.syncDiff(state, {
+            joins,
+            leaves
+        }, onJoin, onLeave);
+    }
+    /**
+     * Used to sync a diff of presence join and leave events from the
+     * server, as they happen.
+     *
+     * Like `syncState`, `syncDiff` accepts optional `onJoin` and
+     * `onLeave` callbacks to react to a user joining or leaving from a
+     * device.
+     *
+     * @internal
+     */ static syncDiff(state, diff, onJoin, onLeave) {
+        const { joins, leaves } = {
+            joins: this.transformState(diff.joins),
+            leaves: this.transformState(diff.leaves)
+        };
+        if (!onJoin) onJoin = ()=>{};
+        if (!onLeave) onLeave = ()=>{};
+        this.map(joins, (key, newPresences)=>{
+            var _a;
+            const currentPresences = (_a = state[key]) !== null && _a !== void 0 ? _a : [];
+            state[key] = this.cloneDeep(newPresences);
+            if (currentPresences.length > 0) {
+                const joinedPresenceRefs = state[key].map((m)=>m.presence_ref);
+                const curPresences = currentPresences.filter((m)=>joinedPresenceRefs.indexOf(m.presence_ref) < 0);
+                state[key].unshift(...curPresences);
+            }
+            onJoin(key, currentPresences, newPresences);
+        });
+        this.map(leaves, (key, leftPresences)=>{
+            let currentPresences = state[key];
+            if (!currentPresences) return;
+            const presenceRefsToRemove = leftPresences.map((m)=>m.presence_ref);
+            currentPresences = currentPresences.filter((m)=>presenceRefsToRemove.indexOf(m.presence_ref) < 0);
+            state[key] = currentPresences;
+            onLeave(key, currentPresences, leftPresences);
+            if (currentPresences.length === 0) delete state[key];
+        });
+        return state;
+    }
+    /** @internal */ static map(obj, func) {
+        return Object.getOwnPropertyNames(obj).map((key)=>func(key, obj[key]));
+    }
+    /**
+     * Remove 'metas' key
+     * Change 'phx_ref' to 'presence_ref'
+     * Remove 'phx_ref' and 'phx_ref_prev'
+     *
+     * @example
+     * // returns {
+     *  abc123: [
+     *    { presence_ref: '2', user_id: 1 },
+     *    { presence_ref: '3', user_id: 2 }
+     *  ]
+     * }
+     * RealtimePresence.transformState({
+     *  abc123: {
+     *    metas: [
+     *      { phx_ref: '2', phx_ref_prev: '1' user_id: 1 },
+     *      { phx_ref: '3', user_id: 2 }
+     *    ]
+     *  }
+     * })
+     *
+     * @internal
+     */ static transformState(state) {
+        state = this.cloneDeep(state);
+        return Object.getOwnPropertyNames(state).reduce((newState, key)=>{
+            const presences = state[key];
+            if ("metas" in presences) newState[key] = presences.metas.map((presence)=>{
+                presence["presence_ref"] = presence["phx_ref"];
+                delete presence["phx_ref"];
+                delete presence["phx_ref_prev"];
+                return presence;
+            });
+            else newState[key] = presences;
+            return newState;
+        }, {});
+    }
+    /** @internal */ static cloneDeep(obj) {
+        return JSON.parse(JSON.stringify(obj));
+    }
+    /** @internal */ onJoin(callback) {
+        this.caller.onJoin = callback;
+    }
+    /** @internal */ onLeave(callback) {
+        this.caller.onLeave = callback;
+    }
+    /** @internal */ onSync(callback) {
+        this.caller.onSync = callback;
+    }
+    /** @internal */ inPendingSyncState() {
+        return !this.joinRef || this.joinRef !== this.channel._joinRef();
+    }
+}
+exports.default = RealtimePresence;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"30HoB":[function(require,module,exports) {
+/**
+ * Helpers to convert the change Payload into native JS types.
+ */ // Adapted from epgsql (src/epgsql_binary.erl), this module licensed under
+// 3-clause BSD found here: https://raw.githubusercontent.com/epgsql/epgsql/devel/LICENSE
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "PostgresTypes", ()=>PostgresTypes);
+parcelHelpers.export(exports, "convertChangeData", ()=>convertChangeData);
+parcelHelpers.export(exports, "convertColumn", ()=>convertColumn);
+parcelHelpers.export(exports, "convertCell", ()=>convertCell);
+parcelHelpers.export(exports, "toBoolean", ()=>toBoolean);
+parcelHelpers.export(exports, "toNumber", ()=>toNumber);
+parcelHelpers.export(exports, "toJson", ()=>toJson);
+parcelHelpers.export(exports, "toArray", ()=>toArray);
+parcelHelpers.export(exports, "toTimestampString", ()=>toTimestampString);
+var PostgresTypes;
+(function(PostgresTypes) {
+    PostgresTypes["abstime"] = "abstime";
+    PostgresTypes["bool"] = "bool";
+    PostgresTypes["date"] = "date";
+    PostgresTypes["daterange"] = "daterange";
+    PostgresTypes["float4"] = "float4";
+    PostgresTypes["float8"] = "float8";
+    PostgresTypes["int2"] = "int2";
+    PostgresTypes["int4"] = "int4";
+    PostgresTypes["int4range"] = "int4range";
+    PostgresTypes["int8"] = "int8";
+    PostgresTypes["int8range"] = "int8range";
+    PostgresTypes["json"] = "json";
+    PostgresTypes["jsonb"] = "jsonb";
+    PostgresTypes["money"] = "money";
+    PostgresTypes["numeric"] = "numeric";
+    PostgresTypes["oid"] = "oid";
+    PostgresTypes["reltime"] = "reltime";
+    PostgresTypes["text"] = "text";
+    PostgresTypes["time"] = "time";
+    PostgresTypes["timestamp"] = "timestamp";
+    PostgresTypes["timestamptz"] = "timestamptz";
+    PostgresTypes["timetz"] = "timetz";
+    PostgresTypes["tsrange"] = "tsrange";
+    PostgresTypes["tstzrange"] = "tstzrange";
+})(PostgresTypes || (PostgresTypes = {}));
+const convertChangeData = (columns, record, options = {})=>{
+    var _a;
+    const skipTypes = (_a = options.skipTypes) !== null && _a !== void 0 ? _a : [];
+    return Object.keys(record).reduce((acc, rec_key)=>{
+        acc[rec_key] = convertColumn(rec_key, columns, record, skipTypes);
+        return acc;
+    }, {});
+};
+const convertColumn = (columnName, columns, record, skipTypes)=>{
+    const column = columns.find((x)=>x.name === columnName);
+    const colType = column === null || column === void 0 ? void 0 : column.type;
+    const value = record[columnName];
+    if (colType && !skipTypes.includes(colType)) return convertCell(colType, value);
+    return noop(value);
+};
+const convertCell = (type, value)=>{
+    // if data type is an array
+    if (type.charAt(0) === "_") {
+        const dataType = type.slice(1, type.length);
+        return toArray(value, dataType);
+    }
+    // If not null, convert to correct type.
+    switch(type){
+        case PostgresTypes.bool:
+            return toBoolean(value);
+        case PostgresTypes.float4:
+        case PostgresTypes.float8:
+        case PostgresTypes.int2:
+        case PostgresTypes.int4:
+        case PostgresTypes.int8:
+        case PostgresTypes.numeric:
+        case PostgresTypes.oid:
+            return toNumber(value);
+        case PostgresTypes.json:
+        case PostgresTypes.jsonb:
+            return toJson(value);
+        case PostgresTypes.timestamp:
+            return toTimestampString(value); // Format to be consistent with PostgREST
+        case PostgresTypes.abstime:
+        case PostgresTypes.date:
+        case PostgresTypes.daterange:
+        case PostgresTypes.int4range:
+        case PostgresTypes.int8range:
+        case PostgresTypes.money:
+        case PostgresTypes.reltime:
+        case PostgresTypes.text:
+        case PostgresTypes.time:
+        case PostgresTypes.timestamptz:
+        case PostgresTypes.timetz:
+        case PostgresTypes.tsrange:
+        case PostgresTypes.tstzrange:
+            return noop(value);
+        default:
+            // Return the value for remaining types
+            return noop(value);
+    }
+};
+const noop = (value)=>{
+    return value;
+};
+const toBoolean = (value)=>{
+    switch(value){
+        case "t":
+            return true;
+        case "f":
+            return false;
+        default:
+            return value;
+    }
+};
+const toNumber = (value)=>{
+    if (typeof value === "string") {
+        const parsedValue = parseFloat(value);
+        if (!Number.isNaN(parsedValue)) return parsedValue;
+    }
+    return value;
+};
+const toJson = (value)=>{
+    if (typeof value === "string") try {
+        return JSON.parse(value);
+    } catch (error) {
+        console.log(`JSON parse error: ${error}`);
+        return value;
+    }
+    return value;
+};
+const toArray = (value, type)=>{
+    if (typeof value !== "string") return value;
+    const lastIdx = value.length - 1;
+    const closeBrace = value[lastIdx];
+    const openBrace = value[0];
+    // Confirm value is a Postgres array by checking curly brackets
+    if (openBrace === "{" && closeBrace === "}") {
+        let arr;
+        const valTrim = value.slice(1, lastIdx);
+        // TODO: find a better solution to separate Postgres array data
+        try {
+            arr = JSON.parse("[" + valTrim + "]");
+        } catch (_) {
+            // WARNING: splitting on comma does not cover all edge cases
+            arr = valTrim ? valTrim.split(",") : [];
+        }
+        return arr.map((val)=>convertCell(type, val));
+    }
+    return value;
+};
+const toTimestampString = (value)=>{
+    if (typeof value === "string") return value.replace(" ", "T");
+    return value;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"grgiq":[function(require,module,exports) {
+module.exports = require("1afa003d8afc77c0")(require("a9da5da718e42023").getBundleURL("1Q55w") + "browser.aee58857.js").catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root("2B5cO"));
+
+},{"1afa003d8afc77c0":"3dDkg","a9da5da718e42023":"jkqJ4"}],"3dDkg":[function(require,module,exports) {
+"use strict";
+var cacheLoader = require("ca2a84f7fa4a3bb0");
+module.exports = cacheLoader(function(bundle) {
+    return new Promise(function(resolve, reject) {
+        // Don't insert the same script twice (e.g. if it was already in the HTML)
+        var existingScripts = document.getElementsByTagName("script");
+        if ([].concat(existingScripts).some(function isCurrentBundle(script) {
+            return script.src === bundle;
+        })) {
+            resolve();
+            return;
+        }
+        var preloadLink = document.createElement("link");
+        preloadLink.href = bundle;
+        preloadLink.rel = "preload";
+        preloadLink.as = "script";
+        document.head.appendChild(preloadLink);
+        var script = document.createElement("script");
+        script.async = true;
+        script.type = "text/javascript";
+        script.src = bundle;
+        script.onerror = function(e) {
+            var error = new TypeError("Failed to fetch dynamically imported module: ".concat(bundle, ". Error: ").concat(e.message));
+            script.onerror = script.onload = null;
+            script.remove();
+            reject(error);
+        };
+        script.onload = function() {
+            script.onerror = script.onload = null;
+            resolve();
+        };
+        document.getElementsByTagName("head")[0].appendChild(script);
+    });
+});
+
+},{"ca2a84f7fa4a3bb0":"khH0r"}],"khH0r":[function(require,module,exports) {
+"use strict";
+var cachedBundles = {};
+var cachedPreloads = {};
+var cachedPrefetches = {};
+function getCache(type) {
+    switch(type){
+        case "preload":
+            return cachedPreloads;
+        case "prefetch":
+            return cachedPrefetches;
+        default:
+            return cachedBundles;
+    }
+}
+module.exports = function(loader, type) {
+    return function(bundle) {
+        var cache = getCache(type);
+        if (cache[bundle]) return cache[bundle];
+        return cache[bundle] = loader.apply(null, arguments).catch(function(e) {
+            delete cache[bundle];
+            throw e;
+        });
+    };
+};
+
+},{}],"jkqJ4":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return "/";
+}
+function getBaseURL(url) {
+    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
+}
+// TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error("Origin not found");
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"d6HNz":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "StorageClient", ()=>(0, _storageClient.StorageClient));
+var _storageClient = require("./StorageClient");
+var _types = require("./lib/types");
+parcelHelpers.exportAll(_types, exports);
+var _errors = require("./lib/errors");
+parcelHelpers.exportAll(_errors, exports);
+
+},{"./StorageClient":"7TTBE","./lib/types":false,"./lib/errors":false,"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"7TTBE":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "StorageClient", ()=>StorageClient);
+var _storageFileApi = require("./packages/StorageFileApi");
+var _storageFileApiDefault = parcelHelpers.interopDefault(_storageFileApi);
+var _storageBucketApi = require("./packages/StorageBucketApi");
+var _storageBucketApiDefault = parcelHelpers.interopDefault(_storageBucketApi);
+class StorageClient extends (0, _storageBucketApiDefault.default) {
+    constructor(url, headers = {}, fetch){
+        super(url, headers, fetch);
+    }
+    /**
+     * Perform file operation in a bucket.
+     *
+     * @param id The bucket id to operate on.
+     */ from(id) {
+        return new (0, _storageFileApiDefault.default)(this.url, this.headers, id, this.fetch);
+    }
+}
+
+},{"./packages/StorageFileApi":"g1oV3","./packages/StorageBucketApi":"fCJfe","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"g1oV3":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _errors = require("../lib/errors");
+var _fetch = require("../lib/fetch");
+var _helpers = require("../lib/helpers");
+var __awaiter = undefined && undefined.__awaiter || function(thisArg, _arguments, P, generator) {
+    function adopt(value) {
+        return value instanceof P ? value : new P(function(resolve) {
+            resolve(value);
+        });
+    }
+    return new (P || (P = Promise))(function(resolve, reject) {
+        function fulfilled(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function rejected(value) {
+            try {
+                step(generator["throw"](value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function step(result) {
+            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+const DEFAULT_SEARCH_OPTIONS = {
+    limit: 100,
+    offset: 0,
+    sortBy: {
+        column: "name",
+        order: "asc"
+    }
+};
+const DEFAULT_FILE_OPTIONS = {
+    cacheControl: "3600",
+    contentType: "text/plain;charset=UTF-8",
+    upsert: false
+};
+class StorageFileApi {
+    constructor(url, headers = {}, bucketId, fetch){
+        this.url = url;
+        this.headers = headers;
+        this.bucketId = bucketId;
+        this.fetch = (0, _helpers.resolveFetch)(fetch);
+    }
+    /**
+     * Uploads a file to an existing bucket or replaces an existing file at the specified path with a new one.
+     *
+     * @param method HTTP method.
+     * @param path The relative file path. Should be of the format `folder/subfolder/filename.png`. The bucket must already exist before attempting to upload.
+     * @param fileBody The body of the file to be stored in the bucket.
+     */ uploadOrUpdate(method, path, fileBody, fileOptions) {
+        return __awaiter(this, void 0, void 0, function*() {
+            try {
+                let body;
+                const options = Object.assign(Object.assign({}, DEFAULT_FILE_OPTIONS), fileOptions);
+                const headers = Object.assign(Object.assign({}, this.headers), method === "POST" && {
+                    "x-upsert": String(options.upsert)
+                });
+                if (typeof Blob !== "undefined" && fileBody instanceof Blob) {
+                    body = new FormData();
+                    body.append("cacheControl", options.cacheControl);
+                    body.append("", fileBody);
+                } else if (typeof FormData !== "undefined" && fileBody instanceof FormData) {
+                    body = fileBody;
+                    body.append("cacheControl", options.cacheControl);
+                } else {
+                    body = fileBody;
+                    headers["cache-control"] = `max-age=${options.cacheControl}`;
+                    headers["content-type"] = options.contentType;
+                }
+                const cleanPath = this._removeEmptyFolders(path);
+                const _path = this._getFinalPath(cleanPath);
+                const res = yield this.fetch(`${this.url}/object/${_path}`, Object.assign({
+                    method,
+                    body: body,
+                    headers
+                }, (options === null || options === void 0 ? void 0 : options.duplex) ? {
+                    duplex: options.duplex
+                } : {}));
+                const data = yield res.json();
+                if (res.ok) return {
+                    data: {
+                        path: cleanPath,
+                        id: data.Id,
+                        fullPath: data.Key
+                    },
+                    error: null
+                };
+                else {
+                    const error = data;
+                    return {
+                        data: null,
+                        error
+                    };
+                }
+            } catch (error) {
+                if ((0, _errors.isStorageError)(error)) return {
+                    data: null,
+                    error
+                };
+                throw error;
+            }
+        });
+    }
+    /**
+     * Uploads a file to an existing bucket.
+     *
+     * @param path The file path, including the file name. Should be of the format `folder/subfolder/filename.png`. The bucket must already exist before attempting to upload.
+     * @param fileBody The body of the file to be stored in the bucket.
+     */ upload(path, fileBody, fileOptions) {
+        return __awaiter(this, void 0, void 0, function*() {
+            return this.uploadOrUpdate("POST", path, fileBody, fileOptions);
+        });
+    }
+    /**
+     * Upload a file with a token generated from `createSignedUploadUrl`.
+     * @param path The file path, including the file name. Should be of the format `folder/subfolder/filename.png`. The bucket must already exist before attempting to upload.
+     * @param token The token generated from `createSignedUploadUrl`
+     * @param fileBody The body of the file to be stored in the bucket.
+     */ uploadToSignedUrl(path, token, fileBody, fileOptions) {
+        return __awaiter(this, void 0, void 0, function*() {
+            const cleanPath = this._removeEmptyFolders(path);
+            const _path = this._getFinalPath(cleanPath);
+            const url = new URL(this.url + `/object/upload/sign/${_path}`);
+            url.searchParams.set("token", token);
+            try {
+                let body;
+                const options = Object.assign({
+                    upsert: DEFAULT_FILE_OPTIONS.upsert
+                }, fileOptions);
+                const headers = Object.assign(Object.assign({}, this.headers), {
+                    "x-upsert": String(options.upsert)
+                });
+                if (typeof Blob !== "undefined" && fileBody instanceof Blob) {
+                    body = new FormData();
+                    body.append("cacheControl", options.cacheControl);
+                    body.append("", fileBody);
+                } else if (typeof FormData !== "undefined" && fileBody instanceof FormData) {
+                    body = fileBody;
+                    body.append("cacheControl", options.cacheControl);
+                } else {
+                    body = fileBody;
+                    headers["cache-control"] = `max-age=${options.cacheControl}`;
+                    headers["content-type"] = options.contentType;
+                }
+                const res = yield this.fetch(url.toString(), {
+                    method: "PUT",
+                    body: body,
+                    headers
+                });
+                const data = yield res.json();
+                if (res.ok) return {
+                    data: {
+                        path: cleanPath,
+                        fullPath: data.Key
+                    },
+                    error: null
+                };
+                else {
+                    const error = data;
+                    return {
+                        data: null,
+                        error
+                    };
+                }
+            } catch (error) {
+                if ((0, _errors.isStorageError)(error)) return {
+                    data: null,
+                    error
+                };
+                throw error;
+            }
+        });
+    }
+    /**
+     * Creates a signed upload URL.
+     * Signed upload URLs can be used to upload files to the bucket without further authentication.
+     * They are valid for 2 hours.
+     * @param path The file path, including the current file name. For example `folder/image.png`.
+     */ createSignedUploadUrl(path) {
+        return __awaiter(this, void 0, void 0, function*() {
+            try {
+                let _path = this._getFinalPath(path);
+                const data = yield (0, _fetch.post)(this.fetch, `${this.url}/object/upload/sign/${_path}`, {}, {
+                    headers: this.headers
+                });
+                const url = new URL(this.url + data.url);
+                const token = url.searchParams.get("token");
+                if (!token) throw new (0, _errors.StorageError)("No token returned by API");
+                return {
+                    data: {
+                        signedUrl: url.toString(),
+                        path,
+                        token
+                    },
+                    error: null
+                };
+            } catch (error) {
+                if ((0, _errors.isStorageError)(error)) return {
+                    data: null,
+                    error
+                };
+                throw error;
+            }
+        });
+    }
+    /**
+     * Replaces an existing file at the specified path with a new one.
+     *
+     * @param path The relative file path. Should be of the format `folder/subfolder/filename.png`. The bucket must already exist before attempting to update.
+     * @param fileBody The body of the file to be stored in the bucket.
+     */ update(path, fileBody, fileOptions) {
+        return __awaiter(this, void 0, void 0, function*() {
+            return this.uploadOrUpdate("PUT", path, fileBody, fileOptions);
+        });
+    }
+    /**
+     * Moves an existing file to a new path in the same bucket.
+     *
+     * @param fromPath The original file path, including the current file name. For example `folder/image.png`.
+     * @param toPath The new file path, including the new file name. For example `folder/image-new.png`.
+     */ move(fromPath, toPath) {
+        return __awaiter(this, void 0, void 0, function*() {
+            try {
+                const data = yield (0, _fetch.post)(this.fetch, `${this.url}/object/move`, {
+                    bucketId: this.bucketId,
+                    sourceKey: fromPath,
+                    destinationKey: toPath
+                }, {
+                    headers: this.headers
+                });
+                return {
+                    data,
+                    error: null
+                };
+            } catch (error) {
+                if ((0, _errors.isStorageError)(error)) return {
+                    data: null,
+                    error
+                };
+                throw error;
+            }
+        });
+    }
+    /**
+     * Copies an existing file to a new path in the same bucket.
+     *
+     * @param fromPath The original file path, including the current file name. For example `folder/image.png`.
+     * @param toPath The new file path, including the new file name. For example `folder/image-copy.png`.
+     */ copy(fromPath, toPath) {
+        return __awaiter(this, void 0, void 0, function*() {
+            try {
+                const data = yield (0, _fetch.post)(this.fetch, `${this.url}/object/copy`, {
+                    bucketId: this.bucketId,
+                    sourceKey: fromPath,
+                    destinationKey: toPath
+                }, {
+                    headers: this.headers
+                });
+                return {
+                    data: {
+                        path: data.Key
+                    },
+                    error: null
+                };
+            } catch (error) {
+                if ((0, _errors.isStorageError)(error)) return {
+                    data: null,
+                    error
+                };
+                throw error;
+            }
+        });
+    }
+    /**
+     * Creates a signed URL. Use a signed URL to share a file for a fixed amount of time.
+     *
+     * @param path The file path, including the current file name. For example `folder/image.png`.
+     * @param expiresIn The number of seconds until the signed URL expires. For example, `60` for a URL which is valid for one minute.
+     * @param options.download triggers the file as a download if set to true. Set this parameter as the name of the file if you want to trigger the download with a different filename.
+     * @param options.transform Transform the asset before serving it to the client.
+     */ createSignedUrl(path, expiresIn, options) {
+        return __awaiter(this, void 0, void 0, function*() {
+            try {
+                let _path = this._getFinalPath(path);
+                let data = yield (0, _fetch.post)(this.fetch, `${this.url}/object/sign/${_path}`, Object.assign({
+                    expiresIn
+                }, (options === null || options === void 0 ? void 0 : options.transform) ? {
+                    transform: options.transform
+                } : {}), {
+                    headers: this.headers
+                });
+                const downloadQueryParam = (options === null || options === void 0 ? void 0 : options.download) ? `&download=${options.download === true ? "" : options.download}` : "";
+                const signedUrl = encodeURI(`${this.url}${data.signedURL}${downloadQueryParam}`);
+                data = {
+                    signedUrl
+                };
+                return {
+                    data,
+                    error: null
+                };
+            } catch (error) {
+                if ((0, _errors.isStorageError)(error)) return {
+                    data: null,
+                    error
+                };
+                throw error;
+            }
+        });
+    }
+    /**
+     * Creates multiple signed URLs. Use a signed URL to share a file for a fixed amount of time.
+     *
+     * @param paths The file paths to be downloaded, including the current file names. For example `['folder/image.png', 'folder2/image2.png']`.
+     * @param expiresIn The number of seconds until the signed URLs expire. For example, `60` for URLs which are valid for one minute.
+     * @param options.download triggers the file as a download if set to true. Set this parameter as the name of the file if you want to trigger the download with a different filename.
+     */ createSignedUrls(paths, expiresIn, options) {
+        return __awaiter(this, void 0, void 0, function*() {
+            try {
+                const data = yield (0, _fetch.post)(this.fetch, `${this.url}/object/sign/${this.bucketId}`, {
+                    expiresIn,
+                    paths
+                }, {
+                    headers: this.headers
+                });
+                const downloadQueryParam = (options === null || options === void 0 ? void 0 : options.download) ? `&download=${options.download === true ? "" : options.download}` : "";
+                return {
+                    data: data.map((datum)=>Object.assign(Object.assign({}, datum), {
+                            signedUrl: datum.signedURL ? encodeURI(`${this.url}${datum.signedURL}${downloadQueryParam}`) : null
+                        })),
+                    error: null
+                };
+            } catch (error) {
+                if ((0, _errors.isStorageError)(error)) return {
+                    data: null,
+                    error
+                };
+                throw error;
+            }
+        });
+    }
+    /**
+     * Downloads a file from a private bucket. For public buckets, make a request to the URL returned from `getPublicUrl` instead.
+     *
+     * @param path The full path and file name of the file to be downloaded. For example `folder/image.png`.
+     * @param options.transform Transform the asset before serving it to the client.
+     */ download(path, options) {
+        return __awaiter(this, void 0, void 0, function*() {
+            const wantsTransformation = typeof (options === null || options === void 0 ? void 0 : options.transform) !== "undefined";
+            const renderPath = wantsTransformation ? "render/image/authenticated" : "object";
+            const transformationQuery = this.transformOptsToQueryString((options === null || options === void 0 ? void 0 : options.transform) || {});
+            const queryString = transformationQuery ? `?${transformationQuery}` : "";
+            try {
+                const _path = this._getFinalPath(path);
+                const res = yield (0, _fetch.get)(this.fetch, `${this.url}/${renderPath}/${_path}${queryString}`, {
+                    headers: this.headers,
+                    noResolveJson: true
+                });
+                const data = yield res.blob();
+                return {
+                    data,
+                    error: null
+                };
+            } catch (error) {
+                if ((0, _errors.isStorageError)(error)) return {
+                    data: null,
+                    error
+                };
+                throw error;
+            }
+        });
+    }
+    /**
+     * A simple convenience function to get the URL for an asset in a public bucket. If you do not want to use this function, you can construct the public URL by concatenating the bucket URL with the path to the asset.
+     * This function does not verify if the bucket is public. If a public URL is created for a bucket which is not public, you will not be able to download the asset.
+     *
+     * @param path The path and name of the file to generate the public URL for. For example `folder/image.png`.
+     * @param options.download Triggers the file as a download if set to true. Set this parameter as the name of the file if you want to trigger the download with a different filename.
+     * @param options.transform Transform the asset before serving it to the client.
+     */ getPublicUrl(path, options) {
+        const _path = this._getFinalPath(path);
+        const _queryString = [];
+        const downloadQueryParam = (options === null || options === void 0 ? void 0 : options.download) ? `download=${options.download === true ? "" : options.download}` : "";
+        if (downloadQueryParam !== "") _queryString.push(downloadQueryParam);
+        const wantsTransformation = typeof (options === null || options === void 0 ? void 0 : options.transform) !== "undefined";
+        const renderPath = wantsTransformation ? "render/image" : "object";
+        const transformationQuery = this.transformOptsToQueryString((options === null || options === void 0 ? void 0 : options.transform) || {});
+        if (transformationQuery !== "") _queryString.push(transformationQuery);
+        let queryString = _queryString.join("&");
+        if (queryString !== "") queryString = `?${queryString}`;
+        return {
+            data: {
+                publicUrl: encodeURI(`${this.url}/${renderPath}/public/${_path}${queryString}`)
+            }
+        };
+    }
+    /**
+     * Deletes files within the same bucket
+     *
+     * @param paths An array of files to delete, including the path and file name. For example [`'folder/image.png'`].
+     */ remove(paths) {
+        return __awaiter(this, void 0, void 0, function*() {
+            try {
+                const data = yield (0, _fetch.remove)(this.fetch, `${this.url}/object/${this.bucketId}`, {
+                    prefixes: paths
+                }, {
+                    headers: this.headers
+                });
+                return {
+                    data,
+                    error: null
+                };
+            } catch (error) {
+                if ((0, _errors.isStorageError)(error)) return {
+                    data: null,
+                    error
+                };
+                throw error;
+            }
+        });
+    }
+    /**
+     * Get file metadata
+     * @param id the file id to retrieve metadata
+     */ // async getMetadata(
+    //   id: string
+    // ): Promise<
+    //   | {
+    //       data: Metadata
+    //       error: null
+    //     }
+    //   | {
+    //       data: null
+    //       error: StorageError
+    //     }
+    // > {
+    //   try {
+    //     const data = await get(this.fetch, `${this.url}/metadata/${id}`, { headers: this.headers })
+    //     return { data, error: null }
+    //   } catch (error) {
+    //     if (isStorageError(error)) {
+    //       return { data: null, error }
+    //     }
+    //     throw error
+    //   }
+    // }
+    /**
+     * Update file metadata
+     * @param id the file id to update metadata
+     * @param meta the new file metadata
+     */ // async updateMetadata(
+    //   id: string,
+    //   meta: Metadata
+    // ): Promise<
+    //   | {
+    //       data: Metadata
+    //       error: null
+    //     }
+    //   | {
+    //       data: null
+    //       error: StorageError
+    //     }
+    // > {
+    //   try {
+    //     const data = await post(
+    //       this.fetch,
+    //       `${this.url}/metadata/${id}`,
+    //       { ...meta },
+    //       { headers: this.headers }
+    //     )
+    //     return { data, error: null }
+    //   } catch (error) {
+    //     if (isStorageError(error)) {
+    //       return { data: null, error }
+    //     }
+    //     throw error
+    //   }
+    // }
+    /**
+     * Lists all the files within a bucket.
+     * @param path The folder path.
+     */ list(path, options, parameters) {
+        return __awaiter(this, void 0, void 0, function*() {
+            try {
+                const body = Object.assign(Object.assign(Object.assign({}, DEFAULT_SEARCH_OPTIONS), options), {
+                    prefix: path || ""
+                });
+                const data = yield (0, _fetch.post)(this.fetch, `${this.url}/object/list/${this.bucketId}`, body, {
+                    headers: this.headers
+                }, parameters);
+                return {
+                    data,
+                    error: null
+                };
+            } catch (error) {
+                if ((0, _errors.isStorageError)(error)) return {
+                    data: null,
+                    error
+                };
+                throw error;
+            }
+        });
+    }
+    _getFinalPath(path) {
+        return `${this.bucketId}/${path}`;
+    }
+    _removeEmptyFolders(path) {
+        return path.replace(/^\/|\/$/g, "").replace(/\/+/g, "/");
+    }
+    transformOptsToQueryString(transform) {
+        const params = [];
+        if (transform.width) params.push(`width=${transform.width}`);
+        if (transform.height) params.push(`height=${transform.height}`);
+        if (transform.resize) params.push(`resize=${transform.resize}`);
+        if (transform.format) params.push(`format=${transform.format}`);
+        if (transform.quality) params.push(`quality=${transform.quality}`);
+        return params.join("&");
+    }
+}
+exports.default = StorageFileApi;
+
+},{"../lib/errors":"7X8pZ","../lib/fetch":"29QhY","../lib/helpers":"bW2UD","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"7X8pZ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "StorageError", ()=>StorageError);
+parcelHelpers.export(exports, "isStorageError", ()=>isStorageError);
+parcelHelpers.export(exports, "StorageApiError", ()=>StorageApiError);
+parcelHelpers.export(exports, "StorageUnknownError", ()=>StorageUnknownError);
+class StorageError extends Error {
+    constructor(message){
+        super(message);
+        this.__isStorageError = true;
+        this.name = "StorageError";
+    }
+}
+function isStorageError(error) {
+    return typeof error === "object" && error !== null && "__isStorageError" in error;
+}
+class StorageApiError extends StorageError {
+    constructor(message, status){
+        super(message);
+        this.name = "StorageApiError";
+        this.status = status;
+    }
+    toJSON() {
+        return {
+            name: this.name,
+            message: this.message,
+            status: this.status
+        };
+    }
+}
+class StorageUnknownError extends StorageError {
+    constructor(message, originalError){
+        super(message);
+        this.name = "StorageUnknownError";
+        this.originalError = originalError;
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"29QhY":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "get", ()=>get);
+parcelHelpers.export(exports, "post", ()=>post);
+parcelHelpers.export(exports, "put", ()=>put);
+parcelHelpers.export(exports, "remove", ()=>remove);
+var _errors = require("./errors");
+var _helpers = require("./helpers");
+var __awaiter = undefined && undefined.__awaiter || function(thisArg, _arguments, P, generator) {
+    function adopt(value) {
+        return value instanceof P ? value : new P(function(resolve) {
+            resolve(value);
+        });
+    }
+    return new (P || (P = Promise))(function(resolve, reject) {
+        function fulfilled(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function rejected(value) {
+            try {
+                step(generator["throw"](value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function step(result) {
+            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+const _getErrorMessage = (err)=>err.msg || err.message || err.error_description || err.error || JSON.stringify(err);
+const handleError = (error, reject)=>__awaiter(void 0, void 0, void 0, function*() {
+        const Res = yield (0, _helpers.resolveResponse)();
+        if (error instanceof Res) error.json().then((err)=>{
+            reject(new (0, _errors.StorageApiError)(_getErrorMessage(err), error.status || 500));
+        }).catch((err)=>{
+            reject(new (0, _errors.StorageUnknownError)(_getErrorMessage(err), err));
+        });
+        else reject(new (0, _errors.StorageUnknownError)(_getErrorMessage(error), error));
+    });
+const _getRequestParams = (method, options, parameters, body)=>{
+    const params = {
+        method,
+        headers: (options === null || options === void 0 ? void 0 : options.headers) || {}
+    };
+    if (method === "GET") return params;
+    params.headers = Object.assign({
+        "Content-Type": "application/json"
+    }, options === null || options === void 0 ? void 0 : options.headers);
+    params.body = JSON.stringify(body);
+    return Object.assign(Object.assign({}, params), parameters);
+};
+function _handleRequest(fetcher, method, url, options, parameters, body) {
+    return __awaiter(this, void 0, void 0, function*() {
+        return new Promise((resolve, reject)=>{
+            fetcher(url, _getRequestParams(method, options, parameters, body)).then((result)=>{
+                if (!result.ok) throw result;
+                if (options === null || options === void 0 ? void 0 : options.noResolveJson) return result;
+                return result.json();
+            }).then((data)=>resolve(data)).catch((error)=>handleError(error, reject));
+        });
+    });
+}
+function get(fetcher, url, options, parameters) {
+    return __awaiter(this, void 0, void 0, function*() {
+        return _handleRequest(fetcher, "GET", url, options, parameters);
+    });
+}
+function post(fetcher, url, body, options, parameters) {
+    return __awaiter(this, void 0, void 0, function*() {
+        return _handleRequest(fetcher, "POST", url, options, parameters, body);
+    });
+}
+function put(fetcher, url, body, options, parameters) {
+    return __awaiter(this, void 0, void 0, function*() {
+        return _handleRequest(fetcher, "PUT", url, options, parameters, body);
+    });
+}
+function remove(fetcher, url, body, options, parameters) {
+    return __awaiter(this, void 0, void 0, function*() {
+        return _handleRequest(fetcher, "DELETE", url, options, parameters, body);
+    });
+}
+
+},{"./errors":"7X8pZ","./helpers":"bW2UD","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"bW2UD":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "resolveFetch", ()=>resolveFetch);
+parcelHelpers.export(exports, "resolveResponse", ()=>resolveResponse);
+var __awaiter = undefined && undefined.__awaiter || function(thisArg, _arguments, P, generator) {
+    function adopt(value) {
+        return value instanceof P ? value : new P(function(resolve) {
+            resolve(value);
+        });
+    }
+    return new (P || (P = Promise))(function(resolve, reject) {
+        function fulfilled(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function rejected(value) {
+            try {
+                step(generator["throw"](value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function step(result) {
+            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+const resolveFetch = (customFetch)=>{
+    let _fetch;
+    if (customFetch) _fetch = customFetch;
+    else if (typeof fetch === "undefined") _fetch = (...args)=>require("d0262cf6b6e3064e").then(({ default: fetch1 })=>fetch1(...args));
+    else _fetch = fetch;
+    return (...args)=>_fetch(...args);
+};
+const resolveResponse = ()=>__awaiter(void 0, void 0, void 0, function*() {
+        if (typeof Response === "undefined") // @ts-ignore
+        return (yield require("d0262cf6b6e3064e")).Response;
+        return Response;
+    });
+
+},{"d0262cf6b6e3064e":"5aZ41","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"fCJfe":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _constants = require("../lib/constants");
+var _errors = require("../lib/errors");
+var _fetch = require("../lib/fetch");
+var _helpers = require("../lib/helpers");
+var __awaiter = undefined && undefined.__awaiter || function(thisArg, _arguments, P, generator) {
+    function adopt(value) {
+        return value instanceof P ? value : new P(function(resolve) {
+            resolve(value);
+        });
+    }
+    return new (P || (P = Promise))(function(resolve, reject) {
+        function fulfilled(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function rejected(value) {
+            try {
+                step(generator["throw"](value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function step(result) {
+            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+class StorageBucketApi {
+    constructor(url, headers = {}, fetch){
+        this.url = url;
+        this.headers = Object.assign(Object.assign({}, (0, _constants.DEFAULT_HEADERS)), headers);
+        this.fetch = (0, _helpers.resolveFetch)(fetch);
+    }
+    /**
+     * Retrieves the details of all Storage buckets within an existing project.
+     */ listBuckets() {
+        return __awaiter(this, void 0, void 0, function*() {
+            try {
+                const data = yield (0, _fetch.get)(this.fetch, `${this.url}/bucket`, {
+                    headers: this.headers
+                });
+                return {
+                    data,
+                    error: null
+                };
+            } catch (error) {
+                if ((0, _errors.isStorageError)(error)) return {
+                    data: null,
+                    error
+                };
+                throw error;
+            }
+        });
+    }
+    /**
+     * Retrieves the details of an existing Storage bucket.
+     *
+     * @param id The unique identifier of the bucket you would like to retrieve.
+     */ getBucket(id) {
+        return __awaiter(this, void 0, void 0, function*() {
+            try {
+                const data = yield (0, _fetch.get)(this.fetch, `${this.url}/bucket/${id}`, {
+                    headers: this.headers
+                });
+                return {
+                    data,
+                    error: null
+                };
+            } catch (error) {
+                if ((0, _errors.isStorageError)(error)) return {
+                    data: null,
+                    error
+                };
+                throw error;
+            }
+        });
+    }
+    /**
+     * Creates a new Storage bucket
+     *
+     * @param id A unique identifier for the bucket you are creating.
+     * @param options.public The visibility of the bucket. Public buckets don't require an authorization token to download objects, but still require a valid token for all other operations. By default, buckets are private.
+     * @param options.fileSizeLimit specifies the max file size in bytes that can be uploaded to this bucket.
+     * The global file size limit takes precedence over this value.
+     * The default value is null, which doesn't set a per bucket file size limit.
+     * @param options.allowedMimeTypes specifies the allowed mime types that this bucket can accept during upload.
+     * The default value is null, which allows files with all mime types to be uploaded.
+     * Each mime type specified can be a wildcard, e.g. image/*, or a specific mime type, e.g. image/png.
+     * @returns newly created bucket id
+     */ createBucket(id, options = {
+        public: false
+    }) {
+        return __awaiter(this, void 0, void 0, function*() {
+            try {
+                const data = yield (0, _fetch.post)(this.fetch, `${this.url}/bucket`, {
+                    id,
+                    name: id,
+                    public: options.public,
+                    file_size_limit: options.fileSizeLimit,
+                    allowed_mime_types: options.allowedMimeTypes
+                }, {
+                    headers: this.headers
+                });
+                return {
+                    data,
+                    error: null
+                };
+            } catch (error) {
+                if ((0, _errors.isStorageError)(error)) return {
+                    data: null,
+                    error
+                };
+                throw error;
+            }
+        });
+    }
+    /**
+     * Updates a Storage bucket
+     *
+     * @param id A unique identifier for the bucket you are updating.
+     * @param options.public The visibility of the bucket. Public buckets don't require an authorization token to download objects, but still require a valid token for all other operations.
+     * @param options.fileSizeLimit specifies the max file size in bytes that can be uploaded to this bucket.
+     * The global file size limit takes precedence over this value.
+     * The default value is null, which doesn't set a per bucket file size limit.
+     * @param options.allowedMimeTypes specifies the allowed mime types that this bucket can accept during upload.
+     * The default value is null, which allows files with all mime types to be uploaded.
+     * Each mime type specified can be a wildcard, e.g. image/*, or a specific mime type, e.g. image/png.
+     */ updateBucket(id, options) {
+        return __awaiter(this, void 0, void 0, function*() {
+            try {
+                const data = yield (0, _fetch.put)(this.fetch, `${this.url}/bucket/${id}`, {
+                    id,
+                    name: id,
+                    public: options.public,
+                    file_size_limit: options.fileSizeLimit,
+                    allowed_mime_types: options.allowedMimeTypes
+                }, {
+                    headers: this.headers
+                });
+                return {
+                    data,
+                    error: null
+                };
+            } catch (error) {
+                if ((0, _errors.isStorageError)(error)) return {
+                    data: null,
+                    error
+                };
+                throw error;
+            }
+        });
+    }
+    /**
+     * Removes all objects inside a single bucket.
+     *
+     * @param id The unique identifier of the bucket you would like to empty.
+     */ emptyBucket(id) {
+        return __awaiter(this, void 0, void 0, function*() {
+            try {
+                const data = yield (0, _fetch.post)(this.fetch, `${this.url}/bucket/${id}/empty`, {}, {
+                    headers: this.headers
+                });
+                return {
+                    data,
+                    error: null
+                };
+            } catch (error) {
+                if ((0, _errors.isStorageError)(error)) return {
+                    data: null,
+                    error
+                };
+                throw error;
+            }
+        });
+    }
+    /**
+     * Deletes an existing bucket. A bucket can't be deleted with existing objects inside it.
+     * You must first `empty()` the bucket.
+     *
+     * @param id The unique identifier of the bucket you would like to delete.
+     */ deleteBucket(id) {
+        return __awaiter(this, void 0, void 0, function*() {
+            try {
+                const data = yield (0, _fetch.remove)(this.fetch, `${this.url}/bucket/${id}`, {}, {
+                    headers: this.headers
+                });
+                return {
+                    data,
+                    error: null
+                };
+            } catch (error) {
+                if ((0, _errors.isStorageError)(error)) return {
+                    data: null,
+                    error
+                };
+                throw error;
+            }
+        });
+    }
+}
+exports.default = StorageBucketApi;
+
+},{"../lib/constants":"dzylt","../lib/errors":"7X8pZ","../lib/fetch":"29QhY","../lib/helpers":"bW2UD","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"dzylt":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "DEFAULT_HEADERS", ()=>DEFAULT_HEADERS);
+var _version = require("./version");
+const DEFAULT_HEADERS = {
+    "X-Client-Info": `storage-js/${(0, _version.version)}`
+};
+
+},{"./version":"htRtt","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"htRtt":[function(require,module,exports) {
+// generated by genversion
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "version", ()=>version);
+const version = "2.5.5";
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"iNMpT":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "DEFAULT_HEADERS", ()=>DEFAULT_HEADERS);
+parcelHelpers.export(exports, "DEFAULT_GLOBAL_OPTIONS", ()=>DEFAULT_GLOBAL_OPTIONS);
+parcelHelpers.export(exports, "DEFAULT_DB_OPTIONS", ()=>DEFAULT_DB_OPTIONS);
+parcelHelpers.export(exports, "DEFAULT_AUTH_OPTIONS", ()=>DEFAULT_AUTH_OPTIONS);
+parcelHelpers.export(exports, "DEFAULT_REALTIME_OPTIONS", ()=>DEFAULT_REALTIME_OPTIONS);
+var _version = require("./version");
+let JS_ENV = "";
+// @ts-ignore
+if (typeof Deno !== "undefined") JS_ENV = "deno";
+else if (typeof document !== "undefined") JS_ENV = "web";
+else if (typeof navigator !== "undefined" && navigator.product === "ReactNative") JS_ENV = "react-native";
+else JS_ENV = "node";
+const DEFAULT_HEADERS = {
+    "X-Client-Info": `supabase-js-${JS_ENV}/${(0, _version.version)}`
+};
+const DEFAULT_GLOBAL_OPTIONS = {
+    headers: DEFAULT_HEADERS
+};
+const DEFAULT_DB_OPTIONS = {
+    schema: "public"
+};
+const DEFAULT_AUTH_OPTIONS = {
+    autoRefreshToken: true,
+    persistSession: true,
+    detectSessionInUrl: true,
+    flowType: "implicit"
+};
+const DEFAULT_REALTIME_OPTIONS = {};
+
+},{"./version":"kjI7B","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"kjI7B":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "version", ()=>version);
+const version = "2.42.0";
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"bL75C":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "resolveFetch", ()=>resolveFetch);
+parcelHelpers.export(exports, "resolveHeadersConstructor", ()=>resolveHeadersConstructor);
+parcelHelpers.export(exports, "fetchWithAuth", ()=>fetchWithAuth);
+// @ts-ignore
+var _nodeFetch = require("@supabase/node-fetch");
+var _nodeFetchDefault = parcelHelpers.interopDefault(_nodeFetch);
+var __awaiter = undefined && undefined.__awaiter || function(thisArg, _arguments, P, generator) {
+    function adopt(value) {
+        return value instanceof P ? value : new P(function(resolve) {
+            resolve(value);
+        });
+    }
+    return new (P || (P = Promise))(function(resolve, reject) {
+        function fulfilled(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function rejected(value) {
+            try {
+                step(generator["throw"](value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function step(result) {
+            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+const resolveFetch = (customFetch)=>{
+    let _fetch;
+    if (customFetch) _fetch = customFetch;
+    else if (typeof fetch === "undefined") _fetch = (0, _nodeFetchDefault.default);
+    else _fetch = fetch;
+    return (...args)=>_fetch(...args);
+};
+const resolveHeadersConstructor = ()=>{
+    if (typeof Headers === "undefined") return 0, _nodeFetch.Headers;
+    return Headers;
+};
+const fetchWithAuth = (supabaseKey, getAccessToken, customFetch)=>{
+    const fetch1 = resolveFetch(customFetch);
+    const HeadersConstructor = resolveHeadersConstructor();
+    return (input, init)=>__awaiter(void 0, void 0, void 0, function*() {
+            var _a;
+            const accessToken = (_a = yield getAccessToken()) !== null && _a !== void 0 ? _a : supabaseKey;
+            let headers = new HeadersConstructor(init === null || init === void 0 ? void 0 : init.headers);
+            if (!headers.has("apikey")) headers.set("apikey", supabaseKey);
+            if (!headers.has("Authorization")) headers.set("Authorization", `Bearer ${accessToken}`);
+            return fetch1(input, Object.assign(Object.assign({}, init), {
+                headers
+            }));
+        });
+};
+
+},{"@supabase/node-fetch":"inpgO","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"6daKy":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "uuid", ()=>uuid);
+parcelHelpers.export(exports, "stripTrailingSlash", ()=>stripTrailingSlash);
+parcelHelpers.export(exports, "isBrowser", ()=>isBrowser);
+parcelHelpers.export(exports, "applySettingDefaults", ()=>applySettingDefaults);
+function uuid() {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == "x" ? r : r & 0x3 | 0x8;
+        return v.toString(16);
+    });
+}
+function stripTrailingSlash(url) {
+    return url.replace(/\/$/, "");
+}
+const isBrowser = ()=>typeof window !== "undefined";
+function applySettingDefaults(options, defaults) {
+    const { db: dbOptions, auth: authOptions, realtime: realtimeOptions, global: globalOptions } = options;
+    const { db: DEFAULT_DB_OPTIONS, auth: DEFAULT_AUTH_OPTIONS, realtime: DEFAULT_REALTIME_OPTIONS, global: DEFAULT_GLOBAL_OPTIONS } = defaults;
+    return {
+        db: Object.assign(Object.assign({}, DEFAULT_DB_OPTIONS), dbOptions),
+        auth: Object.assign(Object.assign({}, DEFAULT_AUTH_OPTIONS), authOptions),
+        realtime: Object.assign(Object.assign({}, DEFAULT_REALTIME_OPTIONS), realtimeOptions),
+        global: Object.assign(Object.assign({}, DEFAULT_GLOBAL_OPTIONS), globalOptions)
+    };
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"fhW0J":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "SupabaseAuthClient", ()=>SupabaseAuthClient);
+var _authJs = require("@supabase/auth-js");
+class SupabaseAuthClient extends (0, _authJs.AuthClient) {
+    constructor(options){
+        super(options);
+    }
+}
+
+},{"@supabase/auth-js":"H9zoK","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"H9zoK":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "navigatorLock", ()=>(0, _locks.navigatorLock));
+parcelHelpers.export(exports, "NavigatorLockAcquireTimeoutError", ()=>(0, _locks.NavigatorLockAcquireTimeoutError));
+parcelHelpers.export(exports, "lockInternals", ()=>(0, _locks.internals));
+parcelHelpers.export(exports, "GoTrueAdminApi", ()=>(0, _goTrueAdminApiDefault.default));
+parcelHelpers.export(exports, "GoTrueClient", ()=>(0, _goTrueClientDefault.default));
+parcelHelpers.export(exports, "AuthAdminApi", ()=>(0, _authAdminApiDefault.default));
+parcelHelpers.export(exports, "AuthClient", ()=>(0, _authClientDefault.default));
+var _goTrueAdminApi = require("./GoTrueAdminApi");
+var _goTrueAdminApiDefault = parcelHelpers.interopDefault(_goTrueAdminApi);
+var _goTrueClient = require("./GoTrueClient");
+var _goTrueClientDefault = parcelHelpers.interopDefault(_goTrueClient);
+var _authAdminApi = require("./AuthAdminApi");
+var _authAdminApiDefault = parcelHelpers.interopDefault(_authAdminApi);
+var _authClient = require("./AuthClient");
+var _authClientDefault = parcelHelpers.interopDefault(_authClient);
+var _types = require("./lib/types");
+parcelHelpers.exportAll(_types, exports);
+var _errors = require("./lib/errors");
+parcelHelpers.exportAll(_errors, exports);
+var _locks = require("./lib/locks");
+
+},{"./GoTrueAdminApi":"cZOCe","./GoTrueClient":"j7FfD","./AuthAdminApi":"fTHdd","./AuthClient":"gsWfA","./lib/types":"acnk7","./lib/errors":"aGVxJ","./lib/locks":"2HeFx","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"cZOCe":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _fetch = require("./lib/fetch");
+var _helpers = require("./lib/helpers");
+var _errors = require("./lib/errors");
+var __rest = undefined && undefined.__rest || function(s, e) {
+    var t = {};
+    for(var p in s)if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function") {
+        for(var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++)if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+    }
+    return t;
+};
+class GoTrueAdminApi {
+    constructor({ url = "", headers = {}, fetch }){
+        this.url = url;
+        this.headers = headers;
+        this.fetch = (0, _helpers.resolveFetch)(fetch);
+        this.mfa = {
+            listFactors: this._listFactors.bind(this),
+            deleteFactor: this._deleteFactor.bind(this)
+        };
+    }
+    /**
+     * Removes a logged-in session.
+     * @param jwt A valid, logged-in JWT.
+     * @param scope The logout sope.
+     */ async signOut(jwt, scope = "global") {
+        try {
+            await (0, _fetch._request)(this.fetch, "POST", `${this.url}/logout?scope=${scope}`, {
+                headers: this.headers,
+                jwt,
+                noResolveJson: true
+            });
+            return {
+                data: null,
+                error: null
+            };
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: null,
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Sends an invite link to an email address.
+     * @param email The email address of the user.
+     * @param options Additional options to be included when inviting.
+     */ async inviteUserByEmail(email, options = {}) {
+        try {
+            return await (0, _fetch._request)(this.fetch, "POST", `${this.url}/invite`, {
+                body: {
+                    email,
+                    data: options.data
+                },
+                headers: this.headers,
+                redirectTo: options.redirectTo,
+                xform: (0, _fetch._userResponse)
+            });
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    user: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Generates email links and OTPs to be sent via a custom email provider.
+     * @param email The user's email.
+     * @param options.password User password. For signup only.
+     * @param options.data Optional user metadata. For signup only.
+     * @param options.redirectTo The redirect url which should be appended to the generated link
+     */ async generateLink(params) {
+        try {
+            const { options } = params, rest = __rest(params, [
+                "options"
+            ]);
+            const body = Object.assign(Object.assign({}, rest), options);
+            if ("newEmail" in rest) {
+                // replace newEmail with new_email in request body
+                body.new_email = rest === null || rest === void 0 ? void 0 : rest.newEmail;
+                delete body["newEmail"];
+            }
+            return await (0, _fetch._request)(this.fetch, "POST", `${this.url}/admin/generate_link`, {
+                body: body,
+                headers: this.headers,
+                xform: (0, _fetch._generateLinkResponse),
+                redirectTo: options === null || options === void 0 ? void 0 : options.redirectTo
+            });
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    properties: null,
+                    user: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    // User Admin API
+    /**
+     * Creates a new user.
+     * This function should only be called on a server. Never expose your `service_role` key in the browser.
+     */ async createUser(attributes) {
+        try {
+            return await (0, _fetch._request)(this.fetch, "POST", `${this.url}/admin/users`, {
+                body: attributes,
+                headers: this.headers,
+                xform: (0, _fetch._userResponse)
+            });
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    user: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Get a list of users.
+     *
+     * This function should only be called on a server. Never expose your `service_role` key in the browser.
+     * @param params An object which supports `page` and `perPage` as numbers, to alter the paginated results.
+     */ async listUsers(params) {
+        var _a, _b, _c, _d, _e, _f, _g;
+        try {
+            const pagination = {
+                nextPage: null,
+                lastPage: 0,
+                total: 0
+            };
+            const response = await (0, _fetch._request)(this.fetch, "GET", `${this.url}/admin/users`, {
+                headers: this.headers,
+                noResolveJson: true,
+                query: {
+                    page: (_b = (_a = params === null || params === void 0 ? void 0 : params.page) === null || _a === void 0 ? void 0 : _a.toString()) !== null && _b !== void 0 ? _b : "",
+                    per_page: (_d = (_c = params === null || params === void 0 ? void 0 : params.perPage) === null || _c === void 0 ? void 0 : _c.toString()) !== null && _d !== void 0 ? _d : ""
+                },
+                xform: (0, _fetch._noResolveJsonResponse)
+            });
+            if (response.error) throw response.error;
+            const users = await response.json();
+            const total = (_e = response.headers.get("x-total-count")) !== null && _e !== void 0 ? _e : 0;
+            const links = (_g = (_f = response.headers.get("link")) === null || _f === void 0 ? void 0 : _f.split(",")) !== null && _g !== void 0 ? _g : [];
+            if (links.length > 0) {
+                links.forEach((link)=>{
+                    const page = parseInt(link.split(";")[0].split("=")[1].substring(0, 1));
+                    const rel = JSON.parse(link.split(";")[1].split("=")[1]);
+                    pagination[`${rel}Page`] = page;
+                });
+                pagination.total = parseInt(total);
+            }
+            return {
+                data: Object.assign(Object.assign({}, users), pagination),
+                error: null
+            };
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    users: []
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Get user by id.
+     *
+     * @param uid The user's unique identifier
+     *
+     * This function should only be called on a server. Never expose your `service_role` key in the browser.
+     */ async getUserById(uid) {
+        try {
+            return await (0, _fetch._request)(this.fetch, "GET", `${this.url}/admin/users/${uid}`, {
+                headers: this.headers,
+                xform: (0, _fetch._userResponse)
+            });
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    user: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Updates the user data.
+     *
+     * @param attributes The data you want to update.
+     *
+     * This function should only be called on a server. Never expose your `service_role` key in the browser.
+     */ async updateUserById(uid, attributes) {
+        try {
+            return await (0, _fetch._request)(this.fetch, "PUT", `${this.url}/admin/users/${uid}`, {
+                body: attributes,
+                headers: this.headers,
+                xform: (0, _fetch._userResponse)
+            });
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    user: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Delete a user. Requires a `service_role` key.
+     *
+     * @param id The user id you want to remove.
+     * @param shouldSoftDelete If true, then the user will be soft-deleted (setting `deleted_at` to the current timestamp and disabling their account while preserving their data) from the auth schema.
+     * Defaults to false for backward compatibility.
+     *
+     * This function should only be called on a server. Never expose your `service_role` key in the browser.
+     */ async deleteUser(id, shouldSoftDelete = false) {
+        try {
+            return await (0, _fetch._request)(this.fetch, "DELETE", `${this.url}/admin/users/${id}`, {
+                headers: this.headers,
+                body: {
+                    should_soft_delete: shouldSoftDelete
+                },
+                xform: (0, _fetch._userResponse)
+            });
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    user: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    async _listFactors(params) {
+        try {
+            const { data, error } = await (0, _fetch._request)(this.fetch, "GET", `${this.url}/admin/users/${params.userId}/factors`, {
+                headers: this.headers,
+                xform: (factors)=>{
+                    return {
+                        data: {
+                            factors
+                        },
+                        error: null
+                    };
+                }
+            });
+            return {
+                data,
+                error
+            };
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: null,
+                error
+            };
+            throw error;
+        }
+    }
+    async _deleteFactor(params) {
+        try {
+            const data = await (0, _fetch._request)(this.fetch, "DELETE", `${this.url}/admin/users/${params.userId}/factors/${params.id}`, {
+                headers: this.headers
+            });
+            return {
+                data,
+                error: null
+            };
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: null,
+                error
+            };
+            throw error;
+        }
+    }
+}
+exports.default = GoTrueAdminApi;
+
+},{"./lib/fetch":"b81us","./lib/helpers":"hg2Fd","./lib/errors":"aGVxJ","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"b81us":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "handleError", ()=>handleError);
+parcelHelpers.export(exports, "_request", ()=>_request);
+parcelHelpers.export(exports, "_sessionResponse", ()=>_sessionResponse);
+parcelHelpers.export(exports, "_sessionResponsePassword", ()=>_sessionResponsePassword);
+parcelHelpers.export(exports, "_userResponse", ()=>_userResponse);
+parcelHelpers.export(exports, "_ssoResponse", ()=>_ssoResponse);
+parcelHelpers.export(exports, "_generateLinkResponse", ()=>_generateLinkResponse);
+parcelHelpers.export(exports, "_noResolveJsonResponse", ()=>_noResolveJsonResponse);
+var _constants = require("./constants");
+var _helpers = require("./helpers");
+var _errors = require("./errors");
+var __rest = undefined && undefined.__rest || function(s, e) {
+    var t = {};
+    for(var p in s)if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function") {
+        for(var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++)if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+    }
+    return t;
+};
+const _getErrorMessage = (err)=>err.msg || err.message || err.error_description || err.error || JSON.stringify(err);
+const NETWORK_ERROR_CODES = [
+    502,
+    503,
+    504
+];
+async function handleError(error) {
+    var _a;
+    if (!(0, _helpers.looksLikeFetchResponse)(error)) throw new (0, _errors.AuthRetryableFetchError)(_getErrorMessage(error), 0);
+    if (NETWORK_ERROR_CODES.includes(error.status)) // status in 500...599 range - server had an error, request might be retryed.
+    throw new (0, _errors.AuthRetryableFetchError)(_getErrorMessage(error), error.status);
+    let data;
+    try {
+        data = await error.json();
+    } catch (e) {
+        throw new (0, _errors.AuthUnknownError)(_getErrorMessage(e), e);
+    }
+    let errorCode = undefined;
+    const responseAPIVersion = (0, _helpers.parseResponseAPIVersion)(error);
+    if (responseAPIVersion && responseAPIVersion.getTime() >= (0, _constants.API_VERSIONS)["2024-01-01"].timestamp && typeof data === "object" && data && typeof data.code === "string") errorCode = data.code;
+    else if (typeof data === "object" && data && typeof data.error_code === "string") errorCode = data.error_code;
+    if (!errorCode) {
+        // Legacy support for weak password errors, when there were no error codes
+        if (typeof data === "object" && data && typeof data.weak_password === "object" && data.weak_password && Array.isArray(data.weak_password.reasons) && data.weak_password.reasons.length && data.weak_password.reasons.reduce((a, i)=>a && typeof i === "string", true)) throw new (0, _errors.AuthWeakPasswordError)(_getErrorMessage(data), error.status, data.weak_password.reasons);
+    } else if (errorCode === "weak_password") throw new (0, _errors.AuthWeakPasswordError)(_getErrorMessage(data), error.status, ((_a = data.weak_password) === null || _a === void 0 ? void 0 : _a.reasons) || []);
+    throw new (0, _errors.AuthApiError)(_getErrorMessage(data), error.status || 500, errorCode);
+}
+const _getRequestParams = (method, options, parameters, body)=>{
+    const params = {
+        method,
+        headers: (options === null || options === void 0 ? void 0 : options.headers) || {}
+    };
+    if (method === "GET") return params;
+    params.headers = Object.assign({
+        "Content-Type": "application/json;charset=UTF-8"
+    }, options === null || options === void 0 ? void 0 : options.headers);
+    params.body = JSON.stringify(body);
+    return Object.assign(Object.assign({}, params), parameters);
+};
+async function _request(fetcher, method, url, options) {
+    var _a;
+    const headers = Object.assign({}, options === null || options === void 0 ? void 0 : options.headers);
+    if (!headers[0, _constants.API_VERSION_HEADER_NAME]) headers[0, _constants.API_VERSION_HEADER_NAME] = (0, _constants.API_VERSIONS)["2024-01-01"].name;
+    if (options === null || options === void 0 ? void 0 : options.jwt) headers["Authorization"] = `Bearer ${options.jwt}`;
+    const qs = (_a = options === null || options === void 0 ? void 0 : options.query) !== null && _a !== void 0 ? _a : {};
+    if (options === null || options === void 0 ? void 0 : options.redirectTo) qs["redirect_to"] = options.redirectTo;
+    const queryString = Object.keys(qs).length ? "?" + new URLSearchParams(qs).toString() : "";
+    const data = await _handleRequest(fetcher, method, url + queryString, {
+        headers,
+        noResolveJson: options === null || options === void 0 ? void 0 : options.noResolveJson
+    }, {}, options === null || options === void 0 ? void 0 : options.body);
+    return (options === null || options === void 0 ? void 0 : options.xform) ? options === null || options === void 0 ? void 0 : options.xform(data) : {
+        data: Object.assign({}, data),
+        error: null
+    };
+}
+async function _handleRequest(fetcher, method, url, options, parameters, body) {
+    const requestParams = _getRequestParams(method, options, parameters, body);
+    let result;
+    try {
+        result = await fetcher(url, Object.assign(Object.assign({}, requestParams), {
+            // UNDER NO CIRCUMSTANCE SHOULD THIS OPTION BE REMOVED, YOU MAY BE OPENING UP A SECURITY HOLE IN NEXT.JS APPS
+            // https://nextjs.org/docs/app/building-your-application/caching#opting-out-1
+            cache: "no-store"
+        }));
+    } catch (e) {
+        console.error(e);
+        // fetch failed, likely due to a network or CORS error
+        throw new (0, _errors.AuthRetryableFetchError)(_getErrorMessage(e), 0);
+    }
+    if (!result.ok) await handleError(result);
+    if (options === null || options === void 0 ? void 0 : options.noResolveJson) return result;
+    try {
+        return await result.json();
+    } catch (e) {
+        await handleError(e);
+    }
+}
+function _sessionResponse(data) {
+    var _a;
+    let session = null;
+    if (hasSession(data)) {
+        session = Object.assign({}, data);
+        if (!data.expires_at) session.expires_at = (0, _helpers.expiresAt)(data.expires_in);
+    }
+    const user = (_a = data.user) !== null && _a !== void 0 ? _a : data;
+    return {
+        data: {
+            session,
+            user
+        },
+        error: null
+    };
+}
+function _sessionResponsePassword(data) {
+    const response = _sessionResponse(data);
+    if (!response.error && data.weak_password && typeof data.weak_password === "object" && Array.isArray(data.weak_password.reasons) && data.weak_password.reasons.length && data.weak_password.message && typeof data.weak_password.message === "string" && data.weak_password.reasons.reduce((a, i)=>a && typeof i === "string", true)) response.data.weak_password = data.weak_password;
+    return response;
+}
+function _userResponse(data) {
+    var _a;
+    const user = (_a = data.user) !== null && _a !== void 0 ? _a : data;
+    return {
+        data: {
+            user
+        },
+        error: null
+    };
+}
+function _ssoResponse(data) {
+    return {
+        data,
+        error: null
+    };
+}
+function _generateLinkResponse(data) {
+    const { action_link, email_otp, hashed_token, redirect_to, verification_type } = data, rest = __rest(data, [
+        "action_link",
+        "email_otp",
+        "hashed_token",
+        "redirect_to",
+        "verification_type"
+    ]);
+    const properties = {
+        action_link,
+        email_otp,
+        hashed_token,
+        redirect_to,
+        verification_type
+    };
+    const user = Object.assign({}, rest);
+    return {
+        data: {
+            properties,
+            user
+        },
+        error: null
+    };
+}
+function _noResolveJsonResponse(data) {
+    return data;
+}
+/**
+ * hasSession checks if the response object contains a valid session
+ * @param data A response object
+ * @returns true if a session is in the response
+ */ function hasSession(data) {
+    return data.access_token && data.refresh_token && data.expires_in;
+}
+
+},{"./constants":"04zmg","./helpers":"hg2Fd","./errors":"aGVxJ","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"04zmg":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "GOTRUE_URL", ()=>GOTRUE_URL);
+parcelHelpers.export(exports, "STORAGE_KEY", ()=>STORAGE_KEY);
+parcelHelpers.export(exports, "AUDIENCE", ()=>AUDIENCE);
+parcelHelpers.export(exports, "DEFAULT_HEADERS", ()=>DEFAULT_HEADERS);
+parcelHelpers.export(exports, "EXPIRY_MARGIN", ()=>EXPIRY_MARGIN);
+parcelHelpers.export(exports, "NETWORK_FAILURE", ()=>NETWORK_FAILURE);
+parcelHelpers.export(exports, "API_VERSION_HEADER_NAME", ()=>API_VERSION_HEADER_NAME);
+parcelHelpers.export(exports, "API_VERSIONS", ()=>API_VERSIONS);
+var _version = require("./version");
+const GOTRUE_URL = "http://localhost:9999";
+const STORAGE_KEY = "supabase.auth.token";
+const AUDIENCE = "";
+const DEFAULT_HEADERS = {
+    "X-Client-Info": `gotrue-js/${(0, _version.version)}`
+};
+const EXPIRY_MARGIN = 10; // in seconds
+const NETWORK_FAILURE = {
+    MAX_RETRIES: 10,
+    RETRY_INTERVAL: 2
+};
+const API_VERSION_HEADER_NAME = "X-Supabase-Api-Version";
+const API_VERSIONS = {
+    "2024-01-01": {
+        timestamp: Date.parse("2024-01-01T00:00:00.0Z"),
+        name: "2024-01-01"
+    }
+};
+
+},{"./version":"8lpVC","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"8lpVC":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "version", ()=>version);
+const version = "2.63.0";
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"hg2Fd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "expiresAt", ()=>expiresAt);
+parcelHelpers.export(exports, "uuid", ()=>uuid);
+parcelHelpers.export(exports, "isBrowser", ()=>isBrowser);
+parcelHelpers.export(exports, "supportsLocalStorage", ()=>supportsLocalStorage);
+/**
+ * Extracts parameters encoded in the URL both in the query and fragment.
+ */ parcelHelpers.export(exports, "parseParametersFromURL", ()=>parseParametersFromURL);
+parcelHelpers.export(exports, "resolveFetch", ()=>resolveFetch);
+parcelHelpers.export(exports, "looksLikeFetchResponse", ()=>looksLikeFetchResponse);
+parcelHelpers.export(exports, "setItemAsync", ()=>setItemAsync);
+parcelHelpers.export(exports, "getItemAsync", ()=>getItemAsync);
+parcelHelpers.export(exports, "removeItemAsync", ()=>removeItemAsync);
+parcelHelpers.export(exports, "decodeBase64URL", ()=>decodeBase64URL);
+/**
+ * A deferred represents some asynchronous work that is not yet finished, which
+ * may or may not culminate in a value.
+ * Taken from: https://github.com/mike-north/types/blob/master/src/async.ts
+ */ parcelHelpers.export(exports, "Deferred", ()=>Deferred);
+// Taken from: https://stackoverflow.com/questions/38552003/how-to-decode-jwt-token-in-javascript-without-using-a-library
+parcelHelpers.export(exports, "decodeJWTPayload", ()=>decodeJWTPayload);
+/**
+ * Creates a promise that resolves to null after some time.
+ */ parcelHelpers.export(exports, "sleep", ()=>sleep);
+/**
+ * Converts the provided async function into a retryable function. Each result
+ * or thrown error is sent to the isRetryable function which should return true
+ * if the function should run again.
+ */ parcelHelpers.export(exports, "retryable", ()=>retryable);
+// Functions below taken from: https://stackoverflow.com/questions/63309409/creating-a-code-verifier-and-challenge-for-pkce-auth-on-spotify-api-in-reactjs
+parcelHelpers.export(exports, "generatePKCEVerifier", ()=>generatePKCEVerifier);
+parcelHelpers.export(exports, "generatePKCEChallenge", ()=>generatePKCEChallenge);
+parcelHelpers.export(exports, "getCodeChallengeAndMethod", ()=>getCodeChallengeAndMethod);
+parcelHelpers.export(exports, "parseResponseAPIVersion", ()=>parseResponseAPIVersion);
+var _constants = require("./constants");
+function expiresAt(expiresIn) {
+    const timeNow = Math.round(Date.now() / 1000);
+    return timeNow + expiresIn;
+}
+function uuid() {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+        const r = Math.random() * 16 | 0, v = c == "x" ? r : r & 0x3 | 0x8;
+        return v.toString(16);
+    });
+}
+const isBrowser = ()=>typeof document !== "undefined";
+const localStorageWriteTests = {
+    tested: false,
+    writable: false
+};
+const supportsLocalStorage = ()=>{
+    if (!isBrowser()) return false;
+    try {
+        if (typeof globalThis.localStorage !== "object") return false;
+    } catch (e) {
+        // DOM exception when accessing `localStorage`
+        return false;
+    }
+    if (localStorageWriteTests.tested) return localStorageWriteTests.writable;
+    const randomKey = `lswt-${Math.random()}${Math.random()}`;
+    try {
+        globalThis.localStorage.setItem(randomKey, randomKey);
+        globalThis.localStorage.removeItem(randomKey);
+        localStorageWriteTests.tested = true;
+        localStorageWriteTests.writable = true;
+    } catch (e) {
+        // localStorage can't be written to
+        // https://www.chromium.org/for-testers/bug-reporting-guidelines/uncaught-securityerror-failed-to-read-the-localstorage-property-from-window-access-is-denied-for-this-document
+        localStorageWriteTests.tested = true;
+        localStorageWriteTests.writable = false;
+    }
+    return localStorageWriteTests.writable;
+};
+function parseParametersFromURL(href) {
+    const result = {};
+    const url = new URL(href);
+    if (url.hash && url.hash[0] === "#") try {
+        const hashSearchParams = new URLSearchParams(url.hash.substring(1));
+        hashSearchParams.forEach((value, key)=>{
+            result[key] = value;
+        });
+    } catch (e) {
+    // hash is not a query string
+    }
+    // search parameters take precedence over hash parameters
+    url.searchParams.forEach((value, key)=>{
+        result[key] = value;
+    });
+    return result;
+}
+const resolveFetch = (customFetch)=>{
+    let _fetch;
+    if (customFetch) _fetch = customFetch;
+    else if (typeof fetch === "undefined") _fetch = (...args)=>require("b14de0e012a619af").then(({ default: fetch1 })=>fetch1(...args));
+    else _fetch = fetch;
+    return (...args)=>_fetch(...args);
+};
+const looksLikeFetchResponse = (maybeResponse)=>{
+    return typeof maybeResponse === "object" && maybeResponse !== null && "status" in maybeResponse && "ok" in maybeResponse && "json" in maybeResponse && typeof maybeResponse.json === "function";
+};
+const setItemAsync = async (storage, key, data)=>{
+    await storage.setItem(key, JSON.stringify(data));
+};
+const getItemAsync = async (storage, key)=>{
+    const value = await storage.getItem(key);
+    if (!value) return null;
+    try {
+        return JSON.parse(value);
+    } catch (_a) {
+        return value;
+    }
+};
+const removeItemAsync = async (storage, key)=>{
+    await storage.removeItem(key);
+};
+function decodeBase64URL(value) {
+    const key = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+    let base64 = "";
+    let chr1, chr2, chr3;
+    let enc1, enc2, enc3, enc4;
+    let i = 0;
+    value = value.replace("-", "+").replace("_", "/");
+    while(i < value.length){
+        enc1 = key.indexOf(value.charAt(i++));
+        enc2 = key.indexOf(value.charAt(i++));
+        enc3 = key.indexOf(value.charAt(i++));
+        enc4 = key.indexOf(value.charAt(i++));
+        chr1 = enc1 << 2 | enc2 >> 4;
+        chr2 = (enc2 & 15) << 4 | enc3 >> 2;
+        chr3 = (enc3 & 3) << 6 | enc4;
+        base64 = base64 + String.fromCharCode(chr1);
+        if (enc3 != 64 && chr2 != 0) base64 = base64 + String.fromCharCode(chr2);
+        if (enc4 != 64 && chr3 != 0) base64 = base64 + String.fromCharCode(chr3);
+    }
+    return base64;
+}
+class Deferred {
+    constructor(){
+        this.promise = new Deferred.promiseConstructor((res, rej)=>{
+            this.resolve = res;
+            this.reject = rej;
+        });
+    }
+}
+Deferred.promiseConstructor = Promise;
+function decodeJWTPayload(token) {
+    // Regex checks for base64url format
+    const base64UrlRegex = /^([a-z0-9_-]{4})*($|[a-z0-9_-]{3}=?$|[a-z0-9_-]{2}(==)?$)$/i;
+    const parts = token.split(".");
+    if (parts.length !== 3) throw new Error("JWT is not valid: not a JWT structure");
+    if (!base64UrlRegex.test(parts[1])) throw new Error("JWT is not valid: payload is not in base64url format");
+    const base64Url = parts[1];
+    return JSON.parse(decodeBase64URL(base64Url));
+}
+async function sleep(time) {
+    return await new Promise((accept)=>{
+        setTimeout(()=>accept(null), time);
+    });
+}
+function retryable(fn, isRetryable) {
+    const promise = new Promise((accept, reject)=>{
+        (async ()=>{
+            for(let attempt = 0; attempt < Infinity; attempt++)try {
+                const result = await fn(attempt);
+                if (!isRetryable(attempt, null, result)) {
+                    accept(result);
+                    return;
+                }
+            } catch (e) {
+                if (!isRetryable(attempt, e)) {
+                    reject(e);
+                    return;
+                }
+            }
+        })();
+    });
+    return promise;
+}
+function dec2hex(dec) {
+    return ("0" + dec.toString(16)).substr(-2);
+}
+function generatePKCEVerifier() {
+    const verifierLength = 56;
+    const array = new Uint32Array(verifierLength);
+    if (typeof crypto === "undefined") {
+        const charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~";
+        const charSetLen = charSet.length;
+        let verifier = "";
+        for(let i = 0; i < verifierLength; i++)verifier += charSet.charAt(Math.floor(Math.random() * charSetLen));
+        return verifier;
+    }
+    crypto.getRandomValues(array);
+    return Array.from(array, dec2hex).join("");
+}
+async function sha256(randomString) {
+    const encoder = new TextEncoder();
+    const encodedData = encoder.encode(randomString);
+    const hash = await crypto.subtle.digest("SHA-256", encodedData);
+    const bytes = new Uint8Array(hash);
+    return Array.from(bytes).map((c)=>String.fromCharCode(c)).join("");
+}
+function base64urlencode(str) {
+    return btoa(str).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+async function generatePKCEChallenge(verifier) {
+    const hasCryptoSupport = typeof crypto !== "undefined" && typeof crypto.subtle !== "undefined" && typeof TextEncoder !== "undefined";
+    if (!hasCryptoSupport) {
+        console.warn("WebCrypto API is not supported. Code challenge method will default to use plain instead of sha256.");
+        return verifier;
+    }
+    const hashed = await sha256(verifier);
+    return base64urlencode(hashed);
+}
+async function getCodeChallengeAndMethod(storage, storageKey, isPasswordRecovery = false) {
+    const codeVerifier = generatePKCEVerifier();
+    let storedCodeVerifier = codeVerifier;
+    if (isPasswordRecovery) storedCodeVerifier += "/PASSWORD_RECOVERY";
+    await setItemAsync(storage, `${storageKey}-code-verifier`, storedCodeVerifier);
+    const codeChallenge = await generatePKCEChallenge(codeVerifier);
+    const codeChallengeMethod = codeVerifier === codeChallenge ? "plain" : "s256";
+    return [
+        codeChallenge,
+        codeChallengeMethod
+    ];
+}
+/** Parses the API version which is 2YYY-MM-DD. */ const API_VERSION_REGEX = /^2[0-9]{3}-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1])$/i;
+function parseResponseAPIVersion(response) {
+    const apiVersion = response.headers.get((0, _constants.API_VERSION_HEADER_NAME));
+    if (!apiVersion) return null;
+    if (!apiVersion.match(API_VERSION_REGEX)) return null;
+    try {
+        const date = new Date(`${apiVersion}T00:00:00.0Z`);
+        return date;
+    } catch (e) {
+        return null;
+    }
+}
+
+},{"./constants":"04zmg","b14de0e012a619af":"5aZ41","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"aGVxJ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "AuthError", ()=>AuthError);
+parcelHelpers.export(exports, "isAuthError", ()=>isAuthError);
+parcelHelpers.export(exports, "AuthApiError", ()=>AuthApiError);
+parcelHelpers.export(exports, "isAuthApiError", ()=>isAuthApiError);
+parcelHelpers.export(exports, "AuthUnknownError", ()=>AuthUnknownError);
+parcelHelpers.export(exports, "CustomAuthError", ()=>CustomAuthError);
+parcelHelpers.export(exports, "AuthSessionMissingError", ()=>AuthSessionMissingError);
+parcelHelpers.export(exports, "AuthInvalidTokenResponseError", ()=>AuthInvalidTokenResponseError);
+parcelHelpers.export(exports, "AuthInvalidCredentialsError", ()=>AuthInvalidCredentialsError);
+parcelHelpers.export(exports, "AuthImplicitGrantRedirectError", ()=>AuthImplicitGrantRedirectError);
+parcelHelpers.export(exports, "AuthPKCEGrantCodeExchangeError", ()=>AuthPKCEGrantCodeExchangeError);
+parcelHelpers.export(exports, "AuthRetryableFetchError", ()=>AuthRetryableFetchError);
+parcelHelpers.export(exports, "isAuthRetryableFetchError", ()=>isAuthRetryableFetchError);
+/**
+ * This error is thrown on certain methods when the password used is deemed
+ * weak. Inspect the reasons to identify what password strength rules are
+ * inadequate.
+ */ parcelHelpers.export(exports, "AuthWeakPasswordError", ()=>AuthWeakPasswordError);
+parcelHelpers.export(exports, "isAuthWeakPasswordError", ()=>isAuthWeakPasswordError);
+class AuthError extends Error {
+    constructor(message, status, code){
+        super(message);
+        this.__isAuthError = true;
+        this.name = "AuthError";
+        this.status = status;
+        this.code = code;
+    }
+}
+function isAuthError(error) {
+    return typeof error === "object" && error !== null && "__isAuthError" in error;
+}
+class AuthApiError extends AuthError {
+    constructor(message, status, code){
+        super(message, status, code);
+        this.name = "AuthApiError";
+        this.status = status;
+        this.code = code;
+    }
+}
+function isAuthApiError(error) {
+    return isAuthError(error) && error.name === "AuthApiError";
+}
+class AuthUnknownError extends AuthError {
+    constructor(message, originalError){
+        super(message);
+        this.name = "AuthUnknownError";
+        this.originalError = originalError;
+    }
+}
+class CustomAuthError extends AuthError {
+    constructor(message, name, status, code){
+        super(message, status, code);
+        this.name = name;
+        this.status = status;
+    }
+}
+class AuthSessionMissingError extends CustomAuthError {
+    constructor(){
+        super("Auth session missing!", "AuthSessionMissingError", 400, undefined);
+    }
+}
+class AuthInvalidTokenResponseError extends CustomAuthError {
+    constructor(){
+        super("Auth session or user missing", "AuthInvalidTokenResponseError", 500, undefined);
+    }
+}
+class AuthInvalidCredentialsError extends CustomAuthError {
+    constructor(message){
+        super(message, "AuthInvalidCredentialsError", 400, undefined);
+    }
+}
+class AuthImplicitGrantRedirectError extends CustomAuthError {
+    constructor(message, details = null){
+        super(message, "AuthImplicitGrantRedirectError", 500, undefined);
+        this.details = null;
+        this.details = details;
+    }
+    toJSON() {
+        return {
+            name: this.name,
+            message: this.message,
+            status: this.status,
+            details: this.details
+        };
+    }
+}
+class AuthPKCEGrantCodeExchangeError extends CustomAuthError {
+    constructor(message, details = null){
+        super(message, "AuthPKCEGrantCodeExchangeError", 500, undefined);
+        this.details = null;
+        this.details = details;
+    }
+    toJSON() {
+        return {
+            name: this.name,
+            message: this.message,
+            status: this.status,
+            details: this.details
+        };
+    }
+}
+class AuthRetryableFetchError extends CustomAuthError {
+    constructor(message, status){
+        super(message, "AuthRetryableFetchError", status, undefined);
+    }
+}
+function isAuthRetryableFetchError(error) {
+    return isAuthError(error) && error.name === "AuthRetryableFetchError";
+}
+class AuthWeakPasswordError extends CustomAuthError {
+    constructor(message, status, reasons){
+        super(message, "AuthWeakPasswordError", status, "weak_password");
+        this.reasons = reasons;
+    }
+}
+function isAuthWeakPasswordError(error) {
+    return isAuthError(error) && error.name === "AuthWeakPasswordError";
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"j7FfD":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _goTrueAdminApi = require("./GoTrueAdminApi");
+var _goTrueAdminApiDefault = parcelHelpers.interopDefault(_goTrueAdminApi);
+var _constants = require("./lib/constants");
+var _errors = require("./lib/errors");
+var _fetch = require("./lib/fetch");
+var _helpers = require("./lib/helpers");
+var _localStorage = require("./lib/local-storage");
+var _polyfills = require("./lib/polyfills");
+var _version = require("./lib/version");
+var _locks = require("./lib/locks");
+(0, _polyfills.polyfillGlobalThis)(); // Make "globalThis" available
+const DEFAULT_OPTIONS = {
+    url: (0, _constants.GOTRUE_URL),
+    storageKey: (0, _constants.STORAGE_KEY),
+    autoRefreshToken: true,
+    persistSession: true,
+    detectSessionInUrl: true,
+    headers: (0, _constants.DEFAULT_HEADERS),
+    flowType: "implicit",
+    debug: false
+};
+/** Current session will be checked for refresh at this interval. */ const AUTO_REFRESH_TICK_DURATION = 30000;
+/**
+ * A token refresh will be attempted this many ticks before the current session expires. */ const AUTO_REFRESH_TICK_THRESHOLD = 3;
+async function lockNoOp(name, acquireTimeout, fn) {
+    return await fn();
+}
+class GoTrueClient {
+    /**
+     * Create a new client for use in the browser.
+     */ constructor(options){
+        var _a, _b;
+        this.memoryStorage = null;
+        this.stateChangeEmitters = new Map();
+        this.autoRefreshTicker = null;
+        this.visibilityChangedCallback = null;
+        this.refreshingDeferred = null;
+        /**
+         * Keeps track of the async client initialization.
+         * When null or not yet resolved the auth state is `unknown`
+         * Once resolved the the auth state is known and it's save to call any further client methods.
+         * Keep extra care to never reject or throw uncaught errors
+         */ this.initializePromise = null;
+        this.detectSessionInUrl = true;
+        this.lockAcquired = false;
+        this.pendingInLock = [];
+        /**
+         * Used to broadcast state change events to other tabs listening.
+         */ this.broadcastChannel = null;
+        this.logger = console.log;
+        this.insecureGetSessionWarningShown = false;
+        this.instanceID = GoTrueClient.nextInstanceID;
+        GoTrueClient.nextInstanceID += 1;
+        if (this.instanceID > 0 && (0, _helpers.isBrowser)()) console.warn("Multiple GoTrueClient instances detected in the same browser context. It is not an error, but this should be avoided as it may produce undefined behavior when used concurrently under the same storage key.");
+        const settings = Object.assign(Object.assign({}, DEFAULT_OPTIONS), options);
+        this.logDebugMessages = !!settings.debug;
+        if (typeof settings.debug === "function") this.logger = settings.debug;
+        this.persistSession = settings.persistSession;
+        this.storageKey = settings.storageKey;
+        this.autoRefreshToken = settings.autoRefreshToken;
+        this.admin = new (0, _goTrueAdminApiDefault.default)({
+            url: settings.url,
+            headers: settings.headers,
+            fetch: settings.fetch
+        });
+        this.url = settings.url;
+        this.headers = settings.headers;
+        this.fetch = (0, _helpers.resolveFetch)(settings.fetch);
+        this.lock = settings.lock || lockNoOp;
+        this.detectSessionInUrl = settings.detectSessionInUrl;
+        this.flowType = settings.flowType;
+        if (settings.lock) this.lock = settings.lock;
+        else if ((0, _helpers.isBrowser)() && ((_a = globalThis === null || globalThis === void 0 ? void 0 : globalThis.navigator) === null || _a === void 0 ? void 0 : _a.locks)) this.lock = (0, _locks.navigatorLock);
+        else this.lock = lockNoOp;
+        this.mfa = {
+            verify: this._verify.bind(this),
+            enroll: this._enroll.bind(this),
+            unenroll: this._unenroll.bind(this),
+            challenge: this._challenge.bind(this),
+            listFactors: this._listFactors.bind(this),
+            challengeAndVerify: this._challengeAndVerify.bind(this),
+            getAuthenticatorAssuranceLevel: this._getAuthenticatorAssuranceLevel.bind(this)
+        };
+        if (this.persistSession) {
+            if (settings.storage) this.storage = settings.storage;
+            else if ((0, _helpers.supportsLocalStorage)()) this.storage = (0, _localStorage.localStorageAdapter);
+            else {
+                this.memoryStorage = {};
+                this.storage = (0, _localStorage.memoryLocalStorageAdapter)(this.memoryStorage);
+            }
+        } else {
+            this.memoryStorage = {};
+            this.storage = (0, _localStorage.memoryLocalStorageAdapter)(this.memoryStorage);
+        }
+        if ((0, _helpers.isBrowser)() && globalThis.BroadcastChannel && this.persistSession && this.storageKey) {
+            try {
+                this.broadcastChannel = new globalThis.BroadcastChannel(this.storageKey);
+            } catch (e) {
+                console.error("Failed to create a new BroadcastChannel, multi-tab state changes will not be available", e);
+            }
+            (_b = this.broadcastChannel) === null || _b === void 0 || _b.addEventListener("message", async (event)=>{
+                this._debug("received broadcast notification from other tab or client", event);
+                await this._notifyAllSubscribers(event.data.event, event.data.session, false); // broadcast = false so we don't get an endless loop of messages
+            });
+        }
+        this.initialize();
+    }
+    _debug(...args) {
+        if (this.logDebugMessages) this.logger(`GoTrueClient@${this.instanceID} (${(0, _version.version)}) ${new Date().toISOString()}`, ...args);
+        return this;
+    }
+    /**
+     * Initializes the client session either from the url or from storage.
+     * This method is automatically called when instantiating the client, but should also be called
+     * manually when checking for an error from an auth redirect (oauth, magiclink, password recovery, etc).
+     */ async initialize() {
+        if (this.initializePromise) return await this.initializePromise;
+        this.initializePromise = (async ()=>{
+            return await this._acquireLock(-1, async ()=>{
+                return await this._initialize();
+            });
+        })();
+        return await this.initializePromise;
+    }
+    /**
+     * IMPORTANT:
+     * 1. Never throw in this method, as it is called from the constructor
+     * 2. Never return a session from this method as it would be cached over
+     *    the whole lifetime of the client
+     */ async _initialize() {
+        try {
+            const isPKCEFlow = (0, _helpers.isBrowser)() ? await this._isPKCEFlow() : false;
+            this._debug("#_initialize()", "begin", "is PKCE flow", isPKCEFlow);
+            if (isPKCEFlow || this.detectSessionInUrl && this._isImplicitGrantFlow()) {
+                const { data, error } = await this._getSessionFromURL(isPKCEFlow);
+                if (error) {
+                    this._debug("#_initialize()", "error detecting session from URL", error);
+                    // hacky workaround to keep the existing session if there's an error returned from identity linking
+                    // TODO: once error codes are ready, we should match against it instead of the message
+                    if ((error === null || error === void 0 ? void 0 : error.message) === "Identity is already linked" || (error === null || error === void 0 ? void 0 : error.message) === "Identity is already linked to another user") return {
+                        error
+                    };
+                    // failed login attempt via url,
+                    // remove old session as in verifyOtp, signUp and signInWith*
+                    await this._removeSession();
+                    return {
+                        error
+                    };
+                }
+                const { session, redirectType } = data;
+                this._debug("#_initialize()", "detected session in URL", session, "redirect type", redirectType);
+                await this._saveSession(session);
+                setTimeout(async ()=>{
+                    if (redirectType === "recovery") await this._notifyAllSubscribers("PASSWORD_RECOVERY", session);
+                    else await this._notifyAllSubscribers("SIGNED_IN", session);
+                }, 0);
+                return {
+                    error: null
+                };
+            }
+            // no login attempt via callback url try to recover session from storage
+            await this._recoverAndRefresh();
+            return {
+                error: null
+            };
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                error
+            };
+            return {
+                error: new (0, _errors.AuthUnknownError)("Unexpected error during initialization", error)
+            };
+        } finally{
+            await this._handleVisibilityChange();
+            this._debug("#_initialize()", "end");
+        }
+    }
+    /**
+     * Creates a new anonymous user.
+     *
+     * @returns A session where the is_anonymous claim in the access token JWT set to true
+     */ async signInAnonymously(credentials) {
+        var _a, _b, _c;
+        try {
+            await this._removeSession();
+            const res = await (0, _fetch._request)(this.fetch, "POST", `${this.url}/signup`, {
+                headers: this.headers,
+                body: {
+                    data: (_b = (_a = credentials === null || credentials === void 0 ? void 0 : credentials.options) === null || _a === void 0 ? void 0 : _a.data) !== null && _b !== void 0 ? _b : {},
+                    gotrue_meta_security: {
+                        captcha_token: (_c = credentials === null || credentials === void 0 ? void 0 : credentials.options) === null || _c === void 0 ? void 0 : _c.captchaToken
+                    }
+                },
+                xform: (0, _fetch._sessionResponse)
+            });
+            const { data, error } = res;
+            if (error || !data) return {
+                data: {
+                    user: null,
+                    session: null
+                },
+                error: error
+            };
+            const session = data.session;
+            const user = data.user;
+            if (data.session) {
+                await this._saveSession(data.session);
+                await this._notifyAllSubscribers("SIGNED_IN", session);
+            }
+            return {
+                data: {
+                    user,
+                    session
+                },
+                error: null
+            };
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    user: null,
+                    session: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Creates a new user.
+     *
+     * Be aware that if a user account exists in the system you may get back an
+     * error message that attempts to hide this information from the user.
+     * This method has support for PKCE via email signups. The PKCE flow cannot be used when autoconfirm is enabled.
+     *
+     * @returns A logged-in session if the server has "autoconfirm" ON
+     * @returns A user if the server has "autoconfirm" OFF
+     */ async signUp(credentials) {
+        var _a, _b, _c;
+        try {
+            await this._removeSession();
+            let res;
+            if ("email" in credentials) {
+                const { email, password, options } = credentials;
+                let codeChallenge = null;
+                let codeChallengeMethod = null;
+                if (this.flowType === "pkce") [codeChallenge, codeChallengeMethod] = await (0, _helpers.getCodeChallengeAndMethod)(this.storage, this.storageKey);
+                res = await (0, _fetch._request)(this.fetch, "POST", `${this.url}/signup`, {
+                    headers: this.headers,
+                    redirectTo: options === null || options === void 0 ? void 0 : options.emailRedirectTo,
+                    body: {
+                        email,
+                        password,
+                        data: (_a = options === null || options === void 0 ? void 0 : options.data) !== null && _a !== void 0 ? _a : {},
+                        gotrue_meta_security: {
+                            captcha_token: options === null || options === void 0 ? void 0 : options.captchaToken
+                        },
+                        code_challenge: codeChallenge,
+                        code_challenge_method: codeChallengeMethod
+                    },
+                    xform: (0, _fetch._sessionResponse)
+                });
+            } else if ("phone" in credentials) {
+                const { phone, password, options } = credentials;
+                res = await (0, _fetch._request)(this.fetch, "POST", `${this.url}/signup`, {
+                    headers: this.headers,
+                    body: {
+                        phone,
+                        password,
+                        data: (_b = options === null || options === void 0 ? void 0 : options.data) !== null && _b !== void 0 ? _b : {},
+                        channel: (_c = options === null || options === void 0 ? void 0 : options.channel) !== null && _c !== void 0 ? _c : "sms",
+                        gotrue_meta_security: {
+                            captcha_token: options === null || options === void 0 ? void 0 : options.captchaToken
+                        }
+                    },
+                    xform: (0, _fetch._sessionResponse)
+                });
+            } else throw new (0, _errors.AuthInvalidCredentialsError)("You must provide either an email or phone number and a password");
+            const { data, error } = res;
+            if (error || !data) return {
+                data: {
+                    user: null,
+                    session: null
+                },
+                error: error
+            };
+            const session = data.session;
+            const user = data.user;
+            if (data.session) {
+                await this._saveSession(data.session);
+                await this._notifyAllSubscribers("SIGNED_IN", session);
+            }
+            return {
+                data: {
+                    user,
+                    session
+                },
+                error: null
+            };
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    user: null,
+                    session: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Log in an existing user with an email and password or phone and password.
+     *
+     * Be aware that you may get back an error message that will not distinguish
+     * between the cases where the account does not exist or that the
+     * email/phone and password combination is wrong or that the account can only
+     * be accessed via social login.
+     */ async signInWithPassword(credentials) {
+        try {
+            await this._removeSession();
+            let res;
+            if ("email" in credentials) {
+                const { email, password, options } = credentials;
+                res = await (0, _fetch._request)(this.fetch, "POST", `${this.url}/token?grant_type=password`, {
+                    headers: this.headers,
+                    body: {
+                        email,
+                        password,
+                        gotrue_meta_security: {
+                            captcha_token: options === null || options === void 0 ? void 0 : options.captchaToken
+                        }
+                    },
+                    xform: (0, _fetch._sessionResponsePassword)
+                });
+            } else if ("phone" in credentials) {
+                const { phone, password, options } = credentials;
+                res = await (0, _fetch._request)(this.fetch, "POST", `${this.url}/token?grant_type=password`, {
+                    headers: this.headers,
+                    body: {
+                        phone,
+                        password,
+                        gotrue_meta_security: {
+                            captcha_token: options === null || options === void 0 ? void 0 : options.captchaToken
+                        }
+                    },
+                    xform: (0, _fetch._sessionResponsePassword)
+                });
+            } else throw new (0, _errors.AuthInvalidCredentialsError)("You must provide either an email or phone number and a password");
+            const { data, error } = res;
+            if (error) return {
+                data: {
+                    user: null,
+                    session: null
+                },
+                error
+            };
+            else if (!data || !data.session || !data.user) return {
+                data: {
+                    user: null,
+                    session: null
+                },
+                error: new (0, _errors.AuthInvalidTokenResponseError)()
+            };
+            if (data.session) {
+                await this._saveSession(data.session);
+                await this._notifyAllSubscribers("SIGNED_IN", data.session);
+            }
+            return {
+                data: Object.assign({
+                    user: data.user,
+                    session: data.session
+                }, data.weak_password ? {
+                    weakPassword: data.weak_password
+                } : null),
+                error
+            };
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    user: null,
+                    session: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Log in an existing user via a third-party provider.
+     * This method supports the PKCE flow.
+     */ async signInWithOAuth(credentials) {
+        var _a, _b, _c, _d;
+        await this._removeSession();
+        return await this._handleProviderSignIn(credentials.provider, {
+            redirectTo: (_a = credentials.options) === null || _a === void 0 ? void 0 : _a.redirectTo,
+            scopes: (_b = credentials.options) === null || _b === void 0 ? void 0 : _b.scopes,
+            queryParams: (_c = credentials.options) === null || _c === void 0 ? void 0 : _c.queryParams,
+            skipBrowserRedirect: (_d = credentials.options) === null || _d === void 0 ? void 0 : _d.skipBrowserRedirect
+        });
+    }
+    /**
+     * Log in an existing user by exchanging an Auth Code issued during the PKCE flow.
+     */ async exchangeCodeForSession(authCode) {
+        await this.initializePromise;
+        return this._acquireLock(-1, async ()=>{
+            return this._exchangeCodeForSession(authCode);
+        });
+    }
+    async _exchangeCodeForSession(authCode) {
+        const storageItem = await (0, _helpers.getItemAsync)(this.storage, `${this.storageKey}-code-verifier`);
+        const [codeVerifier, redirectType] = (storageItem !== null && storageItem !== void 0 ? storageItem : "").split("/");
+        const { data, error } = await (0, _fetch._request)(this.fetch, "POST", `${this.url}/token?grant_type=pkce`, {
+            headers: this.headers,
+            body: {
+                auth_code: authCode,
+                code_verifier: codeVerifier
+            },
+            xform: (0, _fetch._sessionResponse)
+        });
+        await (0, _helpers.removeItemAsync)(this.storage, `${this.storageKey}-code-verifier`);
+        if (error) return {
+            data: {
+                user: null,
+                session: null,
+                redirectType: null
+            },
+            error
+        };
+        else if (!data || !data.session || !data.user) return {
+            data: {
+                user: null,
+                session: null,
+                redirectType: null
+            },
+            error: new (0, _errors.AuthInvalidTokenResponseError)()
+        };
+        if (data.session) {
+            await this._saveSession(data.session);
+            await this._notifyAllSubscribers("SIGNED_IN", data.session);
+        }
+        return {
+            data: Object.assign(Object.assign({}, data), {
+                redirectType: redirectType !== null && redirectType !== void 0 ? redirectType : null
+            }),
+            error
+        };
+    }
+    /**
+     * Allows signing in with an OIDC ID token. The authentication provider used
+     * should be enabled and configured.
+     */ async signInWithIdToken(credentials) {
+        await this._removeSession();
+        try {
+            const { options, provider, token, access_token, nonce } = credentials;
+            const res = await (0, _fetch._request)(this.fetch, "POST", `${this.url}/token?grant_type=id_token`, {
+                headers: this.headers,
+                body: {
+                    provider,
+                    id_token: token,
+                    access_token,
+                    nonce,
+                    gotrue_meta_security: {
+                        captcha_token: options === null || options === void 0 ? void 0 : options.captchaToken
+                    }
+                },
+                xform: (0, _fetch._sessionResponse)
+            });
+            const { data, error } = res;
+            if (error) return {
+                data: {
+                    user: null,
+                    session: null
+                },
+                error
+            };
+            else if (!data || !data.session || !data.user) return {
+                data: {
+                    user: null,
+                    session: null
+                },
+                error: new (0, _errors.AuthInvalidTokenResponseError)()
+            };
+            if (data.session) {
+                await this._saveSession(data.session);
+                await this._notifyAllSubscribers("SIGNED_IN", data.session);
+            }
+            return {
+                data,
+                error
+            };
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    user: null,
+                    session: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Log in a user using magiclink or a one-time password (OTP).
+     *
+     * If the `{{ .ConfirmationURL }}` variable is specified in the email template, a magiclink will be sent.
+     * If the `{{ .Token }}` variable is specified in the email template, an OTP will be sent.
+     * If you're using phone sign-ins, only an OTP will be sent. You won't be able to send a magiclink for phone sign-ins.
+     *
+     * Be aware that you may get back an error message that will not distinguish
+     * between the cases where the account does not exist or, that the account
+     * can only be accessed via social login.
+     *
+     * Do note that you will need to configure a Whatsapp sender on Twilio
+     * if you are using phone sign in with the 'whatsapp' channel. The whatsapp
+     * channel is not supported on other providers
+     * at this time.
+     * This method supports PKCE when an email is passed.
+     */ async signInWithOtp(credentials) {
+        var _a, _b, _c, _d, _e;
+        try {
+            await this._removeSession();
+            if ("email" in credentials) {
+                const { email, options } = credentials;
+                let codeChallenge = null;
+                let codeChallengeMethod = null;
+                if (this.flowType === "pkce") [codeChallenge, codeChallengeMethod] = await (0, _helpers.getCodeChallengeAndMethod)(this.storage, this.storageKey);
+                const { error } = await (0, _fetch._request)(this.fetch, "POST", `${this.url}/otp`, {
+                    headers: this.headers,
+                    body: {
+                        email,
+                        data: (_a = options === null || options === void 0 ? void 0 : options.data) !== null && _a !== void 0 ? _a : {},
+                        create_user: (_b = options === null || options === void 0 ? void 0 : options.shouldCreateUser) !== null && _b !== void 0 ? _b : true,
+                        gotrue_meta_security: {
+                            captcha_token: options === null || options === void 0 ? void 0 : options.captchaToken
+                        },
+                        code_challenge: codeChallenge,
+                        code_challenge_method: codeChallengeMethod
+                    },
+                    redirectTo: options === null || options === void 0 ? void 0 : options.emailRedirectTo
+                });
+                return {
+                    data: {
+                        user: null,
+                        session: null
+                    },
+                    error
+                };
+            }
+            if ("phone" in credentials) {
+                const { phone, options } = credentials;
+                const { data, error } = await (0, _fetch._request)(this.fetch, "POST", `${this.url}/otp`, {
+                    headers: this.headers,
+                    body: {
+                        phone,
+                        data: (_c = options === null || options === void 0 ? void 0 : options.data) !== null && _c !== void 0 ? _c : {},
+                        create_user: (_d = options === null || options === void 0 ? void 0 : options.shouldCreateUser) !== null && _d !== void 0 ? _d : true,
+                        gotrue_meta_security: {
+                            captcha_token: options === null || options === void 0 ? void 0 : options.captchaToken
+                        },
+                        channel: (_e = options === null || options === void 0 ? void 0 : options.channel) !== null && _e !== void 0 ? _e : "sms"
+                    }
+                });
+                return {
+                    data: {
+                        user: null,
+                        session: null,
+                        messageId: data === null || data === void 0 ? void 0 : data.message_id
+                    },
+                    error
+                };
+            }
+            throw new (0, _errors.AuthInvalidCredentialsError)("You must provide either an email or phone number.");
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    user: null,
+                    session: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Log in a user given a User supplied OTP or TokenHash received through mobile or email.
+     */ async verifyOtp(params) {
+        var _a, _b;
+        try {
+            if (params.type !== "email_change" && params.type !== "phone_change") // we don't want to remove the authenticated session if the user is performing an email_change or phone_change verification
+            await this._removeSession();
+            let redirectTo = undefined;
+            let captchaToken = undefined;
+            if ("options" in params) {
+                redirectTo = (_a = params.options) === null || _a === void 0 ? void 0 : _a.redirectTo;
+                captchaToken = (_b = params.options) === null || _b === void 0 ? void 0 : _b.captchaToken;
+            }
+            const { data, error } = await (0, _fetch._request)(this.fetch, "POST", `${this.url}/verify`, {
+                headers: this.headers,
+                body: Object.assign(Object.assign({}, params), {
+                    gotrue_meta_security: {
+                        captcha_token: captchaToken
+                    }
+                }),
+                redirectTo,
+                xform: (0, _fetch._sessionResponse)
+            });
+            if (error) throw error;
+            if (!data) throw new Error("An error occurred on token verification.");
+            const session = data.session;
+            const user = data.user;
+            if (session === null || session === void 0 ? void 0 : session.access_token) {
+                await this._saveSession(session);
+                await this._notifyAllSubscribers(params.type == "recovery" ? "PASSWORD_RECOVERY" : "SIGNED_IN", session);
+            }
+            return {
+                data: {
+                    user,
+                    session
+                },
+                error: null
+            };
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    user: null,
+                    session: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Attempts a single-sign on using an enterprise Identity Provider. A
+     * successful SSO attempt will redirect the current page to the identity
+     * provider authorization page. The redirect URL is implementation and SSO
+     * protocol specific.
+     *
+     * You can use it by providing a SSO domain. Typically you can extract this
+     * domain by asking users for their email address. If this domain is
+     * registered on the Auth instance the redirect will use that organization's
+     * currently active SSO Identity Provider for the login.
+     *
+     * If you have built an organization-specific login page, you can use the
+     * organization's SSO Identity Provider UUID directly instead.
+     */ async signInWithSSO(params) {
+        var _a, _b, _c;
+        try {
+            await this._removeSession();
+            let codeChallenge = null;
+            let codeChallengeMethod = null;
+            if (this.flowType === "pkce") [codeChallenge, codeChallengeMethod] = await (0, _helpers.getCodeChallengeAndMethod)(this.storage, this.storageKey);
+            return await (0, _fetch._request)(this.fetch, "POST", `${this.url}/sso`, {
+                body: Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, "providerId" in params ? {
+                    provider_id: params.providerId
+                } : null), "domain" in params ? {
+                    domain: params.domain
+                } : null), {
+                    redirect_to: (_b = (_a = params.options) === null || _a === void 0 ? void 0 : _a.redirectTo) !== null && _b !== void 0 ? _b : undefined
+                }), ((_c = params === null || params === void 0 ? void 0 : params.options) === null || _c === void 0 ? void 0 : _c.captchaToken) ? {
+                    gotrue_meta_security: {
+                        captcha_token: params.options.captchaToken
+                    }
+                } : null), {
+                    skip_http_redirect: true,
+                    code_challenge: codeChallenge,
+                    code_challenge_method: codeChallengeMethod
+                }),
+                headers: this.headers,
+                xform: (0, _fetch._ssoResponse)
+            });
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: null,
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Sends a reauthentication OTP to the user's email or phone number.
+     * Requires the user to be signed-in.
+     */ async reauthenticate() {
+        await this.initializePromise;
+        return await this._acquireLock(-1, async ()=>{
+            return await this._reauthenticate();
+        });
+    }
+    async _reauthenticate() {
+        try {
+            return await this._useSession(async (result)=>{
+                const { data: { session }, error: sessionError } = result;
+                if (sessionError) throw sessionError;
+                if (!session) throw new (0, _errors.AuthSessionMissingError)();
+                const { error } = await (0, _fetch._request)(this.fetch, "GET", `${this.url}/reauthenticate`, {
+                    headers: this.headers,
+                    jwt: session.access_token
+                });
+                return {
+                    data: {
+                        user: null,
+                        session: null
+                    },
+                    error
+                };
+            });
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    user: null,
+                    session: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Resends an existing signup confirmation email, email change email, SMS OTP or phone change OTP.
+     */ async resend(credentials) {
+        try {
+            if (credentials.type != "email_change" && credentials.type != "phone_change") await this._removeSession();
+            const endpoint = `${this.url}/resend`;
+            if ("email" in credentials) {
+                const { email, type, options } = credentials;
+                const { error } = await (0, _fetch._request)(this.fetch, "POST", endpoint, {
+                    headers: this.headers,
+                    body: {
+                        email,
+                        type,
+                        gotrue_meta_security: {
+                            captcha_token: options === null || options === void 0 ? void 0 : options.captchaToken
+                        }
+                    },
+                    redirectTo: options === null || options === void 0 ? void 0 : options.emailRedirectTo
+                });
+                return {
+                    data: {
+                        user: null,
+                        session: null
+                    },
+                    error
+                };
+            } else if ("phone" in credentials) {
+                const { phone, type, options } = credentials;
+                const { data, error } = await (0, _fetch._request)(this.fetch, "POST", endpoint, {
+                    headers: this.headers,
+                    body: {
+                        phone,
+                        type,
+                        gotrue_meta_security: {
+                            captcha_token: options === null || options === void 0 ? void 0 : options.captchaToken
+                        }
+                    }
+                });
+                return {
+                    data: {
+                        user: null,
+                        session: null,
+                        messageId: data === null || data === void 0 ? void 0 : data.message_id
+                    },
+                    error
+                };
+            }
+            throw new (0, _errors.AuthInvalidCredentialsError)("You must provide either an email or phone number and a type");
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    user: null,
+                    session: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Returns the session, refreshing it if necessary.
+     *
+     * The session returned can be null if the session is not detected which can happen in the event a user is not signed-in or has logged out.
+     *
+     * **IMPORTANT:** This method loads values directly from the storage attached
+     * to the client. If that storage is based on request cookies for example,
+     * the values in it may not be authentic and therefore it's strongly advised
+     * against using this method and its results in such circumstances. A warning
+     * will be emitted if this is detected. Use {@link #getUser()} instead.
+     */ async getSession() {
+        await this.initializePromise;
+        const result = await this._acquireLock(-1, async ()=>{
+            return this._useSession(async (result)=>{
+                return result;
+            });
+        });
+        if (result.data && this.storage.isServer) {
+            if (!this.insecureGetSessionWarningShown) {
+                console.warn("Using supabase.auth.getSession() is potentially insecure as it loads data directly from the storage medium (typically cookies) which may not be authentic. Prefer using supabase.auth.getUser() instead. To suppress this warning call supabase.auth.getUser() before you call supabase.auth.getSession().");
+                this.insecureGetSessionWarningShown = true;
+            }
+        }
+        return result;
+    }
+    /**
+     * Acquires a global lock based on the storage key.
+     */ async _acquireLock(acquireTimeout, fn) {
+        this._debug("#_acquireLock", "begin", acquireTimeout);
+        try {
+            if (this.lockAcquired) {
+                const last = this.pendingInLock.length ? this.pendingInLock[this.pendingInLock.length - 1] : Promise.resolve();
+                const result = (async ()=>{
+                    await last;
+                    return await fn();
+                })();
+                this.pendingInLock.push((async ()=>{
+                    try {
+                        await result;
+                    } catch (e) {
+                    // we just care if it finished
+                    }
+                })());
+                return result;
+            }
+            return await this.lock(`lock:${this.storageKey}`, acquireTimeout, async ()=>{
+                this._debug("#_acquireLock", "lock acquired for storage key", this.storageKey);
+                try {
+                    this.lockAcquired = true;
+                    const result = fn();
+                    this.pendingInLock.push((async ()=>{
+                        try {
+                            await result;
+                        } catch (e) {
+                        // we just care if it finished
+                        }
+                    })());
+                    await result;
+                    // keep draining the queue until there's nothing to wait on
+                    while(this.pendingInLock.length){
+                        const waitOn = [
+                            ...this.pendingInLock
+                        ];
+                        await Promise.all(waitOn);
+                        this.pendingInLock.splice(0, waitOn.length);
+                    }
+                    return await result;
+                } finally{
+                    this._debug("#_acquireLock", "lock released for storage key", this.storageKey);
+                    this.lockAcquired = false;
+                }
+            });
+        } finally{
+            this._debug("#_acquireLock", "end");
+        }
+    }
+    /**
+     * Use instead of {@link #getSession} inside the library. It is
+     * semantically usually what you want, as getting a session involves some
+     * processing afterwards that requires only one client operating on the
+     * session at once across multiple tabs or processes.
+     */ async _useSession(fn) {
+        this._debug("#_useSession", "begin");
+        try {
+            // the use of __loadSession here is the only correct use of the function!
+            const result = await this.__loadSession();
+            return await fn(result);
+        } finally{
+            this._debug("#_useSession", "end");
+        }
+    }
+    /**
+     * NEVER USE DIRECTLY!
+     *
+     * Always use {@link #_useSession}.
+     */ async __loadSession() {
+        this._debug("#__loadSession()", "begin");
+        if (!this.lockAcquired) this._debug("#__loadSession()", "used outside of an acquired lock!", new Error().stack);
+        try {
+            let currentSession = null;
+            const maybeSession = await (0, _helpers.getItemAsync)(this.storage, this.storageKey);
+            this._debug("#getSession()", "session from storage", maybeSession);
+            if (maybeSession !== null) {
+                if (this._isValidSession(maybeSession)) currentSession = maybeSession;
+                else {
+                    this._debug("#getSession()", "session from storage is not valid");
+                    await this._removeSession();
+                }
+            }
+            if (!currentSession) return {
+                data: {
+                    session: null
+                },
+                error: null
+            };
+            const hasExpired = currentSession.expires_at ? currentSession.expires_at <= Date.now() / 1000 : false;
+            this._debug("#__loadSession()", `session has${hasExpired ? "" : " not"} expired`, "expires_at", currentSession.expires_at);
+            if (!hasExpired) {
+                if (this.storage.isServer) {
+                    let user = currentSession.user;
+                    delete currentSession.user;
+                    Object.defineProperty(currentSession, "user", {
+                        enumerable: true,
+                        get: ()=>{
+                            if (!currentSession.__suppressUserWarning) // do not suppress this warning if insecureGetSessionWarningShown is true, as the data is still not authenticated
+                            console.warn("Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and many not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.");
+                            return user;
+                        },
+                        set: (value)=>{
+                            user = value;
+                        }
+                    });
+                }
+                return {
+                    data: {
+                        session: currentSession
+                    },
+                    error: null
+                };
+            }
+            const { session, error } = await this._callRefreshToken(currentSession.refresh_token);
+            if (error) return {
+                data: {
+                    session: null
+                },
+                error
+            };
+            return {
+                data: {
+                    session
+                },
+                error: null
+            };
+        } finally{
+            this._debug("#__loadSession()", "end");
+        }
+    }
+    /**
+     * Gets the current user details if there is an existing session. This method
+     * performs a network request to the Supabase Auth server, so the returned
+     * value is authentic and can be used to base authorization rules on.
+     *
+     * @param jwt Takes in an optional access token JWT. If no JWT is provided, the JWT from the current session is used.
+     */ async getUser(jwt) {
+        if (jwt) return await this._getUser(jwt);
+        await this.initializePromise;
+        const result = await this._acquireLock(-1, async ()=>{
+            return await this._getUser();
+        });
+        if (result.data && this.storage.isServer) // no longer emit the insecure warning for getSession() as the access_token is now authenticated
+        this.insecureGetSessionWarningShown = true;
+        return result;
+    }
+    async _getUser(jwt) {
+        try {
+            if (jwt) return await (0, _fetch._request)(this.fetch, "GET", `${this.url}/user`, {
+                headers: this.headers,
+                jwt: jwt,
+                xform: (0, _fetch._userResponse)
+            });
+            return await this._useSession(async (result)=>{
+                var _a, _b;
+                const { data, error } = result;
+                if (error) throw error;
+                return await (0, _fetch._request)(this.fetch, "GET", `${this.url}/user`, {
+                    headers: this.headers,
+                    jwt: (_b = (_a = data.session) === null || _a === void 0 ? void 0 : _a.access_token) !== null && _b !== void 0 ? _b : undefined,
+                    xform: (0, _fetch._userResponse)
+                });
+            });
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    user: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Updates user data for a logged in user.
+     */ async updateUser(attributes, options = {}) {
+        await this.initializePromise;
+        return await this._acquireLock(-1, async ()=>{
+            return await this._updateUser(attributes, options);
+        });
+    }
+    async _updateUser(attributes, options = {}) {
+        try {
+            return await this._useSession(async (result)=>{
+                const { data: sessionData, error: sessionError } = result;
+                if (sessionError) throw sessionError;
+                if (!sessionData.session) throw new (0, _errors.AuthSessionMissingError)();
+                const session = sessionData.session;
+                let codeChallenge = null;
+                let codeChallengeMethod = null;
+                if (this.flowType === "pkce" && attributes.email != null) [codeChallenge, codeChallengeMethod] = await (0, _helpers.getCodeChallengeAndMethod)(this.storage, this.storageKey);
+                const { data, error: userError } = await (0, _fetch._request)(this.fetch, "PUT", `${this.url}/user`, {
+                    headers: this.headers,
+                    redirectTo: options === null || options === void 0 ? void 0 : options.emailRedirectTo,
+                    body: Object.assign(Object.assign({}, attributes), {
+                        code_challenge: codeChallenge,
+                        code_challenge_method: codeChallengeMethod
+                    }),
+                    jwt: session.access_token,
+                    xform: (0, _fetch._userResponse)
+                });
+                if (userError) throw userError;
+                session.user = data.user;
+                await this._saveSession(session);
+                await this._notifyAllSubscribers("USER_UPDATED", session);
+                return {
+                    data: {
+                        user: session.user
+                    },
+                    error: null
+                };
+            });
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    user: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Decodes a JWT (without performing any validation).
+     */ _decodeJWT(jwt) {
+        return (0, _helpers.decodeJWTPayload)(jwt);
+    }
+    /**
+     * Sets the session data from the current session. If the current session is expired, setSession will take care of refreshing it to obtain a new session.
+     * If the refresh token or access token in the current session is invalid, an error will be thrown.
+     * @param currentSession The current session that minimally contains an access token and refresh token.
+     */ async setSession(currentSession) {
+        await this.initializePromise;
+        return await this._acquireLock(-1, async ()=>{
+            return await this._setSession(currentSession);
+        });
+    }
+    async _setSession(currentSession) {
+        try {
+            if (!currentSession.access_token || !currentSession.refresh_token) throw new (0, _errors.AuthSessionMissingError)();
+            const timeNow = Date.now() / 1000;
+            let expiresAt = timeNow;
+            let hasExpired = true;
+            let session = null;
+            const payload = (0, _helpers.decodeJWTPayload)(currentSession.access_token);
+            if (payload.exp) {
+                expiresAt = payload.exp;
+                hasExpired = expiresAt <= timeNow;
+            }
+            if (hasExpired) {
+                const { session: refreshedSession, error } = await this._callRefreshToken(currentSession.refresh_token);
+                if (error) return {
+                    data: {
+                        user: null,
+                        session: null
+                    },
+                    error: error
+                };
+                if (!refreshedSession) return {
+                    data: {
+                        user: null,
+                        session: null
+                    },
+                    error: null
+                };
+                session = refreshedSession;
+            } else {
+                const { data, error } = await this._getUser(currentSession.access_token);
+                if (error) throw error;
+                session = {
+                    access_token: currentSession.access_token,
+                    refresh_token: currentSession.refresh_token,
+                    user: data.user,
+                    token_type: "bearer",
+                    expires_in: expiresAt - timeNow,
+                    expires_at: expiresAt
+                };
+                await this._saveSession(session);
+                await this._notifyAllSubscribers("SIGNED_IN", session);
+            }
+            return {
+                data: {
+                    user: session.user,
+                    session
+                },
+                error: null
+            };
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    session: null,
+                    user: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Returns a new session, regardless of expiry status.
+     * Takes in an optional current session. If not passed in, then refreshSession() will attempt to retrieve it from getSession().
+     * If the current session's refresh token is invalid, an error will be thrown.
+     * @param currentSession The current session. If passed in, it must contain a refresh token.
+     */ async refreshSession(currentSession) {
+        await this.initializePromise;
+        return await this._acquireLock(-1, async ()=>{
+            return await this._refreshSession(currentSession);
+        });
+    }
+    async _refreshSession(currentSession) {
+        try {
+            return await this._useSession(async (result)=>{
+                var _a;
+                if (!currentSession) {
+                    const { data, error } = result;
+                    if (error) throw error;
+                    currentSession = (_a = data.session) !== null && _a !== void 0 ? _a : undefined;
+                }
+                if (!(currentSession === null || currentSession === void 0 ? void 0 : currentSession.refresh_token)) throw new (0, _errors.AuthSessionMissingError)();
+                const { session, error } = await this._callRefreshToken(currentSession.refresh_token);
+                if (error) return {
+                    data: {
+                        user: null,
+                        session: null
+                    },
+                    error: error
+                };
+                if (!session) return {
+                    data: {
+                        user: null,
+                        session: null
+                    },
+                    error: null
+                };
+                return {
+                    data: {
+                        user: session.user,
+                        session
+                    },
+                    error: null
+                };
+            });
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    user: null,
+                    session: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Gets the session data from a URL string
+     */ async _getSessionFromURL(isPKCEFlow) {
+        try {
+            if (!(0, _helpers.isBrowser)()) throw new (0, _errors.AuthImplicitGrantRedirectError)("No browser detected.");
+            if (this.flowType === "implicit" && !this._isImplicitGrantFlow()) throw new (0, _errors.AuthImplicitGrantRedirectError)("Not a valid implicit grant flow url.");
+            else if (this.flowType == "pkce" && !isPKCEFlow) throw new (0, _errors.AuthPKCEGrantCodeExchangeError)("Not a valid PKCE flow url.");
+            const params = (0, _helpers.parseParametersFromURL)(window.location.href);
+            if (isPKCEFlow) {
+                if (!params.code) throw new (0, _errors.AuthPKCEGrantCodeExchangeError)("No code detected.");
+                const { data, error } = await this._exchangeCodeForSession(params.code);
+                if (error) throw error;
+                const url = new URL(window.location.href);
+                url.searchParams.delete("code");
+                window.history.replaceState(window.history.state, "", url.toString());
+                return {
+                    data: {
+                        session: data.session,
+                        redirectType: null
+                    },
+                    error: null
+                };
+            }
+            if (params.error || params.error_description || params.error_code) throw new (0, _errors.AuthImplicitGrantRedirectError)(params.error_description || "Error in URL with unspecified error_description", {
+                error: params.error || "unspecified_error",
+                code: params.error_code || "unspecified_code"
+            });
+            const { provider_token, provider_refresh_token, access_token, refresh_token, expires_in, expires_at, token_type } = params;
+            if (!access_token || !expires_in || !refresh_token || !token_type) throw new (0, _errors.AuthImplicitGrantRedirectError)("No session defined in URL");
+            const timeNow = Math.round(Date.now() / 1000);
+            const expiresIn = parseInt(expires_in);
+            let expiresAt = timeNow + expiresIn;
+            if (expires_at) expiresAt = parseInt(expires_at);
+            const actuallyExpiresIn = expiresAt - timeNow;
+            if (actuallyExpiresIn * 1000 <= AUTO_REFRESH_TICK_DURATION) console.warn(`@supabase/gotrue-js: Session as retrieved from URL expires in ${actuallyExpiresIn}s, should have been closer to ${expiresIn}s`);
+            const issuedAt = expiresAt - expiresIn;
+            if (timeNow - issuedAt >= 120) console.warn("@supabase/gotrue-js: Session as retrieved from URL was issued over 120s ago, URL could be stale", issuedAt, expiresAt, timeNow);
+            else if (timeNow - issuedAt < 0) console.warn("@supabase/gotrue-js: Session as retrieved from URL was issued in the future? Check the device clok for skew", issuedAt, expiresAt, timeNow);
+            const { data, error } = await this._getUser(access_token);
+            if (error) throw error;
+            const session = {
+                provider_token,
+                provider_refresh_token,
+                access_token,
+                expires_in: expiresIn,
+                expires_at: expiresAt,
+                refresh_token,
+                token_type,
+                user: data.user
+            };
+            // Remove tokens from URL
+            window.location.hash = "";
+            this._debug("#_getSessionFromURL()", "clearing window.location.hash");
+            return {
+                data: {
+                    session,
+                    redirectType: params.type
+                },
+                error: null
+            };
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    session: null,
+                    redirectType: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Checks if the current URL contains parameters given by an implicit oauth grant flow (https://www.rfc-editor.org/rfc/rfc6749.html#section-4.2)
+     */ _isImplicitGrantFlow() {
+        const params = (0, _helpers.parseParametersFromURL)(window.location.href);
+        return !!((0, _helpers.isBrowser)() && (params.access_token || params.error_description));
+    }
+    /**
+     * Checks if the current URL and backing storage contain parameters given by a PKCE flow
+     */ async _isPKCEFlow() {
+        const params = (0, _helpers.parseParametersFromURL)(window.location.href);
+        const currentStorageContent = await (0, _helpers.getItemAsync)(this.storage, `${this.storageKey}-code-verifier`);
+        return !!(params.code && currentStorageContent);
+    }
+    /**
+     * Inside a browser context, `signOut()` will remove the logged in user from the browser session and log them out - removing all items from localstorage and then trigger a `"SIGNED_OUT"` event.
+     *
+     * For server-side management, you can revoke all refresh tokens for a user by passing a user's JWT through to `auth.api.signOut(JWT: string)`.
+     * There is no way to revoke a user's access token jwt until it expires. It is recommended to set a shorter expiry on the jwt for this reason.
+     *
+     * If using `others` scope, no `SIGNED_OUT` event is fired!
+     */ async signOut(options = {
+        scope: "global"
+    }) {
+        await this.initializePromise;
+        return await this._acquireLock(-1, async ()=>{
+            return await this._signOut(options);
+        });
+    }
+    async _signOut({ scope } = {
+        scope: "global"
+    }) {
+        return await this._useSession(async (result)=>{
+            var _a;
+            const { data, error: sessionError } = result;
+            if (sessionError) return {
+                error: sessionError
+            };
+            const accessToken = (_a = data.session) === null || _a === void 0 ? void 0 : _a.access_token;
+            if (accessToken) {
+                const { error } = await this.admin.signOut(accessToken, scope);
+                if (error) {
+                    // ignore 404s since user might not exist anymore
+                    // ignore 401s since an invalid or expired JWT should sign out the current session
+                    if (!((0, _errors.isAuthApiError)(error) && (error.status === 404 || error.status === 401))) return {
+                        error
+                    };
+                }
+            }
+            if (scope !== "others") {
+                await this._removeSession();
+                await (0, _helpers.removeItemAsync)(this.storage, `${this.storageKey}-code-verifier`);
+                await this._notifyAllSubscribers("SIGNED_OUT", null);
+            }
+            return {
+                error: null
+            };
+        });
+    }
+    /**
+     * Receive a notification every time an auth event happens.
+     * @param callback A callback function to be invoked when an auth event happens.
+     */ onAuthStateChange(callback) {
+        const id = (0, _helpers.uuid)();
+        const subscription = {
+            id,
+            callback,
+            unsubscribe: ()=>{
+                this._debug("#unsubscribe()", "state change callback with id removed", id);
+                this.stateChangeEmitters.delete(id);
+            }
+        };
+        this._debug("#onAuthStateChange()", "registered callback with id", id);
+        this.stateChangeEmitters.set(id, subscription);
+        (async ()=>{
+            await this.initializePromise;
+            await this._acquireLock(-1, async ()=>{
+                this._emitInitialSession(id);
+            });
+        })();
+        return {
+            data: {
+                subscription
+            }
+        };
+    }
+    async _emitInitialSession(id) {
+        return await this._useSession(async (result)=>{
+            var _a, _b;
+            try {
+                const { data: { session }, error } = result;
+                if (error) throw error;
+                await ((_a = this.stateChangeEmitters.get(id)) === null || _a === void 0 ? void 0 : _a.callback("INITIAL_SESSION", session));
+                this._debug("INITIAL_SESSION", "callback id", id, "session", session);
+            } catch (err) {
+                await ((_b = this.stateChangeEmitters.get(id)) === null || _b === void 0 ? void 0 : _b.callback("INITIAL_SESSION", null));
+                this._debug("INITIAL_SESSION", "callback id", id, "error", err);
+                console.error(err);
+            }
+        });
+    }
+    /**
+     * Sends a password reset request to an email address. This method supports the PKCE flow.
+     *
+     * @param email The email address of the user.
+     * @param options.redirectTo The URL to send the user to after they click the password reset link.
+     * @param options.captchaToken Verification token received when the user completes the captcha on the site.
+     */ async resetPasswordForEmail(email, options = {}) {
+        let codeChallenge = null;
+        let codeChallengeMethod = null;
+        if (this.flowType === "pkce") [codeChallenge, codeChallengeMethod] = await (0, _helpers.getCodeChallengeAndMethod)(this.storage, this.storageKey, true // isPasswordRecovery
+        );
+        try {
+            return await (0, _fetch._request)(this.fetch, "POST", `${this.url}/recover`, {
+                body: {
+                    email,
+                    code_challenge: codeChallenge,
+                    code_challenge_method: codeChallengeMethod,
+                    gotrue_meta_security: {
+                        captcha_token: options.captchaToken
+                    }
+                },
+                headers: this.headers,
+                redirectTo: options.redirectTo
+            });
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: null,
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Gets all the identities linked to a user.
+     */ async getUserIdentities() {
+        var _a;
+        try {
+            const { data, error } = await this.getUser();
+            if (error) throw error;
+            return {
+                data: {
+                    identities: (_a = data.user.identities) !== null && _a !== void 0 ? _a : []
+                },
+                error: null
+            };
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: null,
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Links an oauth identity to an existing user.
+     * This method supports the PKCE flow.
+     */ async linkIdentity(credentials) {
+        var _a;
+        try {
+            const { data, error } = await this._useSession(async (result)=>{
+                var _a, _b, _c, _d, _e;
+                const { data, error } = result;
+                if (error) throw error;
+                const url = await this._getUrlForProvider(`${this.url}/user/identities/authorize`, credentials.provider, {
+                    redirectTo: (_a = credentials.options) === null || _a === void 0 ? void 0 : _a.redirectTo,
+                    scopes: (_b = credentials.options) === null || _b === void 0 ? void 0 : _b.scopes,
+                    queryParams: (_c = credentials.options) === null || _c === void 0 ? void 0 : _c.queryParams,
+                    skipBrowserRedirect: true
+                });
+                return await (0, _fetch._request)(this.fetch, "GET", url, {
+                    headers: this.headers,
+                    jwt: (_e = (_d = data.session) === null || _d === void 0 ? void 0 : _d.access_token) !== null && _e !== void 0 ? _e : undefined
+                });
+            });
+            if (error) throw error;
+            if ((0, _helpers.isBrowser)() && !((_a = credentials.options) === null || _a === void 0 ? void 0 : _a.skipBrowserRedirect)) window.location.assign(data === null || data === void 0 ? void 0 : data.url);
+            return {
+                data: {
+                    provider: credentials.provider,
+                    url: data === null || data === void 0 ? void 0 : data.url
+                },
+                error: null
+            };
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    provider: credentials.provider,
+                    url: null
+                },
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Unlinks an identity from a user by deleting it. The user will no longer be able to sign in with that identity once it's unlinked.
+     */ async unlinkIdentity(identity) {
+        try {
+            return await this._useSession(async (result)=>{
+                var _a, _b;
+                const { data, error } = result;
+                if (error) throw error;
+                return await (0, _fetch._request)(this.fetch, "DELETE", `${this.url}/user/identities/${identity.identity_id}`, {
+                    headers: this.headers,
+                    jwt: (_b = (_a = data.session) === null || _a === void 0 ? void 0 : _a.access_token) !== null && _b !== void 0 ? _b : undefined
+                });
+            });
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: null,
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * Generates a new JWT.
+     * @param refreshToken A valid refresh token that was returned on login.
+     */ async _refreshAccessToken(refreshToken) {
+        const debugName = `#_refreshAccessToken(${refreshToken.substring(0, 5)}...)`;
+        this._debug(debugName, "begin");
+        try {
+            const startedAt = Date.now();
+            // will attempt to refresh the token with exponential backoff
+            return await (0, _helpers.retryable)(async (attempt)=>{
+                await (0, _helpers.sleep)(attempt * 200); // 0, 200, 400, 800, ...
+                this._debug(debugName, "refreshing attempt", attempt);
+                return await (0, _fetch._request)(this.fetch, "POST", `${this.url}/token?grant_type=refresh_token`, {
+                    body: {
+                        refresh_token: refreshToken
+                    },
+                    headers: this.headers,
+                    xform: (0, _fetch._sessionResponse)
+                });
+            }, (attempt, _, result)=>result && result.error && (0, _errors.isAuthRetryableFetchError)(result.error) && // retryable only if the request can be sent before the backoff overflows the tick duration
+                Date.now() + (attempt + 1) * 200 - startedAt < AUTO_REFRESH_TICK_DURATION);
+        } catch (error) {
+            this._debug(debugName, "error", error);
+            if ((0, _errors.isAuthError)(error)) return {
+                data: {
+                    session: null,
+                    user: null
+                },
+                error
+            };
+            throw error;
+        } finally{
+            this._debug(debugName, "end");
+        }
+    }
+    _isValidSession(maybeSession) {
+        const isValidSession = typeof maybeSession === "object" && maybeSession !== null && "access_token" in maybeSession && "refresh_token" in maybeSession && "expires_at" in maybeSession;
+        return isValidSession;
+    }
+    async _handleProviderSignIn(provider, options) {
+        const url = await this._getUrlForProvider(`${this.url}/authorize`, provider, {
+            redirectTo: options.redirectTo,
+            scopes: options.scopes,
+            queryParams: options.queryParams
+        });
+        this._debug("#_handleProviderSignIn()", "provider", provider, "options", options, "url", url);
+        // try to open on the browser
+        if ((0, _helpers.isBrowser)() && !options.skipBrowserRedirect) window.location.assign(url);
+        return {
+            data: {
+                provider,
+                url
+            },
+            error: null
+        };
+    }
+    /**
+     * Recovers the session from LocalStorage and refreshes
+     * Note: this method is async to accommodate for AsyncStorage e.g. in React native.
+     */ async _recoverAndRefresh() {
+        var _a;
+        const debugName = "#_recoverAndRefresh()";
+        this._debug(debugName, "begin");
+        try {
+            const currentSession = await (0, _helpers.getItemAsync)(this.storage, this.storageKey);
+            this._debug(debugName, "session from storage", currentSession);
+            if (!this._isValidSession(currentSession)) {
+                this._debug(debugName, "session is not valid");
+                if (currentSession !== null) await this._removeSession();
+                return;
+            }
+            const timeNow = Math.round(Date.now() / 1000);
+            const expiresWithMargin = ((_a = currentSession.expires_at) !== null && _a !== void 0 ? _a : Infinity) < timeNow + (0, _constants.EXPIRY_MARGIN);
+            this._debug(debugName, `session has${expiresWithMargin ? "" : " not"} expired with margin of ${(0, _constants.EXPIRY_MARGIN)}s`);
+            if (expiresWithMargin) {
+                if (this.autoRefreshToken && currentSession.refresh_token) {
+                    const { error } = await this._callRefreshToken(currentSession.refresh_token);
+                    if (error) {
+                        console.error(error);
+                        if (!(0, _errors.isAuthRetryableFetchError)(error)) {
+                            this._debug(debugName, "refresh failed with a non-retryable error, removing the session", error);
+                            await this._removeSession();
+                        }
+                    }
+                }
+            } else // no need to persist currentSession again, as we just loaded it from
+            // local storage; persisting it again may overwrite a value saved by
+            // another client with access to the same local storage
+            await this._notifyAllSubscribers("SIGNED_IN", currentSession);
+        } catch (err) {
+            this._debug(debugName, "error", err);
+            console.error(err);
+            return;
+        } finally{
+            this._debug(debugName, "end");
+        }
+    }
+    async _callRefreshToken(refreshToken) {
+        var _a, _b;
+        if (!refreshToken) throw new (0, _errors.AuthSessionMissingError)();
+        // refreshing is already in progress
+        if (this.refreshingDeferred) return this.refreshingDeferred.promise;
+        const debugName = `#_callRefreshToken(${refreshToken.substring(0, 5)}...)`;
+        this._debug(debugName, "begin");
+        try {
+            this.refreshingDeferred = new (0, _helpers.Deferred)();
+            const { data, error } = await this._refreshAccessToken(refreshToken);
+            if (error) throw error;
+            if (!data.session) throw new (0, _errors.AuthSessionMissingError)();
+            await this._saveSession(data.session);
+            await this._notifyAllSubscribers("TOKEN_REFRESHED", data.session);
+            const result = {
+                session: data.session,
+                error: null
+            };
+            this.refreshingDeferred.resolve(result);
+            return result;
+        } catch (error) {
+            this._debug(debugName, "error", error);
+            if ((0, _errors.isAuthError)(error)) {
+                const result = {
+                    session: null,
+                    error
+                };
+                if (!(0, _errors.isAuthRetryableFetchError)(error)) {
+                    await this._removeSession();
+                    await this._notifyAllSubscribers("SIGNED_OUT", null);
+                }
+                (_a = this.refreshingDeferred) === null || _a === void 0 || _a.resolve(result);
+                return result;
+            }
+            (_b = this.refreshingDeferred) === null || _b === void 0 || _b.reject(error);
+            throw error;
+        } finally{
+            this.refreshingDeferred = null;
+            this._debug(debugName, "end");
+        }
+    }
+    async _notifyAllSubscribers(event, session, broadcast = true) {
+        const debugName = `#_notifyAllSubscribers(${event})`;
+        this._debug(debugName, "begin", session, `broadcast = ${broadcast}`);
+        try {
+            if (this.broadcastChannel && broadcast) this.broadcastChannel.postMessage({
+                event,
+                session
+            });
+            const errors = [];
+            const promises = Array.from(this.stateChangeEmitters.values()).map(async (x)=>{
+                try {
+                    await x.callback(event, session);
+                } catch (e) {
+                    errors.push(e);
+                }
+            });
+            await Promise.all(promises);
+            if (errors.length > 0) {
+                for(let i = 0; i < errors.length; i += 1)console.error(errors[i]);
+                throw errors[0];
+            }
+        } finally{
+            this._debug(debugName, "end");
+        }
+    }
+    /**
+     * set currentSession and currentUser
+     * process to _startAutoRefreshToken if possible
+     */ async _saveSession(session) {
+        this._debug("#_saveSession()", session);
+        await (0, _helpers.setItemAsync)(this.storage, this.storageKey, session);
+    }
+    async _removeSession() {
+        this._debug("#_removeSession()");
+        await (0, _helpers.removeItemAsync)(this.storage, this.storageKey);
+    }
+    /**
+     * Removes any registered visibilitychange callback.
+     *
+     * {@see #startAutoRefresh}
+     * {@see #stopAutoRefresh}
+     */ _removeVisibilityChangedCallback() {
+        this._debug("#_removeVisibilityChangedCallback()");
+        const callback = this.visibilityChangedCallback;
+        this.visibilityChangedCallback = null;
+        try {
+            if (callback && (0, _helpers.isBrowser)() && (window === null || window === void 0 ? void 0 : window.removeEventListener)) window.removeEventListener("visibilitychange", callback);
+        } catch (e) {
+            console.error("removing visibilitychange callback failed", e);
+        }
+    }
+    /**
+     * This is the private implementation of {@link #startAutoRefresh}. Use this
+     * within the library.
+     */ async _startAutoRefresh() {
+        await this._stopAutoRefresh();
+        this._debug("#_startAutoRefresh()");
+        const ticker = setInterval(()=>this._autoRefreshTokenTick(), AUTO_REFRESH_TICK_DURATION);
+        this.autoRefreshTicker = ticker;
+        if (ticker && typeof ticker === "object" && typeof ticker.unref === "function") // ticker is a NodeJS Timeout object that has an `unref` method
+        // https://nodejs.org/api/timers.html#timeoutunref
+        // When auto refresh is used in NodeJS (like for testing) the
+        // `setInterval` is preventing the process from being marked as
+        // finished and tests run endlessly. This can be prevented by calling
+        // `unref()` on the returned object.
+        ticker.unref();
+        else if (typeof Deno !== "undefined" && typeof Deno.unrefTimer === "function") // similar like for NodeJS, but with the Deno API
+        // https://deno.land/api@latest?unstable&s=Deno.unrefTimer
+        // @ts-ignore
+        Deno.unrefTimer(ticker);
+        // run the tick immediately, but in the next pass of the event loop so that
+        // #_initialize can be allowed to complete without recursively waiting on
+        // itself
+        setTimeout(async ()=>{
+            await this.initializePromise;
+            await this._autoRefreshTokenTick();
+        }, 0);
+    }
+    /**
+     * This is the private implementation of {@link #stopAutoRefresh}. Use this
+     * within the library.
+     */ async _stopAutoRefresh() {
+        this._debug("#_stopAutoRefresh()");
+        const ticker = this.autoRefreshTicker;
+        this.autoRefreshTicker = null;
+        if (ticker) clearInterval(ticker);
+    }
+    /**
+     * Starts an auto-refresh process in the background. The session is checked
+     * every few seconds. Close to the time of expiration a process is started to
+     * refresh the session. If refreshing fails it will be retried for as long as
+     * necessary.
+     *
+     * If you set the {@link GoTrueClientOptions#autoRefreshToken} you don't need
+     * to call this function, it will be called for you.
+     *
+     * On browsers the refresh process works only when the tab/window is in the
+     * foreground to conserve resources as well as prevent race conditions and
+     * flooding auth with requests. If you call this method any managed
+     * visibility change callback will be removed and you must manage visibility
+     * changes on your own.
+     *
+     * On non-browser platforms the refresh process works *continuously* in the
+     * background, which may not be desirable. You should hook into your
+     * platform's foreground indication mechanism and call these methods
+     * appropriately to conserve resources.
+     *
+     * {@see #stopAutoRefresh}
+     */ async startAutoRefresh() {
+        this._removeVisibilityChangedCallback();
+        await this._startAutoRefresh();
+    }
+    /**
+     * Stops an active auto refresh process running in the background (if any).
+     *
+     * If you call this method any managed visibility change callback will be
+     * removed and you must manage visibility changes on your own.
+     *
+     * See {@link #startAutoRefresh} for more details.
+     */ async stopAutoRefresh() {
+        this._removeVisibilityChangedCallback();
+        await this._stopAutoRefresh();
+    }
+    /**
+     * Runs the auto refresh token tick.
+     */ async _autoRefreshTokenTick() {
+        this._debug("#_autoRefreshTokenTick()", "begin");
+        try {
+            await this._acquireLock(0, async ()=>{
+                try {
+                    const now = Date.now();
+                    try {
+                        return await this._useSession(async (result)=>{
+                            const { data: { session } } = result;
+                            if (!session || !session.refresh_token || !session.expires_at) {
+                                this._debug("#_autoRefreshTokenTick()", "no session");
+                                return;
+                            }
+                            // session will expire in this many ticks (or has already expired if <= 0)
+                            const expiresInTicks = Math.floor((session.expires_at * 1000 - now) / AUTO_REFRESH_TICK_DURATION);
+                            this._debug("#_autoRefreshTokenTick()", `access token expires in ${expiresInTicks} ticks, a tick lasts ${AUTO_REFRESH_TICK_DURATION}ms, refresh threshold is ${AUTO_REFRESH_TICK_THRESHOLD} ticks`);
+                            if (expiresInTicks <= AUTO_REFRESH_TICK_THRESHOLD) await this._callRefreshToken(session.refresh_token);
+                        });
+                    } catch (e) {
+                        console.error("Auto refresh tick failed with error. This is likely a transient error.", e);
+                    }
+                } finally{
+                    this._debug("#_autoRefreshTokenTick()", "end");
+                }
+            });
+        } catch (e) {
+            if (e.isAcquireTimeout || e instanceof (0, _locks.LockAcquireTimeoutError)) this._debug("auto refresh token tick lock not available");
+            else throw e;
+        }
+    }
+    /**
+     * Registers callbacks on the browser / platform, which in-turn run
+     * algorithms when the browser window/tab are in foreground. On non-browser
+     * platforms it assumes always foreground.
+     */ async _handleVisibilityChange() {
+        this._debug("#_handleVisibilityChange()");
+        if (!(0, _helpers.isBrowser)() || !(window === null || window === void 0 ? void 0 : window.addEventListener)) {
+            if (this.autoRefreshToken) // in non-browser environments the refresh token ticker runs always
+            this.startAutoRefresh();
+            return false;
+        }
+        try {
+            this.visibilityChangedCallback = async ()=>await this._onVisibilityChanged(false);
+            window === null || window === void 0 || window.addEventListener("visibilitychange", this.visibilityChangedCallback);
+            // now immediately call the visbility changed callback to setup with the
+            // current visbility state
+            await this._onVisibilityChanged(true); // initial call
+        } catch (error) {
+            console.error("_handleVisibilityChange", error);
+        }
+    }
+    /**
+     * Callback registered with `window.addEventListener('visibilitychange')`.
+     */ async _onVisibilityChanged(calledFromInitialize) {
+        const methodName = `#_onVisibilityChanged(${calledFromInitialize})`;
+        this._debug(methodName, "visibilityState", document.visibilityState);
+        if (document.visibilityState === "visible") {
+            if (this.autoRefreshToken) // in browser environments the refresh token ticker runs only on focused tabs
+            // which prevents race conditions
+            this._startAutoRefresh();
+            if (!calledFromInitialize) {
+                // called when the visibility has changed, i.e. the browser
+                // transitioned from hidden -> visible so we need to see if the session
+                // should be recovered immediately... but to do that we need to acquire
+                // the lock first asynchronously
+                await this.initializePromise;
+                await this._acquireLock(-1, async ()=>{
+                    if (document.visibilityState !== "visible") {
+                        this._debug(methodName, "acquired the lock to recover the session, but the browser visibilityState is no longer visible, aborting");
+                        // visibility has changed while waiting for the lock, abort
+                        return;
+                    }
+                    // recover the session
+                    await this._recoverAndRefresh();
+                });
+            }
+        } else if (document.visibilityState === "hidden") {
+            if (this.autoRefreshToken) this._stopAutoRefresh();
+        }
+    }
+    /**
+     * Generates the relevant login URL for a third-party provider.
+     * @param options.redirectTo A URL or mobile address to send the user to after they are confirmed.
+     * @param options.scopes A space-separated list of scopes granted to the OAuth application.
+     * @param options.queryParams An object of key-value pairs containing query parameters granted to the OAuth application.
+     */ async _getUrlForProvider(url, provider, options) {
+        const urlParams = [
+            `provider=${encodeURIComponent(provider)}`
+        ];
+        if (options === null || options === void 0 ? void 0 : options.redirectTo) urlParams.push(`redirect_to=${encodeURIComponent(options.redirectTo)}`);
+        if (options === null || options === void 0 ? void 0 : options.scopes) urlParams.push(`scopes=${encodeURIComponent(options.scopes)}`);
+        if (this.flowType === "pkce") {
+            const [codeChallenge, codeChallengeMethod] = await (0, _helpers.getCodeChallengeAndMethod)(this.storage, this.storageKey);
+            const flowParams = new URLSearchParams({
+                code_challenge: `${encodeURIComponent(codeChallenge)}`,
+                code_challenge_method: `${encodeURIComponent(codeChallengeMethod)}`
+            });
+            urlParams.push(flowParams.toString());
+        }
+        if (options === null || options === void 0 ? void 0 : options.queryParams) {
+            const query = new URLSearchParams(options.queryParams);
+            urlParams.push(query.toString());
+        }
+        if (options === null || options === void 0 ? void 0 : options.skipBrowserRedirect) urlParams.push(`skip_http_redirect=${options.skipBrowserRedirect}`);
+        return `${url}?${urlParams.join("&")}`;
+    }
+    async _unenroll(params) {
+        try {
+            return await this._useSession(async (result)=>{
+                var _a;
+                const { data: sessionData, error: sessionError } = result;
+                if (sessionError) return {
+                    data: null,
+                    error: sessionError
+                };
+                return await (0, _fetch._request)(this.fetch, "DELETE", `${this.url}/factors/${params.factorId}`, {
+                    headers: this.headers,
+                    jwt: (_a = sessionData === null || sessionData === void 0 ? void 0 : sessionData.session) === null || _a === void 0 ? void 0 : _a.access_token
+                });
+            });
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: null,
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * {@see GoTrueMFAApi#enroll}
+     */ async _enroll(params) {
+        try {
+            return await this._useSession(async (result)=>{
+                var _a, _b;
+                const { data: sessionData, error: sessionError } = result;
+                if (sessionError) return {
+                    data: null,
+                    error: sessionError
+                };
+                const { data, error } = await (0, _fetch._request)(this.fetch, "POST", `${this.url}/factors`, {
+                    body: {
+                        friendly_name: params.friendlyName,
+                        factor_type: params.factorType,
+                        issuer: params.issuer
+                    },
+                    headers: this.headers,
+                    jwt: (_a = sessionData === null || sessionData === void 0 ? void 0 : sessionData.session) === null || _a === void 0 ? void 0 : _a.access_token
+                });
+                if (error) return {
+                    data: null,
+                    error
+                };
+                if ((_b = data === null || data === void 0 ? void 0 : data.totp) === null || _b === void 0 ? void 0 : _b.qr_code) data.totp.qr_code = `data:image/svg+xml;utf-8,${data.totp.qr_code}`;
+                return {
+                    data,
+                    error: null
+                };
+            });
+        } catch (error) {
+            if ((0, _errors.isAuthError)(error)) return {
+                data: null,
+                error
+            };
+            throw error;
+        }
+    }
+    /**
+     * {@see GoTrueMFAApi#verify}
+     */ async _verify(params) {
+        return this._acquireLock(-1, async ()=>{
+            try {
+                return await this._useSession(async (result)=>{
+                    var _a;
+                    const { data: sessionData, error: sessionError } = result;
+                    if (sessionError) return {
+                        data: null,
+                        error: sessionError
+                    };
+                    const { data, error } = await (0, _fetch._request)(this.fetch, "POST", `${this.url}/factors/${params.factorId}/verify`, {
+                        body: {
+                            code: params.code,
+                            challenge_id: params.challengeId
+                        },
+                        headers: this.headers,
+                        jwt: (_a = sessionData === null || sessionData === void 0 ? void 0 : sessionData.session) === null || _a === void 0 ? void 0 : _a.access_token
+                    });
+                    if (error) return {
+                        data: null,
+                        error
+                    };
+                    await this._saveSession(Object.assign({
+                        expires_at: Math.round(Date.now() / 1000) + data.expires_in
+                    }, data));
+                    await this._notifyAllSubscribers("MFA_CHALLENGE_VERIFIED", data);
+                    return {
+                        data,
+                        error
+                    };
+                });
+            } catch (error) {
+                if ((0, _errors.isAuthError)(error)) return {
+                    data: null,
+                    error
+                };
+                throw error;
+            }
+        });
+    }
+    /**
+     * {@see GoTrueMFAApi#challenge}
+     */ async _challenge(params) {
+        return this._acquireLock(-1, async ()=>{
+            try {
+                return await this._useSession(async (result)=>{
+                    var _a;
+                    const { data: sessionData, error: sessionError } = result;
+                    if (sessionError) return {
+                        data: null,
+                        error: sessionError
+                    };
+                    return await (0, _fetch._request)(this.fetch, "POST", `${this.url}/factors/${params.factorId}/challenge`, {
+                        headers: this.headers,
+                        jwt: (_a = sessionData === null || sessionData === void 0 ? void 0 : sessionData.session) === null || _a === void 0 ? void 0 : _a.access_token
+                    });
+                });
+            } catch (error) {
+                if ((0, _errors.isAuthError)(error)) return {
+                    data: null,
+                    error
+                };
+                throw error;
+            }
+        });
+    }
+    /**
+     * {@see GoTrueMFAApi#challengeAndVerify}
+     */ async _challengeAndVerify(params) {
+        // both _challenge and _verify independently acquire the lock, so no need
+        // to acquire it here
+        const { data: challengeData, error: challengeError } = await this._challenge({
+            factorId: params.factorId
+        });
+        if (challengeError) return {
+            data: null,
+            error: challengeError
+        };
+        return await this._verify({
+            factorId: params.factorId,
+            challengeId: challengeData.id,
+            code: params.code
+        });
+    }
+    /**
+     * {@see GoTrueMFAApi#listFactors}
+     */ async _listFactors() {
+        // use #getUser instead of #_getUser as the former acquires a lock
+        const { data: { user }, error: userError } = await this.getUser();
+        if (userError) return {
+            data: null,
+            error: userError
+        };
+        const factors = (user === null || user === void 0 ? void 0 : user.factors) || [];
+        const totp = factors.filter((factor)=>factor.factor_type === "totp" && factor.status === "verified");
+        return {
+            data: {
+                all: factors,
+                totp
+            },
+            error: null
+        };
+    }
+    /**
+     * {@see GoTrueMFAApi#getAuthenticatorAssuranceLevel}
+     */ async _getAuthenticatorAssuranceLevel() {
+        return this._acquireLock(-1, async ()=>{
+            return await this._useSession(async (result)=>{
+                var _a, _b;
+                const { data: { session }, error: sessionError } = result;
+                if (sessionError) return {
+                    data: null,
+                    error: sessionError
+                };
+                if (!session) return {
+                    data: {
+                        currentLevel: null,
+                        nextLevel: null,
+                        currentAuthenticationMethods: []
+                    },
+                    error: null
+                };
+                const payload = this._decodeJWT(session.access_token);
+                let currentLevel = null;
+                if (payload.aal) currentLevel = payload.aal;
+                let nextLevel = currentLevel;
+                const verifiedFactors = (_b = (_a = session.user.factors) === null || _a === void 0 ? void 0 : _a.filter((factor)=>factor.status === "verified")) !== null && _b !== void 0 ? _b : [];
+                if (verifiedFactors.length > 0) nextLevel = "aal2";
+                const currentAuthenticationMethods = payload.amr || [];
+                return {
+                    data: {
+                        currentLevel,
+                        nextLevel,
+                        currentAuthenticationMethods
+                    },
+                    error: null
+                };
+            });
+        });
+    }
+}
+exports.default = GoTrueClient;
+GoTrueClient.nextInstanceID = 0;
+
+},{"./GoTrueAdminApi":"cZOCe","./lib/constants":"04zmg","./lib/errors":"aGVxJ","./lib/fetch":"b81us","./lib/helpers":"hg2Fd","./lib/local-storage":"faFf6","./lib/polyfills":"fLnCi","./lib/version":"8lpVC","./lib/locks":"2HeFx","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"faFf6":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "localStorageAdapter", ()=>localStorageAdapter);
+/**
+ * Returns a localStorage-like object that stores the key-value pairs in
+ * memory.
+ */ parcelHelpers.export(exports, "memoryLocalStorageAdapter", ()=>memoryLocalStorageAdapter);
+var _helpers = require("./helpers");
+const localStorageAdapter = {
+    getItem: (key)=>{
+        if (!(0, _helpers.supportsLocalStorage)()) return null;
+        return globalThis.localStorage.getItem(key);
+    },
+    setItem: (key, value)=>{
+        if (!(0, _helpers.supportsLocalStorage)()) return;
+        globalThis.localStorage.setItem(key, value);
+    },
+    removeItem: (key)=>{
+        if (!(0, _helpers.supportsLocalStorage)()) return;
+        globalThis.localStorage.removeItem(key);
+    }
+};
+function memoryLocalStorageAdapter(store = {}) {
+    return {
+        getItem: (key)=>{
+            return store[key] || null;
+        },
+        setItem: (key, value)=>{
+            store[key] = value;
+        },
+        removeItem: (key)=>{
+            delete store[key];
+        }
+    };
+}
+
+},{"./helpers":"hg2Fd","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"fLnCi":[function(require,module,exports) {
+/**
+ * https://mathiasbynens.be/notes/globalthis
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "polyfillGlobalThis", ()=>polyfillGlobalThis);
+function polyfillGlobalThis() {
+    if (typeof globalThis === "object") return;
+    try {
+        Object.defineProperty(Object.prototype, "__magic__", {
+            get: function() {
+                return this;
+            },
+            configurable: true
+        });
+        // @ts-expect-error 'Allow access to magic'
+        __magic__.globalThis = __magic__;
+        // @ts-expect-error 'Allow access to magic'
+        delete Object.prototype.__magic__;
+    } catch (e) {
+        if (typeof self !== "undefined") // @ts-expect-error 'Allow access to globals'
+        self.globalThis = self;
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"2HeFx":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "internals", ()=>internals);
+/**
+ * An error thrown when a lock cannot be acquired after some amount of time.
+ *
+ * Use the {@link #isAcquireTimeout} property instead of checking with `instanceof`.
+ */ parcelHelpers.export(exports, "LockAcquireTimeoutError", ()=>LockAcquireTimeoutError);
+parcelHelpers.export(exports, "NavigatorLockAcquireTimeoutError", ()=>NavigatorLockAcquireTimeoutError);
+/**
+ * Implements a global exclusive lock using the Navigator LockManager API. It
+ * is available on all browsers released after 2022-03-15 with Safari being the
+ * last one to release support. If the API is not available, this function will
+ * throw. Make sure you check availablility before configuring {@link
+ * GoTrueClient}.
+ *
+ * You can turn on debugging by setting the `supabase.gotrue-js.locks.debug`
+ * local storage item to `true`.
+ *
+ * Internals:
+ *
+ * Since the LockManager API does not preserve stack traces for the async
+ * function passed in the `request` method, a trick is used where acquiring the
+ * lock releases a previously started promise to run the operation in the `fn`
+ * function. The lock waits for that promise to finish (with or without error),
+ * while the function will finally wait for the result anyway.
+ *
+ * @param name Name of the lock to be acquired.
+ * @param acquireTimeout If negative, no timeout. If 0 an error is thrown if
+ *                       the lock can't be acquired without waiting. If positive, the lock acquire
+ *                       will time out after so many milliseconds. An error is
+ *                       a timeout if it has `isAcquireTimeout` set to true.
+ * @param fn The operation to run once the lock is acquired.
+ */ parcelHelpers.export(exports, "navigatorLock", ()=>navigatorLock);
+var _helpers = require("./helpers");
+const internals = {
+    /**
+     * @experimental
+     */ debug: !!(globalThis && (0, _helpers.supportsLocalStorage)() && globalThis.localStorage && globalThis.localStorage.getItem("supabase.gotrue-js.locks.debug") === "true")
+};
+class LockAcquireTimeoutError extends Error {
+    constructor(message){
+        super(message);
+        this.isAcquireTimeout = true;
+    }
+}
+class NavigatorLockAcquireTimeoutError extends LockAcquireTimeoutError {
+}
+async function navigatorLock(name, acquireTimeout, fn) {
+    if (internals.debug) console.log("@supabase/gotrue-js: navigatorLock: acquire lock", name, acquireTimeout);
+    const abortController = new globalThis.AbortController();
+    if (acquireTimeout > 0) setTimeout(()=>{
+        abortController.abort();
+        if (internals.debug) console.log("@supabase/gotrue-js: navigatorLock acquire timed out", name);
+    }, acquireTimeout);
+    // MDN article: https://developer.mozilla.org/en-US/docs/Web/API/LockManager/request
+    return await globalThis.navigator.locks.request(name, acquireTimeout === 0 ? {
+        mode: "exclusive",
+        ifAvailable: true
+    } : {
+        mode: "exclusive",
+        signal: abortController.signal
+    }, async (lock)=>{
+        if (lock) {
+            if (internals.debug) console.log("@supabase/gotrue-js: navigatorLock: acquired", name, lock.name);
+            try {
+                return await fn();
+            } finally{
+                if (internals.debug) console.log("@supabase/gotrue-js: navigatorLock: released", name, lock.name);
+            }
+        } else if (acquireTimeout === 0) {
+            if (internals.debug) console.log("@supabase/gotrue-js: navigatorLock: not immediately available", name);
+            throw new NavigatorLockAcquireTimeoutError(`Acquiring an exclusive Navigator LockManager lock "${name}" immediately failed`);
+        } else {
+            if (internals.debug) try {
+                const result = await globalThis.navigator.locks.query();
+                console.log("@supabase/gotrue-js: Navigator LockManager state", JSON.stringify(result, null, "  "));
+            } catch (e) {
+                console.warn("@supabase/gotrue-js: Error when querying Navigator LockManager state", e);
+            }
+            // Browser is not following the Navigator LockManager spec, it
+            // returned a null lock when we didn't use ifAvailable. So we can
+            // pretend the lock is acquired in the name of backward compatibility
+            // and user experience and just run the function.
+            console.warn("@supabase/gotrue-js: Navigator LockManager returned a null lock when using #request without ifAvailable set to true, it appears this browser is not following the LockManager spec https://developer.mozilla.org/en-US/docs/Web/API/LockManager/request");
+            return await fn();
+        }
+    });
+}
+
+},{"./helpers":"hg2Fd","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"fTHdd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _goTrueAdminApi = require("./GoTrueAdminApi");
+var _goTrueAdminApiDefault = parcelHelpers.interopDefault(_goTrueAdminApi);
+const AuthAdminApi = (0, _goTrueAdminApiDefault.default);
+exports.default = AuthAdminApi;
+
+},{"./GoTrueAdminApi":"cZOCe","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"gsWfA":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _goTrueClient = require("./GoTrueClient");
+var _goTrueClientDefault = parcelHelpers.interopDefault(_goTrueClient);
+const AuthClient = (0, _goTrueClientDefault.default);
+exports.default = AuthClient;
+
+},{"./GoTrueClient":"j7FfD","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"acnk7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"bNcCE":[function(require,module,exports) {
+module.exports = require("849779deeadc0f31")(require("a61c729798d98a1b").getBundleURL("1Q55w") + "signUp.bcb13ab7.js").catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root("gVOPx"));
+
+},{"849779deeadc0f31":"3dDkg","a61c729798d98a1b":"jkqJ4"}],"60Ikj":[function(require,module,exports) {
+module.exports = require("e7e211454e76e677")(require("e6d17d9eae66552d").getBundleURL("1Q55w") + "signIn.e51c192a.js").catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root("cbLdP"));
+
+},{"e7e211454e76e677":"3dDkg","e6d17d9eae66552d":"jkqJ4"}],"cS9T6":[function(require,module,exports) {
+module.exports = require("342507aafdba9b7e")(require("856776aa1aebf4ad").getBundleURL("1Q55w") + "verify.6491b9a1.js").catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root("9UBEU"));
+
+},{"342507aafdba9b7e":"3dDkg","856776aa1aebf4ad":"jkqJ4"}],"h4qbd":[function(require,module,exports) {
+module.exports = require("7caddbb78564a44")(require("133be8301b94adc3").getBundleURL("1Q55w") + "taskList.a5a2bdea.js").catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root("9fECp"));
+
+},{"7caddbb78564a44":"3dDkg","133be8301b94adc3":"jkqJ4"}]},["jeTtx"], "jeTtx", "parcelRequire89a0")
+
 //# sourceMappingURL=app.js.map

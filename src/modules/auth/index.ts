@@ -29,6 +29,7 @@ export const setUser = (
   userAuth.setRole("USER");
 };
 
+//on logout signout and navigate to the home page
 export const logout = () => {
   supabase.auth.signOut().then(() => {
     userAuth.logout();
@@ -36,6 +37,7 @@ export const logout = () => {
   });
 };
 
+//setting up middleware for routes
 export const userMiddleware = new WFAuthMiddleware(
   userAuth
 );

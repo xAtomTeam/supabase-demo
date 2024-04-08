@@ -2,6 +2,7 @@ import { navigate } from "@xatom/core";
 import supabase from "../supbase";
 
 export const verify = () => {
+  //since supabase handles verification for us we just have to listen login state
   supabase.auth
     .getSession()
     .then((data) => {

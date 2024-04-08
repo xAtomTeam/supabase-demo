@@ -3,15 +3,18 @@ import supabase from "../supbase";
 import { SUPABASE_REDIRECT_URL } from "../../config";
 
 export const signIn = () => {
+  //form
   const form = new WFFormComponent<{
     email: string;
     password: string;
   }>(`[xa-type=main-form]`);
 
+  //google login button
   const googleBtn = form.getChildAsComponent(
     `[xa-type="google-btn"]`
   );
 
+  //on click trigger supabase oAuth provider
   googleBtn.on("click", () => {
     supabase.auth.signInWithOAuth({
       provider: "google",
